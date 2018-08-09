@@ -31,19 +31,8 @@ public final class Config  {
     private Properties configProps;
 
 
-    private static String umlsUser;
-
-    private static String umlsPass;
-
-    private static String cts2URL;
-    
     private static String omopBaseURL;
-    
-    private static String vsOid;
-    
-    private static String vsName;
 
-    private static String vsVer;
 
     /**
      * Constructor finds the working directory and loads the configuration properties.
@@ -89,39 +78,9 @@ public final class Config  {
      * sets the configuration properties.
      */
     public void setConfig()  {
-        umlsUser = getProperty("UMLS_USER");
-        umlsPass = getProperty("UMLS_PASS");
-        cts2URL = getProperty("CTS2_URL");
         omopBaseURL = getProperty("OMOP_BASE_URL");
-        vsOid = getProperty("VS_OID");
-        vsName = getProperty("VS_NAME");
-        vsVer = getProperty("VS_VER");
 
         runPropertyCheck();
-    }
-    
-    public static String getUmlsUser() {
-        return umlsUser;
-    }
-
-    public static String getUmlsPass() {
-        return umlsPass;
-    }
-
-    public static String getVsOid() {
-        return vsOid;
-    }
-    
-    public static String getVsName() {
-        return vsName;
-    }
-
-    public static String getVsVer() {
-        return vsVer;
-    }
- 
-    public static String getCts2Url() {
-        return cts2URL;
     }
     
     public static String getOmopBaseUrl() {
@@ -141,19 +100,7 @@ public final class Config  {
         String prop = inArg.substring(0, pos);
         String val = inArg.substring(pos + 1);
 
-        if (prop.equalsIgnoreCase("UMLS_USER"))  {
-            umlsUser = val;
-        } else if (prop.equalsIgnoreCase("UMLS_PASS"))  {
-            umlsPass = val;
-        } else if (prop.equalsIgnoreCase("VS_OID"))  {
-            vsOid = val;
-        } else if (prop.equalsIgnoreCase("VS_NAME"))  {
-            vsName = val;
-        } else if (prop.equalsIgnoreCase("VS_VER"))  {
-            vsVer = val;
-        } else if (prop.equalsIgnoreCase("CTS2_URL"))  {
-            cts2URL = val;
-        } else if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
+        if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
             omopBaseURL = val;
         }
 
@@ -163,21 +110,6 @@ public final class Config  {
      * Validate that all the properties were set correctly.
      */
     private void runPropertyCheck()  {
-        if (umlsUser == null)  {
-            LOGGER.severe("ERROR - missing parameter UMLS_USER");
-        }
-        if (umlsPass == null)  {
-            LOGGER.severe("ERROR - missing parameter UMLS_PASS");
-        }
-        if (vsOid == null)  {
-            LOGGER.severe("ERROR - missing parameter VS_OID");
-        }
-        if (vsName == null)  {
-            LOGGER.severe("ERROR - missing parameter VS_NAME");
-        }
-        if (cts2URL == null)  {
-            LOGGER.severe("ERROR - missing parameter CTS2_URL");
-        }
         if (omopBaseURL == null)  {
             LOGGER.severe("ERROR - missing parameter OMOP_BASE_URL");
         }

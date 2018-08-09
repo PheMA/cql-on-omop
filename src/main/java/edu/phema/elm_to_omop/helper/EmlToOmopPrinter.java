@@ -18,11 +18,6 @@ public final class EmlToOmopPrinter {
      * @param config configuration information
      */
     public static void printConfig()  {
-        System.out.println("Umls User = " + Config.getUmlsUser());
-        System.out.println("Umls Pass = " + Config.getUmlsPass());
-        System.out.println("vs oid = " + Config.getVsOid());
-        System.out.println("vs ver = " + Config.getVsVer());
-        System.out.println("cts url = " + Config.getCts2Url());
         System.out.println("omop base url = " + Config.getOmopBaseUrl());
     }
    
