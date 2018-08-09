@@ -32,6 +32,8 @@ public final class Config  {
 
 
     private static String omopBaseURL;
+    
+    private static String elmFileName;
 
 
     /**
@@ -79,12 +81,17 @@ public final class Config  {
      */
     public void setConfig()  {
         omopBaseURL = getProperty("OMOP_BASE_URL");
+        elmFileName = getProperty("ELM_FILE_NAME");
 
         runPropertyCheck();
     }
     
     public static String getOmopBaseUrl() {
         return omopBaseURL;
+    }
+    
+    public static String getElmFileName() {
+        return elmFileName;
     }
     
     /**
@@ -103,6 +110,9 @@ public final class Config  {
         if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
             omopBaseURL = val;
         }
+        if (prop.equalsIgnoreCase("ELM_FILE_NAME"))  {
+            elmFileName = val;
+        }
 
     }
 
@@ -113,7 +123,9 @@ public final class Config  {
         if (omopBaseURL == null)  {
             LOGGER.severe("ERROR - missing parameter OMOP_BASE_URL");
         }
-       
+        if (elmFileName == null)  {
+            LOGGER.severe("ERROR - missing parameter ELM_FILE_NAME");
+        }
     }
 
 }

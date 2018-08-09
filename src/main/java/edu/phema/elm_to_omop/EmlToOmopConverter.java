@@ -46,17 +46,13 @@ public class EmlToOmopConverter
     
     private static void readElm() throws FileNotFoundException, IOException, JAXBException  {
         String workingDir = System.getProperty("user.dir");
-        File file = new File( workingDir + File.separator + "resources" +File.separator + "diabetes" +File.separator +"simple-dx-elm.xml");
-        //File file = new File( workingDir + File.separator + "resources" +File.separator +"ChlamydiaScreening_ELM.xml");
-        
-        System.out.println(file.getPath());
+        File file = new File( workingDir + File.separator + "resources" +File.separator + "diabetes" +File.separator +Config.getElmFileName());
 
         String json = "";
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         
         JAXBReader xmlReader = new JAXBReader();
         Library elmContents = xmlReader.readXml(file);
-        //ObjMessage message = patientXml.getObjMessage();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(Include.NON_NULL);
