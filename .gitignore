@@ -7,7 +7,6 @@ target/*
 **/.DS_Store
 
 
-**/*.properties
 **/*.xlsx
 **/*.xlsm
 **/*.xls
