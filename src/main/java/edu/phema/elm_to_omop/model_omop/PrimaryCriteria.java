@@ -2,9 +2,9 @@ package edu.phema.elm_to_omop.model_omop;
 
 public class PrimaryCriteria {
 
-    private CriteriaList critList;
-    private ObservationWindow obWin;
-    private PrimaryCriteriaLimit primCritLimit;
+    private CriteriaList criteriaList;
+    private ObservationWindow observationWindow;
+    private PrimaryCriteriaLimit primaryCriteriaLimit;
 
     
     public PrimaryCriteria() {
@@ -15,39 +15,39 @@ public class PrimaryCriteria {
 
     public PrimaryCriteria(CriteriaList critList, ObservationWindow obWin, PrimaryCriteriaLimit primCritLimit) {
         super();
-        this.critList = critList;
-        this.obWin = obWin;
-        this.primCritLimit = primCritLimit;
+        this.criteriaList = critList;
+        this.observationWindow = obWin;
+        this.primaryCriteriaLimit = primCritLimit;
     }
 
 
     public CriteriaList getCritList() {
-        return critList;
+        return criteriaList;
     }
 
 
     public ObservationWindow getObWin() {
-        return obWin;
+        return observationWindow;
     }
 
 
     public PrimaryCriteriaLimit getPrimCritLimit() {
-        return primCritLimit;
+        return primaryCriteriaLimit;
     }
 
 
     public void setCritList(CriteriaList critList) {
-        this.critList = critList;
+        this.criteriaList = critList;
     }
 
 
     public void setObWin(ObservationWindow obWin) {
-        this.obWin = obWin;
+        this.observationWindow = obWin;
     }
 
 
     public void setPrimCritLimit(PrimaryCriteriaLimit primCritLimit) {
-        this.primCritLimit = primCritLimit;
+        this.primaryCriteriaLimit = primCritLimit;
     }
 
 

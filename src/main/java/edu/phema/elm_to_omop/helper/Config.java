@@ -34,7 +34,8 @@ public final class Config  {
     private static String omopBaseURL;
     
     private static String elmFileName;
-
+    
+    private static String vsFileName;
 
     /**
      * Constructor finds the working directory and loads the configuration properties.
@@ -82,6 +83,7 @@ public final class Config  {
     public void setConfig()  {
         omopBaseURL = getProperty("OMOP_BASE_URL");
         elmFileName = getProperty("ELM_FILE_NAME");
+        vsFileName = getProperty("VS_FILE_NAME");
 
         runPropertyCheck();
     }
@@ -92,6 +94,10 @@ public final class Config  {
     
     public static String getElmFileName() {
         return elmFileName;
+    }
+    
+    public static String getVsFileName() {
+        return vsFileName;
     }
     
     /**
@@ -110,8 +116,8 @@ public final class Config  {
         if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
             omopBaseURL = val;
         }
-        if (prop.equalsIgnoreCase("ELM_FILE_NAME"))  {
-            elmFileName = val;
+        if (prop.equalsIgnoreCase("VS_FILE_NAME"))  {
+            vsFileName = val;
         }
 
     }
@@ -125,6 +131,9 @@ public final class Config  {
         }
         if (elmFileName == null)  {
             LOGGER.severe("ERROR - missing parameter ELM_FILE_NAME");
+        }
+        if (vsFileName == null)  {
+            LOGGER.severe("ERROR - missing parameter VS_FILE_NAME");
         }
     }
 

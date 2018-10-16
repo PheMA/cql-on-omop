@@ -1,0 +1,138 @@
+
+{
+  "id" : null,
+  "system" : null,
+  "version" : null
+}
+{
+  "def" : [ {
+    "annotation" : [ ],
+    "resultTypeSpecifier" : null,
+    "localId" : null,
+    "locator" : null,
+    "resultTypeName" : null,
+    "parameterTypeSpecifier" : {
+      "annotation" : [ ],
+      "resultTypeSpecifier" : null,
+      "localId" : null,
+      "locator" : null,
+      "resultTypeName" : null,
+      "pointType" : {
+        "annotation" : [ ],
+        "resultTypeSpecifier" : null,
+        "localId" : null,
+        "locator" : null,
+        "resultTypeName" : null,
+        "name" : "{urn:hl7-org:elm-types:r1}DateTime"
+      }
+    },
+    "name" : "Measurement Period",
+    "parameterType" : null,
+    "accessLevel" : "PUBLIC",
+    "default" : null
+  } ]
+}
+{
+  "def" : [ {
+    "annotation" : [ ],
+    "resultTypeSpecifier" : null,
+    "localId" : null,
+    "locator" : null,
+    "resultTypeName" : null,
+    "expression" : {
+      "annotation" : [ ],
+      "resultTypeSpecifier" : null,
+      "localId" : null,
+      "locator" : null,
+      "resultTypeName" : null,
+      "operand" : {
+        "annotation" : [ ],
+        "resultTypeSpecifier" : null,
+        "localId" : null,
+        "locator" : null,
+        "resultTypeName" : null,
+        "codes" : null,
+        "dateRange" : null,
+        "dataType" : "{http://hl7.org/fhir}Patient",
+        "templateId" : "patient-qicore-qicore-patient",
+        "idProperty" : null,
+        "codeProperty" : null,
+        "dateProperty" : null,
+        "dateLowProperty" : null,
+        "dateHighProperty" : null,
+        "scope" : null
+      }
+    },
+    "name" : "Patient",
+    "context" : "Patient",
+    "accessLevel" : "PUBLIC"
+  }, {
+    "annotation" : [ ],
+    "resultTypeSpecifier" : null,
+    "localId" : null,
+    "locator" : null,
+    "resultTypeName" : null,
+    "expression" : {
+      "annotation" : [ ],
+      "resultTypeSpecifier" : null,
+      "localId" : null,
+      "locator" : null,
+      "resultTypeName" : null,
+      "source" : [ {
+        "annotation" : [ ],
+        "resultTypeSpecifier" : null,
+        "localId" : null,
+        "locator" : null,
+        "resultTypeName" : null,
+        "expression" : {
+          "annotation" : [ ],
+          "resultTypeSpecifier" : null,
+          "localId" : null,
+          "locator" : null,
+          "resultTypeName" : null,
+          "codes" : {
+            "annotation" : [ ],
+            "resultTypeSpecifier" : null,
+            "localId" : null,
+            "locator" : null,
+            "resultTypeName" : null,
+            "name" : "Diabetes",
+            "libraryName" : null
+          },
+          "dateRange" : null,
+          "dataType" : "{http://hl7.org/fhir}Condition",
+          "templateId" : "condition-qicore-qicore-condition",
+          "idProperty" : null,
+          "codeProperty" : "code",
+          "dateProperty" : null,
+          "dateLowProperty" : null,
+          "dateHighProperty" : null,
+          "scope" : null
+        },
+        "alias" : "C"
+      } ],
+      "let" : [ ],
+      "relationship" : [ ],
+      "where" : null,
+      "sort" : null,
+      "return" : null
+    },
+    "name" : "In Initial Population",
+    "context" : "Patient",
+    "accessLevel" : "PUBLIC"
+  } ]
+}
+[ {
+  "annotation" : [ ],
+  "resultTypeSpecifier" : null,
+  "localId" : null,
+  "locator" : null,
+  "resultTypeName" : null,
+  "codeSystem" : [ ],
+  "name" : "Diabetes",
+  "id" : "2.16.840.1.113883.3.464.1003.103.12.1001",
+  "version" : null,
+  "accessLevel" : "PUBLIC"
+} ]
+	done
+
