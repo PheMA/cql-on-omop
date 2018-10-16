@@ -5,11 +5,6 @@ target/*
 .project
 **/.DS_Store
 
-
-**/*.xlsx
-**/*.xlsm
-**/*.xls
-**/*.csv
 **/*.txt
 
 **/*.log
