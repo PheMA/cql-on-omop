@@ -36,7 +36,7 @@ public class OmopWriter {
         String json = writeOmopJson(elmContents, conceptSets);
         logger.info(directory +"ohdsiJsonOutput.txt");
         
-        try (FileWriter jsonFile = new FileWriter(directory +"ohdsiJsonOutput.txt")) {
+        try (FileWriter jsonFile = new FileWriter(directory +"ohdsiCohortDefinition.json")) {
             jsonFile.write(json);
         }
     }
