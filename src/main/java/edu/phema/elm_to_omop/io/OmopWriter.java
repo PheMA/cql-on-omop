@@ -30,7 +30,7 @@ public class OmopWriter {
 
     private static Logger logger; 
     
-    public static void writeOmopJson(Library elmContents, ConceptSets conceptSets, String directory, Logger inLogger)  throws IOException {
+    public static String writeOmopJson(Library elmContents, ConceptSets conceptSets, String directory, Logger inLogger)  throws IOException {
         logger = inLogger;
         
         String json = writeOmopJson(elmContents, conceptSets);
@@ -39,6 +39,7 @@ public class OmopWriter {
         try (FileWriter jsonFile = new FileWriter(directory +"ohdsiCohortDefinition.json")) {
             jsonFile.write(json);
         }
+        return json;
     }
     
     

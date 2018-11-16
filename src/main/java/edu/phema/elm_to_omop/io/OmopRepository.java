@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -91,6 +92,40 @@ public class OmopRepository {
         String url = domain +"/WebAPI/cohortdefinition/sql";
         String content = get(url);
         return content;
+    }
+    
+    public static String postImportJson(String domain, String json) throws MalformedURLException, ProtocolException, IOException {
+        String url = domain +"/WebAPI/cohort/import";
+        URL obj = new URL(url);
+        HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
+        postConnection.setDoOutput(true);
+        postConnection.setRequestMethod("POST");
+        postConnection.setRequestProperty("Content-Type", "application/json");
+        
+        OutputStream os = postConnection.getOutputStream();
+        os.write(json.getBytes());
+        os.flush();
+        os.close();
+        
+        int responseCode = postConnection.getResponseCode();
+        System.out.println("POST Response Code :  " + responseCode);
+        System.out.println("POST Response Message : " + postConnection.getResponseMessage());
+        
+        StringBuffer response = new StringBuffer();
+        if (responseCode == HttpURLConnection.HTTP_CREATED) { //success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                postConnection.getInputStream()));
+            String inputLine;
+            
+            while ((inputLine = in .readLine()) != null) {
+                response.append(inputLine);
+            } in .close();
+            // print result
+            System.out.println(response.toString());
+        } else {
+            System.out.println("POST FAILED");
+        }
+        return response.toString();
     }
 
     private static String get(String url) throws MalformedURLException, ProtocolException, IOException {

@@ -50,7 +50,7 @@ public class EmlToOmopConverter
     
             ConceptSets conceptSets = ValueSetReader.getConcepts(elmContents, directory, logger);
             
-            OmopWriter.writeOmopJson(elmContents, conceptSets, directory, logger);
+            String omopJson = OmopWriter.writeOmopJson(elmContents, conceptSets, directory, logger);
             
             String domain = Config.getOmopBaseUrl();
             String sources = OmopRepository.getSources(domain);
@@ -59,8 +59,8 @@ public class EmlToOmopConverter
             String search = OmopRepository.getSearch(domain, "cardiomyopathy");
             FileWriter.write(directory + "search.json", search);
     
-            String cohortCharacter = OmopRepository.getCohortCharacter(domain);
-            FileWriter.write(directory + "cohortCharacter.json", cohortCharacter);
+//            String cohortCharacter = OmopRepository.getCohortCharacter(domain);
+//            FileWriter.write(directory + "cohortCharacter.json", cohortCharacter);
     
             String conceptSet = OmopRepository.getConceptSet(domain);
             FileWriter.write(directory + "conceptSet.json", conceptSet);
@@ -74,12 +74,17 @@ public class EmlToOmopConverter
             String conceptItems = OmopRepository.getConceptItems(domain, 8168);
             FileWriter.write(directory + "conceptItems.json", conceptItems);
             
-            String cohortDefinition = OmopRepository.getCohortDefinition(domain);
-            FileWriter.write(directory + "cohortDefinition.json", cohortDefinition);
+//            String cohortDefinition = OmopRepository.getCohortDefinition(domain);
+//            FileWriter.write(directory + "cohortDefinition.json", cohortDefinition);
 
-            String cohortDefinitionById = OmopRepository.getCohortDefinitionById(domain, 176393);
+            String cohortDefinitionById = OmopRepository.getCohortDefinitionById(domain, 1);
             FileWriter.write(directory + "cohortDefinitionById.json", cohortDefinitionById);
+            
+            System.out.println("JSON - " +omopJson);
     
+            String importJson = OmopRepository.postImportJson(domain, omopJson);
+            FileWriter.write(directory + "cohortDefinitionById.json", importJson);
+            
     //        String cohortDefinitionById = OmopRepository.postCohortDefinitionById(domain, 176393);
     //        FileWriter.write(directory + "cohortDefinitionById.json", cohortDefinitionById);
             
