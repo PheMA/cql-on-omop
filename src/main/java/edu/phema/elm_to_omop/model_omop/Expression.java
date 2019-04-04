@@ -1,25 +1,30 @@
 package edu.phema.elm_to_omop.model_omop;
 
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "items" })
 public class Expression {
 
-    private Items items;
+    private ArrayList<Items> items;
 
     public Expression() {
         super();
-        // TODO Auto-generated constructor stub
+        items = new ArrayList<Items>();
     }
 
-    public Expression(Items items) {
+    public Expression(ArrayList<Items> items) {
         super();
         this.items = items;
     }
 
-    public Items getItems() {
+    public ArrayList<Items> getItems() {
         return items;
     }
 
-    public void setItems(Items items) {
-        this.items = items;
+    public void addItem(Items item) {
+        this.items.add(item);
     }
     
 }

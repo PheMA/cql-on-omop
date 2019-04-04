@@ -2,7 +2,7 @@ package edu.phema.elm_to_omop.model_omop;
 
 public class ConceptSets {
 
-    private String id;
+    private int id;
     private String name;
     private Expression expression;
     
@@ -12,14 +12,14 @@ public class ConceptSets {
         // TODO Auto-generated constructor stub
     }
     
-    public ConceptSets(String id, String name, Expression expression) {
+    public ConceptSets(int id, String name, Expression expression) {
         super();
         this.id = id;
         this.name = name;
         this.expression = expression;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
     public String getName() {
@@ -28,7 +28,7 @@ public class ConceptSets {
     public Expression getExpression() {
         return expression;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public void setName(String name) {

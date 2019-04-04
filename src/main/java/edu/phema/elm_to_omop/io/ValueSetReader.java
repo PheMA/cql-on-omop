@@ -1,10 +1,13 @@
 package edu.phema.elm_to_omop.io;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.simple.parser.ParseException;
 
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.model_elm.Library;
@@ -17,20 +20,23 @@ import edu.phema.elm_to_omop.model_phema.PhemaValueSet;
 
 public class ValueSetReader {
 
-    public static ConceptSets getConcepts(Library elmContents, String directory, Logger logger) throws IOException, InvalidFormatException {
-        
+    private static String vocabSouce;
+    private static String serverUrl;
+    
+    public static ConceptSets getConcepts(Library elmContents, String directory, Logger logger, String domain, String source) throws MalformedURLException, ProtocolException, IOException, ParseException, InvalidFormatException {
+        vocabSouce = source;
+        serverUrl = domain;
         String vsDirectory = directory + Config.getVsFileName();
-        logger.info("vsFile location - " +vsDirectory);
         
         SpreadsheetReader vsReader = new SpreadsheetReader();
         ArrayList<PhemaValueSet>  codes = new ArrayList<PhemaValueSet> ();
-        codes = vsReader.getPatientSpreadsheetData(vsDirectory, "diabetes");
+        codes = vsReader.getPatientSpreadsheetData(vsDirectory, Config.getTab());
         ConceptSets conceptSets = getConceptSets(elmContents, codes);
         
         return conceptSets;
     }
     
-    private static ConceptSets getConceptSets(Library elmContents, ArrayList<PhemaValueSet>  pvsList)  {
+    private static ConceptSets getConceptSets(Library elmContents, ArrayList<PhemaValueSet>  pvsList) throws MalformedURLException, ProtocolException, IOException, ParseException {
         
         ConceptSets conceptSets = new ConceptSets();
         Expression expression = new Expression();
@@ -38,9 +44,8 @@ public class ValueSetReader {
         
         int count = 0;
         for (PhemaValueSet pvs : pvsList) {
-            count++;
-            
-            conceptSets.setId("" +count);
+
+            conceptSets.setId(count);
             conceptSets.setName(pvs.getName());
             
             expression = new Expression();
@@ -50,18 +55,17 @@ public class ValueSetReader {
             
             for (PhemaCode code : codes) {
                 Concept concept = new Concept();
-                concept.setConceptCode(code.getCode());
-                concept.setName(code.getDescription());
-                concept.setVocabularyId(code.getCodeSystem());
-                items.add(concept);
+                concept = OmopRepository.getConceptMetada(serverUrl, vocabSouce, code.getCode());
+
+                items = new Items();
+                items.setConcept(concept);
+                expression.addItem(items);
             }
+            count++;
         }
-        expression.setItems(items);
         conceptSets.setExpression(expression);
         
         return conceptSets;
     }
-    
-    
-    
+
 }

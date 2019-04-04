@@ -1,2 +1,0 @@
-[{"sourceId":1,"sourceName":"Docker Default","sourceDialect":"postgresql","sourceKey":"docker_default","daimons":[{"sourceDaimonId":1,"daimonType":"CDM","tableQualifier":"public","priority":"0"},{"sourceDaimonId":2,"daimonType":"Vocabulary","tableQualifier":"public","priority":"0"},{"sourceDaimonId":3,"daimonType":"Results","tableQualifier":"public","priority":"0"}]}]
-

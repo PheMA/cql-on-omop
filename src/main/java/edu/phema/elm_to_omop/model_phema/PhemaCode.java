@@ -1,5 +1,9 @@
 package edu.phema.elm_to_omop.model_phema;
 
+/** 
+ * PhemaCode objects represent the codes used within a PhemaValueSet.
+ * They are modeled based on the output from the Phema authoring tool
+ */
 public class PhemaCode {
 
     private String valueSetOid;
@@ -13,7 +17,6 @@ public class PhemaCode {
 
     public PhemaCode() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public String getValueSetOid() {
@@ -48,6 +51,7 @@ public class PhemaCode {
         return tty;
     }
 
+    
     public void setValueSetOid(String valueSetOid) {
         this.valueSetOid = valueSetOid;
     }
@@ -79,9 +83,5 @@ public class PhemaCode {
     public void setTty(String tty) {
         this.tty = tty;
     }
-    
-    
-    
-
-    
+  
 }

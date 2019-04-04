@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * This class sets the configuration information.  It looks first for command line
  * arguments.  If not present, then pulls them from configuration file.
- * Config file is must be located in the config directory and named configuration.properties.
+ * Config file is must be located in the config directory and named config.properties.
  */
 public final class Config  {
     /**
@@ -36,6 +36,10 @@ public final class Config  {
     private static String elmFileName;
     
     private static String vsFileName;
+    
+    private static String source;
+    
+    private static String tab;
 
     /**
      * Constructor finds the working directory and loads the configuration properties.
@@ -84,6 +88,8 @@ public final class Config  {
         omopBaseURL = getProperty("OMOP_BASE_URL");
         elmFileName = getProperty("ELM_FILE_NAME");
         vsFileName = getProperty("VS_FILE_NAME");
+        source = getProperty("SOURCE");
+        tab = getProperty("VS_TAB");
 
         runPropertyCheck();
     }
@@ -98,6 +104,14 @@ public final class Config  {
     
     public static String getVsFileName() {
         return vsFileName;
+    }
+    
+    public static String getSource() {
+        return source;
+    }
+    
+    public static String getTab() {
+        return tab;
     }
     
     /**
@@ -116,10 +130,18 @@ public final class Config  {
         if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
             omopBaseURL = val;
         }
+        if (prop.equalsIgnoreCase("ELM_FILE_NAME"))  {
+            elmFileName = val;
+        }
         if (prop.equalsIgnoreCase("VS_FILE_NAME"))  {
             vsFileName = val;
         }
-
+        if (prop.equalsIgnoreCase("SOURCE"))  {
+            source = val;
+        }
+        if (prop.equalsIgnoreCase("VS_TAB"))  {
+            tab = val;
+        }
     }
 
     /**
@@ -134,6 +156,12 @@ public final class Config  {
         }
         if (vsFileName == null)  {
             LOGGER.severe("ERROR - missing parameter VS_FILE_NAME");
+        }
+        if (source == null)  {
+            LOGGER.severe("ERROR - missing parameter SOURCE");
+        }
+        if (tab == null)  {
+            LOGGER.severe("ERROR - missing parameter VS_TAB");
         }
     }
 

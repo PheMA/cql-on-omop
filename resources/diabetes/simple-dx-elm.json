@@ -129,7 +129,7 @@
   "locator" : null,
   "resultTypeName" : null,
   "codeSystem" : [ ],
-  "name" : "Diabetes",
+  "name" : "Diabetes test",
   "id" : "2.16.840.1.113883.3.464.1003.103.12.1001",
   "version" : null,
   "accessLevel" : "PUBLIC"

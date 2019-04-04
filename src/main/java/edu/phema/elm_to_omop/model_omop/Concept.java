@@ -1,16 +1,41 @@
 package edu.phema.elm_to_omop.model_omop;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "CONCEPT_ID", "CONCEPT_NAME", "STANDARD_CONCEPT", "STANDARD_CONCEPT_CAPTION", 
+    "INVALID_REASON", "INVALID_REASON_CAPTION", "CONCEPT_CODE", "DOMAIN_ID", "VOCABULARY_ID", "CONCEPT_CLASS_ID" })
+
 public class Concept {
 
+    @JsonProperty("CONCEPT_CLASS_ID")
     private String conceptClassId;
+    
+    @JsonProperty("CONCEPT_CODE")
     private String conceptCode;
+    
+    @JsonProperty("CONCEPT_ID")
     private String id;
+    
+    @JsonProperty("CONCEPT_NAME")
     private String name;
+    
+    @JsonProperty("DOMAIN_ID")
     private String domainId;
+    
+    @JsonProperty("INVALID_REASON")
     private String invalidReason;
+    
+    @JsonProperty("INVALID_REASON_CAPTION")
     private String invalidReasonCaption;
+    
+    @JsonProperty("STANDARD_CONCEPT")
     private String standardConcept;
+    
+    @JsonProperty("STANDARD_CONCEPT_CAPTION")
     private String standardConceptCaption;
+    
+    @JsonProperty("VOCABULARY_ID")
     private String vocabularyId;
     
     public Concept() {

@@ -1,0 +1,460 @@
+value_set_oid,value_set_name,code,description,code_system,code_system_version,code_system_oid,tty
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,1.05401E+14,Diabetes mellitus due to pancreatic injury (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,1.06281E+14,Pre-existing diabetes mellitus in mother complicating childbirth (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,1.07549E+16,Diabetes mellitus in mother complicating childbirth (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,111307005,Leprechaunism syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,111552007,Diabetes mellitus without complication (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,123763000,Houssay's syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,127012008,Lipoatrophic diabetes (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,1.481E+12,Diabetes mellitus type 2 without retinopathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190330002,Type 1 diabetes mellitus with hyperosmolar coma (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190331003,Type 2 diabetes mellitus with hyperosmolar coma (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190368000,Type I diabetes mellitus with ulcer (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190372001,Type I diabetes mellitus maturity onset (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190389009,Type II diabetes mellitus with ulcer (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190406000,Malnutrition-related diabetes mellitus with ketoacidosis (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190407009,Malnutrition-related diabetes mellitus with renal complications (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190410002,Malnutrition-related diabetes mellitus with peripheral circulatory complications (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190411003,Malnutrition-related diabetes mellitus with multiple complications (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,190412005,Malnutrition-related diabetes mellitus without complications (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199223000,"Diabetes mellitus during pregnancy, childbirth and the puerperium (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199225007,Diabetes mellitus during pregnancy - baby delivered (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199226008,Diabetes mellitus in the puerperium - baby delivered during current episode of care (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199227004,Diabetes mellitus during pregnancy - baby not yet delivered (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199228009,Diabetes mellitus in the puerperium - baby delivered during previous episode of care (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199229001,Pre-existing type 1 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199230006,Pre-existing type 2 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,199231005,Pre-existing malnutrition-related diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,23045005,Insulin dependent diabetes mellitus type IA (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237599002,Insulin treated type 2 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237600004,Malnutrition-related diabetes mellitus - fibrocalculous (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237601000,Secondary endocrine diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237604008,"Maturity onset diabetes of the young, type 2 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237613005,Hyperproinsulinemia (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237618001,Insulin-dependent diabetes mellitus secretory diarrhea syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237619009,Diabetes-deafness syndrome maternally transmitted (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237627000,Pregnancy and type 2 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,237651005,Insulin resistance - type A (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,24203005,"Extreme insulin resistance with acanthosis nigricans, hirsutism AND abnormal insulin receptors (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250,"Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.01,"Diabetes mellitus without mention of complication, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.02,"Diabetes mellitus without mention of complication, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.03,"Diabetes mellitus without mention of complication, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.1,"Diabetes with ketoacidosis, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.11,"Diabetes with ketoacidosis, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.12,"Diabetes with ketoacidosis, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.13,"Diabetes with ketoacidosis, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.2,"Diabetes with hyperosmolarity, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.21,"Diabetes with hyperosmolarity, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.22,"Diabetes with hyperosmolarity, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.23,"Diabetes with hyperosmolarity, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.3,"Diabetes with other coma, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.31,"Diabetes with other coma, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.32,"Diabetes with other coma, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.33,"Diabetes with other coma, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.4,"Diabetes with renal manifestations, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.41,"Diabetes with renal manifestations, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.42,"Diabetes with renal manifestations, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.43,"Diabetes with renal manifestations, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.5,"Diabetes with ophthalmic manifestations, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.51,"Diabetes with ophthalmic manifestations, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.52,"Diabetes with ophthalmic manifestations, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.53,"Diabetes with ophthalmic manifestations, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.6,"Diabetes with neurological manifestations, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.61,"Diabetes with neurological manifestations, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.62,"Diabetes with neurological manifestations, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.63,"Diabetes with neurological manifestations, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.7,"Diabetes with peripheral circulatory disorders, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.71,"Diabetes with peripheral circulatory disorders, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.72,"Diabetes with peripheral circulatory disorders, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.73,"Diabetes with peripheral circulatory disorders, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.8,"Diabetes with other specified manifestations, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.81,"Diabetes with other specified manifestations, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.82,"Diabetes with other specified manifestations, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.83,"Diabetes with other specified manifestations, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.9,"Diabetes with unspecified complication, type II or unspecified type, not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.91,"Diabetes with unspecified complication, type I [juvenile type], not stated as uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.92,"Diabetes with unspecified complication, type II or unspecified type, uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,250.93,"Diabetes with unspecified complication, type I [juvenile type], uncontrolled",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,2751001,Fibrocalculous pancreatic diabetes (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,28032008,Insulin dependent diabetes mellitus type IB (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,3.1321E+13,Diabetes mellitus type 1 without retinopathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,313435000,Type I diabetes mellitus without complication (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,313436004,Type II diabetes mellitus without complication (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,314771006,Type I diabetes mellitus with hypoglycemic coma (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,314893005,Type I diabetes mellitus with arthropathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,314902007,Type 2 diabetes mellitus with peripheral angiopathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,314903002,Type II diabetes mellitus with arthropathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,314904008,Type II diabetes mellitus with neuropathic arthropathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,33559001,Pineal hyperplasia AND diabetes mellitus syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,357.2,Polyneuropathy in diabetes,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,359642000,Diabetes mellitus type 2 in nonobese (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.01,Background diabetic retinopathy,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.02,Proliferative diabetic retinopathy,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.03,Nonproliferative diabetic retinopathy NOS,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.04,Mild nonproliferative diabetic retinopathy,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.05,Moderate nonproliferative diabetic retinopathy,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.06,Severe nonproliferative diabetic retinopathy,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,362.07,Diabetic macular edema,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,366.41,Diabetic cataract,ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,3.68521E+14,Disorder of nerve co-occurrent and due to type 1 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,408539000,Insulin autoimmune syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,426705001,Diabetes mellitus co-occurrent and due to cystic fibrosis (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,426875007,Latent autoimmune diabetes mellitus in adult (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,427089005,Diabetes mellitus due to cystic fibrosis (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,42954008,Diabetes mellitus associated with receptor abnormality (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,44054006,Diabetes mellitus type 2 (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,445260006,Posttransplant diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,46635009,Diabetes mellitus type 1 (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,4783006,Maternal diabetes mellitus with hypoglycemia affecting fetus OR newborn (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,51002006,Diabetes mellitus associated with pancreatic disease (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,5.30559E+17,Atypical diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,57886004,Protein-deficient diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,59079001,Diabetes mellitus associated with hormonal etiology (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,5969009,Diabetes mellitus associated with genetic syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609561005,Maturity-onset diabetes of the young (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609562003,"Maturity onset diabetes of the young, type 1 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609563008,Pre-existing diabetes mellitus in pregnancy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609564002,Pre-existing type 1 diabetes mellitus in pregnancy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609566000,Pregnancy and type 1 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609567009,Pre-existing type 2 diabetes mellitus in pregnancy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609568004,Diabetes mellitus due to genetic defect in beta cell function (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609569007,Diabetes mellitus due to genetic defect in insulin action (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609570008,"Maturity-onset diabetes of the young, type 3 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609571007,"Maturity-onset diabetes of the young, type 4 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609572000,"Maturity-onset diabetes of the young, type 5 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609573005,"Maturity-onset diabetes of the young, type 6 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609574004,"Maturity-onset diabetes of the young, type 7 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609575003,"Maturity-onset diabetes of the young, type 8 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609576002,"Maturity-onset diabetes of the young, type 9 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609577006,"Maturity-onset diabetes of the young, type 10 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,609578001,"Maturity-onset diabetes of the young, type 11 (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,648,"Diabetes mellitus of mother, complicating pregnancy, childbirth, or the puerperium, unspecified as to episode of care or not applicable",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,648.01,"Diabetes mellitus of mother, complicating pregnancy, childbirth, or the puerperium, delivered, with or without mention of antepartum condition",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,648.02,"Diabetes mellitus of mother, complicating pregnancy, childbirth, or the puerperium, delivered, with mention of postpartum complication",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,648.03,"Diabetes mellitus of mother, complicating pregnancy, childbirth, or the puerperium, antepartum condition or complication",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,648.04,"Diabetes mellitus of mother, complicating pregnancy, childbirth, or the puerperium, postpartum condition or complication",ICD9CM,2013,2.16.840.1.113883.6.103,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,70694009,Diabetes mellitus AND insipidus with optic atrophy AND deafness (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,709147009,Gingivitis co-occurrent with diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,710815001,Long-term current use of insulin (situation),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,716362006,Gingival disease co-occurrent with diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,7.1791E+13,Peripheral neuropathy co-occurrent and due to type 1 diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,719216001,Hypoglycemic coma co-occurrent and due to diabetes mellitus type II (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,720519003,"Atherosclerosis, deafness, diabetes, epilepsy, nephropathy syndrome (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,722454003,"Intellectual disability, craniofacial dysmorphism, hypogonadism, diabetes mellitus syndrome (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,724136006,Diabetic mastopathy (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,724205009,Laminopathy type Decaudain Vigouroux (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,73211009,Diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,733072002,"Alaninuria, microcephaly, dwarfism, enamel hypoplasia, diabetes mellitus syndrome (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,734022008,Wolfram-like syndrome (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,75524006,Malnutrition related diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,75682002,Diabetes mellitus caused by insulin receptor antibodies (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,76751001,"Diabetes mellitus in mother complicating pregnancy, childbirth AND/OR puerperium (disorder)",SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,81531005,Diabetes mellitus type 2 in obese (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,8801005,Secondary diabetes mellitus (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,91352004,Diabetes mellitus due to structurally abnormal insulin (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,9859006,Type 2 diabetes mellitus with acanthosis nigricans (disorder),SNOMEDCT,2018-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.10,Type 1 diabetes mellitus with ketoacidosis without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.11,Type 1 diabetes mellitus with ketoacidosis with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.21,Type 1 diabetes mellitus with diabetic nephropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.22,Type 1 diabetes mellitus with diabetic chronic kidney disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.29,Type 1 diabetes mellitus with other diabetic kidney complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.311,Type 1 diabetes mellitus with unspecified diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.319,Type 1 diabetes mellitus with unspecified diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.321,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3211,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3212,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3213,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3219,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.329,Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3291,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3292,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3293,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3299,"Type 1 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.331,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3311,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3312,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3313,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3319,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.339,Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3391,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3392,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3393,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3399,"Type 1 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.341,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3411,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3412,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3413,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3419,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.349,Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3491,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3492,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3493,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3499,"Type 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.351,Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3511,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3512,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3513,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3519,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3521,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3522,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3523,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3529,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3531,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3532,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3533,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3539,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3541,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3542,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3543,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3549,"Type 1 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3551,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3552,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3553,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3559,"Type 1 diabetes mellitus with stable proliferative diabetic retinopathy, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.359,Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3591,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3592,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3593,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.3599,"Type 1 diabetes mellitus with proliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.36,Type 1 diabetes mellitus with diabetic cataract,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.37X1,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.37X2,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.37X3,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.37X9,"Type 1 diabetes mellitus with diabetic macular edema, resolved following treatment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.39,Type 1 diabetes mellitus with other diabetic ophthalmic complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.40,"Type 1 diabetes mellitus with diabetic neuropathy, unspecified",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.41,Type 1 diabetes mellitus with diabetic mononeuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.42,Type 1 diabetes mellitus with diabetic polyneuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.43,Type 1 diabetes mellitus with diabetic autonomic (poly)neuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.44,Type 1 diabetes mellitus with diabetic amyotrophy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.49,Type 1 diabetes mellitus with other diabetic neurological complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.51,Type 1 diabetes mellitus with diabetic peripheral angiopathy without gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.52,Type 1 diabetes mellitus with diabetic peripheral angiopathy with gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.59,Type 1 diabetes mellitus with other circulatory complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.610,Type 1 diabetes mellitus with diabetic neuropathic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.618,Type 1 diabetes mellitus with other diabetic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.620,Type 1 diabetes mellitus with diabetic dermatitis,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.621,Type 1 diabetes mellitus with foot ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.622,Type 1 diabetes mellitus with other skin ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.628,Type 1 diabetes mellitus with other skin complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.630,Type 1 diabetes mellitus with periodontal disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.638,Type 1 diabetes mellitus with other oral complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.641,Type 1 diabetes mellitus with hypoglycemia with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.649,Type 1 diabetes mellitus with hypoglycemia without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.65,Type 1 diabetes mellitus with hyperglycemia,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.69,Type 1 diabetes mellitus with other specified complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.8,Type 1 diabetes mellitus with unspecified complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E10.9,Type 1 diabetes mellitus without complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.00,Type 2 diabetes mellitus with hyperosmolarity without nonketotic hyperglycemic-hyperosmolar coma (NKHHC),ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.01,Type 2 diabetes mellitus with hyperosmolarity with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.10,Type 2 diabetes mellitus with ketoacidosis without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.11,Type 2 diabetes mellitus with ketoacidosis with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.21,Type 2 diabetes mellitus with diabetic nephropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.22,Type 2 diabetes mellitus with diabetic chronic kidney disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.29,Type 2 diabetes mellitus with other diabetic kidney complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.311,Type 2 diabetes mellitus with unspecified diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.319,Type 2 diabetes mellitus with unspecified diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.321,Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3211,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3212,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3213,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3219,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.329,Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3291,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3292,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3293,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3299,"Type 2 diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.331,Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3311,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3312,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3313,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3319,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.339,Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3391,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3392,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3393,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3399,"Type 2 diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.341,Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3411,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3412,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3413,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3419,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.349,Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3491,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3492,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3493,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3499,"Type 2 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.351,Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3511,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3512,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3513,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3519,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3521,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3522,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3523,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3529,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3531,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3532,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3533,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3539,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3541,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3542,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3543,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3549,"Type 2 diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3551,"Type 2 diabetes mellitus with stable proliferative diabetic retinopathy, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3552,"Type 2 diabetes mellitus with stable proliferative diabetic retinopathy, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3553,"Type 2 diabetes mellitus with stable proliferative diabetic retinopathy, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3559,"Type 2 diabetes mellitus with stable proliferative diabetic retinopathy, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.359,Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3591,"Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3592,"Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3593,"Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.3599,"Type 2 diabetes mellitus with proliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.36,Type 2 diabetes mellitus with diabetic cataract,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.37X1,"Type 2 diabetes mellitus with diabetic macular edema, resolved following treatment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.37X2,"Type 2 diabetes mellitus with diabetic macular edema, resolved following treatment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.37X3,"Type 2 diabetes mellitus with diabetic macular edema, resolved following treatment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.37X9,"Type 2 diabetes mellitus with diabetic macular edema, resolved following treatment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.39,Type 2 diabetes mellitus with other diabetic ophthalmic complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.40,"Type 2 diabetes mellitus with diabetic neuropathy, unspecified",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.41,Type 2 diabetes mellitus with diabetic mononeuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.42,Type 2 diabetes mellitus with diabetic polyneuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.43,Type 2 diabetes mellitus with diabetic autonomic (poly)neuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.44,Type 2 diabetes mellitus with diabetic amyotrophy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.49,Type 2 diabetes mellitus with other diabetic neurological complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.51,Type 2 diabetes mellitus with diabetic peripheral angiopathy without gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.52,Type 2 diabetes mellitus with diabetic peripheral angiopathy with gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.59,Type 2 diabetes mellitus with other circulatory complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.610,Type 2 diabetes mellitus with diabetic neuropathic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.618,Type 2 diabetes mellitus with other diabetic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.620,Type 2 diabetes mellitus with diabetic dermatitis,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.621,Type 2 diabetes mellitus with foot ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.622,Type 2 diabetes mellitus with other skin ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.628,Type 2 diabetes mellitus with other skin complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.630,Type 2 diabetes mellitus with periodontal disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.638,Type 2 diabetes mellitus with other oral complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.641,Type 2 diabetes mellitus with hypoglycemia with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.649,Type 2 diabetes mellitus with hypoglycemia without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.65,Type 2 diabetes mellitus with hyperglycemia,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.69,Type 2 diabetes mellitus with other specified complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.8,Type 2 diabetes mellitus with unspecified complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E11.9,Type 2 diabetes mellitus without complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.00,Other specified diabetes mellitus with hyperosmolarity without nonketotic hyperglycemic-hyperosmolar coma (NKHHC),ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.01,Other specified diabetes mellitus with hyperosmolarity with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.10,Other specified diabetes mellitus with ketoacidosis without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.11,Other specified diabetes mellitus with ketoacidosis with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.21,Other specified diabetes mellitus with diabetic nephropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.22,Other specified diabetes mellitus with diabetic chronic kidney disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.29,Other specified diabetes mellitus with other diabetic kidney complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.311,Other specified diabetes mellitus with unspecified diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.319,Other specified diabetes mellitus with unspecified diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.321,Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3211,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3212,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3213,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3219,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.329,Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3291,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3292,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3293,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3299,"Other specified diabetes mellitus with mild nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.331,Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3311,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3312,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3313,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3319,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.339,Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3391,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3392,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3393,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3399,"Other specified diabetes mellitus with moderate nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.341,Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3411,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3412,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3413,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3419,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.349,Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3491,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3492,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3493,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3499,"Other specified diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.351,Other specified diabetes mellitus with proliferative diabetic retinopathy with macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3511,"Other specified diabetes mellitus with proliferative diabetic retinopathy with macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3512,"Other specified diabetes mellitus with proliferative diabetic retinopathy with macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3513,"Other specified diabetes mellitus with proliferative diabetic retinopathy with macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3519,"Other specified diabetes mellitus with proliferative diabetic retinopathy with macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3521,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3522,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3523,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3529,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3531,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3532,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3533,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3539,"Other specified diabetes mellitus with proliferative diabetic retinopathy with traction retinal detachment not involving the macula, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3541,"Other specified diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3542,"Other specified diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3543,"Other specified diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3549,"Other specified diabetes mellitus with proliferative diabetic retinopathy with combined traction retinal detachment and rhegmatogenous retinal detachment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3551,"Other specified diabetes mellitus with stable proliferative diabetic retinopathy, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3552,"Other specified diabetes mellitus with stable proliferative diabetic retinopathy, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3553,"Other specified diabetes mellitus with stable proliferative diabetic retinopathy, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3559,"Other specified diabetes mellitus with stable proliferative diabetic retinopathy, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.359,Other specified diabetes mellitus with proliferative diabetic retinopathy without macular edema,ICD10CM,2019,2.16.840.1.113883.6.90,HT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3591,"Other specified diabetes mellitus with proliferative diabetic retinopathy without macular edema, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3592,"Other specified diabetes mellitus with proliferative diabetic retinopathy without macular edema, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3593,"Other specified diabetes mellitus with proliferative diabetic retinopathy without macular edema, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.3599,"Other specified diabetes mellitus with proliferative diabetic retinopathy without macular edema, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.36,Other specified diabetes mellitus with diabetic cataract,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.37X1,"Other specified diabetes mellitus with diabetic macular edema, resolved following treatment, right eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.37X2,"Other specified diabetes mellitus with diabetic macular edema, resolved following treatment, left eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.37X3,"Other specified diabetes mellitus with diabetic macular edema, resolved following treatment, bilateral",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.37X9,"Other specified diabetes mellitus with diabetic macular edema, resolved following treatment, unspecified eye",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.39,Other specified diabetes mellitus with other diabetic ophthalmic complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.40,"Other specified diabetes mellitus with diabetic neuropathy, unspecified",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.41,Other specified diabetes mellitus with diabetic mononeuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.42,Other specified diabetes mellitus with diabetic polyneuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.43,Other specified diabetes mellitus with diabetic autonomic (poly)neuropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.44,Other specified diabetes mellitus with diabetic amyotrophy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.49,Other specified diabetes mellitus with other diabetic neurological complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.51,Other specified diabetes mellitus with diabetic peripheral angiopathy without gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.52,Other specified diabetes mellitus with diabetic peripheral angiopathy with gangrene,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.59,Other specified diabetes mellitus with other circulatory complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.610,Other specified diabetes mellitus with diabetic neuropathic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.618,Other specified diabetes mellitus with other diabetic arthropathy,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.620,Other specified diabetes mellitus with diabetic dermatitis,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.621,Other specified diabetes mellitus with foot ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.622,Other specified diabetes mellitus with other skin ulcer,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.628,Other specified diabetes mellitus with other skin complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.630,Other specified diabetes mellitus with periodontal disease,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.638,Other specified diabetes mellitus with other oral complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.641,Other specified diabetes mellitus with hypoglycemia with coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.649,Other specified diabetes mellitus with hypoglycemia without coma,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.65,Other specified diabetes mellitus with hyperglycemia,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.69,Other specified diabetes mellitus with other specified complication,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.8,Other specified diabetes mellitus with unspecified complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,E13.9,Other specified diabetes mellitus without complications,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.011,"Pre-existing type 1 diabetes mellitus, in pregnancy, first trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.012,"Pre-existing type 1 diabetes mellitus, in pregnancy, second trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.013,"Pre-existing type 1 diabetes mellitus, in pregnancy, third trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.019,"Pre-existing type 1 diabetes mellitus, in pregnancy, unspecified trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.02,"Pre-existing type 1 diabetes mellitus, in childbirth",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.03,"Pre-existing type 1 diabetes mellitus, in the puerperium",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.111,"Pre-existing type 2 diabetes mellitus, in pregnancy, first trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.112,"Pre-existing type 2 diabetes mellitus, in pregnancy, second trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.113,"Pre-existing type 2 diabetes mellitus, in pregnancy, third trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.119,"Pre-existing type 2 diabetes mellitus, in pregnancy, unspecified trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.12,"Pre-existing type 2 diabetes mellitus, in childbirth",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.13,"Pre-existing type 2 diabetes mellitus, in the puerperium",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.311,"Unspecified pre-existing diabetes mellitus in pregnancy, first trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.312,"Unspecified pre-existing diabetes mellitus in pregnancy, second trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.313,"Unspecified pre-existing diabetes mellitus in pregnancy, third trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.319,"Unspecified pre-existing diabetes mellitus in pregnancy, unspecified trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.32,Unspecified pre-existing diabetes mellitus in childbirth,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.33,Unspecified pre-existing diabetes mellitus in the puerperium,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.811,"Other pre-existing diabetes mellitus in pregnancy, first trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.812,"Other pre-existing diabetes mellitus in pregnancy, second trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.813,"Other pre-existing diabetes mellitus in pregnancy, third trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.819,"Other pre-existing diabetes mellitus in pregnancy, unspecified trimester",ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.82,Other pre-existing diabetes mellitus in childbirth,ICD10CM,2019,2.16.840.1.113883.6.90,PT
+2.16.840.1.113883.3.464.1003.103.12.1001,Diabetes,O24.83,Other pre-existing diabetes mellitus in the puerperium,ICD10CM,2019,2.16.840.1.113883.6.90,PT

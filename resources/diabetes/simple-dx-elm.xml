@@ -17,7 +17,7 @@
          <expression xsi:type="SingletonFrom">
             <operand dataType="fhir:Patient" templateId="patient-qicore-qicore-patient" xsi:type="Retrieve"/>
          </expression>
-      </def>
+      </def>  
       <def name="In Initial Population" context="Patient" accessLevel="Public">
          <expression xsi:type="Query">
             <source alias="C">

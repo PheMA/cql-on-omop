@@ -1,5 +1,9 @@
 package edu.phema.elm_to_omop.helper;
 
+/**
+ * Terms which might be used in more than one location 
+ * or have the possibility of changing.
+ */
 public class Terms {
     
     public static int COL_VS_OID = 0;
@@ -19,5 +23,16 @@ public class Terms {
     public static String COL_CS_VER_NAME = "code_system_version";
     public static String COL_CS_OID_NAME = "code_system_oid";
     public static String COL_TTY_NAME = "tty";
+
+    public static String CONCEPT_ID = "CONCEPT_ID";
+    public static String CONCEPT_NAME = "CONCEPT_NAME";
+    public static String STANDARD_CONCEPT = "STANDARD_CONCEPT";
+    public static String STANDARD_CONCEPT_CAPTION = "STANDARD_CONCEPT_CAPTION";
+    public static String INVALID_REASON = "INVALID_REASON";
+    public static String INVALID_REASON_CAPTION = "INVALID_REASON_CAPTION";
+    public static String CONCEPT_CODE = "CONCEPT_CODE";
+    public static String DOMAIN_ID = "DOMAIN_ID";
+    public static String VOCABULARY_ID = "VOCABULARY_ID";
+    public static String CONCEPT_CLASS_ID = "CONCEPT_CLASS_ID";
 
 }

@@ -1,0 +1,6 @@
+{
+    "name": "Metformin new users",
+    "description": null,
+    "expressionType": "SIMPLE_EXPRESSION",
+    "expression": "{\"ConceptSets\":[{\"id\":0,\"name\":\"Metformin\",\"expression\":{\"items\":[{\"concept\":{\"CONCEPT_CLASS_ID\":\"Ingredient\",\"CONCEPT_CODE\":\"6809\",\"CONCEPT_ID\":1503297,\"CONCEPT_NAME\":\"Metformin\",\"DOMAIN_ID\":\"Drug\",\"INVALID_REASON\":\"V\",\"INVALID_REASON_CAPTION\":\"Valid\",\"STANDARD_CONCEPT\":\"S\",\"STANDARD_CONCEPT_CAPTION\":\"Standard\",\"VOCABULARY_ID\":\"RxNorm\"}}]}}],\"PrimaryCriteria\":{\"CriteriaList\":[{\"DrugExposure\":{\"CodesetId\":0}}],\"ObservationWindow\":{\"PriorDays\":90,\"PostDays\":0},\"PrimaryCriteriaLimit\":{\"Type\":\"First\"}},\"QualifiedLimit\":{\"Type\":\"First\"},\"ExpressionLimit\":{\"Type\":\"First\"},\"InclusionRules\":[],\"CensoringCriteria\":[],\"CollapseSettings\":{\"CollapseType\":\"ERA\",\"EraPad\":0},\"CensorWindow\":{}}"
+}
