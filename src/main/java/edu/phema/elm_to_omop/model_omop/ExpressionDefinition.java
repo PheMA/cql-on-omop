@@ -16,14 +16,35 @@ public class ExpressionDefinition {
     
     public ExpressionDefinition() {
         super();
-        expression = getConceptSets();
-
     }
     
     public String getExpression()  {
         return expression;
     }
+    
+    public void setExpression(ConceptSets cs)  {
+        setConceptSets(cs);
+        
+        // none of this was set in the simple example.  will need to write out once variables are set
+        expression = expression +"]       }     }   ],   "
+                + "\"PrimaryCriteria\": {     \"CriteriaList\": [       {         \"VisitOccurrence\": {}       }     ],     "
+                + "\"ObservationWindow\": {       \"PriorDays\": 0,       \"PostDays\": 0     },     "
+                + "\"PrimaryCriteriaLimit\": {       \"Type\": \"First\"     }   },   "
+                + "\"QualifiedLimit\": {     \"Type\": \"First\"   },   "
+                + "\"ExpressionLimit\": {     \"Type\": \"First\"   },   "
+                + "\"InclusionRules\": [     {       \"name\": \"Diabetes\",       "
+                + "\"expression\": {         \"Type\": \"ALL\",         "
+                + "\"CriteriaList\": [           { \"Criteria\": {   "
+                + "\"ConditionOccurrence\": {     \"CodesetId\": 0   } }, "
+                + "\"StartWindow\": {   \"Start\": {     \"Coeff\": -1   },   \"End\": {     \"Coeff\": 1   } }, "
+                + "\"Occurrence\": {   \"Type\": 2,   \"Count\": 1 }           }         ],         "
+                + "\"DemographicCriteriaList\": [],         \"Groups\": []       }     }   ],   "
+                + "\"CensoringCriteria\": [],   \"CollapseSettings\": {     "
+                + "\"CollapseType\": \"ERA\",     \"EraPad\": 0   },   "
+                + "\"CensorWindow\": {} }";
+    }
 
+    
     public void setConceptSets(ConceptSets cs)  {
 
         expression = "{  \"ConceptSets\": [ { ";
@@ -63,17 +84,8 @@ public class ExpressionDefinition {
             expression = expression +"} }, ";
         }
         expression = expression.substring(0, expression.length()-2);
-
-        expression = expression +"]       }     }   ],   \"PrimaryCriteria\": {     \"CriteriaList\": [       {         \"VisitOccurrence\": {}       }     ],     \"ObservationWindow\": {       \"PriorDays\": 0,       \"PostDays\": 0     },     \"PrimaryCriteriaLimit\": {       \"Type\": \"First\"     }   },   \"QualifiedLimit\": {     \"Type\": \"First\"   },   \"ExpressionLimit\": {     \"Type\": \"First\"   },   \"InclusionRules\": [     {       \"name\": \"Diabetes\",       \"expression\": {         \"Type\": \"ALL\",         \"CriteriaList\": [           { \"Criteria\": {   \"ConditionOccurrence\": {     \"CodesetId\": 0   } }, \"StartWindow\": {   \"Start\": {     \"Coeff\": -1   },   \"End\": {     \"Coeff\": 1   } }, \"Occurrence\": {   \"Type\": 2,   \"Count\": 1 }           }         ],         \"DemographicCriteriaList\": [],         \"Groups\": []       }     }   ],   \"CensoringCriteria\": [],   \"CollapseSettings\": {     \"CollapseType\": \"ERA\",     \"EraPad\": 0   },   \"CensorWindow\": {} }";
-
     }
-    private String getConceptSets() {
-        String cs = "";
-        
-        
-        
-        return cs;
-    }
+
 
     
     

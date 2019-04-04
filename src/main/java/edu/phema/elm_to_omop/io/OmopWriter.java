@@ -30,7 +30,7 @@ public class OmopWriter {
     
     private static String writeOmopJson(Library elmContents, ConceptSets conceptSets) throws IOException   {
         ExpressionDefinition exDef = new ExpressionDefinition();
-        exDef.setConceptSets(conceptSets);
+        exDef.setExpression(conceptSets);
         
         OmopRoot root = new OmopRoot();
         root.setExpression(exDef);
@@ -40,10 +40,8 @@ public class OmopWriter {
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
         
-//        String dtoMapAsString = mapper.writeValueAsString(dtoMap);
         String dtoMapAsString = mapper.writeValueAsString(root);
         dtoMapAsString = dtoMapAsString.replace("{\"expression\":", "");
-//        logger.info(dtoMapAsString);
         
         return dtoMapAsString;
     }
