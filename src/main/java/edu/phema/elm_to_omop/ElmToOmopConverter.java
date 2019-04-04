@@ -57,7 +57,8 @@ public class ElmToOmopConverter
             
             // connect to the webAPI and post the cohort definition
             String id = OmopRepository.postCohortDefinition(domain, omopJson);
-
+            System.out.println("cohort definition id = " +id);
+            
             // use the webAPI to generate the cohort results
             OmopRepository.generateCohort(domain, id, source);
 
@@ -85,7 +86,7 @@ public class ElmToOmopConverter
         }  catch(InterruptedException ie)   {
             ie.printStackTrace();
         }
-        System.out.println("\tdone");
+        System.out.println("done");
     }
 
     private static FileHandler setUpLogging(String fileName) throws IOException {
