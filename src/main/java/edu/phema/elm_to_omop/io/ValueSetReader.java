@@ -18,6 +18,9 @@ import edu.phema.elm_to_omop.model_omop.Items;
 import edu.phema.elm_to_omop.model_phema.PhemaCode;
 import edu.phema.elm_to_omop.model_phema.PhemaValueSet;
 
+/** 
+ * Reads Value sets from a spreadsheet formatted in PhEMA authoring tool standard.
+ */
 public class ValueSetReader {
 
     private static String vocabSouce;
@@ -30,7 +33,7 @@ public class ValueSetReader {
         
         SpreadsheetReader vsReader = new SpreadsheetReader();
         ArrayList<PhemaValueSet>  codes = new ArrayList<PhemaValueSet> ();
-        codes = vsReader.getPatientSpreadsheetData(vsDirectory, Config.getTab());
+        codes = vsReader.getSpreadsheetData(vsDirectory, Config.getTab());
         ConceptSets conceptSets = getConceptSets(elmContents, codes);
         
         return conceptSets;

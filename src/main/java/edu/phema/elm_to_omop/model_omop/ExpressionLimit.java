@@ -4,11 +4,6 @@ public class ExpressionLimit {
 
     private String type;
 
-    public ExpressionLimit() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
     public ExpressionLimit(String type) {
         super();
         this.type = type;
@@ -22,5 +17,8 @@ public class ExpressionLimit {
         this.type = type;
     }
     
+    public String getExpressionLimitJson()   {
+        return "\"ExpressionLimit\": {  \"Type\": " +type +" },  ";
+    }
     
 }

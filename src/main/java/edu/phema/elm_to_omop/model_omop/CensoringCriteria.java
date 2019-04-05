@@ -4,8 +4,9 @@ public class CensoringCriteria {
 
     public CensoringCriteria() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    
+    public String getCensoringCriteriaJson()  {
+        return "\"CensoringCriteria\": [],  ";
+    }
 }

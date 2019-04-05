@@ -37,6 +37,8 @@ public final class Config  {
     
     private static String vsFileName;
     
+    private static String outFileName;
+    
     private static String source;
     
     private static String tab;
@@ -88,6 +90,7 @@ public final class Config  {
         omopBaseURL = getProperty("OMOP_BASE_URL");
         elmFileName = getProperty("ELM_FILE_NAME");
         vsFileName = getProperty("VS_FILE_NAME");
+        outFileName = getProperty("OUT_FILE_NAME");
         source = getProperty("SOURCE");
         tab = getProperty("VS_TAB");
 
@@ -104,6 +107,10 @@ public final class Config  {
     
     public static String getVsFileName() {
         return vsFileName;
+    }
+    
+    public static String getOutFileName() {
+        return outFileName;
     }
     
     public static String getSource() {
@@ -136,6 +143,9 @@ public final class Config  {
         if (prop.equalsIgnoreCase("VS_FILE_NAME"))  {
             vsFileName = val;
         }
+        if (prop.equalsIgnoreCase("OUT_FILE_NAME"))  {
+            outFileName = val;
+        }
         if (prop.equalsIgnoreCase("SOURCE"))  {
             source = val;
         }
@@ -156,6 +166,9 @@ public final class Config  {
         }
         if (vsFileName == null)  {
             LOGGER.severe("ERROR - missing parameter VS_FILE_NAME");
+        }
+        if (outFileName == null)  {
+            LOGGER.severe("ERROR - missing parameter OUT_FILE_NAME");
         }
         if (source == null)  {
             LOGGER.severe("ERROR - missing parameter SOURCE");

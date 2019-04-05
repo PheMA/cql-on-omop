@@ -4,11 +4,6 @@ public class QualifiedLimit {
 
     private String type;
 
-    public QualifiedLimit() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
     public QualifiedLimit(String type) {
         super();
         this.type = type;
@@ -22,5 +17,7 @@ public class QualifiedLimit {
         this.type = type;
     }
     
-    
+    public String getQualifiedLimitJson()  {
+        return "\"QualifiedLimit\": {  \"Type\": " +type +" },  ";
+    }
 }

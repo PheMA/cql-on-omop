@@ -5,11 +5,6 @@ public class ObservationWindow {
     private String priorDays;
     private String postDays;
     
-    public ObservationWindow() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
     public ObservationWindow(String priorDays, String postDays) {
         super();
         this.priorDays = priorDays;

@@ -8,11 +8,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "ConceptSets", "primaryCriteria", "qualifiedLimit", "expressionLimit", "inclusionRules", 
                         "censoringCriteria", "collapseSettings", "censorWindow" })
+
+/**
+ * The expression part of the statement is the phenotype query
+ */
 public class ExpressionDefinition {
     
-    String expression = ""; 
     @JsonProperty("\"conceptSets\"")
     private ArrayList<ConceptSets> conceptSets;
+    
+    String expression = "";
     
     public ExpressionDefinition() {
         super();
@@ -22,71 +27,107 @@ public class ExpressionDefinition {
         return expression;
     }
     
+    /**
+     * There were values for the conceptSets in simple example.
+     * Other parts of the expression were hard coded for proof of concept
+     * As get more complex examples, the hard coded values will be better understood and replaced
+     */
     public void setExpression(ConceptSets cs)  {
-        setConceptSets(cs);
-        
-        // none of this was set in the simple example.  will need to write out once variables are set
-        expression = expression +"]       }     }   ],   "
-                + "\"PrimaryCriteria\": {     \"CriteriaList\": [       {         \"VisitOccurrence\": {}       }     ],     "
-                + "\"ObservationWindow\": {       \"PriorDays\": 0,       \"PostDays\": 0     },     "
-                + "\"PrimaryCriteriaLimit\": {       \"Type\": \"First\"     }   },   "
-                + "\"QualifiedLimit\": {     \"Type\": \"First\"   },   "
-                + "\"ExpressionLimit\": {     \"Type\": \"First\"   },   "
-                + "\"InclusionRules\": [     {       \"name\": \"Diabetes\",       "
-                + "\"expression\": {         \"Type\": \"ALL\",         "
-                + "\"CriteriaList\": [           { \"Criteria\": {   "
-                + "\"ConditionOccurrence\": {     \"CodesetId\": 0   } }, "
-                + "\"StartWindow\": {   \"Start\": {     \"Coeff\": -1   },   \"End\": {     \"Coeff\": 1   } }, "
-                + "\"Occurrence\": {   \"Type\": 2,   \"Count\": 1 }           }         ],         "
-                + "\"DemographicCriteriaList\": [],         \"Groups\": []       }     }   ],   "
-                + "\"CensoringCriteria\": [],   \"CollapseSettings\": {     "
-                + "\"CollapseType\": \"ERA\",     \"EraPad\": 0   },   "
-                + "\"CensorWindow\": {} }";
+        expression = "{ " 
+                + getConceptSets(cs)  
+                + getPrimaryCriteria()
+                + getQualifiedLimit()
+                + getExpressionLimit()
+                + getInclusionRules()
+                + getCensoringCriteria()
+                + getCollapseSettings()
+                + getCensorWindow()
+                + " }";
     }
 
-    
-    public void setConceptSets(ConceptSets cs)  {
-
-        expression = "{  \"ConceptSets\": [ { ";
-        expression = expression +"\"id\": " +cs.getId() +", ";
-        expression = expression +"\"name\": \"" +cs.getName() +"\", ";
-        expression = expression +"\"expression\": { \"items\": [ ";
-        
-        ArrayList<Items> items = new ArrayList<Items>();
-        items = cs.getExpression().getItems();
-        
-        for (Items item : items) {
-            Concept concept = item.getConcept();
-            
-            expression = expression +"{ \"concept\": { ";
-            if(concept.getId()!=null)  
-                expression = expression +"\"CONCEPT_ID\": " +concept.getId() +", ";
-            if(concept.getName()!=null) 
-            expression = expression +"\"CONCEPT_NAME\": \"" +concept.getName() +"\", ";
-            if(concept.getStandardConcept()!=null) 
-                expression = expression +"\"STANDARD_CONCEPT\": \"" +concept.getStandardConcept() +"\", ";
-            if(concept.getStandardConceptCaption()!=null) 
-                expression = expression +"\"STANDARD_CONCEPT_CAPTION\": \"" +concept.getStandardConceptCaption() +"\", ";
-            if(concept.getInvalidReason()!=null) 
-                expression = expression +"\"INVALID_REASON\": \"" +concept.getInvalidReason() +"\", ";
-            if(concept.getInvalidReasonCaption()!=null) 
-                expression = expression +"\"INVALID_REASON_CAPTION\": \"" +concept.getInvalidReasonCaption() +"\", ";
-            if(concept.getConceptCode()!=null) 
-                expression = expression +"\"CONCEPT_CODE\": \"" +concept.getConceptCode() +"\", ";
-            if(concept.getDomainId()!=null) 
-                expression = expression +"\"DOMAIN_ID\": \"" +concept.getDomainId() +"\", ";
-            if(concept.getVocabularyId()!=null) 
-                expression = expression +"\"VOCABULARY_ID\": \"" +concept.getVocabularyId() +"\", ";
-            if(concept.getConceptClassId()!=null) 
-                expression = expression +"\"CONCEPT_CLASS_ID\": \"" +concept.getConceptClassId() +"\" ";
-            else 
-                expression = expression.substring(0, expression.length()-2);
-            expression = expression +"} }, ";
-        }
-        expression = expression.substring(0, expression.length()-2);
+    public String getConceptSets(ConceptSets cs)  {
+        return cs.getConceptSetsJson();
     }
-
-
     
     
+    // TODO: everything under here did not have values in the simple example.  Default values were hard coded.
+
+    private String getPrimaryCriteria()  {
+        String visitOcc = "";
+        VisitOccurrence vo = new VisitOccurrence(visitOcc);
+        CriteriaList cl = new CriteriaList(vo);
+        
+        String priorDays = "0";
+        String postDays = "0";
+        ObservationWindow ow = new ObservationWindow(priorDays, postDays);
+        
+        String type = " \"First\" ";
+        PrimaryCriteriaLimit pcl = new PrimaryCriteriaLimit(type);
+        
+        PrimaryCriteria pc = new PrimaryCriteria(cl, ow, pcl);
+        return pc.getPrimaryCriteriaJson();
+    }
+    
+    private String getQualifiedLimit()  {
+        String type = " \"First\" ";
+        QualifiedLimit ql = new QualifiedLimit(type);
+        
+        return ql.getQualifiedLimitJson();
+    }
+    
+    private String getExpressionLimit()   {
+        String type = " \"First\" ";
+        ExpressionLimit el = new ExpressionLimit(type);
+        
+        return el.getExpressionLimitJson();
+    }
+    
+    private String getInclusionRules()  {
+        String name = " \"Diabetes\" ";     
+        String type = " \"ALL\" ";          
+        String codesetId = "0";
+        String startCoeff = "-1";
+        String endCoeff = "1";
+        String occType = "2";
+        String occCount = "1";
+        
+        Start start = new Start(startCoeff);
+        End end = new End(endCoeff);
+        StartWindow startWin = new StartWindow(start, end);
+        
+        ConditionOccurrence conditionOccurrence = new ConditionOccurrence(codesetId);
+        Criteria crit = new Criteria(conditionOccurrence);
+        
+        Occurrence occ = new Occurrence(occType, occCount);
+        
+        InclusionCriteriaList icl = new InclusionCriteriaList(crit, startWin, occ);
+        InclusionDemographic id = new InclusionDemographic();
+        InclusionGroups ig = new InclusionGroups();
+        
+        InclusionExpression ie = new InclusionExpression(type, icl, id, ig);
+        
+        InclusionRules ir = new InclusionRules(name, ie);
+
+        return ir.getInclusionRulesJson() ;
+    }
+    
+    private String getCensoringCriteria()  {
+        CensoringCriteria cc = new CensoringCriteria();
+        
+        return cc.getCensoringCriteriaJson();
+    }
+    
+    private String getCollapseSettings()  {
+        String type = " \"ERA\" ";
+        String eraPad = "0";
+        CollapseSettings cs = new CollapseSettings(type, eraPad);
+        
+        return cs.getCollapseSettingJson();
+    }
+    
+    private String getCensorWindow()  {
+        CensorWindow cw = new CensorWindow();
+        
+        return cw.getCensorWindowJson();
+    }
 }

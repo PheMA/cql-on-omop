@@ -24,7 +24,7 @@ import edu.phema.elm_to_omop.model_phema.PhemaValueSet;
 public class SpreadsheetReader {
     private static Logger logger = Logger.getLogger(SpreadsheetReader.class.getName());
     
-    public ArrayList<PhemaValueSet> getPatientSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
+    public ArrayList<PhemaValueSet> getSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
         ArrayList<PhemaValueSet>  valueSets = new ArrayList<PhemaValueSet> ();
         
         try  {

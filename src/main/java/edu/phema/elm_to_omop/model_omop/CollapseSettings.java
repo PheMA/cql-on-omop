@@ -5,10 +5,6 @@ public class CollapseSettings {
     private String collapseType;
     private String eraPad;
     
-    public CollapseSettings() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
     public CollapseSettings(String collapseType, String eraPad) {
         super();
         this.collapseType = collapseType;
@@ -28,6 +24,8 @@ public class CollapseSettings {
         this.eraPad = eraPad;
     }
     
-    
+    public String getCollapseSettingJson()  {
+        return "\"CollapseSettings\": { \"CollapseType\": " + collapseType +", \"EraPad\": " +eraPad +" }, ";
+    }
     
 }

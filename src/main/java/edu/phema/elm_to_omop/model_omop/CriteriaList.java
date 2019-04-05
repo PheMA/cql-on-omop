@@ -2,24 +2,19 @@ package edu.phema.elm_to_omop.model_omop;
 
 public class CriteriaList {
 
-    private ConditionOccurrence condOcc;
+    private VisitOccurrence visitOcc;
 
-    public CriteriaList() {
+    public CriteriaList(VisitOccurrence visitOcc) {
         super();
-        // TODO Auto-generated constructor stub
+        this.visitOcc = visitOcc;
     }
 
-    public CriteriaList(ConditionOccurrence condOcc) {
-        super();
-        this.condOcc = condOcc;
+    public VisitOccurrence getVisitOcc() {
+        return visitOcc;
     }
 
-    public ConditionOccurrence getCondOcc() {
-        return condOcc;
-    }
-
-    public void setCondOcc(ConditionOccurrence condOcc) {
-        this.condOcc = condOcc;
+    public void setvisitOcc(VisitOccurrence visitOcc) {
+        this.visitOcc = visitOcc;
     }
     
     

@@ -6,13 +6,6 @@ public class PrimaryCriteria {
     private ObservationWindow observationWindow;
     private PrimaryCriteriaLimit primaryCriteriaLimit;
 
-    
-    public PrimaryCriteria() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-
     public PrimaryCriteria(CriteriaList critList, ObservationWindow obWin, PrimaryCriteriaLimit primCritLimit) {
         super();
         this.criteriaList = critList;
@@ -25,16 +18,13 @@ public class PrimaryCriteria {
         return criteriaList;
     }
 
-
     public ObservationWindow getObWin() {
         return observationWindow;
     }
 
-
     public PrimaryCriteriaLimit getPrimCritLimit() {
         return primaryCriteriaLimit;
     }
-
 
     public void setCritList(CriteriaList critList) {
         this.criteriaList = critList;
@@ -45,12 +35,21 @@ public class PrimaryCriteria {
         this.observationWindow = obWin;
     }
 
-
     public void setPrimCritLimit(PrimaryCriteriaLimit primCritLimit) {
         this.primaryCriteriaLimit = primCritLimit;
     }
 
-
+    public String getPrimaryCriteriaJson()  {
+        return "\"PrimaryCriteria\": {  "
+                + "\"CriteriaList\": [  {  "
+                    + " \"VisitOccurrence\": { " +criteriaList.getVisitOcc().getCondesetId() + "}  }  ], "
+                + "\"ObservationWindow\": {  "
+                    + "\"PriorDays\": " +observationWindow.getPriorDays() +",  "
+                    + "\"PostDays\": " +observationWindow.getPostDays() +" },  "
+                + "\"PrimaryCriteriaLimit\": {  "
+                    + "\"Type\": " +primaryCriteriaLimit.getType() +"  "
+             + "} },   ";
+    }
     
     
 }

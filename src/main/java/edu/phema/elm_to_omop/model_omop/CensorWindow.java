@@ -4,6 +4,9 @@ public class CensorWindow {
     
     public CensorWindow() {
         super();
-        // TODO Auto-generated constructor stub
+    }
+    
+    public String getCensorWindowJson()  {
+        return "\"CensorWindow\": {} ";
     }
 }

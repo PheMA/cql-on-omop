@@ -13,7 +13,6 @@ public class OmopRoot {
     
     public OmopRoot() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public String getName() {

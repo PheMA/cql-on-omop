@@ -49,10 +49,10 @@ public class ElmToOmopConverter
             // read the value set csv and add to the objects
             ConceptSets conceptSets = ValueSetReader.getConcepts(elmContents, directory, logger, domain, source);
             
-            // write out the omop json file
+            // get the omop json and write it out to file
             String omopJson = OmopWriter.writeOmopJson(elmContents, conceptSets, directory, logger);
             
-            //convert to webAPI accepted json
+            //convert statement to one accepted by webAPI
             omopJson = WebApiFormatter.getWebApiJson(omopJson);
             
             // connect to the webAPI and post the cohort definition

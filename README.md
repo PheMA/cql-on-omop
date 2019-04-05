@@ -19,10 +19,120 @@ Currently the code runs only a very simple example.  Project plans will increase
 - Clone repository
 - mvn install
 
-Test files are located in the resources/diabetes directory.  The output will appears in the resources directory.
+Test files are located in the resources/diabetes directory.  The output will appear in the resources directory.
 
 ##Reference Files
 
 ELM POJO created from xsd files - https://cql.hl7.org/elm.html
 
+## OHDSI JSON structure
+
+{
+    name:
+    description:
+    expressionType:
+    expression:
+    {  
+        ConceptSets: 
+        [ 
+            { 
+                id:  
+                name: 
+                expression: 
+                {  
+                    items: 
+                    [
+                        { 
+                            concept: 
+                            {   
+                                CONCEPT_ID:   
+                                CONCEPT_NAME:
+                                STANDARD_CONCEPT: 
+                                STANDARD_CONCEPT_CAPTION:
+                                INVALID_REASON: 
+                                INVALID_REASON_CAPTION: 
+                                CONCEPT_CODE: 
+                                DOMAIN_ID: 
+                                VOCABULARY_ID:   
+                                CONCEPT_CLASS_ID: 
+                            }   // concept         
+                        }   // items
+                    ]   // items       
+                }   // explression    
+            }   // ConceptSets
+        ],  // ConceptSets
+        PrimaryCriteria: 
+        {     
+            CriteriaList: 
+            [       
+                {         
+                    VisitOccurrence: {}       
+                }     
+            ],       
+            ObservationWindow: 
+            {       
+                PriorDays: ,       
+                PostDays:          
+            },     
+            PrimaryCriteriaLimit: 
+            {       
+                Type: 
+            }   
+        },       // primaryCriteria
+        QualifiedLimit: 
+        {     
+            Type: 
+        },   
+        ExpressionLimit: 
+        {     
+            Type: 
+        },   
+        InclusionRules: 
+        [     
+            {       
+                name:        
+                expression: 
+                {         
+                    Type: ALL,         
+                    CriteriaList: 
+                    [           
+                        { 
+                            Criteria: 
+                            {   
+                                ConditionOccurrence: 
+                                {     
+                                    CodesetId:   
+                                } 
+                            },   // 
+                            StartWindow: 
+                            {   
+                                Start: 
+                                {     
+                                    Coeff:    
+                                },   
+                                End: {     
+                                    Coeff:  
+                                } 
+                            },   // startWindow
+                            Occurrence: 
+                            {   
+                              Type:    
+                              Count:  
+                            }           
+                        }         // CriteriaList
+                    ],      // CriteriaList   
+                    DemographicCriteriaList: [],         
+                    Groups: []       
+                }      // expression
+            }     // InclusionRules
+        ],     // InclusionRules
+        CensoringCriteria: [],   
+        CollapseSettings: 
+        {     
+            CollapseType:      
+            EraPad:    
+        },   
+        CensorWindow: {} 
+    }
+}
 

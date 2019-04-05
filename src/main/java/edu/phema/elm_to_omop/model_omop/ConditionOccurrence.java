@@ -2,25 +2,20 @@ package edu.phema.elm_to_omop.model_omop;
 
 public class ConditionOccurrence {
 
-    private String  condesetId;
+    private String codesetId;
+
+    public ConditionOccurrence(String codesetId) {
+        super();
+        this.codesetId = codesetId;
+    }
+
+    public String getCodesetId() {
+        return codesetId;
+    }
+
+    public void setCodesetId(String codesetId) {
+        this.codesetId = codesetId;
+    }
     
-    public ConditionOccurrence() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    public ConditionOccurrence(String condesetId) {
-        super();
-        this.condesetId = condesetId;
-    }
-
-    public String getCondesetId() {
-        return condesetId;
-    }
-
-    public void setCondesetId(String condesetId) {
-        this.condesetId = condesetId;
-    }
-
     
 }
