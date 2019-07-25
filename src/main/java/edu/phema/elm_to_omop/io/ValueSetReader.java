@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
 
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.model_elm.Library;
 import edu.phema.elm_to_omop.model_omop.Concept;
 import edu.phema.elm_to_omop.model_omop.ConceptSets;
 import edu.phema.elm_to_omop.model_omop.Expression;

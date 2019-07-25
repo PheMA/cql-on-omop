@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.model_elm.Library;
 import edu.phema.elm_to_omop.model_omop.ConceptSets;
 import edu.phema.elm_to_omop.model_omop.ExpressionDefinition;
 import edu.phema.elm_to_omop.model_omop.OmopRoot;
+import org.hl7.elm.r1.Library;
 
 public class OmopWriter {
 
@@ -54,9 +54,9 @@ public class OmopWriter {
         root.setExpression(exDef);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(Include.NON_NULL);
-        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+        //mapper.setSerializationInclusion(Include.NON_NULL);
+        //mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        //mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
         
         String dtoMapAsString = mapper.writeValueAsString(root);
         

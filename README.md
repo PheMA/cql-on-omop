@@ -17,13 +17,14 @@ Currently the code runs only a very simple example.  Project plans will increase
 
 ## Usage:
 - Clone repository
-- mvn install
+- `mvn install`
 
-Test files are located in the resources/diabetes directory.  The output will appear in the resources directory.
+Test files are located in the `resources/diabetes` directory.  The output will appear in the resources directory.
 
-##Reference Files
+## Reference Files
 
 ELM POJO created from xsd files - https://cql.hl7.org/elm.html
+
 
 ## OHDSI JSON structure
 ```
