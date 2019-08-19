@@ -24,5 +24,8 @@ public class ObservationWindow {
         this.postDays = postDays;
     }
 
-
+    public String getJsonFragment() {
+        return String.format("{ \"PriorDays\": %s,  \"PostDays\": %s }",
+            priorDays, postDays);
+    }
 }

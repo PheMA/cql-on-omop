@@ -1,5 +1,6 @@
 package edu.phema.elm_to_omop.model.omop;
 
+@Deprecated
 public class InclusionCriteriaList {
 
     private Criteria crit;

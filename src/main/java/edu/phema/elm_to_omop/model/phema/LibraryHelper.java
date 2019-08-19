@@ -20,8 +20,8 @@ public class LibraryHelper {
 
         BinaryExpression binaryExpression = (BinaryExpression)expression;
         InclusionRule inclusionRule = new InclusionRule(getExpressionName(binaryExpression));
-        List<Expression> operands = binaryExpression.getOperand();
         CriteriaList criteriaList = new CriteriaList();
+        List<Expression> operands = binaryExpression.getOperand();
         for (Expression operandExp : operands) {
             // TODO - It could be lots of things - we're starting with simple existence checks
             if (!(operandExp instanceof Exists)) {
@@ -43,24 +43,19 @@ public class LibraryHelper {
             }
 
             Expression referencedExp = referencedExpDef.get().getExpression();
-            if (!(referencedExp instanceof Query)) {
+            Retrieve retrieveExpression = null;
+            if (referencedExp instanceof Retrieve) {
+                retrieveExpression = (Retrieve)referencedExp;
+            }
+            else if (referencedExp instanceof Query) {
+                retrieveExpression = getQueryRetrieveExpression((Query)referencedExp);
+            }
+            else {
                 // TODO - Need to handle more than simple query types
-                throw new Exception(String.format("Currently the translator is only able to process Query expressions"));
-            }
-            Query query = (Query)referencedExp;
-            int querySourceSize = query.getSource().size();
-            if (querySourceSize != 1) {
-                // TODO - will of course need to be more flexible here
-                throw new Exception(String.format("Currently the translator is only able to handle a single Query source"));
+                throw new Exception(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
             }
 
-            Expression aliasExpression = query.getSource().get(0).getExpression();
-            if (!(aliasExpression instanceof Retrieve)) {
-                throw new Exception("Currently the translator is only able to handle Retrieve query sources");
-            }
-
-            // TODO  would be nice ot have a convenience method to enumerate out all the codes of interest.
-            Retrieve retrieveExpression = (Retrieve)aliasExpression;
+            // TODO  would be nice to have a convenience method to enumerate out all the codes of interest.
             if (!(retrieveExpression.getCodes() instanceof ValueSetRef)) {
                 throw new Exception("Currently the translator is only able to handle ValueSetRef query sources");
             }
@@ -77,14 +72,42 @@ public class LibraryHelper {
                 throw new Exception(String.format("Failed to find the value set referenced with OID %s", valueSetDef.get().getId()));
             }
 
-            // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR/OHDSI types
+            // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR and OHDSI types
             ConditionOccurrence conditionOccurrence = new ConditionOccurrence(Integer.toString(matchedSet.getId()));
             Criteria criteria = new Criteria(conditionOccurrence);
             CriteriaListEntry entry = new CriteriaListEntry();
+            // TODO - hardcoding for now
+            entry.setOccurrence(new Occurrence("2", "1"));
             entry.setCriteria(criteria);
+            criteriaList.addEntry(entry);
         }
 
+        InclusionExpression inclusionExpression = new InclusionExpression(getInclusionExpressionType(binaryExpression), criteriaList, null, null);
+        inclusionRule.setExpression(inclusionExpression);
+
         return inclusionRule;
+    }
+
+    /**
+     * Query expressions ultimately have a Retrieve expression embedded in them.  This helper method gets us to
+     * the Retrieve expression, with a few checks along the way.
+     * @param query
+     * @return
+     * @throws Exception
+     */
+    private static Retrieve getQueryRetrieveExpression(Query query) throws Exception {
+        int querySourceSize = query.getSource().size();
+        if (querySourceSize != 1) {
+            // TODO - will of course need to be more flexible here
+            throw new Exception(String.format("Currently the translator is only able to handle a single Query source"));
+        }
+
+        Expression aliasExpression = query.getSource().get(0).getExpression();
+        if (!(aliasExpression instanceof Retrieve)) {
+            throw new Exception("Currently the translator is only able to handle Retrieve query sources");
+        }
+
+        return (Retrieve)aliasExpression;
     }
 
     private static ConceptSet findConceptSetByOid(List<ConceptSet> conceptSets, String oid) {
@@ -92,6 +115,17 @@ public class LibraryHelper {
                 x.getOid().endsWith(oid)) // endsWith allows us to ignore namespace prefixes
             .findFirst();
         return conceptSet.isPresent() ? conceptSet.get() : null;
+    }
+
+    private static String getInclusionExpressionType(Expression expression) throws Exception {
+        if (expression instanceof Or) {
+            return "ANY";
+        }
+        else if (expression instanceof And) {
+            return "ALL";
+        }
+
+        throw new Exception("Currently the translator only handles And and Or expressions");
     }
 
     private static String getExpressionName(Expression expression) {

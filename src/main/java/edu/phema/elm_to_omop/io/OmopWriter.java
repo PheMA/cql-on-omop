@@ -59,15 +59,10 @@ public class OmopWriter {
         root.setExpression(exDef);
 
         Expression exp = expression.getExpression();
-
         InclusionRule inclusionRule = LibraryHelper.generateInclusionRule(elmContents, exp, conceptSets);
         exDef.addInclusionRule(inclusionRule);
+        exDef.setConceptSets(conceptSets);
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(Include.NON_NULL);
-        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-        String dtoMapAsString = mapper.writeValueAsString(root);
-        return dtoMapAsString;
+        return root.getJson();
     }
 }

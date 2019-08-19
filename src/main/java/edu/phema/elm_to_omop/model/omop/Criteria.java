@@ -18,4 +18,7 @@ public class Criteria {
     }
 
 
+    public String getJsonFragment() {
+        return String.format("{ \"ConditionOccurrence\": {  \"CodesetId\": " + conditionOccurrence.getCodesetId() + " } } ");
+    }
 }

@@ -39,18 +39,16 @@ public class PrimaryCriteria {
         this.primaryCriteriaLimit = primCritLimit;
     }
 
-    public String getPrimaryCriteriaJson()  {
-        // TODO re-implement
-        return "\"PrimaryCriteria\": {  }, ";
-//        return "\"PrimaryCriteria\": {  "
-//                + "\"CriteriaList\": [  {  "
-//                    + " \"VisitOccurrence\": { " + criteriaList.getVisitOcc().getCondesetId() + "}  }  ], "
-//                + "\"ObservationWindow\": {  "
-//                    + "\"PriorDays\": " +observationWindow.getPriorDays() +",  "
-//                    + "\"PostDays\": " +observationWindow.getPostDays() +" },  "
-//                + "\"PrimaryCriteriaLimit\": {  "
-//                    + "\"Type\": " +primaryCriteriaLimit.getType() +"  "
-//             + "} },   ";
+    public String getJsonFragment() throws Exception {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{");
+        builder.append(criteriaList.getJsonFragment(CriteriaListEntry.PrimaryCriteriaFormat));
+        builder.append(", \"ObservationWindow\": ");
+        builder.append(observationWindow.getJsonFragment());
+        builder.append(", \"PrimaryCriteriaLimit\": ");
+        builder.append(primaryCriteriaLimit.getJsonFragment());
+        builder.append("}");
+        return builder.toString();
     }
 
 

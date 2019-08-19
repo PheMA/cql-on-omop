@@ -15,4 +15,8 @@ public class PrimaryCriteriaLimit {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getJsonFragment() {
+        return String.format("{ \"Type\": %s }", type);
+    }
 }

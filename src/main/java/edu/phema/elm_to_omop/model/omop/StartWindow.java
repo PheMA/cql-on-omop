@@ -27,5 +27,7 @@ public class StartWindow {
         this.end = end;
     }
 
-
+    public String getJsonFragment() {
+        return String.format("{ \"Start\": {  \"Coeff\": " + start.getCoeff() + " },  \"End\": { \"Coeff\": " + end.getCoeff() + " } } ");
+    }
 }

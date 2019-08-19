@@ -18,5 +18,12 @@ public class VisitOccurrence {
         this.condesetId = condesetId;
     }
 
-
+    public String getJsonFragment() throws Exception {
+        if (condesetId == null || condesetId == "") {
+            return "{}";
+        }
+        else {
+            throw new Exception("Need to implement");
+        }
+    }
 }

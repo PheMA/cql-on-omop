@@ -19,4 +19,21 @@ public class CriteriaList {
     }
 
     public void addEntry(CriteriaListEntry entry) { this.entries.add(entry); }
+
+    public String getJsonFragment(int format) throws Exception {
+        StringBuilder builder = new StringBuilder();
+        builder.append("\"CriteriaList\": [");
+        if (entries != null && entries.size() > 0) {
+            int numEntries = entries.size();
+            for (int index = 0; index < numEntries; index++) {
+                CriteriaListEntry entry = entries.get(index);
+                builder.append(entry.getJsonFragment(format));
+                if (index < (numEntries - 1)) {
+                    builder.append(", ");
+                }
+            }
+        }
+        builder.append("]");
+        return builder.toString();
+    }
 }

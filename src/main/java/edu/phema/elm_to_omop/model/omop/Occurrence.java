@@ -27,5 +27,8 @@ public class Occurrence {
         this.count = count;
     }
 
-
+    public String getJsonFragment() {
+        return String.format("{ \"Type\": %s, \"Count\": %s }",
+            type, count);
+    }
 }

@@ -1,9 +1,5 @@
 package edu.phema.elm_to_omop.model.omop;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-@JsonPropertyOrder({ "name", "description", "expressionType", "expression" })
-
 public class OmopRoot {
     public static final String SIMPLE_EXPRESSION_TYPE = "SIMPLE_EXPRESSION";
 
@@ -22,6 +18,13 @@ public class OmopRoot {
     }
 
     public String getDescription() {
+        if (description == null){
+            if (name == null) {
+               return "";
+            } else {
+                return name;
+            }
+        }
         return description;
     }
 
@@ -50,4 +53,8 @@ public class OmopRoot {
     }
 
 
+    public String getJson() throws Exception {
+        return String.format("{ \"name\": \"%s\", \"description\": \"%s\", \"expressionType\": \"%s\", \"expression\": \"%s\" }",
+            this.name, getDescription(), this.expressionType, this.expression.getJsonFragment().replaceAll("\\\"", "\\\\\""));
+    }
 }

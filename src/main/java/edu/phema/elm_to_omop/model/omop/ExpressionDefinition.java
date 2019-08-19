@@ -1,13 +1,7 @@
 package edu.phema.elm_to_omop.model.omop;
 
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import java.util.ArrayList;
 import java.util.List;
-
-@JsonPropertyOrder({ "ConceptSets", "primaryCriteria", "qualifiedLimit", "expressionLimit", "inclusionRules",
-                        "censoringCriteria", "collapseSettings", "censorWindow" })
 
 /**
  * The expression part of the statement is the phenotype query
@@ -49,7 +43,7 @@ public class ExpressionDefinition {
      * Other parts of the expression were hard coded for proof of concept
      * As get more complex examples, the hard coded values will be better understood and replaced
      */
-    private void createExpression()  {
+    private void createExpression() throws Exception {
         expression = "{ "
                 + formatConceptSets()
                 + getPrimaryCriteria()
@@ -60,6 +54,11 @@ public class ExpressionDefinition {
                 + getCollapseSettings()
                 + getCensorWindow()
                 + " }";
+    }
+
+    public String getJsonFragment() throws Exception {
+        createExpression();
+        return expression;
     }
 
     /**
@@ -86,7 +85,7 @@ public class ExpressionDefinition {
      * Take our inclusion rules collection and generate the JSON fragment
      * @return
      */
-    private String formatInclusionRules() {
+    private String formatInclusionRules() throws Exception {
         StringBuilder builder = new StringBuilder();
         builder.append("\"InclusionRules\": [");
         int ruleCount = inclusionRules.size();
@@ -103,7 +102,7 @@ public class ExpressionDefinition {
 
     // TODO: everything under here did not have values in the simple example.  Default values were hard coded.
 
-    private String getPrimaryCriteria()  {
+    private String getPrimaryCriteria() throws Exception {
         String visitOcc = "";
         VisitOccurrence vo = new VisitOccurrence(visitOcc);
         CriteriaList cl = new CriteriaList();
@@ -117,7 +116,7 @@ public class ExpressionDefinition {
         PrimaryCriteriaLimit pcl = new PrimaryCriteriaLimit(type);
 
         PrimaryCriteria pc = new PrimaryCriteria(cl, ow, pcl);
-        return pc.getPrimaryCriteriaJson();
+        return "\"PrimaryCriteria\": " + pc.getJsonFragment() + ", ";
     }
 
     private String getQualifiedLimit()  {
@@ -133,35 +132,6 @@ public class ExpressionDefinition {
 
         return el.getExpressionLimitJson();
     }
-
-//    private String getInclusionRules()  {
-//        String name = " \"Diabetes\" ";
-//        String type = " \"ALL\" ";
-//        String codesetId = "0";
-//        String startCoeff = "-1";
-//        String endCoeff = "1";
-//        String occType = "2";
-//        String occCount = "1";
-//
-//        Start start = new Start(startCoeff);
-//        End end = new End(endCoeff);
-//        StartWindow startWin = new StartWindow(start, end);
-//
-//        ConditionOccurrence conditionOccurrence = new ConditionOccurrence(codesetId);
-//        Criteria crit = new Criteria(conditionOccurrence);
-//
-//        Occurrence occ = new Occurrence(occType, occCount);
-//
-//        InclusionCriteriaList icl = new InclusionCriteriaList(crit, startWin, occ);
-//        InclusionDemographic id = new InclusionDemographic();
-//        InclusionGroups ig = new InclusionGroups();
-//
-//        InclusionExpression ie = new InclusionExpression(type, icl, id, ig);
-//
-//        InclusionRules ir = new InclusionRules(name, ie);
-//
-//        return ir.getInclusionRulesJson() ;
-//    }
 
     private String getCensoringCriteria()  {
         CensoringCriteria cc = new CensoringCriteria();

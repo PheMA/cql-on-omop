@@ -53,7 +53,7 @@ public class ConceptSet {
     public String getJsonFragment()  {
         String conSet = "";
 
-        conSet = "\"ConceptSets\": [ { ";
+        conSet = "{ ";
         conSet = conSet +"\"id\": " +id +", ";
         conSet = conSet +"\"name\": \"" +name +"\", ";
         conSet = conSet +"\"expression\": { \"items\": [ ";
@@ -90,7 +90,7 @@ public class ConceptSet {
             conSet = conSet +"} }, ";
         }
         conSet = conSet.substring(0, conSet.length()-2);
-        conSet = conSet +"] } } ], ";  // closing out the items array, expression and ConceptSets array
+        conSet = conSet +"] } }";  // closing out the items array, expression and ConceptSets array
 
         return conSet;
     }

@@ -1,10 +1,16 @@
 package edu.phema.elm_to_omop.model.omop;
 
 public class CriteriaListEntry {
+    public static final int PrimaryCriteriaFormat = 1;
+    public static final int InclusionCriteriaFormat = 2;
+
+
     private Criteria criteria;
     private StartWindow startWindow;
     private Occurrence occurrence;
     private VisitOccurrence visitOcc;
+
+    private static StartWindow defaultStartWindow = new StartWindow(new Start("-1"), new End("1"));
 
     public CriteriaListEntry() {
     }
@@ -43,5 +49,27 @@ public class CriteriaListEntry {
 
     public void setOccurrence(Occurrence occurrence) {
         this.occurrence = occurrence;
+    }
+
+    public String getJsonFragment(int format) throws Exception {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{ ");
+        if (format == InclusionCriteriaFormat) {
+            builder.append("\"Criteria\": ");
+            builder.append(criteria.getJsonFragment());
+            builder.append(", \"StartWindow\": ");
+            builder.append((startWindow == null) ? this.defaultStartWindow.getJsonFragment() : startWindow.getJsonFragment());
+            builder.append(", \"Occurrence\": ");
+            builder.append(occurrence.getJsonFragment());
+        }
+        else if (format == PrimaryCriteriaFormat) {
+            builder.append("\"VisitOccurrence\": ");
+            builder.append(visitOcc.getJsonFragment());
+        }
+        else {
+            throw new Exception("Invalid CriteriaListEntry format");
+        }
+        builder.append("} ");
+        return builder.toString();
     }
 }
