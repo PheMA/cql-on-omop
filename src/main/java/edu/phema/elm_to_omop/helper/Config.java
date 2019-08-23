@@ -3,6 +3,9 @@ package edu.phema.elm_to_omop.helper;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -30,18 +33,22 @@ public final class Config  {
      */
     private Properties configProps;
 
+    private static final String PHENOTYPE_NAME_DELIMITER = "\\|";
+
 
     private static String omopBaseURL;
-    
+
     private static String inputFileName;
-    
+
     private static String vsFileName;
-    
+
     private static String outFileName;
-    
+
     private static String source;
-    
+
     private static String tab;
+
+    private static List<String> phenotypeExpressions;
 
     /**
      * Constructor finds the working directory and loads the configuration properties.
@@ -93,34 +100,39 @@ public final class Config  {
         outFileName = getProperty("OUT_FILE_NAME");
         source = getProperty("SOURCE");
         tab = getProperty("VS_TAB");
+        phenotypeExpressions = parsePhenotypeExpressions(getProperty("PHENOTYPE_EXPRESSIONS"));
 
         runPropertyCheck();
     }
-    
+
     public static String getOmopBaseUrl() {
         return omopBaseURL;
     }
-    
+
     public static String getInputFileName() {
         return inputFileName;
     }
-    
+
     public static String getVsFileName() {
         return vsFileName;
     }
-    
+
     public static String getOutFileName() {
         return outFileName;
     }
-    
+
     public static String getSource() {
         return source;
     }
-    
+
     public static String getTab() {
         return tab;
     }
-    
+
+    public static List<String> getPhenotypeExpressions() {
+      return phenotypeExpressions;
+    }
+
     /**
      * Sets the values for the property.
      * @param inArg property value
@@ -152,6 +164,19 @@ public final class Config  {
         if (prop.equalsIgnoreCase("VS_TAB"))  {
             tab = val;
         }
+
+        if (prop.equalsIgnoreCase("PHENOTYPE_EXPRESSIONS")) {
+            phenotypeExpressions = parsePhenotypeExpressions(val);
+        }
+    }
+
+    private List<String> parsePhenotypeExpressions(String phenotypes) {
+        List<String> expressions = new ArrayList<String>();
+        if (phenotypes != null) {
+            expressions = Arrays.asList(phenotypes.split(PHENOTYPE_NAME_DELIMITER));
+        }
+
+        return expressions;
     }
 
     /**
