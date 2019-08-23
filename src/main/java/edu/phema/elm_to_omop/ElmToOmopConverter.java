@@ -136,7 +136,7 @@ public class ElmToOmopConverter
         }
 
         String workingDir = System.getProperty("user.dir");
-        return workingDir + File.separator + "resources" +File.separator;
+        return workingDir + File.separator + "resources" + File.separator;
     }
 
 
