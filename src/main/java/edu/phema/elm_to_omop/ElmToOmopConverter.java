@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import javax.xml.bind.JAXBException;
 
 import edu.phema.elm_to_omop.helper.WebApiFormatter;
-import edu.phema.elm_to_omop.io.OmopRepository;
+import edu.phema.elm_to_omop.io.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
@@ -19,9 +19,6 @@ import org.json.simple.parser.ParseException;
 
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.helper.MyFormatter;
-import edu.phema.elm_to_omop.io.ElmReader;
-import edu.phema.elm_to_omop.io.OmopWriter;
-import edu.phema.elm_to_omop.io.ValueSetReader;
 //import edu.phema.elm_to_omop.model_elm.Library;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 
@@ -70,34 +67,34 @@ public class ElmToOmopConverter
             }
 
             // read the value set csv and add to the objects
-            List<ConceptSet> conceptSets = ValueSetReader.getConceptSets(elmContents, directory, logger, domain, source);
+            String vsDirectory = directory + Config.getVsFileName();
+            ValueSetReader valueSetReader = new ValueSetReader();
+            List<ConceptSet> conceptSets = valueSetReader.getConceptSets(vsDirectory, Config.getTab(), domain, source);
 
+            IOmopRepository omopRepository = new OmopRepository();
             // For each phenotype definition, get the OMOP JSON and write it out to file
             for (ExpressionDef phenotypeExpression : phenotypeExpressions) {
                 String omopJson = omopWriter.writeOmopJson(phenotypeExpression, elmContents, conceptSets, directory);
                 System.out.println(omopJson);
 
-                //convert statement to one accepted by webAPI
-                omopJson = WebApiFormatter.getWebApiJson(omopJson);
-
                 // connect to the webAPI and post the cohort definition
-                String id = OmopRepository.postCohortDefinition(domain, omopJson);
+                String id = omopRepository.postCohortDefinition(domain, omopJson);
                 System.out.println("cohort definition id = " +id);
 
                 // use the webAPI to generate the cohort results
-                OmopRepository.generateCohort(domain, id, source);
+                omopRepository.generateCohort(domain, id, source);
 
                 // keep pinging the repository until the definition has completed running
                 String status = "";
                 int count = 1;
                 while(!status.equalsIgnoreCase("COMPLETE") && count < 1000)  {
-                    status = OmopRepository.getExecutionStatus(domain, id);
+                    status = omopRepository.getExecutionStatus(domain, id);
                     TimeUnit.SECONDS.sleep(1);
                     count++;
                 }
 
                 // get the final count
-                String numPatients = OmopRepository.getCohortCount(domain, id, source);
+                String numPatients = omopRepository.getCohortCount(domain, id, source);
                 System.out.println("numPatients = " +numPatients);
 
             }

@@ -4,12 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.model.omop.ExpressionDefinition;

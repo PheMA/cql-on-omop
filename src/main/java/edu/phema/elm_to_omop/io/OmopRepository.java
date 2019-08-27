@@ -20,17 +20,17 @@ import edu.phema.elm_to_omop.model.omop.Concept;
 /**
  * This class uses the WebAPI to interact with with the OMOP repository.
  */
-public class OmopRepository {
+public class OmopRepository implements IOmopRepository {
 
-    private static HttpURLConnection con;
+    private HttpURLConnection con;
 
-    public static String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
+    public String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
         String url = domain +"source/sources";
         String content = get(url);
         return content;
     }
 
-    public static Concept getConceptMetadata(String domain, String source, String id) throws MalformedURLException, ProtocolException, IOException, ParseException  {
+    public Concept getConceptMetadata(String domain, String source, String id) throws IOException, ParseException  {
         String url = domain +"vocabulary/" +source+ "/concept/" +id;
         String response = get(url);
 
@@ -56,7 +56,7 @@ public class OmopRepository {
     * Posts the cohort definition and returns the id of the saved
     * The id will be -1 if there is an error code
     */
-    public static String postCohortDefinition(String domain, String json) throws MalformedURLException, ProtocolException, IOException, ParseException {
+    public String postCohortDefinition(String domain, String json) throws IOException, ParseException {
         String url = domain +"cohortdefinition";
         URL obj = new URL(url);
         HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
@@ -97,7 +97,7 @@ public class OmopRepository {
         return id;
     }
 
-    public static String generateCohort(String domain, String id, String source) throws MalformedURLException, ProtocolException, IOException, ParseException  {
+    public String generateCohort(String domain, String id, String source) throws IOException, ParseException  {
         String exeId = "-1";
         JSONObject jObj;
 
@@ -112,7 +112,7 @@ public class OmopRepository {
         return exeId;
     }
 
-    public static String getExecutionStatus(String domain, String id) throws MalformedURLException, ProtocolException, IOException, ParseException  {
+    public String getExecutionStatus(String domain, String id) throws IOException, ParseException  {
         String status = "";
         JSONArray jArr;
 
@@ -128,7 +128,7 @@ public class OmopRepository {
         return status;
     }
 
-    public static String getCohortCount(String domain, String id, String source) throws MalformedURLException, ProtocolException, IOException, ParseException  {
+    public String getCohortCount(String domain, String id, String source) throws IOException, ParseException  {
         String count = "-1";
         JSONObject jObj;
         JSONArray jArr;
@@ -145,7 +145,7 @@ public class OmopRepository {
         return count;
     }
 
-    private static String get(String url) throws MalformedURLException, ProtocolException, IOException {
+    private String get(String url) throws MalformedURLException, ProtocolException, IOException {
         StringBuilder content;
 
         try {

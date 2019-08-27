@@ -5,6 +5,8 @@ public class InclusionExpression {
     public static class Type {
         public static final String Any = "ANY";
         public static final String All = "ALL";
+        public static final String AtLeast = "AT_LEAST";
+        public static final String AtMost = "AT_MOST";
     }
     private String type;
     private CriteriaList criteriaList;
@@ -57,7 +59,7 @@ public class InclusionExpression {
         builder.append(String.format("\"Type\": \"%s\",  ", this.type));
         builder.append(criteriaList.getJsonFragment(CriteriaListEntry.InclusionCriteriaFormat));
         //builder.append(inclusionDemographic.getJsonFragment());
-        builder.append(", \"DemographicCriteriaList\": []  ");
+        builder.append(", \"DemographicCriteriaList\": []");
         //builder.append(ig.getJsonFragment());
         builder.append(", \"Groups\": [] ");
         builder.append("}");

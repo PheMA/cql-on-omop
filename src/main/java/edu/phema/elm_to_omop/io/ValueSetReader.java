@@ -23,24 +23,24 @@ import edu.phema.elm_to_omop.model.phema.PhemaValueSet;
  * Reads Value sets from a spreadsheet formatted in PhEMA authoring tool standard.
  */
 public class ValueSetReader {
+    private IOmopRepository repository;
 
-    private static String vocabSouce;
-    private static String serverUrl;
+    public ValueSetReader() {
+        this.repository = new OmopRepository();
+    }
 
-    public static List<ConceptSet> getConceptSets(Library elmContents, String directory, Logger logger, String domain, String source) throws MalformedURLException, ProtocolException, IOException, ParseException, InvalidFormatException {
-        vocabSouce = source;
-        serverUrl = domain;
-        String vsDirectory = directory + Config.getVsFileName();
+    public ValueSetReader(IOmopRepository repository) {
+        this.repository = repository;
+    }
 
+    public List<ConceptSet> getConceptSets(String valueSetPath, String tab, String omopServerUrl, String omopVocabSource) throws IOException, ParseException, InvalidFormatException {
         SpreadsheetReader vsReader = new SpreadsheetReader();
-        ArrayList<PhemaValueSet>  codes = new ArrayList<PhemaValueSet> ();
-        codes = vsReader.getSpreadsheetData(vsDirectory, Config.getTab());
-        List<ConceptSet> conceptSets = getConceptSets(elmContents, codes);
-
+        ArrayList<PhemaValueSet> codes = vsReader.getSpreadsheetData(valueSetPath, tab);
+        List<ConceptSet> conceptSets = getConceptSets(codes, omopVocabSource, omopServerUrl);
         return conceptSets;
     }
 
-    private static List<ConceptSet> getConceptSets(Library elmContents, ArrayList<PhemaValueSet>  pvsList) throws MalformedURLException, ProtocolException, IOException, ParseException {
+    private List<ConceptSet> getConceptSets(ArrayList<PhemaValueSet> pvsList, String omopServerUrl, String omopVocabSource) throws IOException, ParseException {
         List<ConceptSet> conceptSets = new ArrayList<ConceptSet>();
         Expression expression = null;
 
@@ -59,7 +59,7 @@ public class ValueSetReader {
             ArrayList<PhemaCode> codes = pvs.getCodes();
             for (PhemaCode code : codes) {
                 Concept concept = new Concept();
-                concept = OmopRepository.getConceptMetadata(serverUrl, vocabSouce, code.getCode());
+                concept = repository.getConceptMetadata(omopServerUrl, omopVocabSource, code.getCode());
 
                 items = new Items();
                 items.setConcept(concept);
