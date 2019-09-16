@@ -4,6 +4,7 @@ using FHIR version '1.0.2'
 
 valueset "Diabetes VS": '1.2.3.4.5'
 valueset "Hypertension VS": '2.3.4.5.6'
+valueset "Afib VS": '3.4.5.6.7'
 
 context Patient
 
@@ -16,6 +17,13 @@ define "Diabetes Expression":
 
 define "Hypertension Expression":
   [Condition: "Hypertension VS"]
+
+define "Afib Expression":
+  [Condition: "Afib VS"]
+
+define "Afib exists":
+  exists("Afib Expression")
+
 
 // Expressions to exercise different integration tests
 
@@ -55,8 +63,20 @@ define "Or from referenced expressions":
   or "Hypertension exists"
 
 define "Nested boolean direct conditions":
+  exists([Condition: "Diabetes VS"])
+  and (exists([Condition: "Hypertension VS"]) or exists([Condition: "Afib VS"]))
+
+define "Two nested boolean direct conditions":
+  (exists([Condition: "Diabetes VS"]) and exists([Condition: "Afib VS"]))
+  or (exists([Condition: "Hypertension VS"]) or exists([Condition: "Afib VS"]))
+
+define "Nested boolean from expressions":
   "Diabetes exists"
-  and ("Hypertension exists" or "Diabetes exists")
+  and ("Hypertension exists" or "Afib exists")
+
+define "Nested boolean from referenced boolean expressions":
+  "Or from expressions"
+  or "And from expressions"
 
 define "Greater than direct condition":
   Count([Condition: "Diabetes VS"]) > 2

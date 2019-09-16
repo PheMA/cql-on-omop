@@ -12,12 +12,9 @@ import org.cqframework.cql.cql2elm.ModelManager;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -78,7 +75,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_ExistsDirectCondition() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Diabetes\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -87,7 +84,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_ExistsFromExpression() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Diabetes Expression\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -96,7 +93,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_ExistsFromReferencedExpression() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from referenced expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Exists from expression\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -105,7 +102,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrDirectConditions() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or direct conditions");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -114,13 +111,13 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_BooleanFromExpressions() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from expressions");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
 
         expression = LibraryHelper.getExpressionDefByName(library, "And from expressions");
-        rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"All of the following\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -129,7 +126,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrMixedDirectAndExpression() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or mixed direct and expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -138,7 +135,7 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrFromReferencedExpressions() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from referenced expressions");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -147,31 +144,31 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_CountDirectCondition() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Greater than direct condition");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Greater\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 3 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
 
         expression = LibraryHelper.getExpressionDefByName(library, "Greater than or equal direct condition");
-        rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"GreaterOrEqual\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 2 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
 
         expression = LibraryHelper.getExpressionDefByName(library, "Equal direct condition");
-        rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Equal\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 0, \"Count\": 2 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
 
         expression = LibraryHelper.getExpressionDefByName(library, "Less than direct condition");
-        rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Less\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 1, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
 
         expression = LibraryHelper.getExpressionDefByName(library, "Less than or equal direct condition");
-        rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"LessOrEqual\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 1, \"Count\": 2 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
@@ -180,15 +177,51 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_CountFromExpression_Invalid() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count from expression");
-        assertThrows(Exception.class, () -> LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets));
+        assertThrows(Exception.class, () -> LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets));
     }
 
     @Test
     void generateInclusionRule_CountExpressionReference() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count expression reference");
-        InclusionRule rule = LibraryHelper.generateInclusionRule(library, expression.getExpression(), conceptSets);
+        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
         assertEquals("{\"name\": \"Diabetes with Count\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 3 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
             rule.getJsonFragment());
+    }
+
+    @Test
+    void generateInclusionRule_NestedBooleanDirectConditions() throws Exception {
+        // This expression is in the form of:
+        //   item1 AND (item2 OR item3)
+        // We expect just one expression because the item1 expression will be turned into the criteria for the expression,
+        // and the items in the parentheses will be represented in that criteria's Groups collection.
+        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean direct conditions");
+        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
+        assertNotNull(rules);
+        assertEquals(1, rules.size());
+        assertEquals("{\"name\": \"All of the following\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [{\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 2 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }] }}",
+            rules.get(0).getJsonFragment());
+
+        // This expression is in the form of:
+        //   (item1 OR item2) AND (item1 OR item3)
+        // We still expect just one rule to be created, because the criteria in parentheses will get unpacked into the
+        // Groups portion of the initial expression.  Note that there is no criteria in the CriteriaList - this is
+        // correct, and is allowed by Atlas.
+        expression = LibraryHelper.getExpressionDefByName(library, "Two nested boolean direct conditions");
+        rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
+        assertNotNull(rules);
+        assertEquals(1, rules.size());
+        assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [], \"DemographicCriteriaList\": [], \"Groups\": [{\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 2 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }, {\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 2 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }] }}",
+            rules.get(0).getJsonFragment());
+    }
+
+    @Test
+    void generateInclusionRule_NestedBooleanFromReferencedBooleanExpressions() throws Exception {
+        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean from referenced boolean expressions");
+        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
+        assertNotNull(rules);
+        assertEquals(1, rules.size());
+        assertEquals("{\"name\": \"One or more of the following\",  \"expression\": {\"Type\": \"ANY\",  \"CriteriaList\": [], \"DemographicCriteriaList\": [], \"Groups\": [{\"Type\": \"ANY\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }, {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 0 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} , { \"Criteria\": { \"ConditionOccurrence\": {  \"CodesetId\": 1 } } , \"StartWindow\": { \"Start\": {  \"Coeff\": -1 },  \"End\": { \"Coeff\": 1 } } , \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }] }}",
+            rules.get(0).getJsonFragment());
     }
 }

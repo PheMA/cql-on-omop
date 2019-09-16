@@ -4,6 +4,7 @@ import edu.phema.elm_to_omop.model.omop.*;
 import org.hl7.elm.r1.*;
 import org.hl7.elm.r1.Expression;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,33 +32,39 @@ public class LibraryHelper {
      * @return An InclusionRule that can be included in the OHDSI phenotype definition
      * @throws Exception
      */
-    public static InclusionRule generateInclusionRule(Library library, Expression expression, java.util.List<ConceptSet> conceptSets) throws Exception {
-        InclusionRule inclusionRule = null;
-        if (IsNumericComparison(expression)) {
-            inclusionRule = generateInclusionRuleForNumericComparison(expression, library, conceptSets);
+    public static List<InclusionRule> generateInclusionRules(Library library, Expression expression, java.util.List<ConceptSet> conceptSets) throws Exception {
+        List<InclusionRule> inclusionRules = new ArrayList<InclusionRule>();
+        if (isNumericComparison(expression)) {
+            inclusionRules.add(generateInclusionRuleForNumericComparison(expression, library, conceptSets));
         }
         else if (expression instanceof BinaryExpression) {
-            inclusionRule = generateInclusionRuleForBinaryExpression((BinaryExpression)expression, library, conceptSets);
+            inclusionRules.addAll(generateInclusionRulesForBinaryExpression((BinaryExpression)expression, library, conceptSets));
         }
         else if (expression instanceof Query || expression instanceof Exists) {
-            inclusionRule = generateInclusionRuleForQueryOrExists(expression, library, conceptSets);
+            inclusionRules.addAll(generateInclusionRulesForQueryOrExists(expression, library, conceptSets));
         }
         else if (expression instanceof ExpressionRef) {
-            inclusionRule = generateInclusionRuleForExpressionRef((ExpressionRef)expression, library, conceptSets);
+            inclusionRules.add(generateInclusionRuleForExpressionRef((ExpressionRef)expression, library, conceptSets));
         }
         else {
             throw new Exception("The translator is currently unable to generate OHDSI inclusion rules for this type of expression");
         }
 
-        return inclusionRule;
+        return inclusionRules;
     }
 
-    public static boolean IsNumericComparison(Expression expression) {
+    private static boolean isNumericComparison(Expression expression) {
         return (expression instanceof Greater) ||
             (expression instanceof GreaterOrEqual) ||
             (expression instanceof Equal) ||
             (expression instanceof Less) ||
             (expression instanceof LessOrEqual);
+    }
+
+    private static boolean isBooleanExpression(Expression expression) {
+        return (expression instanceof Or) ||
+            (expression instanceof And) ||
+            (expression instanceof Not);
     }
 
     public static InclusionRule generateInclusionRuleForNumericComparison(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
@@ -78,7 +85,7 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static InclusionRule generateInclusionRuleForQueryOrExists(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static List<InclusionRule> generateInclusionRulesForQueryOrExists(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
         Retrieve retrieveExpression = null;
         if (expression instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query)expression);
@@ -86,7 +93,7 @@ public class LibraryHelper {
         else if (expression instanceof Exists) {
             Exists exists = (Exists)expression;
             if (exists.getOperand() instanceof ExpressionRef) {
-                return generateInclusionRule(library, exists.getOperand(), conceptSets);
+                return generateInclusionRules(library, exists.getOperand(), conceptSets);
             }
             retrieveExpression = getExistsRetrieveExpression(exists);
         }
@@ -106,7 +113,7 @@ public class LibraryHelper {
         CriteriaList criteriaList = new CriteriaList() {{ addEntry(entry); }};
         InclusionExpression inclusionExpression = new InclusionExpression(InclusionExpression.Type.All, criteriaList, null, null);
         inclusionRule.setExpression(inclusionExpression);
-        return inclusionRule;
+        return new ArrayList<InclusionRule>() {{ add(inclusionRule); }};
     }
 
     /**
@@ -136,12 +143,30 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static InclusionRule generateInclusionRuleForBinaryExpression(BinaryExpression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static List<InclusionRule> generateInclusionRulesForBinaryExpression(BinaryExpression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+        List<InclusionRule> inclusionRules = new ArrayList<InclusionRule>();
+
         InclusionRule inclusionRule = new InclusionRule(getBooleanExpressionName(expression));
         CriteriaList criteriaList = new CriteriaList();
+        InclusionExpression inclusionExpression = new InclusionExpression(getInclusionExpressionType(expression), criteriaList, null, null);
+        inclusionRule.setExpression(inclusionExpression);
         List<Expression> operands = expression.getOperand();
         for (Expression operandExp : operands) {
-             CriteriaListEntry entry = generateCriteriaListEntryForExpression(operandExp, library, conceptSets);
+            // If we have an expression reference, we really need to look ahead and figure out what it is.  That way
+            // we can properly translate the target expression.
+            if (operandExp instanceof ExpressionRef) {
+                operandExp = getExpressionReferenceTarget((ExpressionRef)operandExp, library);
+            }
+
+            if (isBooleanExpression(operandExp)) {
+                inclusionExpression.addInclusionGroups(
+                    generateInclusionRulesForBinaryExpression((BinaryExpression)operandExp, library, conceptSets)
+                        .stream()
+                        .map(x -> x.getExpression())
+                        .collect(Collectors.toList()));
+                continue;
+            }
+            CriteriaListEntry entry = generateCriteriaListEntryForExpression(operandExp, library, conceptSets);
             if (entry == null) {
                 throw new Exception("The translator was unable to process this type of expression");
             }
@@ -149,9 +174,9 @@ public class LibraryHelper {
             criteriaList.addEntry(entry);
         }
 
-        InclusionExpression inclusionExpression = new InclusionExpression(getInclusionExpressionType(expression), criteriaList, null, null);
-        inclusionRule.setExpression(inclusionExpression);
-        return inclusionRule;
+        inclusionRules.add(inclusionRule);
+
+        return inclusionRules;
     }
 
     /**
@@ -177,14 +202,7 @@ public class LibraryHelper {
     private static CriteriaListEntry generateCriteriaListEntryForExpression(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
         Expression referencedExp = expression;
         if (expression instanceof ExpressionRef) {
-            ExpressionRef expressionRef = (ExpressionRef)expression;
-            Optional<ExpressionDef> referencedExpDef = library.getStatements().getDef().stream().filter(x -> x.getName().equals(expressionRef.getName())).findFirst();
-            if (!referencedExpDef.isPresent()) {
-                // TODO - This could be because things are referenced in other libraries.  Will need to handle that situation.
-                throw new Exception(String.format("Could not find the referenced expression %s in the library", expressionRef.getName()));
-            }
-
-            referencedExp = referencedExpDef.get().getExpression();
+            referencedExp = getExpressionReferenceTarget((ExpressionRef)expression, library);
         }
 
         Retrieve retrieveExpression = null;
@@ -198,8 +216,8 @@ public class LibraryHelper {
         else if (referencedExp instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query)referencedExp);
         }
-        else if (referencedExp instanceof BinaryExpression) {
-            occurrence = getBinaryExpressionOccurrence((BinaryExpression)referencedExp);
+        else if (isNumericComparison(referencedExp)) {
+            occurrence = getNumericComparisonOccurrence((BinaryExpression)referencedExp);
             retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression)referencedExp);
         }
         else {
@@ -210,10 +228,26 @@ public class LibraryHelper {
         ConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
         CriteriaListEntry entry = new CriteriaListEntry();
-        // TODO - hardcoding for now
         entry.setOccurrence(occurrence);
         entry.setCriteria(generateCriteria(matchedSet));
         return entry;
+    }
+
+    /**
+     * Helper method to take an expression reference, and track back to the object that it refers to.
+     * @param expressionRef
+     * @param library
+     * @return
+     * @throws Exception
+     */
+    private static Expression getExpressionReferenceTarget(ExpressionRef expressionRef, Library library) throws Exception {
+        Optional<ExpressionDef> referencedExpDef = library.getStatements().getDef().stream().filter(x -> x.getName().equals(expressionRef.getName())).findFirst();
+        if (!referencedExpDef.isPresent()) {
+            // TODO - This could be because things are referenced in other libraries.  Will need to handle that situation.
+            throw new Exception(String.format("Could not find the referenced expression %s in the library", expressionRef.getName()));
+        }
+
+        return referencedExpDef.get().getExpression();
     }
 
     /**
@@ -244,7 +278,7 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static Occurrence getBinaryExpressionOccurrence(BinaryExpression referencedExp) throws Exception {
+    private static Occurrence getNumericComparisonOccurrence(BinaryExpression referencedExp) throws Exception {
         List<Expression> operands = referencedExp.getOperand();
         // We are assuming there are 2 operands to build an occurrence.  If that's violated, we throw an exception.  At
         // that point we'll need to revisit what to do to expand our assumptions.
