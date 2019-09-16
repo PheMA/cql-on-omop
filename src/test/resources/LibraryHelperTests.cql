@@ -1,6 +1,6 @@
 library "Diagnosis-Count" version '1'
 
-using FHIR version '1.0.2'
+using FHIR version '3.2.0'
 
 valueset "Diabetes VS": '1.2.3.4.5'
 valueset "Hypertension VS": '2.3.4.5.6'
@@ -100,3 +100,8 @@ define "Count from expression":
 
 define "Count expression reference":
   "Diabetes with Count"
+
+define "Temporal relationship":
+  [Condition: "Diabetes VS"] DM
+  with [Condition: "Hypertension VS"] HTN
+    such that HTN.assertedDate starts 30 days or less before DM.assertedDate

@@ -18,7 +18,16 @@ public class Criteria {
     }
 
 
-    public String getJsonFragment() {
-        return String.format("{ \"ConditionOccurrence\": {  \"CodesetId\": " + conditionOccurrence.getCodesetId() + " } } ");
+    public String getJsonFragment() throws Exception {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{ ");
+        if (conditionOccurrence != null) {
+            builder.append(conditionOccurrence.getJsonFragment());
+        }
+        else {
+            throw new Exception("Invalid criteria - has no specific details included");
+        }
+        builder.append(" }");
+        return builder.toString();
     }
 }
