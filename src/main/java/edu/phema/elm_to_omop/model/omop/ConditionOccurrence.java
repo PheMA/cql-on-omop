@@ -33,11 +33,11 @@ public class ConditionOccurrence {
         StringBuilder builder = new StringBuilder();
         builder.append("\"ConditionOccurrence\": { ");
         if (correlatedCriteria != null) {
-            builder.append("\"CorrelatedCriteria\": { ");
+            builder.append("\"CorrelatedCriteria\": ");
             builder.append(correlatedCriteria.getJsonFragment());
-            builder.append(" }");
+            builder.append(",");
         }
-        else if (codesetId != null) {
+        if (codesetId != null) {
             builder.append("\"CodesetId\": " + codesetId);
         }
         builder.append(" }");

@@ -1,5 +1,7 @@
 package edu.phema.elm_to_omop.model.omop;
 
+import java.math.BigDecimal;
+
 public class CriteriaListEntry {
     public static final int PrimaryCriteriaFormat = 1;
     public static final int InclusionCriteriaFormat = 2;
@@ -10,7 +12,9 @@ public class CriteriaListEntry {
     private Occurrence occurrence;
     private VisitOccurrence visitOcc;
 
-    private static StartWindow defaultStartWindow = new StartWindow(new Start("-1"), new End("1"));
+    private static StartWindow defaultStartWindow = new StartWindow(
+      new WindowBoundary("-1", null),   // Start
+      new WindowBoundary("1", null));   // End
 
     public CriteriaListEntry() {
     }

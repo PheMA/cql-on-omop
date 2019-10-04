@@ -1,9 +1,12 @@
 package edu.phema.elm_to_omop.model.phema;
 
+import edu.phema.elm_to_omop.model.PhemaAssumptionException;
+import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.model.omop.*;
 import org.hl7.elm.r1.*;
 import org.hl7.elm.r1.Expression;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -87,8 +90,75 @@ public class LibraryHelper {
      */
     private static List<InclusionRule> generateInclusionRulesForQueryOrExists(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
         Retrieve retrieveExpression = null;
+        InclusionRule correlatedCriteriaRule = null;
         if (expression instanceof Query) {
-            retrieveExpression = getQueryRetrieveExpression((Query)expression);
+            Query query = (Query)expression;
+            retrieveExpression = getQueryRetrieveExpression(query);
+            List<RelationshipClause> relationships = query.getRelationship();
+            if (relationships.size() > 0) {
+              if (relationships.size() > 1) {
+                throw new PhemaNotImplementedException("The translator is currently only able to handle a single relationship for a data element");
+              }
+
+              // Store the alias (needed later)
+              String primaryAlias = query.getSource().get(0).getAlias();
+              RelationshipClause clause = relationships.get(0);
+              if (clause instanceof With) {
+                With with = (With) clause;
+                String secondaryAlias = with.getAlias();
+                // Get an inclusion rule (which contains an inclusion expression, which is what we really need) for the
+                // associated/referenced object for this relationship.
+                List<InclusionRule> linkedRule = generateInclusionRulesForQueryOrExists(with.getExpression(), library, conceptSets);
+                if (linkedRule.size() != 1) {
+                  throw new PhemaAssumptionException(String.format("We expected exactly one rule but received %d", linkedRule.size()));
+                }
+                correlatedCriteriaRule = linkedRule.get(0);
+
+                Expression suchThat = with.getSuchThat();
+                if (!(suchThat instanceof In)) {
+                  // TODO: Eventually we'll extend it to BinaryExpression, but need to understand what other types we need
+                  throw new PhemaNotImplementedException("The translator is currently only able to process In expressions");
+                }
+
+                In in = (In)suchThat;
+                List<Expression> operands = in.getOperand();
+                if (operands.size() != 2) {
+                  throw new PhemaAssumptionException(String.format("We expected exactly two operands but found %d", operands.size()));
+                }
+
+                // Now identify the actual temporal constraint, and set that in the window.
+                Property property = (Property)getExpressionOfType(operands, Property.class);
+                Interval interval = (Interval)getExpressionOfType(operands, Interval.class);
+                if (!property.getPath().equals("onsetDateTime")) {
+                  throw new PhemaNotImplementedException("The translator is only able to process onsetDateTime temporal relationships");
+                }
+
+                if (primaryAlias.equals(property.getScope())) {
+                  // TODO: This probably happens when we flip the order so that the expression reads "A with B such that A.date 30 days before B.date"
+                  // In that case, we need to flip more objects around.  What was outer in CQL needs to become inner in OHDSI because of how
+                  // relationships are built.
+                  throw new PhemaNotImplementedException("The translator is only able to process simple relationships");
+                }
+                // This happens when the expression reads "A with B such that B.date 30 days before A.date"
+                else if (secondaryAlias.equals(property.getScope())) {
+                  // TODO: This is over-fitted to our first use case... need to really evaluate how flexible this is
+                  // If the data element is "high", then this is <.  If it's "low", then it's >
+                  boolean lessThan = true;
+                  Property relatedProperty = (Property)interval.getHigh();
+                  BinaryExpression intervalExpression = (BinaryExpression)interval.getLow();
+                  if (relatedProperty == null) {
+                    lessThan = false;
+                    relatedProperty = (Property)interval.getLow();
+                    intervalExpression = (BinaryExpression)interval.getHigh();
+                  }
+
+                  WindowBoundary start = calculateWindowStart(intervalExpression);
+                  correlatedCriteriaRule.getExpression().getInclusionCriteriaList().getEntries().get(0).setStartWindow(new StartWindow(start, new WindowBoundary("1", BigDecimal.ZERO)));
+                }
+              } else {
+                throw new PhemaNotImplementedException("The translator is currently only able to process With relationships");
+              }
+            }
         }
         else if (expression instanceof Exists) {
             Exists exists = (Exists)expression;
@@ -96,6 +166,9 @@ public class LibraryHelper {
                 return generateInclusionRules(library, exists.getOperand(), conceptSets);
             }
             retrieveExpression = getExistsRetrieveExpression(exists);
+        }
+        else if (expression instanceof Retrieve) {
+          retrieveExpression = (Retrieve)expression;
         }
 
         if (retrieveExpression == null) {
@@ -108,12 +181,66 @@ public class LibraryHelper {
         CriteriaListEntry entry = new CriteriaListEntry();
         // TODO - hardcoding for now
         entry.setOccurrence(new Occurrence(Occurrence.Type.AtLeast, "1"));
-        entry.setCriteria(generateCriteria(matchedSet));
+        entry.setCriteria(generateCriteria(matchedSet, correlatedCriteriaRule));
 
         CriteriaList criteriaList = new CriteriaList() {{ addEntry(entry); }};
         InclusionExpression inclusionExpression = new InclusionExpression(InclusionExpression.Type.All, criteriaList, null, null);
         inclusionRule.setExpression(inclusionExpression);
         return new ArrayList<InclusionRule>() {{ add(inclusionRule); }};
+    }
+
+    private static WindowBoundary calculateWindowStart(BinaryExpression expression) throws PhemaNotImplementedException, PhemaAssumptionException {
+      if (expression instanceof Subtract) {
+        Subtract subtract = (Subtract)expression;
+        Quantity quantity = (Quantity)getExpressionOfType(subtract.getOperand(), Quantity.class);
+        if (quantity == null) {
+          throw new PhemaAssumptionException("We expected a quantity to be specified in the relationship, but none was found");
+        }
+
+        WindowBoundary start = new WindowBoundary("-1", convertToDays(quantity));
+        return start;
+      }
+
+      throw new PhemaNotImplementedException("The translator currently only supports subtract operations");
+    }
+
+    static final BigDecimal DAYS_IN_YEAR = BigDecimal.valueOf(365);
+    static final BigDecimal DAYS_IN_MONTH = BigDecimal.valueOf(30);
+
+    public static BigDecimal convertToDays(Quantity quantity) throws PhemaAssumptionException, PhemaNotImplementedException {
+      if (quantity == null) {
+        throw new PhemaAssumptionException("The expected quantity is null");
+      }
+
+      if (quantity.getValue() == null || quantity.getUnit() == null || quantity.getUnit().equals("")) {
+        throw new PhemaAssumptionException("The quantity must contain both a value and a unit");
+      }
+
+      String unit = quantity.getUnit().toLowerCase();
+      BigDecimal value = quantity.getValue();
+      if (unit.equals("year") || unit.equals("years")) {
+        value = value.multiply(DAYS_IN_YEAR);
+      }
+      else if (unit.equals("month") || unit.equals("months")) {
+        value = value.multiply(DAYS_IN_MONTH);
+      }
+      else if (unit.equals("day") || unit.equals("days")) {
+        // No conversion needed
+      }
+      else {
+        throw new PhemaNotImplementedException("The translator doesn't translate this unit");
+      }
+      return value;
+    }
+
+    private static Expression getExpressionOfType(List<Expression> list, Class type) {
+      for (Expression expr : list) {
+        if (expr.getClass().equals(type)) {
+          return expr;
+        }
+      }
+
+      return null;
     }
 
     /**
@@ -168,7 +295,7 @@ public class LibraryHelper {
             }
             CriteriaListEntry entry = generateCriteriaListEntryForExpression(operandExp, library, conceptSets);
             if (entry == null) {
-                throw new Exception("The translator was unable to process this type of expression");
+                throw new PhemaNotImplementedException("The translator was unable to process this type of expression");
             }
 
             criteriaList.addEntry(entry);
@@ -184,9 +311,12 @@ public class LibraryHelper {
      * @param conceptSet
      * @return
      */
-    private static Criteria generateCriteria(ConceptSet conceptSet) {
+    private static Criteria generateCriteria(ConceptSet conceptSet, InclusionRule correlatedCriteriaRule) {
         // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR and OHDSI types
         ConditionOccurrence conditionOccurrence = new ConditionOccurrence(Integer.toString(conceptSet.getId()));
+        if (correlatedCriteriaRule != null) {
+          conditionOccurrence.setCorrelatedCriteria(correlatedCriteriaRule.getExpression());
+        }
         Criteria criteria = new Criteria(conditionOccurrence);
         return criteria;
     }
@@ -222,14 +352,14 @@ public class LibraryHelper {
         }
         else {
             // TODO - Need to handle more than simple query types
-            throw new Exception(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
+            throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
         }
 
         ConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
         CriteriaListEntry entry = new CriteriaListEntry();
         entry.setOccurrence(occurrence);
-        entry.setCriteria(generateCriteria(matchedSet));
+        entry.setCriteria(generateCriteria(matchedSet, null));
         return entry;
     }
 
@@ -333,7 +463,7 @@ public class LibraryHelper {
     private static ConceptSet getConceptSetForRetrieve(Retrieve retrieveExpression, Library library, List<ConceptSet> conceptSets) throws Exception {
         // TODO  would be nice to have a convenience method to enumerate out all the codes of interest.
         if (!(retrieveExpression.getCodes() instanceof ValueSetRef)) {
-            throw new Exception("Currently the translator is only able to handle ValueSetRef query sources");
+            throw new PhemaNotImplementedException("Currently the translator is only able to handle ValueSetRef query sources");
         }
         // TODO - we search by name, but should really be searching by Library and Name (will need more than just the Library passed in
         ValueSetRef valueSet = (ValueSetRef)retrieveExpression.getCodes();
@@ -358,16 +488,16 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static Retrieve getQueryRetrieveExpression(Query query) throws Exception {
+    private static Retrieve getQueryRetrieveExpression(Query query) throws PhemaNotImplementedException {
         int querySourceSize = query.getSource().size();
         if (querySourceSize != 1) {
             // TODO - will of course need to be more flexible here
-            throw new Exception(String.format("Currently the translator is only able to handle a single Query source"));
+            throw new PhemaNotImplementedException(String.format("Currently the translator is only able to handle a single Query source"));
         }
 
         Expression aliasExpression = query.getSource().get(0).getExpression();
         if (!(aliasExpression instanceof Retrieve)) {
-            throw new Exception("Currently the translator is only able to handle Retrieve query sources");
+            throw new PhemaNotImplementedException("Currently the translator is only able to handle Retrieve query sources");
         }
 
         return (Retrieve)aliasExpression;
@@ -380,10 +510,10 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static Retrieve getExistsRetrieveExpression(Exists expression) throws Exception {
+    private static Retrieve getExistsRetrieveExpression(Exists expression) throws PhemaNotImplementedException {
         Expression aliasExpression = expression.getOperand();
         if (!(aliasExpression instanceof Retrieve)) {
-            throw new Exception("Currently the translator is only able to handle Retrieve query sources");
+            throw new PhemaNotImplementedException("Currently the translator is only able to handle Retrieve query sources");
         }
 
         return (Retrieve)aliasExpression;
@@ -408,7 +538,7 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static String getInclusionExpressionType(Expression expression) throws Exception {
+    private static String getInclusionExpressionType(Expression expression) throws PhemaNotImplementedException {
         if (expression instanceof Or) {
             return InclusionExpression.Type.Any;
         }
@@ -416,7 +546,7 @@ public class LibraryHelper {
             return InclusionExpression.Type.All;
         }
 
-        throw new Exception("Currently the translator only handles And and Or expressions");
+        throw new PhemaNotImplementedException("Currently the translator only handles And and Or expressions");
     }
 
     /**
