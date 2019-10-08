@@ -22,6 +22,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.net.URI;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,8 +60,9 @@ class LibraryHelperTest {
           throw new Exception("Too many errors in CQL - stopping");
         }
 
+        URI conceptSetUri = this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").toURI();
         conceptSets = vsReader.getConceptSets(
-            this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").getPath(), "LibraryHelperTests", "", "");
+            Paths.get(conceptSetUri).toString(), "LibraryHelperTests", "", "");
     }
 
     @Test
