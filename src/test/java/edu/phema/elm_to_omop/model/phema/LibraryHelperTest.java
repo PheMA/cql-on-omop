@@ -7,7 +7,6 @@ import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.model.omop.Concept;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.model.omop.InclusionRule;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.cqframework.cql.cql2elm.CqlTranslator;
 import org.cqframework.cql.cql2elm.CqlTranslatorException;
 import org.cqframework.cql.cql2elm.LibraryManager;
@@ -15,24 +14,21 @@ import org.cqframework.cql.cql2elm.ModelManager;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.hl7.elm.r1.Quantity;
-import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.lenient;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class LibraryHelperTest {
-
     // In our CQL file, we may allow true errors to occur for our testing.  Since everything is in one file, we need
     // to define the threshold of known errors here.
     private static final int ALLOWED_ERRORS_IN_CQL = 1;
@@ -50,21 +46,18 @@ class LibraryHelperTest {
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        when(omopRepository.getConceptMetadata("", "", "1.2.3.4.5")).thenReturn(new Concept());
+        lenient().when(omopRepository.getConceptMetadata("", "", "1.2.3.4.5")).thenReturn(new Concept());
         vsReader = new ValueSetReader(omopRepository);
 
         ModelManager modelManager = new ModelManager();
         translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("LibraryHelperTests.cql"), modelManager, new LibraryManager(modelManager));
         library = translator.toELM();
-        List<CqlTranslatorException> exceptions = translator.getExceptions();
-        List<CqlTranslatorException> errors = translator.getErrors();
 
+        List<CqlTranslatorException> errors = translator.getErrors();
         if (errors.size() > ALLOWED_ERRORS_IN_CQL) {
           throw new Exception("Too many errors in CQL - stopping");
         }
 
-        List<CqlTranslatorException> warnings = translator.getWarnings();
-        List<CqlTranslatorException> messages = translator.getMessages();
         conceptSets = vsReader.getConceptSets(
             this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").getPath(), "LibraryHelperTests", "", "");
     }

@@ -112,7 +112,7 @@ define "Temporal relationship":
 define "Temporal relationship - flipped criteria":
   [Condition: "Diabetes VS"] DM
   with [Condition: "Hypertension VS"] HTN
-    such that DN.onsetDateTime 30 days or less before HTN.onsetDateTime
+    such that DM.onsetDateTime 30 days or less before HTN.onsetDateTime
 
 define "Temporal relationship static interval":
   [Condition: "Diabetes VS"] C where C.onsetDateTime during Interval[@2018-01-01, @2019-01-01)
