@@ -105,7 +105,14 @@ define "Age":
   AgeInYears() between 40 and 75
 
 define "Temporal relationship":
-  //[Condition: "Diabetes VS"] C where C.onsetDateTime during Interval[@2018-01-01, @2019-01-01)
   [Condition: "Diabetes VS"] DM
   with [Condition: "Hypertension VS"] HTN
     such that HTN.onsetDateTime 30 days or less before DM.onsetDateTime
+
+define "Temporal relationship - flipped criteria":
+  [Condition: "Diabetes VS"] DM
+  with [Condition: "Hypertension VS"] HTN
+    such that DN.onsetDateTime 30 days or less before HTN.onsetDateTime
+
+define "Temporal relationship static interval":
+  [Condition: "Diabetes VS"] C where C.onsetDateTime during Interval[@2018-01-01, @2019-01-01)
