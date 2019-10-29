@@ -1,5 +1,7 @@
 # elm-to-ohdsi-executer
 
+[![Build Status](https://travis-ci.org/PheMA/elm-to-ohdsi-executer.svg?branch=master)](https://travis-ci.org/PheMA/elm-to-ohdsi-executer)
+
 This project reads a query file written in ELM and converts to OMOP JSON format and runs it against an OHDSI repository.
 
 1. ELM file is transformed into OHDSI JSON format
