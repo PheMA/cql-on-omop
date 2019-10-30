@@ -53,8 +53,8 @@ public class OmopWriter {
         root.setExpression(exDef);
 
         Expression exp = expression.getExpression();
-        InclusionRule inclusionRule = LibraryHelper.generateInclusionRule(elmContents, exp, conceptSets);
-        exDef.addInclusionRule(inclusionRule);
+        java.util.List<InclusionRule> inclusionRules = LibraryHelper.generateInclusionRules(elmContents, exp, conceptSets);
+        exDef.setInclusionRules(inclusionRules);
         exDef.setConceptSets(conceptSets);
 
         return root.getJson();
