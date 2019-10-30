@@ -40,7 +40,7 @@ are supported:
 
 ### Execution
 
-Once configuration if complete, run the translator as follows:
+Once configuration is complete, run the translator as follows:
 
 ```
 mvn clean compile exec:java
