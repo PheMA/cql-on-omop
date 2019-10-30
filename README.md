@@ -23,6 +23,29 @@ Currently the code runs only a very simple example.  Project plans will increase
 
 Test files are located in the `resources/diabetes` directory.  The output will appear in the resources directory.
 
+### Configuration
+
+The application is configured using the [`config.properties`](./config/config.properties) file. The following properties
+are supported:
+
+|**Name**|**Description**|
+|---|---|
+|OMOP_BASE_URL| The base URL of the OHDSI WebAPI (should end with `WebAPI/`)|
+|INPUT_FILE_NAME| The name of the CQL library relative to `src/main/resources`|
+|VS_FILE_NAME| Name of the valueset CSV file relative to `src/main/resources`|
+|OUT_FILE_NAME| Output filename (will be created in `src/main/resources`) |
+|SOURCE|The OHDSI data source name |
+|VS_TAB| Name of the tab in the valueset spreadsheet (?) |
+|PHENOTYPE_EXPRESSIONS| Name of the CQL/ELM expression to evaluate |
+
+### Execution
+
+Once configuration if complete, run the translator as follows:
+
+```
+mvn clean compile exec:java
+```
+
 ## References
 * We use the ELM POJOs made available from the [clinical\_quality\_language project](https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cql-to-elm/OVERVIEW.md).  
 Additional information on the ELM schema can be found at - [https://cql.hl7.org/elm.html](https://cql.hl7.org/elm.html)
