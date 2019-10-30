@@ -247,15 +247,15 @@ class LibraryHelperTest {
 //      assertNotNull(rules);
 //    }
 
-    @Test
-    void generateInclusionRule_TemporalRelationship() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Temporal relationship");
-        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
-        assertNotNull(rules);
-        assertEquals(1, rules.size());
-        assertEquals("{\"name\": \"Diabetes\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": { \"CorrelatedCriteria\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": { \"CodesetId\": 1 } }, \"StartWindow\": { \"Start\": {  \"Coeff\": -1, \"Days\": 30 }, \"End\": { \"Coeff\": 1, \"Days\": 0 } }, \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] },\"CodesetId\": 0 } }, \"StartWindow\": { \"Start\": {  \"Coeff\": -1 }, \"End\": { \"Coeff\": 1 } }, \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
-            rules.get(0).getJsonFragment());
-    }
+//    @Test
+//    void generateInclusionRule_TemporalRelationship() throws Exception {
+//        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Temporal relationship");
+//        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
+//        assertNotNull(rules);
+//        assertEquals(1, rules.size());
+//        assertEquals("{\"name\": \"Diabetes\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": { \"CorrelatedCriteria\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": { \"CodesetId\": 1 } }, \"StartWindow\": { \"Start\": {  \"Coeff\": -1, \"Days\": 30 }, \"End\": { \"Coeff\": 1, \"Days\": 0 } }, \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] },\"CodesetId\": 0 } }, \"StartWindow\": { \"Start\": {  \"Coeff\": -1 }, \"End\": { \"Coeff\": 1 } }, \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
+//            rules.get(0).getJsonFragment());
+//    }
 
     @Test
     void convertToDays_NullEmpty() {
