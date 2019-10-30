@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.FileHandler;
@@ -133,6 +134,11 @@ public class ElmToOmopConverter
         }
 
         String workingDir = System.getProperty("user.dir");
+
+        if(!workingDir.endsWith("src" + File.separator + "main")) {
+            workingDir +=  File.separator + "src" + File.separator + "main";
+        }
+
         return workingDir + File.separator + "resources" + File.separator;
     }
 

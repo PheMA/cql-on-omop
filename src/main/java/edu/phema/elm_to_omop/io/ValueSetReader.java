@@ -36,7 +36,7 @@ public class ValueSetReader {
     public List<ConceptSet> getConceptSets(String valueSetPath, String tab, String omopServerUrl, String omopVocabSource) throws IOException, ParseException, InvalidFormatException {
         SpreadsheetReader vsReader = new SpreadsheetReader();
         ArrayList<PhemaValueSet> codes = vsReader.getSpreadsheetData(valueSetPath, tab);
-        List<ConceptSet> conceptSets = getConceptSets(codes, omopVocabSource, omopServerUrl);
+        List<ConceptSet> conceptSets = getConceptSets(codes, omopServerUrl, omopVocabSource);
         return conceptSets;
     }
 
