@@ -73,8 +73,9 @@ public final class Config  {
      * @param inArgs the arguments to be used for the configuration settings
      */
     public Config(final String[] inArgs)  {
+        this();
         for (int i = 0; i < inArgs.length; i++) {
-            LOGGER.info(inArgs[i]);
+            LOGGER.info("Found argument:" + inArgs[i]);
             setArg(inArgs[i]);
         }
         runPropertyCheck();
@@ -142,9 +143,9 @@ public final class Config  {
         if (args.startsWith("-"))  {
             args = args.substring(1);
         }
-        int pos = inArg.indexOf("=");
-        String prop = inArg.substring(0, pos);
-        String val = inArg.substring(pos + 1);
+        int pos = args.indexOf("=");
+        String prop = args.substring(0, pos);
+        String val = args.substring(pos + 1);
 
         if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
             omopBaseURL = val;
@@ -203,4 +204,7 @@ public final class Config  {
         }
     }
 
+    public static String configString() {
+        return String.format("OMOP_BASE_URL=%s, INPUT_FILE_NAME=%s, VS_FILE_NAME=%s, OUT_FILE_NAME=%s, SOURCE=%s, VS_TAB=%s", omopBaseURL, inputFileName, vsFileName, outFileName, source, tab);
+    }
 }

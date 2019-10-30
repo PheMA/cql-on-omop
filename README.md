@@ -46,6 +46,13 @@ Once configuration is complete, run the translator as follows:
 mvn clean compile exec:java
 ```
 
+Individual properties can also be overwritten on the command line as follows:
+
+```
+mvn compile exec:java -Dexec.arguments="OMOP_BASE_URL=http://projectphema.org/WebAPI/ INPUT_FILE_NAME=autism/simple-dx-elm.xml"
+```
+
+
 ## References
 * We use the ELM POJOs made available from the [clinical\_quality\_language project](https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cql-to-elm/OVERVIEW.md).  
 Additional information on the ELM schema can be found at - [https://cql.hl7.org/elm.html](https://cql.hl7.org/elm.html)

@@ -42,6 +42,7 @@ public class ElmToOmopConverter
             FileHandler fh = setUpLogging("elmToOhdsiConverter.log");
 
             String directory = setUpConfiguration(args);
+            logger.info("Config: " + Config.configString());
 
             // Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
             // the CQL/ELM can be vague if not explicitly defined otherwise.
