@@ -58,7 +58,7 @@ public class ElmReader {
             elmContents = library.getValue();
         }
         catch (JAXBException e) { 
-            throw new JAXBException("Error while parsing the xml - " +e.getMessage());
+            throw new JAXBException("Error while parsing the xml - " + e);
         }
         return elmContents;
     }
