@@ -39,25 +39,36 @@ public class ElmToOmopConverter
     public static void main(String args[])  {
 
         try  {
+            // Setup configuration
+            Config config;
+            if (args.length > 0)
+            {
+                config = new Config(args);
+            }
+            else
+            {
+                config = new Config();
+            }
+
             FileHandler fh = setUpLogging("elmToOhdsiConverter.log");
 
-            String directory = setUpConfiguration(args);
-            logger.info("Config: " + Config.configString());
+            String directory = getResourceDirectory();
+            logger.info("Config: " + config.configString());
 
             // Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
             // the CQL/ELM can be vague if not explicitly defined otherwise.
-            List<String> phenotypeExpressionNames = Config.getPhenotypeExpressions();
+            List<String> phenotypeExpressionNames = config.getPhenotypeExpressions();
             if (phenotypeExpressionNames.size() == 0) {
                 System.out.println("Please provide the name or names of the expressions to use as your phenotype(s) - set this using PHENOTYPE_EXPRESSIONS");
                 return;
             }
 
-            String domain = Config.getOmopBaseUrl();
-            String source = Config.getSource();
+            String domain = config.getOmopBaseUrl();
+            String source = config.getSource();
             OmopWriter omopWriter = new OmopWriter(logger);
 
             // read the elm file and set up the objects
-            Library elmContents = ElmReader.readElm(directory, logger);
+            Library elmContents = ElmReader.readElm(directory, config.getInputFileName(), logger);
             List<ExpressionDef> expressions = elmContents.getStatements().getDef();
 
             List<ExpressionDef> phenotypeExpressions = expressions.stream()
@@ -69,14 +80,14 @@ public class ElmToOmopConverter
             }
 
             // read the value set csv and add to the objects
-            String vsDirectory = directory + Config.getVsFileName();
+            String vsDirectory = directory + config.getVsFileName();
             ValueSetReader valueSetReader = new ValueSetReader();
-            List<ConceptSet> conceptSets = valueSetReader.getConceptSets(vsDirectory, Config.getTab(), domain, source);
+            List<ConceptSet> conceptSets = valueSetReader.getConceptSets(vsDirectory, config.getTab(), domain, source);
 
             IOmopRepository omopRepository = new OmopRepository();
             // For each phenotype definition, get the OMOP JSON and write it out to file
             for (ExpressionDef phenotypeExpression : phenotypeExpressions) {
-                String omopJson = omopWriter.writeOmopJson(phenotypeExpression, elmContents, conceptSets, directory);
+                String omopJson = omopWriter.writeOmopJson(phenotypeExpression, elmContents, conceptSets, directory, config.getOutFileName());
                 System.out.println(omopJson);
 
                 // connect to the webAPI and post the cohort definition
@@ -124,16 +135,7 @@ public class ElmToOmopConverter
         return fh;
     }
 
-    private static String setUpConfiguration(String args[])  {
-        if (args.length > 0)
-        {
-            new Config(args);
-        }
-        else
-        {
-            new Config();
-        }
-
+    private static String getResourceDirectory() {
         String workingDir = System.getProperty("user.dir");
 
         if(!workingDir.endsWith("src" + File.separator + "main")) {

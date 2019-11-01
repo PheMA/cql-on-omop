@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  * arguments.  If not present, then pulls them from configuration file.
  * Config file is must be located in the config directory and named config.properties.
  */
-public final class Config  {
+public final class Config {
     /**
      *  Logs messages to file.
      */
-    private static final Logger LOGGER = Logger.getLogger(Config.class.getName());
+    private final Logger LOGGER = Logger.getLogger(Config.class.getName());
 
     /**
      * Configuration file name.
@@ -33,22 +33,22 @@ public final class Config  {
      */
     private Properties configProps;
 
-    private static final String PHENOTYPE_NAME_DELIMITER = "\\|";
+    private final String PHENOTYPE_NAME_DELIMITER = "\\|";
 
 
-    private static String omopBaseURL;
+    private String omopBaseURL;
 
-    private static String inputFileName;
+    private String inputFileName;
 
-    private static String vsFileName;
+    private String vsFileName;
 
-    private static String outFileName;
+    private String outFileName;
 
-    private static String source;
+    private String source;
 
-    private static String tab;
+    private String tab;
 
-    private static List<String> phenotypeExpressions;
+    private List<String> phenotypeExpressions;
 
     /**
      * Constructor finds the working directory and loads the configuration properties.
@@ -106,31 +106,31 @@ public final class Config  {
         runPropertyCheck();
     }
 
-    public static String getOmopBaseUrl() {
+    public String getOmopBaseUrl() {
         return omopBaseURL;
     }
 
-    public static String getInputFileName() {
+    public String getInputFileName() {
         return inputFileName;
     }
 
-    public static String getVsFileName() {
+    public String getVsFileName() {
         return vsFileName;
     }
 
-    public static String getOutFileName() {
+    public String getOutFileName() {
         return outFileName;
     }
 
-    public static String getSource() {
+    public String getSource() {
         return source;
     }
 
-    public static String getTab() {
+    public String getTab() {
         return tab;
     }
 
-    public static List<String> getPhenotypeExpressions() {
+    public List<String> getPhenotypeExpressions() {
       return phenotypeExpressions;
     }
 
@@ -204,7 +204,7 @@ public final class Config  {
         }
     }
 
-    public static String configString() {
+    public String configString() {
         return String.format("OMOP_BASE_URL=%s, INPUT_FILE_NAME=%s, VS_FILE_NAME=%s, OUT_FILE_NAME=%s, SOURCE=%s, VS_TAB=%s", omopBaseURL, inputFileName, vsFileName, outFileName, source, tab);
     }
 }

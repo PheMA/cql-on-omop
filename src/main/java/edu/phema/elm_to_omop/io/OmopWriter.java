@@ -23,8 +23,8 @@ public class OmopWriter {
      * Makes sure the json has been created and writes it to file designated in the configuration
      * Returns the json string
      */
-    public String writeOmopJson(ExpressionDef expression, Library elmContents, java.util.List<ConceptSet> conceptSets, String directory) throws Exception {
-        String jsonFileName = directory + Config.getOutFileName();
+    public String writeOmopJson(ExpressionDef expression, Library elmContents, java.util.List<ConceptSet> conceptSets, String directory, String filename) throws Exception {
+        String jsonFileName = directory + filename;
         try (FileWriter jsonFile = new FileWriter(jsonFileName)) {
             String json = generateOmopJson(expression, elmContents, conceptSets);
 
