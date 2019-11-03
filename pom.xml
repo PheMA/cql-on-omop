@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.phema</groupId>
-    <artifactId>elm_to_ohdsi</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>phema-elm-to-ohdsi</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>elm_to_ohdsi</name>
+    <name>phema-elm-to-ohdsi</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,6 +18,9 @@
         <mockito.version>2.28.2</mockito.version>
         <cqframework.version>1.4.6</cqframework.version>
         <jaxb.version>2.3.0</jaxb.version>
+        <bintray.subject>phema</bintray.subject>
+        <bintray.repo>maven</bintray.repo>
+        <bintray.package>phema-elm-to-ohdsi</bintray.package>
     </properties>
 
     <repositories>
@@ -208,4 +211,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-phema-maven</id>
+            <url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}/;publish=1</url>
+        </repository>
+    </distributionManagement>
 </project>

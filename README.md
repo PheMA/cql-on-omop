@@ -1,6 +1,8 @@
 # elm-to-ohdsi-executer
 
+[![PhEMA](./repo-badge.svg)](https://projectphema.org)
 [![Build Status](https://travis-ci.org/PheMA/elm-to-ohdsi-executer.svg?branch=master)](https://travis-ci.org/PheMA/elm-to-ohdsi-executer)
+[![Download](https://api.bintray.com/packages/phema/maven/phema-elm-to-ohdsi/images/download.svg?version=0.0.2) ](https://bintray.com/phema/maven/phema-elm-to-ohdsi/0.0.2/link)
 
 This project reads a query file written in ELM and converts to OMOP JSON format and runs it against an OHDSI repository.
 
@@ -52,6 +54,30 @@ Individual properties can also be overwritten on the command line as follows:
 mvn compile exec:java -Dexec.arguments="OMOP_BASE_URL=http://projectphema.org/WebAPI/ INPUT_FILE_NAME=autism/simple-dx-elm.xml"
 ```
 
+### Deployment
+
+The maven artifact for this project is hosted on [Bintray](https://bintray.com/beta/#/phema/maven/phema-elm-to-ohdsi?tab=overview).
+To publish a new version, you must be a member of the [`phema` organization](https://bintray.com/phema) on Bintray. Once you have created an account
+and joined the organization, read [this article](https://blog.bintray.com/2015/09/17/publishing-your-maven-project-to-bintray/)
+for instructions on how to publish. Basically,
+
+1. Add the following to the `<servers>` tag in your Maven `settings.xml` file (probaby at `~/.m2/settings.xml`):
+
+    ```xml
+    <server>
+        <id>bintray-phema-maven</id>
+        <username>__BINTRAY_USERNAME__</username>
+        <password>__BINTRAY_API_KEY__</password>
+    </server>
+    ```
+   
+   Find your API key in the menu on the left [here](https://bintray.com/profile/edit).
+   
+2. Run `mvn clean install deploy`
+
+:bulb: Note that snapshot releases cannot be deployed to Bintray, so make sure the version in `pom.xml` does not end
+with `SNAPSHOT` when you run the deploy.
+   
 
 ## References
 * We use the ELM POJOs made available from the [clinical\_quality\_language project](https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cql-to-elm/OVERVIEW.md).  
