@@ -2,7 +2,7 @@
 
 [![PhEMA](./repo-badge.svg)](https://projectphema.org)
 [![Build Status](https://travis-ci.org/PheMA/elm-to-ohdsi-executer.svg?branch=master)](https://travis-ci.org/PheMA/elm-to-ohdsi-executer)
-[![Download](https://api.bintray.com/packages/phema/maven/phema-elm-to-ohdsi/images/download.svg?version=0.0.2) ](https://bintray.com/phema/maven/phema-elm-to-ohdsi/0.0.2/link)
+[![Download](https://img.shields.io/badge/dynamic/json.svg?label=latest&query=name&url=https://bintray.com/api/v1/packages/phema/maven/phema-elm-to-ohdsi/versions/_latest) ](https://bintray.com/phema/maven/phema-elm-to-ohdsi/)
 
 This project reads a query file written in ELM and converts to OMOP JSON format and runs it against an OHDSI repository.
 
