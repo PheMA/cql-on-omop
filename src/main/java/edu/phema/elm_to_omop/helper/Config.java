@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public final class Config {
     /**
-     *  Logs messages to file.
+     * Logs messages to file.
      */
     private final Logger LOGGER = Logger.getLogger(Config.class.getName());
 
@@ -53,7 +53,7 @@ public final class Config {
     /**
      * Constructor finds the working directory and loads the configuration properties.
      */
-    public Config()  {
+    public Config() {
         String workingDir = System.getProperty("user.dir");
         configFullPath = workingDir + File.separator + "config" + File.separator + configFileName;
         configProps = new java.util.Properties();
@@ -72,7 +72,7 @@ public final class Config {
      *
      * @param inArgs the arguments to be used for the configuration settings
      */
-    public Config(final String[] inArgs)  {
+    public Config(final String[] inArgs) {
         this();
         for (int i = 0; i < inArgs.length; i++) {
             LOGGER.info("Found argument:" + inArgs[i]);
@@ -83,18 +83,19 @@ public final class Config {
 
     /**
      * get the property value.
+     *
      * @param key name of the property
      * @return property value
      */
-    public String getProperty(final String key)  {
-       String value = this.configProps.getProperty(key);
-       return value;
+    public String getProperty(final String key) {
+        String value = this.configProps.getProperty(key);
+        return value;
     }
 
     /**
      * sets the configuration properties.
      */
-    public void setConfig()  {
+    public void setConfig() {
         omopBaseURL = getProperty("OMOP_BASE_URL");
         inputFileName = getProperty("INPUT_FILE_NAME");
         vsFileName = getProperty("VS_FILE_NAME");
@@ -131,38 +132,39 @@ public final class Config {
     }
 
     public List<String> getPhenotypeExpressions() {
-      return phenotypeExpressions;
+        return phenotypeExpressions;
     }
 
     /**
      * Sets the values for the property.
+     *
      * @param inArg property value
      */
-    private void setArg(final String inArg)  {
+    private void setArg(final String inArg) {
         String args = inArg;
-        if (args.startsWith("-"))  {
+        if (args.startsWith("-")) {
             args = args.substring(1);
         }
         int pos = args.indexOf("=");
         String prop = args.substring(0, pos);
         String val = args.substring(pos + 1);
 
-        if (prop.equalsIgnoreCase("OMOP_BASE_URL"))  {
+        if (prop.equalsIgnoreCase("OMOP_BASE_URL")) {
             omopBaseURL = val;
         }
-        if (prop.equalsIgnoreCase("INPUT_FILE_NAME"))  {
+        if (prop.equalsIgnoreCase("INPUT_FILE_NAME")) {
             inputFileName = val;
         }
-        if (prop.equalsIgnoreCase("VS_FILE_NAME"))  {
+        if (prop.equalsIgnoreCase("VS_FILE_NAME")) {
             vsFileName = val;
         }
-        if (prop.equalsIgnoreCase("OUT_FILE_NAME"))  {
+        if (prop.equalsIgnoreCase("OUT_FILE_NAME")) {
             outFileName = val;
         }
-        if (prop.equalsIgnoreCase("SOURCE"))  {
+        if (prop.equalsIgnoreCase("SOURCE")) {
             source = val;
         }
-        if (prop.equalsIgnoreCase("VS_TAB"))  {
+        if (prop.equalsIgnoreCase("VS_TAB")) {
             tab = val;
         }
 
@@ -183,28 +185,84 @@ public final class Config {
     /**
      * Validate that all the properties were set correctly.
      */
-    private void runPropertyCheck()  {
-        if (omopBaseURL == null)  {
+    private void runPropertyCheck() {
+        if (omopBaseURL == null) {
             LOGGER.severe("ERROR - missing parameter OMOP_BASE_URL");
         }
-        if (inputFileName == null)  {
+        if (inputFileName == null) {
             LOGGER.severe("ERROR - missing parameter INPUT_FILE_NAME");
         }
-        if (vsFileName == null)  {
+        if (vsFileName == null) {
             LOGGER.severe("ERROR - missing parameter VS_FILE_NAME");
         }
-        if (outFileName == null)  {
+        if (outFileName == null) {
             LOGGER.severe("ERROR - missing parameter OUT_FILE_NAME");
         }
-        if (source == null)  {
+        if (source == null) {
             LOGGER.severe("ERROR - missing parameter SOURCE");
         }
-        if (tab == null)  {
+        if (tab == null) {
             LOGGER.severe("ERROR - missing parameter VS_TAB");
         }
     }
 
     public String configString() {
         return String.format("OMOP_BASE_URL=%s, INPUT_FILE_NAME=%s, VS_FILE_NAME=%s, OUT_FILE_NAME=%s, SOURCE=%s, VS_TAB=%s", omopBaseURL, inputFileName, vsFileName, outFileName, source, tab);
+    }
+
+    public String getConfigFileName() {
+        return configFileName;
+    }
+
+    public void setConfigFileName(String configFileName) {
+        this.configFileName = configFileName;
+    }
+
+    public String getConfigFullPath() {
+        return configFullPath;
+    }
+
+    public void setConfigFullPath(String configFullPath) {
+        this.configFullPath = configFullPath;
+    }
+
+    public Properties getConfigProps() {
+        return configProps;
+    }
+
+    public void setConfigProps(Properties configProps) {
+        this.configProps = configProps;
+    }
+
+    public String getOmopBaseURL() {
+        return omopBaseURL;
+    }
+
+    public void setOmopBaseURL(String omopBaseURL) {
+        this.omopBaseURL = omopBaseURL;
+    }
+
+    public void setInputFileName(String inputFileName) {
+        this.inputFileName = inputFileName;
+    }
+
+    public void setVsFileName(String vsFileName) {
+        this.vsFileName = vsFileName;
+    }
+
+    public void setOutFileName(String outFileName) {
+        this.outFileName = outFileName;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setTab(String tab) {
+        this.tab = tab;
+    }
+
+    public void setPhenotypeExpressions(List<String> phenotypeExpressions) {
+        this.phenotypeExpressions = phenotypeExpressions;
     }
 }
