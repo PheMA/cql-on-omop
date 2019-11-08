@@ -75,6 +75,13 @@ for instructions on how to publish. Basically,
    
 2. Run `mvn clean install deploy`
 
+Alternatively, just push a tag to this repo:
+
+```shell script
+$ git tag 1.2.3
+$ git push --tags
+```
+
 :bulb: Note that snapshot releases cannot be deployed to Bintray, so make sure the version in `pom.xml` does not end
 with `SNAPSHOT` when you run the deploy.
    
