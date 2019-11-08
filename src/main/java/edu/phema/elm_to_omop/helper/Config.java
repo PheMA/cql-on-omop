@@ -51,9 +51,32 @@ public final class Config {
     private List<String> phenotypeExpressions;
 
     /**
-     * Constructor finds the working directory and loads the configuration properties.
+     * Empty constructor removes dependency
+     * on `config.properties` file, which is
+     * useful for library consumers
      */
     public Config() {
+    }
+
+    /**
+     * Constructor finds the working directory and loads the configuration properties.
+     *
+     * @param inArgs the arguments to be used for the configuration settings
+     */
+    public Config(final String[] inArgs) {
+        this();
+        this.loadFromFile();
+        for (int i = 0; i < inArgs.length; i++) {
+            LOGGER.info("Found argument:" + inArgs[i]);
+            setArg(inArgs[i]);
+        }
+        runPropertyCheck();
+    }
+
+    /**
+     * Finds the working directory and loads the configuration properties.
+     */
+    public void loadFromFile() {
         String workingDir = System.getProperty("user.dir");
         configFullPath = workingDir + File.separator + "config" + File.separator + configFileName;
         configProps = new java.util.Properties();
@@ -65,20 +88,6 @@ public final class Config {
         } catch (Exception eta) {
             eta.printStackTrace();
         }
-    }
-
-    /**
-     * Constructor finds the working directory and loads the configuration properties.
-     *
-     * @param inArgs the arguments to be used for the configuration settings
-     */
-    public Config(final String[] inArgs) {
-        this();
-        for (int i = 0; i < inArgs.length; i++) {
-            LOGGER.info("Found argument:" + inArgs[i]);
-            setArg(inArgs[i]);
-        }
-        runPropertyCheck();
     }
 
     /**

@@ -37,7 +37,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void conceptSetSetupTest() {
-        Config config = new Config();
+        Config config = new Config(new String[]{});
 
         config.setVsFileName("diabetes/diabetes.csv");
 
@@ -48,7 +48,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void omopTranslatorApiSmokeTest() {
-        Config config = new Config();
+        Config config = new Config(new String[]{});
 
         config.setVsFileName("diabetes/diabetes.csv");
 
@@ -69,7 +69,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void OmopTranslatorMultipleStatementTest() {
-        Config config = new Config();
+        Config config = new Config(new String[]{});
 
         config.setVsFileName("diabetes/diabetes.csv");
 

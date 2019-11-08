@@ -32,22 +32,19 @@ import edu.phema.elm_to_omop.model.omop.ConceptSet;
  * 5. Uses OHDSI WebAPI to retrieve the results
  */
 
-public class ElmToOmopConverter
-{
+public class ElmToOmopConverter {
     private static Logger logger = Logger.getLogger(ElmToOmopConverter.class.getName());
 
-    public static void main(String args[])  {
+    public static void main(String args[]) {
 
-        try  {
+        try {
             // Setup configuration
             Config config;
-            if (args.length > 0)
-            {
+            if (args.length > 0) {
                 config = new Config(args);
-            }
-            else
-            {
+            } else {
                 config = new Config();
+                config.loadFromFile();
             }
 
             FileHandler fh = setUpLogging("elmToOhdsiConverter.log");
@@ -92,7 +89,7 @@ public class ElmToOmopConverter
 
                 // connect to the webAPI and post the cohort definition
                 String id = omopRepository.postCohortDefinition(domain, omopJson);
-                System.out.println("cohort definition id = " +id);
+                System.out.println("cohort definition id = " + id);
 
                 // use the webAPI to generate the cohort results
                 omopRepository.generateCohort(domain, id, source);
@@ -100,7 +97,7 @@ public class ElmToOmopConverter
                 // keep pinging the repository until the definition has completed running
                 String status = "";
                 int count = 1;
-                while(!status.equalsIgnoreCase("COMPLETE") && count < 1000)  {
+                while (!status.equalsIgnoreCase("COMPLETE") && count < 1000) {
                     status = omopRepository.getExecutionStatus(domain, id);
                     TimeUnit.SECONDS.sleep(1);
                     count++;
@@ -108,21 +105,20 @@ public class ElmToOmopConverter
 
                 // get the final count
                 String numPatients = omopRepository.getCohortCount(domain, id, source);
-                System.out.println("numPatients = " +numPatients);
+                System.out.println("numPatients = " + numPatients);
 
             }
-        }  catch(IOException ioe)   {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        }  catch(InvalidFormatException ife)   {
+        } catch (InvalidFormatException ife) {
             ife.printStackTrace();
-        }  catch(JAXBException jaxb)   {
+        } catch (JAXBException jaxb) {
             jaxb.printStackTrace();
-        }  catch(ParseException pe)   {
+        } catch (ParseException pe) {
             pe.printStackTrace();
 //        }  catch(InterruptedException ie)   {
 //            ie.printStackTrace();
-        }
-        catch (Exception exc) {
+        } catch (Exception exc) {
             exc.printStackTrace();
         }
         System.out.println("done");
@@ -138,15 +134,12 @@ public class ElmToOmopConverter
     private static String getResourceDirectory() {
         String workingDir = System.getProperty("user.dir");
 
-        if(!workingDir.endsWith("src" + File.separator + "main")) {
-            workingDir +=  File.separator + "src" + File.separator + "main";
+        if (!workingDir.endsWith("src" + File.separator + "main")) {
+            workingDir += File.separator + "src" + File.separator + "main";
         }
 
         return workingDir + File.separator + "resources" + File.separator;
     }
-
-
-
 
 
 }
