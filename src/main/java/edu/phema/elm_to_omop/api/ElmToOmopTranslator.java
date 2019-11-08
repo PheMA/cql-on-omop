@@ -85,6 +85,10 @@ public class ElmToOmopTranslator {
      * @throws Exception
      */
     public JsonObject cqlToOmopJsonObject(String cqlString, String statementName) throws Exception {
+        if (statementName == null) {
+            throw new CqlStatementNotFoundException("No named CQL statement specified");
+        }
+
         CqlToElmTranslator translator = new CqlToElmTranslator();
 
         Library library = translator.cqlToElm(cqlString);
