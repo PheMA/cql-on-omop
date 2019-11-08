@@ -1,6 +1,6 @@
 {
-  "name": "In Initial Population",
-  "description": "In Initial Population",
+  "name": "InInitialPopulation",
+  "description": "InInitialPopulation",
   "expressionType": "SIMPLE_EXPRESSION",
   "expression": {
     "ConceptSets": [
@@ -12,7 +12,7 @@
             {
               "concept": {
                 "CONCEPT_ID": 45917083,
-                "CONCEPT_NAME": "controlled type 1 diabetes with neuropathy",
+                "CONCEPT_NAME": "controlledtype1diabeteswithneuropathy",
                 "STANDARD_CONCEPT": "N",
                 "STANDARD_CONCEPT_CAPTION": "Non-Standard",
                 "INVALID_REASON": "V",
@@ -21,118 +21,6 @@
                 "DOMAIN_ID": "Condition",
                 "VOCABULARY_ID": "CIEL",
                 "CONCEPT_CLASS_ID": "Diagnosis"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 45948882,
-                "CONCEPT_NAME": "controlled type 1 diabetes with renal manifestation",
-                "STANDARD_CONCEPT": "N",
-                "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "154231",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "CIEL",
-                "CONCEPT_CLASS_ID": "Diagnosis"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 37016767,
-                "CONCEPT_NAME": "Diabetic autonomic neuropathy due to type 1 diabetes mellitus",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "712882000",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 4225656,
-                "CONCEPT_NAME": "Diabetic cataract associated with type 1 diabetes mellitus",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "421920002",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 45769832,
-                "CONCEPT_NAME": "Diabetic dermopathy due to type 1 diabetes mellitus",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "72021000119109",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 373999,
-                "CONCEPT_NAME": "Diabetic oculopathy associated with type 1 diabetes mellitus",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "421165007",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 201254,
-                "CONCEPT_NAME": "Type 1 diabetes mellitus",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "46635009",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 4099215,
-                "CONCEPT_NAME": "Type 1 diabetes mellitus maturity onset",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "190372001",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
-              }
-            },
-            {
-              "concept": {
-                "CONCEPT_ID": 4096668,
-                "CONCEPT_NAME": "Type 1 diabetes mellitus with gangrene",
-                "STANDARD_CONCEPT": "S",
-                "STANDARD_CONCEPT_CAPTION": "Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "190369008",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "SNOMED",
-                "CONCEPT_CLASS_ID": "Clinical Finding"
               }
             }
           ]

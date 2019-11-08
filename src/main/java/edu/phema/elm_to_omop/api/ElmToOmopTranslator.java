@@ -1,8 +1,8 @@
 package edu.phema.elm_to_omop.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.io.OmopWriter;
@@ -14,7 +14,6 @@ import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -29,7 +28,7 @@ public class ElmToOmopTranslator {
     private List<ConceptSet> conceptSets;
 
     /**
-     * The configuration to use for the translation
+     * Specify configuration to use for the translation
      *
      * @param config @see edu.phema.elm_to_omop.helper.Config
      * @throws InvalidFormatException
@@ -40,7 +39,23 @@ public class ElmToOmopTranslator {
     public ElmToOmopTranslator(Config config) throws InvalidFormatException, ParseException, IOException, NullPointerException {
         logger = Logger.getLogger(this.getClass().getName());
 
-        this.buildConceptSets(config);
+        ValueSetReader valueSetReader = new ValueSetReader();
+        this.buildConceptSets(config, valueSetReader);
+    }
+
+    /**
+     * Specify configuration to use for the translation, as well as a custom valueset reader.
+     * This is most to support mocking during testing
+     *
+     * @param config @see edu.phema.elm_to_omop.helper.Config
+     * @throws InvalidFormatException
+     * @throws ParseException
+     * @throws IOException
+     * @throws NullPointerException
+     */
+    public ElmToOmopTranslator(Config config, ValueSetReader valueSetReader) throws InvalidFormatException, ParseException, IOException, NullPointerException {
+        logger = Logger.getLogger(this.getClass().getName());
+        this.buildConceptSets(config, valueSetReader);
     }
 
     /**
@@ -53,15 +68,12 @@ public class ElmToOmopTranslator {
      * @throws IOException
      * @throws NullPointerException
      */
-    private void buildConceptSets(Config config) throws InvalidFormatException, ParseException, IOException, NullPointerException {
+    private void buildConceptSets(Config config, ValueSetReader valueSetReader) throws InvalidFormatException, ParseException, IOException, NullPointerException {
         String domain = config.getOmopBaseUrl();
         String source = config.getSource();
         String vsFileName = config.getVsFileName();
 
-        URL url = this.getClass().getClassLoader().getResource(vsFileName);
-
-        ValueSetReader valueSetReader = new ValueSetReader();
-        this.conceptSets = valueSetReader.getConceptSets(url.getPath(), config.getTab(), domain, source);
+        this.conceptSets = valueSetReader.getConceptSets(vsFileName, config.getTab(), domain, source);
     }
 
     /**
