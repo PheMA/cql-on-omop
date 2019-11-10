@@ -1,9 +1,10 @@
 package edu.phema.elm_to_omop.api;
 
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.io.IOmopRepository;
-import edu.phema.elm_to_omop.io.ValueSetReader;
+import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.model.omop.Concept;
+import edu.phema.elm_to_omop.valueset.IValuesetService;
+import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 public class ElmToOmopTranslatorTest {
     @Mock
-    private IOmopRepository omopRepository;
+    private IOmopRepositoryService omopRepository;
 
-    private ValueSetReader valueSetReader;
+    private IValuesetService valuesetService;
 
     @BeforeEach
     public void setup() throws Exception {
@@ -44,8 +45,11 @@ public class ElmToOmopTranslatorTest {
         concept.setVocabularyId("CIEL");
         concept.setConceptClassId("Diagnosis");
 
-        Mockito.when(omopRepository.getConceptMetadata("http://52.162.236.199/WebAPI/", "OHDSI-CDMV5", "45917083")).thenReturn(concept);
-        valueSetReader = new ValueSetReader(omopRepository);
+        Mockito.when(omopRepository.getConceptMetadata("45917083")).thenReturn(concept);
+
+        String vsPath = this.getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath();
+
+        valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
     }
 
     private String getFileAsString(String filePath) throws IOException {
@@ -73,10 +77,10 @@ public class ElmToOmopTranslatorTest {
     void conceptSetSetupTest() {
         Config config = new Config(Config.getDefaultConfigPath());
 
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
+        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
 
         assertDoesNotThrow(() -> {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valueSetReader);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
         });
     }
 
@@ -84,10 +88,10 @@ public class ElmToOmopTranslatorTest {
     void omopTranslatorApiSmokeTest() {
         Config config = new Config(Config.getDefaultConfigPath());
 
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
+        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
 
         try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valueSetReader);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
 
             String cqlString = this.getFileAsString("api/smoke-test-simple.cql");
 
@@ -105,10 +109,10 @@ public class ElmToOmopTranslatorTest {
     void OmopTranslatorMultipleStatementTest() {
         Config config = new Config(Config.getDefaultConfigPath());
 
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
+        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
 
         try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valueSetReader);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
 
             String cqlString = this.getFileAsString("api/smoke-test-multiple.cql");
 

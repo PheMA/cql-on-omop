@@ -4,10 +4,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
+import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.io.OmopWriter;
 import edu.phema.elm_to_omop.io.ValueSetReader;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
+import edu.phema.elm_to_omop.repository.OmopRepositoryService;
+import edu.phema.elm_to_omop.valueset.IValuesetService;
+import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
@@ -36,11 +40,18 @@ public class ElmToOmopTranslator {
      * @throws IOException
      * @throws NullPointerException
      */
-    public ElmToOmopTranslator(Config config) throws InvalidFormatException, ParseException, IOException, NullPointerException {
+    public ElmToOmopTranslator(Config config) throws OmopTranslatorException {
         logger = Logger.getLogger(this.getClass().getName());
 
-        ValueSetReader valueSetReader = new ValueSetReader();
-        this.buildConceptSets(config, valueSetReader);
+        OmopRepositoryService omopService = new OmopRepositoryService(config.getOmopBaseURL(), config.getSource());
+
+        SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+
+        try {
+            conceptSets = valuesetService.getConceptSets();
+        } catch (Exception e) {
+            throw new OmopTranslatorException("Error initializing concept sets", e);
+        }
     }
 
     /**
@@ -53,27 +64,14 @@ public class ElmToOmopTranslator {
      * @throws IOException
      * @throws NullPointerException
      */
-    public ElmToOmopTranslator(Config config, ValueSetReader valueSetReader) throws InvalidFormatException, ParseException, IOException, NullPointerException {
+    public ElmToOmopTranslator(Config config, IValuesetService valuesetService) throws OmopTranslatorException {
         logger = Logger.getLogger(this.getClass().getName());
-        this.buildConceptSets(config, valueSetReader);
-    }
 
-    /**
-     * Not part of the public API, but loads the concepts
-     * from the file specified in the config
-     *
-     * @param config @see edu.phema.elm_to_omop.helper.Config
-     * @throws InvalidFormatException
-     * @throws ParseException
-     * @throws IOException
-     * @throws NullPointerException
-     */
-    private void buildConceptSets(Config config, ValueSetReader valueSetReader) throws InvalidFormatException, ParseException, IOException, NullPointerException {
-        String domain = config.getOmopBaseUrl();
-        String source = config.getSource();
-        String vsFileName = config.getVsFileName();
-
-        this.conceptSets = valueSetReader.getConceptSets(vsFileName, config.getTab(), domain, source);
+        try {
+            conceptSets = valuesetService.getConceptSets();
+        } catch (Exception e) {
+            throw new OmopTranslatorException("Error initializing concept sets", e);
+        }
     }
 
     /**
