@@ -1,12 +1,13 @@
 package edu.phema.elm_to_omop.model.phema;
 
-import edu.phema.elm_to_omop.io.IOmopRepository;
-import edu.phema.elm_to_omop.io.ValueSetReader;
+import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.model.PhemaAssumptionException;
 import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.model.omop.Concept;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.model.omop.InclusionRule;
+import edu.phema.elm_to_omop.valueset.IValuesetService;
+import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
 import org.cqframework.cql.cql2elm.CqlTranslator;
 import org.cqframework.cql.cql2elm.CqlTranslatorException;
 import org.cqframework.cql.cql2elm.LibraryManager;
@@ -23,7 +24,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.net.URI;
-import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,16 +40,18 @@ class LibraryHelperTest {
     private List<ConceptSet> conceptSets;
 
     @Mock
-    private IOmopRepository omopRepository;
+    private IOmopRepositoryService omopRepository;
 
-    private ValueSetReader vsReader;
+    private IValuesetService valuesetService;
 
     @BeforeEach
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        lenient().when(omopRepository.getConceptMetadata("", "", "1.2.3.4.5")).thenReturn(new Concept());
-        vsReader = new ValueSetReader(omopRepository);
+        lenient().when(omopRepository.getConceptMetadata("1.2.3.4")).thenReturn(new Concept());
+
+        String vsPath = this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").getPath();
+        valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
 
         ModelManager modelManager = new ModelManager();
         translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("LibraryHelperTests.cql"), modelManager, new LibraryManager(modelManager));
@@ -57,12 +59,11 @@ class LibraryHelperTest {
 
         List<CqlTranslatorException> errors = translator.getErrors();
         if (errors.size() > ALLOWED_ERRORS_IN_CQL) {
-          throw new Exception("Too many errors in CQL - stopping");
+            throw new Exception("Too many errors in CQL - stopping");
         }
 
         URI conceptSetUri = this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").toURI();
-        conceptSets = vsReader.getConceptSets(
-            Paths.get(conceptSetUri).toString(), "LibraryHelperTests", "", "");
+        conceptSets = valuesetService.getConceptSets();
     }
 
     @Test
@@ -266,64 +267,64 @@ class LibraryHelperTest {
 
     @Test
     void convertToDays_MissingAttributes() {
-      // One of our required attributes is missing
-      Quantity quantity = new Quantity();
-      quantity.setUnit("days");
-      assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
-      quantity.setUnit(null);
-      quantity.setValue(BigDecimal.valueOf(100));
-      assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
+        // One of our required attributes is missing
+        Quantity quantity = new Quantity();
+        quantity.setUnit("days");
+        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
+        quantity.setUnit(null);
+        quantity.setValue(BigDecimal.valueOf(100));
+        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
     }
 
-  @Test
-  void convertToDays_UnknownUnits() {
-    Quantity quantity = new Quantity();
-    quantity.setValue(BigDecimal.valueOf(100));
+    @Test
+    void convertToDays_UnknownUnits() {
+        Quantity quantity = new Quantity();
+        quantity.setValue(BigDecimal.valueOf(100));
 
-    quantity.setUnit("d");
-    assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("blah");
-    assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("dayss");
-    assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
-  }
+        quantity.setUnit("d");
+        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("blah");
+        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("dayss");
+        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+    }
 
-  @Test
-  void convertToDays_NoConversion() throws PhemaAssumptionException, PhemaNotImplementedException {
-    Quantity quantity = new Quantity();
-    quantity.setUnit("days");
-    quantity.setValue(BigDecimal.valueOf(100));
-    assertEquals(BigDecimal.valueOf(100), LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("day");
-    quantity.setValue(BigDecimal.valueOf(1));
-    assertEquals(BigDecimal.valueOf(1), LibraryHelper.convertToDays(quantity));
-  }
+    @Test
+    void convertToDays_NoConversion() throws PhemaAssumptionException, PhemaNotImplementedException {
+        Quantity quantity = new Quantity();
+        quantity.setUnit("days");
+        quantity.setValue(BigDecimal.valueOf(100));
+        assertEquals(BigDecimal.valueOf(100), LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("day");
+        quantity.setValue(BigDecimal.valueOf(1));
+        assertEquals(BigDecimal.valueOf(1), LibraryHelper.convertToDays(quantity));
+    }
 
-  @Test
-  void convertToDays_Years() throws PhemaAssumptionException, PhemaNotImplementedException {
-    Quantity quantity = new Quantity();
-    quantity.setUnit("years");
-    quantity.setValue(BigDecimal.valueOf(10));
-    assertEquals(BigDecimal.valueOf(3650), LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("year");
-    quantity.setValue(BigDecimal.valueOf(1));
-    assertEquals(BigDecimal.valueOf(365), LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("year");
-    quantity.setValue(BigDecimal.valueOf(0.5));
-    assertEquals(BigDecimal.valueOf(182.5), LibraryHelper.convertToDays(quantity));
-  }
+    @Test
+    void convertToDays_Years() throws PhemaAssumptionException, PhemaNotImplementedException {
+        Quantity quantity = new Quantity();
+        quantity.setUnit("years");
+        quantity.setValue(BigDecimal.valueOf(10));
+        assertEquals(BigDecimal.valueOf(3650), LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("year");
+        quantity.setValue(BigDecimal.valueOf(1));
+        assertEquals(BigDecimal.valueOf(365), LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("year");
+        quantity.setValue(BigDecimal.valueOf(0.5));
+        assertEquals(BigDecimal.valueOf(182.5), LibraryHelper.convertToDays(quantity));
+    }
 
-  @Test
-  void convertToDays_Months() throws PhemaAssumptionException, PhemaNotImplementedException {
-    Quantity quantity = new Quantity();
-    quantity.setUnit("months");
-    quantity.setValue(BigDecimal.valueOf(10));
-    assertEquals(BigDecimal.valueOf(300), LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("month");
-    quantity.setValue(BigDecimal.valueOf(1));
-    assertEquals(BigDecimal.valueOf(30), LibraryHelper.convertToDays(quantity));
-    quantity.setUnit("month");
-    quantity.setValue(BigDecimal.valueOf(0.5));
-    assertEquals(BigDecimal.valueOf(15.0), LibraryHelper.convertToDays(quantity));
-  }
+    @Test
+    void convertToDays_Months() throws PhemaAssumptionException, PhemaNotImplementedException {
+        Quantity quantity = new Quantity();
+        quantity.setUnit("months");
+        quantity.setValue(BigDecimal.valueOf(10));
+        assertEquals(BigDecimal.valueOf(300), LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("month");
+        quantity.setValue(BigDecimal.valueOf(1));
+        assertEquals(BigDecimal.valueOf(30), LibraryHelper.convertToDays(quantity));
+        quantity.setUnit("month");
+        quantity.setValue(BigDecimal.valueOf(0.5));
+        assertEquals(BigDecimal.valueOf(15.0), LibraryHelper.convertToDays(quantity));
+    }
 }

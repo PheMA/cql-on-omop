@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.io;
+package edu.phema.elm_to_omop.repository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,44 +20,59 @@ import edu.phema.elm_to_omop.model.omop.Concept;
 /**
  * This class uses the WebAPI to interact with with the OMOP repository.
  */
-public class OmopRepository implements IOmopRepository {
+public class OmopRepositoryService implements IOmopRepositoryService {
+
+    private String domain;
+    private String source;
 
     private HttpURLConnection con;
 
+    /**
+     * Creates an instance of an OMOP repository service provider with
+     * a specific domain and source
+     *
+     * @param domain The OMOP WebAPI URL
+     * @param source The data source
+     */
+    public OmopRepositoryService(String domain, String source) {
+        this.domain = domain;
+        this.source = source;
+    }
+
     public String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
-        String url = domain +"source/sources";
+        String url = domain + "source/sources";
         String content = get(url);
         return content;
     }
 
-    public Concept getConceptMetadata(String domain, String source, String id) throws IOException, ParseException  {
-        String url = domain +"vocabulary/" +source+ "/concept/" +id;
+    public Concept getConceptMetadata(String id) throws IOException, ParseException {
+        String url = domain + "vocabulary/" + source + "/concept/" + id;
         String response = get(url);
 
         JSONParser parser = new JSONParser();
         JSONObject jObj = (JSONObject) parser.parse(response.toString());
 
         Concept concept = new Concept();
-        concept.setId("" +jObj.get(Terms.CONCEPT_ID));
-        concept.setName("" +jObj.get(Terms.CONCEPT_NAME));
-        concept.setStandardConcept("" +jObj.get(Terms.STANDARD_CONCEPT));
-        concept.setStandardConceptCaption("" +jObj.get(Terms.STANDARD_CONCEPT_CAPTION));
-        concept.setInvalidReason("" +jObj.get(Terms.INVALID_REASON));
-        concept.setInvalidReasonCaption("" +jObj.get(Terms.INVALID_REASON_CAPTION));
-        concept.setConceptCode("" +jObj.get(Terms.CONCEPT_CODE));
-        concept.setDomainId("" +jObj.get(Terms.DOMAIN_ID));
-        concept.setVocabularyId("" +jObj.get(Terms.VOCABULARY_ID));
-        concept.setConceptClassId("" +jObj.get(Terms.CONCEPT_CLASS_ID));
+        concept.setId("" + jObj.get(Terms.CONCEPT_ID));
+        concept.setName("" + jObj.get(Terms.CONCEPT_NAME));
+        concept.setStandardConcept("" + jObj.get(Terms.STANDARD_CONCEPT));
+        concept.setStandardConceptCaption("" + jObj.get(Terms.STANDARD_CONCEPT_CAPTION));
+        concept.setInvalidReason("" + jObj.get(Terms.INVALID_REASON));
+        concept.setInvalidReasonCaption("" + jObj.get(Terms.INVALID_REASON_CAPTION));
+        concept.setConceptCode("" + jObj.get(Terms.CONCEPT_CODE));
+        concept.setDomainId("" + jObj.get(Terms.DOMAIN_ID));
+        concept.setVocabularyId("" + jObj.get(Terms.VOCABULARY_ID));
+        concept.setConceptClassId("" + jObj.get(Terms.CONCEPT_CLASS_ID));
 
         return concept;
     }
 
-   /*
-    * Posts the cohort definition and returns the id of the saved
-    * The id will be -1 if there is an error code
-    */
-    public String postCohortDefinition(String domain, String json) throws IOException, ParseException {
-        String url = domain +"cohortdefinition";
+    /*
+     * Posts the cohort definition and returns the id of the saved
+     * The id will be -1 if there is an error code
+     */
+    public String postCohortDefinition(String json) throws IOException, ParseException {
+        String url = domain + "cohortdefinition";
         URL obj = new URL(url);
         HttpURLConnection postConnection = (HttpURLConnection) obj.openConnection();
         postConnection.setDoOutput(true);
@@ -76,20 +91,20 @@ public class OmopRepository implements IOmopRepository {
         JSONObject jObj;
         String id = "-1";
 //        if (responseCode == HttpURLConnection.HTTP_OK) { //success
-            BufferedReader in = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
-            String inputLine;
+        BufferedReader in = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+        String inputLine;
 
-            while ((inputLine = in .readLine()) != null) {
-                response.append(inputLine);
-            }
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
 
-            JSONParser parser = new JSONParser();
-            jObj = (JSONObject) parser.parse(response.toString());
+        JSONParser parser = new JSONParser();
+        jObj = (JSONObject) parser.parse(response.toString());
 
-            id = "" +jObj.get("id");
+        id = "" + jObj.get("id");
 
-            in .close();
-            System.out.println(response.toString());
+        in.close();
+        System.out.println(response.toString());
 
 //        } else {
 //            System.out.println("POST FAILED");
@@ -97,50 +112,50 @@ public class OmopRepository implements IOmopRepository {
         return id;
     }
 
-    public String generateCohort(String domain, String id, String source) throws IOException, ParseException  {
+    public String generateCohort(String id) throws IOException, ParseException {
         String exeId = "-1";
         JSONObject jObj;
 
-        String url = domain +"cohortdefinition/" +id +"/generate/" +source;
+        String url = domain + "cohortdefinition/" + id + "/generate/" + source;
         String response = get(url);
 
         JSONParser parser = new JSONParser();
         jObj = (JSONObject) parser.parse(response.toString());
 
-        exeId = "" +jObj.get("executionId");
+        exeId = "" + jObj.get("executionId");
 
         return exeId;
     }
 
-    public String getExecutionStatus(String domain, String id) throws IOException, ParseException  {
+    public String getExecutionStatus(String id) throws IOException, ParseException {
         String status = "";
         JSONArray jArr;
 
-        String url = domain +"cohortdefinition/" +id +"/info";
+        String url = domain + "cohortdefinition/" + id + "/info";
         String response = get(url);
 
         JSONParser parser = new JSONParser();
         jArr = (JSONArray) parser.parse(response.toString());
-        JSONObject jObj = (JSONObject)jArr.get(0);
+        JSONObject jObj = (JSONObject) jArr.get(0);
 
-        status = "" +jObj.get("status");
+        status = "" + jObj.get("status");
 
         return status;
     }
 
-    public String getCohortCount(String domain, String id, String source) throws IOException, ParseException  {
+    public String getCohortCount(String id) throws IOException, ParseException {
         String count = "-1";
         JSONObject jObj;
         JSONArray jArr;
 
-        String url = domain +"cohortdefinition/" +id +"/info";
+        String url = domain + "cohortdefinition/" + id + "/info";
         String response = get(url);
 
         JSONParser parser = new JSONParser();
         jArr = (JSONArray) parser.parse(response.toString());
-        jObj = (JSONObject)jArr.get(0);
+        jObj = (JSONObject) jArr.get(0);
 
-        count = "" +jObj.get("personCount");
+        count = "" + jObj.get("personCount");
 
         return count;
     }
