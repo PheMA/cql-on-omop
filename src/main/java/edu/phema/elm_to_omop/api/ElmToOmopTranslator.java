@@ -105,10 +105,9 @@ public class ElmToOmopTranslator {
 
         OmopWriter omopWriter = new OmopWriter(logger);
 
-        // 😔 Smooth over some weird JSON representation issues
-        // Ideally we need to create POJOs or re-use the ones from
-        // https://github.com/OHDSI/WebAPI/tree/master/src/main/java/org/ohdsi/webapi/cohortdefinition
-        // and then use a serialization library like GSON to create JSON for us
+        // 😔 Strangely, the OHDSI WebAPI expects the expression to be posted as a stringified JSON
+        // object, but we want to show the actual JSON to the user, so the following lines take
+        // care of un-stringifying the expression JSON.
         String jsonish = omopWriter.generateOmopJson(expressionDef.get(), library, this.conceptSets);
 
         JsonParser parser = new JsonParser();

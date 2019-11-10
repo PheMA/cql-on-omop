@@ -23,7 +23,7 @@ public final class Config {
     /**
      * Configuration file name.
      */
-    private String configFileName = "config.properties";
+    private static String configFileName = "config.properties";
     /**
      * Path to the configuration file.
      */
@@ -59,13 +59,30 @@ public final class Config {
     }
 
     /**
+     * Loads the configuration from a file at the given path
+     */
+    public Config(String configFilePath) {
+        configProps = new java.util.Properties();
+
+        try {
+            InputStream is = new FileInputStream(configFilePath);
+            configProps.load(is);
+            setConfig();
+        } catch (Exception eta) {
+            eta.printStackTrace();
+        }
+    }
+
+    /**
      * Constructor finds the working directory and loads the configuration properties.
      *
      * @param inArgs the arguments to be used for the configuration settings
      */
     public Config(final String[] inArgs) {
-        this();
-        this.loadFromFile();
+        // First initialize with default configuration
+        this(Config.getDefaultConfigPath());
+
+        // Override any arguments specified
         for (int i = 0; i < inArgs.length; i++) {
             LOGGER.info("Found argument:" + inArgs[i]);
             setArg(inArgs[i]);
@@ -74,20 +91,13 @@ public final class Config {
     }
 
     /**
-     * Finds the working directory and loads the configuration properties.
+     * Gets the default path for the config file
+     *
+     * @return
      */
-    public void loadFromFile() {
+    public static String getDefaultConfigPath() {
         String workingDir = System.getProperty("user.dir");
-        configFullPath = workingDir + File.separator + "config" + File.separator + configFileName;
-        configProps = new java.util.Properties();
-
-        try {
-            InputStream is = new FileInputStream(configFullPath);
-            configProps.load(is);
-            setConfig();
-        } catch (Exception eta) {
-            eta.printStackTrace();
-        }
+        return workingDir + File.separator + "config" + File.separator + configFileName;
     }
 
     /**

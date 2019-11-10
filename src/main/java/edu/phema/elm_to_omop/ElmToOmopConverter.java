@@ -43,8 +43,7 @@ public class ElmToOmopConverter {
             if (args.length > 0) {
                 config = new Config(args);
             } else {
-                config = new Config();
-                config.loadFromFile();
+                config = new Config(Config.getDefaultConfigPath());
             }
 
             FileHandler fh = setUpLogging("elmToOhdsiConverter.log");

@@ -71,7 +71,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void conceptSetSetupTest() {
-        Config config = new Config(new String[]{});
+        Config config = new Config(Config.getDefaultConfigPath());
 
         config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
 
@@ -82,7 +82,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void omopTranslatorApiSmokeTest() {
-        Config config = new Config(new String[]{});
+        Config config = new Config(Config.getDefaultConfigPath());
 
         config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
 
@@ -103,7 +103,7 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void OmopTranslatorMultipleStatementTest() {
-        Config config = new Config(new String[]{});
+        Config config = new Config(Config.getDefaultConfigPath());
 
         config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple-valueset.csv").getPath());
 
