@@ -1,27 +1,24 @@
 package edu.phema.elm_to_omop;
 
+import edu.phema.elm_to_omop.helper.Config;
+import edu.phema.elm_to_omop.helper.MyFormatter;
+import edu.phema.elm_to_omop.io.OmopWriter;
+import edu.phema.elm_to_omop.model.omop.ConceptSet;
+import edu.phema.elm_to_omop.phenotype.FilePhenotype;
+import edu.phema.elm_to_omop.phenotype.PhenotypeException;
+import edu.phema.elm_to_omop.repository.OmopRepositoryService;
+import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.hl7.elm.r1.ExpressionDef;
+import org.json.simple.parser.ParseException;
+
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import javax.xml.bind.JAXBException;
-
-import edu.phema.elm_to_omop.io.*;
-import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.hl7.elm.r1.ExpressionDef;
-import org.hl7.elm.r1.Library;
-import org.json.simple.parser.ParseException;
-
-import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.helper.MyFormatter;
-//import edu.phema.elm_to_omop.model_elm.Library;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
 
 /**
  * This project reads a query file written in ELM and converts to OMOP JSON format and runs it against an OHDSI repository.
@@ -31,7 +28,6 @@ import edu.phema.elm_to_omop.model.omop.ConceptSet;
  * 4. Uses OHDSI WebAPI to poll the status of the execution
  * 5. Uses OHDSI WebAPI to retrieve the results
  */
-
 public class ElmToOmopConverter {
     private static Logger logger = Logger.getLogger(ElmToOmopConverter.class.getName());
 
@@ -51,30 +47,17 @@ public class ElmToOmopConverter {
             String directory = getResourceDirectory();
             logger.info("Config: " + config.configString());
 
-            // Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
-            // the CQL/ELM can be vague if not explicitly defined otherwise.
-            List<String> phenotypeExpressionNames = config.getPhenotypeExpressions();
-            if (phenotypeExpressionNames.size() == 0) {
-                System.out.println("Please provide the name or names of the expressions to use as your phenotype(s) - set this using PHENOTYPE_EXPRESSIONS");
-                return;
-            }
-
             String domain = config.getOmopBaseUrl();
             String source = config.getSource();
             OmopRepositoryService omopService = new OmopRepositoryService(domain, source);
             OmopWriter omopWriter = new OmopWriter(logger);
 
-            // read the elm file and set up the objects
-            Library elmContents = ElmReader.readElm(directory, config.getInputFileName(), logger);
-            List<ExpressionDef> expressions = elmContents.getStatements().getDef();
-
-            List<ExpressionDef> phenotypeExpressions = expressions.stream()
-                .filter(x -> phenotypeExpressionNames.contains(x.getName()))
-                .collect(Collectors.toList());
-            if (phenotypeExpressions == null || phenotypeExpressions.size() == 0) {
-                System.out.println("Could not find any of the expressions you designated as phenotypes.  Please provide the name or names of the expressions to use as your phenotype(s) - set this using PHENOTYPE_EXPRESSIONS");
-                return;
-            }
+            // Initialize phenotype, which will do the following:
+            //
+            // 1. Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
+            //    the CQL/ELM can be vague if not explicitly defined otherwise.
+            // 2. Read the elm file and set up the objects
+            FilePhenotype phenotype = new FilePhenotype(directory + config.getInputFileName(), config.getPhenotypeExpressions());
 
             // read the value set csv and add to the objects
             SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, directory + config.getVsFileName(), config.getTab());
@@ -82,8 +65,8 @@ public class ElmToOmopConverter {
             List<ConceptSet> conceptSets = valuesetService.getConceptSets();
 
             // For each phenotype definition, get the OMOP JSON and write it out to file
-            for (ExpressionDef phenotypeExpression : phenotypeExpressions) {
-                String omopJson = omopWriter.writeOmopJson(phenotypeExpression, elmContents, conceptSets, directory, config.getOutFileName());
+            for (ExpressionDef phenotypeExpression : phenotype.getPhenotypeExpressions()) {
+                String omopJson = omopWriter.writeOmopJson(phenotypeExpression, phenotype.getPhenotypeElm(), conceptSets, directory, config.getOutFileName());
                 System.out.println(omopJson);
 
                 // connect to the webAPI and post the cohort definition
@@ -107,6 +90,9 @@ public class ElmToOmopConverter {
                 System.out.println("numPatients = " + numPatients);
 
             }
+        } catch (PhenotypeException pe) {
+            System.out.println(pe.getMessage());
+            pe.printStackTrace();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (InvalidFormatException ife) {
@@ -115,8 +101,6 @@ public class ElmToOmopConverter {
             jaxb.printStackTrace();
         } catch (ParseException pe) {
             pe.printStackTrace();
-//        }  catch(InterruptedException ie)   {
-//            ie.printStackTrace();
         } catch (Exception exc) {
             exc.printStackTrace();
         }
@@ -139,6 +123,4 @@ public class ElmToOmopConverter {
 
         return workingDir + File.separator + "resources" + File.separator;
     }
-
-
 }
