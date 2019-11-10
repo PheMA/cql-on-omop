@@ -25,9 +25,8 @@ public class ElmReader {
         super();
     }
 
-    public static Library readElm(String directory, String filename, Logger logger) throws IOException, JAXBException
-    {
-        File file = new File( directory + filename);
+    public static Library readElm(String directory, String filename, Logger logger) throws IOException, JAXBException {
+        File file = new File(directory + filename);
 
         Library elmContents = null;
 
@@ -38,26 +37,33 @@ public class ElmReader {
             elmContents = CqlTranslator.fromFile(file, modelManager, new LibraryManager(modelManager)).toELM();
             String tmp = CqlTranslator.fromFile(file, modelManager, new LibraryManager(modelManager)).toXml();
             System.out.println(tmp);
-        }
-        else {
+        } else {
             elmContents = readXml(file);
         }
 
-        return elmContents;      
+        return elmContents;
     }
-    
-    public static Library readXml(File file) throws JAXBException 
-    {
+
+    public static Library readCqlFile(File file) throws IOException {
+        ModelManager modelManager = new ModelManager();
+        return CqlTranslator.fromFile(file, modelManager, new LibraryManager(modelManager)).toELM();
+    }
+
+    public static Library readCqlString(String cql) {
+        ModelManager modelManager = new ModelManager();
+        return CqlTranslator.fromText(cql, modelManager, new LibraryManager(modelManager)).toELM();
+    }
+
+    public static Library readXml(File file) throws JAXBException {
         Library elmContents = null;
-        
+
         try {
             JAXBContext jaxbContext = CqlTranslator.getJaxbContext();
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             JAXBElement<Library> library = jaxbUnmarshaller.unmarshal(new StreamSource(file), Library.class);
             elmContents = library.getValue();
-        }
-        catch (JAXBException e) { 
+        } catch (JAXBException e) {
             throw new JAXBException("Error while parsing the xml - " + e);
         }
         return elmContents;
