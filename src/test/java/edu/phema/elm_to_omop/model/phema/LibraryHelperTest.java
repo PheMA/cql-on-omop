@@ -50,7 +50,7 @@ class LibraryHelperTest {
 
         lenient().when(omopRepository.getConceptMetadata("1.2.3.4")).thenReturn(new Concept());
 
-        String vsPath = this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").getPath();
+        String vsPath = "/LibraryHelperTests.csv";
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
 
         ModelManager modelManager = new ModelManager();
@@ -62,7 +62,6 @@ class LibraryHelperTest {
             throw new Exception("Too many errors in CQL - stopping");
         }
 
-        URI conceptSetUri = this.getClass().getClassLoader().getResource("LibraryHelperTests.csv").toURI();
         conceptSets = valuesetService.getConceptSets();
     }
 

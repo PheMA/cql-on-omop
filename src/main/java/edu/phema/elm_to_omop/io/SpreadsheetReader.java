@@ -1,8 +1,6 @@
 package edu.phema.elm_to_omop.io;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -25,18 +23,17 @@ public class SpreadsheetReader {
     private static Logger logger = Logger.getLogger(SpreadsheetReader.class.getName());
 
     public ArrayList<PhemaValueSet> getSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
-        ArrayList<PhemaValueSet>  valueSets = new ArrayList<PhemaValueSet> ();
+        ArrayList<PhemaValueSet> valueSets = new ArrayList<PhemaValueSet>();
 
-        try  {
-            Reader reader = Files.newBufferedReader(Paths.get(patientFileLoc));
+        try {
+            InputStream in = getClass().getResourceAsStream(patientFileLoc);
+            Reader reader = new BufferedReader(new InputStreamReader(in));
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
             valueSets = readSheet(csvParser, sheetName);
-        }
-        catch(FileNotFoundException e)  {
+        } catch (FileNotFoundException e) {
             logger.severe("Error in opening the spreadsheet");
             throw new FileNotFoundException(e.getMessage());
-        }
-        catch(IOException ioe)  {
+        } catch (IOException ioe) {
             logger.severe("Error in opening the spreadsheet");
             throw new IOException(ioe.getMessage());
         }
@@ -55,11 +52,11 @@ public class SpreadsheetReader {
         for (CSVRecord csvRecord : csvParser) {
 
             String vsOid = csvRecord.get(Terms.COL_VS_OID);
-            if(currOid==null)  {
+            if (currOid == null) {
                 currOid = vsOid;
             }
 
-            if(!currOid.equals(vsOid))  {
+            if (!currOid.equals(vsOid)) {
                 pvs.setId(count);
                 pvs.setOid(currOid);
                 pvs.setName(code.getValueSetName());

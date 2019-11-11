@@ -47,7 +47,7 @@ public class ElmToOmopTranslatorTest {
 
         Mockito.when(omopRepository.getConceptMetadata("45917083")).thenReturn(concept);
 
-        String vsPath = this.getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath();
+        String vsPath = "/api/valuesets/simple.csv";
 
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
     }
@@ -77,8 +77,6 @@ public class ElmToOmopTranslatorTest {
     void conceptSetSetupTest() {
         Config config = new Config(Config.getDefaultConfigPath());
 
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
-
         assertDoesNotThrow(() -> {
             ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
         });
@@ -87,8 +85,6 @@ public class ElmToOmopTranslatorTest {
     @Test
     void omopTranslatorApiSmokeTest() {
         Config config = new Config(Config.getDefaultConfigPath());
-
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
 
         try {
             ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
@@ -108,8 +104,6 @@ public class ElmToOmopTranslatorTest {
     @Test
     void OmopTranslatorMultipleStatementTest() {
         Config config = new Config(Config.getDefaultConfigPath());
-
-        config.setVsFileName(getClass().getClassLoader().getResource("api/valuesets/simple.csv").getPath());
 
         try {
             ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
