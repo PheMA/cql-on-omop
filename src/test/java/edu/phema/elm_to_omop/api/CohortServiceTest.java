@@ -8,8 +8,8 @@ import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
 import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -27,8 +27,8 @@ public class CohortServiceTest {
     private static IOmopRepositoryService omopRepository;
     private static IValuesetService valuesetService;
 
-    @BeforeAll
-    public static void setup() throws Exception {
+    @BeforeEach
+    public void setup() throws Exception {
         wireMockServer = new WireMockServer(options().port(53333));
         wireMockServer.start();
 
@@ -54,8 +54,8 @@ public class CohortServiceTest {
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
     }
 
-    @AfterAll
-    public static void cleanup() {
+    @AfterEach
+    public void cleanup() {
         wireMockServer.stop();
     }
 
@@ -119,7 +119,7 @@ public class CohortServiceTest {
             assertEquals(job.getExitStatus(), "UNKNOWN");
             assertEquals(job.getExecutionId(), 171);
         } catch (Exception e) {
-            assertEquals(e, null);
+            assertNull(e);
         }
     }
 
@@ -145,7 +145,7 @@ public class CohortServiceTest {
             assertEquals(job.getExitStatus(), "UNKNOWN");
             assertEquals(job.getExecutionId(), 171);
         } catch (Exception e) {
-            assertEquals(e, null);
+            assertNull(e);
         }
     }
 

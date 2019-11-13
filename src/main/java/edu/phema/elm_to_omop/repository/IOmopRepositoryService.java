@@ -2,10 +2,13 @@ package edu.phema.elm_to_omop.repository;
 
 import edu.phema.elm_to_omop.model.omop.Concept;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
+import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Represents and instance of an OMOP server
@@ -25,4 +28,8 @@ public interface IOmopRepositoryService {
     public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException;
 
     public JobExecutionResource queueCohortGeneration(Integer id) throws OmopRepositoryException;
+
+//    public List<CohortGenerationInfo> getCohortDefinitionInfo(Integer id) throws OmopRepositoryException;
+//
+//    public InclusionRuleReport getCohortDefinitionReport(Integer id,
 }
