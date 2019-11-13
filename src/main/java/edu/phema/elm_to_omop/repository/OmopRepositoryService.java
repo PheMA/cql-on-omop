@@ -1,5 +1,20 @@
 package edu.phema.elm_to_omop.repository;
 
+import edu.phema.elm_to_omop.helper.Terms;
+import edu.phema.elm_to_omop.model.omop.Concept;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.ohdsi.webapi.job.JobExecutionResource;
+import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,14 +23,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import edu.phema.elm_to_omop.helper.Terms;
-import edu.phema.elm_to_omop.model.omop.Concept;
 
 /**
  * This class uses the WebAPI to interact with with the OMOP repository.
@@ -27,6 +34,8 @@ public class OmopRepositoryService implements IOmopRepositoryService {
 
     private HttpURLConnection con;
 
+    private Client client;
+
     /**
      * Creates an instance of an OMOP repository service provider with
      * a specific domain and source
@@ -37,6 +46,16 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public OmopRepositoryService(String domain, String source) {
         this.domain = domain;
         this.source = source;
+    }
+
+    /**
+     * Allow specifying the client directly, which is useful for
+     * mocking during testing
+     *
+     * @param client The REST client to use
+     */
+    public OmopRepositoryService(Client client) {
+        this.client = client;
     }
 
     public String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
@@ -65,6 +84,21 @@ public class OmopRepositoryService implements IOmopRepositoryService {
         concept.setConceptClassId("" + jObj.get(Terms.CONCEPT_CLASS_ID));
 
         return concept;
+    }
+
+    public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException {
+        Client client = ClientBuilder.newClient();
+
+        Response response = client
+            .target(domain + "cohortdefinition")
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(cohortDefintion, MediaType.APPLICATION_JSON));
+
+        try {
+            return response.readEntity(CohortDefinitionDTO.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error creating cohort", t);
+        }
     }
 
     /*

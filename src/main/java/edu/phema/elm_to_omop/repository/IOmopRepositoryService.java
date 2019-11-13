@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop.repository;
 
 import edu.phema.elm_to_omop.model.omop.Concept;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
 
@@ -18,4 +19,7 @@ public interface IOmopRepositoryService {
     String getExecutionStatus(String id) throws IOException, ParseException;
 
     String getCohortCount(String id) throws IOException, ParseException;
+
+    // Functions using POJOs instead of JSON strings
+    public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException;
 }
