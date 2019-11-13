@@ -8,6 +8,7 @@ import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
 import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.util.List;
@@ -100,13 +101,47 @@ public class CohortService {
         try {
             ElmToOmopTranslator translator = new ElmToOmopTranslator(config, valuesetService);
 
+            // The following deserialization will hopefully eventually become unnecessary
             String cohortDefinitionJSon = translator.cqlToOmopDoubleEscaped(cqlString, statementName);
-
             CohortDefinitionDTO cohortDefinitionDTO = new ObjectMapper().readValue(cohortDefinitionJSon, CohortDefinitionDTO.class);
 
             return omopService.createCohortDefinition(cohortDefinitionDTO);
         } catch (Throwable t) {
             throw new CohortServiceException("Error creating cohort definition", t);
+        }
+    }
+
+    /**
+     * Generate the cohort for a cohort definition specified by the given id
+     *
+     * @param id The id of the cohort definition to generate
+     * @return The created OMOP job
+     * @throws CohortServiceException
+     */
+    public JobExecutionResource queueCohortGeneration(Integer id) throws CohortServiceException {
+        try {
+            return omopService.queueCohortGeneration(id);
+        } catch (Throwable t) {
+            throw new CohortServiceException("Error queueing up cohort for generation", t);
+        }
+    }
+
+    /**
+     * Generate the cohort for cohort definition speciied by the given CQL string
+     * and statement name
+     *
+     * @param cqlString     The CQL string
+     * @param statementName The named CQL statement that defines the cohort
+     * @return The created OMOP job
+     * @throws CohortServiceException
+     */
+    public JobExecutionResource queueCohortGeneration(String cqlString, String statementName) throws CohortServiceException {
+        try {
+            CohortDefinitionDTO cohortDefinition = createCohortDefinition(cqlString, statementName);
+
+            return omopService.queueCohortGeneration(cohortDefinition.id);
+        } catch (Throwable t) {
+            throw new CohortServiceException("Error queueing up cohort for generation", t);
         }
     }
 }

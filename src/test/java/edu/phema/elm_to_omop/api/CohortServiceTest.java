@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -95,6 +96,75 @@ public class CohortServiceTest {
             cs.createCohortDefinition(cqlString, "In Initial Population");
         } catch (Exception e) {
             assertEquals(e.getMessage(), "Error creating cohort definition");
+        }
+    }
+
+    @Test
+    void testQueueCohortGeneration() throws Exception {
+        // Stub the cohort definition create request
+        stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+        try {
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            // Queue the cohort up for generation
+            JobExecutionResource job = cs.queueCohortGeneration(108);
+
+            assertEquals(job.getStatus(), "STARTED");
+            assertEquals(job.getJobInstanceResource().getName(), "generateCohort");
+            assertEquals(job.getExitStatus(), "UNKNOWN");
+            assertEquals(job.getExecutionId(), 171);
+        } catch (Exception e) {
+            assertEquals(e, null);
+        }
+    }
+
+    @Test
+    void testQueueCohortGenerationFromCqlString() throws Exception {
+        // Stub the cohort definition create request
+        stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+        try {
+            String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            // Queue the cohort up for generation
+            JobExecutionResource job = cs.queueCohortGeneration(cqlString, "In Initial Population");
+
+            assertEquals(job.getStatus(), "STARTED");
+            assertEquals(job.getJobInstanceResource().getName(), "generateCohort");
+            assertEquals(job.getExitStatus(), "UNKNOWN");
+            assertEquals(job.getExecutionId(), 171);
+        } catch (Exception e) {
+            assertEquals(e, null);
+        }
+    }
+
+    @Test
+    void testQueryCohortGenerationFailureCase() {
+        // Stub the cohort definition create request
+        stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+            .willReturn(aResponse()
+                .withStatus(500)
+                .withHeader("Content-Type", "text/plain")
+                .withBody("Womp womp")));
+
+        try {
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            // Queue the cohort up for generation
+            cs.queueCohortGeneration(108);
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "Error queueing up cohort for generation");
         }
     }
 }

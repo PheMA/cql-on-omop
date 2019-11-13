@@ -1,0 +1,25 @@
+{
+  "status": "STARTED",
+  "startDate": 1573674911911,
+  "endDate": null,
+  "exitStatus": "UNKNOWN",
+  "executionId": 171,
+  "jobInstance": {
+    "instanceId": 171,
+    "name": "generateCohort"
+  },
+  "jobParameters": {
+    "jobName": "Generating cohort 108 : OHDSI CDM V5 Database (OHDSI-CDMV5)",
+    "generate_stats": "true",
+    "jobAuthor": "anonymous",
+    "results_database_schema": "ohdsi",
+    "target_table": "cohort",
+    "cdm_database_schema": "cdm",
+    "vocabulary_database_schema": "cdm",
+    "cohort_definition_id": "108",
+    "source_id": "1",
+    "time": 1573674911867,
+    "target_dialect": "postgresql",
+    "target_database_schema": "ohdsi"
+  }
+}

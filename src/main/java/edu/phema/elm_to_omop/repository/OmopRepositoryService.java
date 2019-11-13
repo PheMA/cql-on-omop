@@ -34,8 +34,6 @@ public class OmopRepositoryService implements IOmopRepositoryService {
 
     private HttpURLConnection con;
 
-    private Client client;
-
     /**
      * Creates an instance of an OMOP repository service provider with
      * a specific domain and source
@@ -46,16 +44,6 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public OmopRepositoryService(String domain, String source) {
         this.domain = domain;
         this.source = source;
-    }
-
-    /**
-     * Allow specifying the client directly, which is useful for
-     * mocking during testing
-     *
-     * @param client The REST client to use
-     */
-    public OmopRepositoryService(Client client) {
-        this.client = client;
     }
 
     public String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
@@ -86,6 +74,14 @@ public class OmopRepositoryService implements IOmopRepositoryService {
         return concept;
     }
 
+    /**
+     * Create a new cohort definition in the OMOP database. This only creates
+     * the definition, and does not actually generate the cohort.
+     *
+     * @param cohortDefintion The cohort definition to create
+     * @return The created cohort definition
+     * @throws OmopRepositoryException
+     */
     public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException {
         Client client = ClientBuilder.newClient();
 
@@ -98,6 +94,27 @@ public class OmopRepositoryService implements IOmopRepositoryService {
             return response.readEntity(CohortDefinitionDTO.class);
         } catch (Throwable t) {
             throw new OmopRepositoryException("Error creating cohort", t);
+        }
+    }
+
+    /**
+     * Queue up a specific cohort definition for generation. This will return
+     * the created cohort definition job.
+     *
+     * @param id The ID of the cohort definition to generate
+     * @return The cohort generation job
+     * @throws OmopRepositoryException
+     */
+    public JobExecutionResource queueCohortGeneration(Integer id) throws OmopRepositoryException {
+        Client client = ClientBuilder.newClient();
+
+        try {
+            return client
+                .target(domain + "cohortdefinition/" + id + "/generate/" + source)
+                .request(MediaType.APPLICATION_JSON)
+                .get(JobExecutionResource.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error queueing up cohort for generation", t);
         }
     }
 
