@@ -21,6 +21,7 @@
         <bintray.subject>phema</bintray.subject>
         <bintray.repo>maven</bintray.repo>
         <bintray.package>phema-elm-to-ohdsi</bintray.package>
+        <ohdsi.webapi.version>2.6.0</ohdsi.webapi.version>
     </properties>
 
     <repositories>
@@ -28,6 +29,32 @@
             <id>sonatype-public</id>
             <name>Sonatype Public</name>
             <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>ohdsi</id>
+            <name>repo.ohdsi.org</name>
+            <url>http://repo.ohdsi.org:8085/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>ohdsi.thirdparty</id>
+            <name>repo.ohdsi.org</name>
+            <url>http://repo.ohdsi.org:8085/nexus/content/repositories/thirdparty</url>
+        </repository>
+        <repository>
+            <id>ohdsi.snapshots</id>
+            <name>repo.ohdsi.org-snapshots</name>
+            <url>http://repo.ohdsi.org:8085/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>phema-bintray</id>
+            <name>phema-bintray</name>
+            <url>https://dl.bintray.com/phema/maven</url>
         </repository>
     </repositories>
 
@@ -95,6 +122,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.9.10.1</version>
+        </dependency>
+
+        <!-- More convenient RESTful client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.25.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
@@ -178,6 +212,26 @@
             <version>${cqframework.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>2.25.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.jodah</groupId>
+            <artifactId>failsafe</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- OHDSI dependencies -->
+        <dependency>
+            <groupId>org.ohdsi</groupId>
+            <artifactId>WebAPI</artifactId>
+            <version>${ohdsi.webapi.version}</version>
+            <classifier>classes</classifier>
+        </dependency>
     </dependencies>
 
     <build>

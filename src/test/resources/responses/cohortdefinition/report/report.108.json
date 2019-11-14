@@ -1,0 +1,24 @@
+{
+  "summary": {
+    "baseCount": 938,
+    "finalCount": 246,
+    "percentMatched": "26.23%"
+  },
+  "inclusionRuleStats": [
+    {
+      "id": 0,
+      "name": "Diabetes",
+      "percentExcluded": "73.77%",
+      "percentSatisfying": "26.23%",
+      "countSatisfying": 246
+    },
+    {
+      "id": 1,
+      "name": "Other criteria",
+      "percentExcluded": "0.00%",
+      "percentSatisfying": "100.00%",
+      "countSatisfying": 938
+    }
+  ],
+  "treemapData": "{\"name\" : \"Everyone\", \"children\" : [{\"name\" : \"Group 2\", \"children\" : [{\"name\": \"11\", \"size\": 246},{\"name\" : \"Group 1\", \"children\" : [{\"name\": \"01\", \"size\": 692}]}]}]}"
+}

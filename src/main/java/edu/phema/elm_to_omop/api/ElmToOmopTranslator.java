@@ -74,15 +74,7 @@ public class ElmToOmopTranslator {
         }
     }
 
-    /**
-     * Convert a single named statement into an OMOP JSONObject
-     *
-     * @param cqlString     String containing the CQL library
-     * @param statementName The statement name to convert
-     * @return The OMOP WebAPI request JSONObject
-     * @throws Exception
-     */
-    public JsonObject cqlToOmopJsonObject(String cqlString, String statementName) throws Exception {
+    protected String cqlToOmopDoubleEscaped(String cqlString, String statementName) throws Exception {
         if (statementName == null) {
             throw new CqlStatementNotFoundException("No named CQL statement specified");
         }
@@ -106,7 +98,19 @@ public class ElmToOmopTranslator {
         // 😔 Strangely, the OHDSI WebAPI expects the expression to be posted as a stringified JSON
         // object, but we want to show the actual JSON to the user, so the following lines take
         // care of un-stringifying the expression JSON.
-        String jsonish = omopWriter.generateOmopJson(expressionDef.get(), library, this.conceptSets);
+        return omopWriter.generateOmopJson(expressionDef.get(), library, this.conceptSets);
+    }
+
+    /**
+     * Convert a single named statement into an OMOP JSONObject
+     *
+     * @param cqlString     String containing the CQL library
+     * @param statementName The statement name to convert
+     * @return The OMOP WebAPI request JSONObject
+     * @throws Exception
+     */
+    public JsonObject cqlToOmopJsonObject(String cqlString, String statementName) throws Exception {
+        String jsonish = cqlToOmopDoubleEscaped(cqlString, statementName);
 
         JsonParser parser = new JsonParser();
         JsonObject root = parser.parse(jsonish).getAsJsonObject();
