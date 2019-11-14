@@ -6,6 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
+import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
@@ -13,6 +15,7 @@ import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
@@ -23,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * This class uses the WebAPI to interact with with the OMOP repository.
@@ -33,6 +37,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     private String source;
 
     private HttpURLConnection con;
+    private Client client;
 
     /**
      * Creates an instance of an OMOP repository service provider with
@@ -44,6 +49,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public OmopRepositoryService(String domain, String source) {
         this.domain = domain;
         this.source = source;
+        this.client = ClientBuilder.newClient();
     }
 
     public String getSources(String domain) throws MalformedURLException, ProtocolException, IOException {
@@ -72,50 +78,6 @@ public class OmopRepositoryService implements IOmopRepositoryService {
         concept.setConceptClassId("" + jObj.get(Terms.CONCEPT_CLASS_ID));
 
         return concept;
-    }
-
-    /**
-     * Create a new cohort definition in the OMOP database. This only creates
-     * the definition, and does not actually generate the cohort.
-     *
-     * @param cohortDefintion The cohort definition to create
-     * @return The created cohort definition
-     * @throws OmopRepositoryException
-     */
-    public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException {
-        Client client = ClientBuilder.newClient();
-
-        Response response = client
-            .target(domain + "cohortdefinition")
-            .request(MediaType.APPLICATION_JSON)
-            .post(Entity.entity(cohortDefintion, MediaType.APPLICATION_JSON));
-
-        try {
-            return response.readEntity(CohortDefinitionDTO.class);
-        } catch (Throwable t) {
-            throw new OmopRepositoryException("Error creating cohort", t);
-        }
-    }
-
-    /**
-     * Queue up a specific cohort definition for generation. This will return
-     * the created cohort definition job.
-     *
-     * @param id The ID of the cohort definition to generate
-     * @return The cohort generation job
-     * @throws OmopRepositoryException
-     */
-    public JobExecutionResource queueCohortGeneration(Integer id) throws OmopRepositoryException {
-        Client client = ClientBuilder.newClient();
-
-        try {
-            return client
-                .target(domain + "cohortdefinition/" + id + "/generate/" + source)
-                .request(MediaType.APPLICATION_JSON)
-                .get(JobExecutionResource.class);
-        } catch (Throwable t) {
-            throw new OmopRepositoryException("Error queueing up cohort for generation", t);
-        }
     }
 
     /*
@@ -235,4 +197,82 @@ public class OmopRepositoryService implements IOmopRepositoryService {
         return content.toString();
     }
 
+    /**
+     * Create a new cohort definition in the OMOP database. This only creates
+     * the definition, and does not actually generate the cohort.
+     *
+     * @param cohortDefintion The cohort definition to create
+     * @return The created cohort definition
+     * @throws OmopRepositoryException
+     */
+    public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException {
+        Response response = client
+            .target(domain + "cohortdefinition")
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(cohortDefintion, MediaType.APPLICATION_JSON));
+
+        try {
+            return response.readEntity(CohortDefinitionDTO.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error creating cohort", t);
+        }
+    }
+
+    /**
+     * Queue up a specific cohort definition for generation. This will return
+     * the created cohort definition job.
+     *
+     * @param id The ID of the cohort definition to generate
+     * @return The cohort generation job
+     * @throws OmopRepositoryException
+     */
+    public JobExecutionResource queueCohortGeneration(Integer id) throws OmopRepositoryException {
+        try {
+            return client
+                .target(domain + "cohortdefinition/" + id + "/generate/" + source)
+                .request(MediaType.APPLICATION_JSON)
+                .get(JobExecutionResource.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error queueing up cohort for generation", t);
+        }
+    }
+
+    /**
+     * Get information about the cohort definition, such as the generation status.
+     *
+     * @param id The cohort definition id
+     * @return A list of cohort definition info objects
+     * @throws OmopRepositoryException
+     */
+    public List<CohortGenerationInfo> getCohortDefinitionInfo(Integer id) throws OmopRepositoryException {
+        try {
+            return client
+                .target(domain + "cohortdefinition/" + id + "/info")
+                .request(MediaType.APPLICATION_JSON)
+                .get(Response.class)
+                .readEntity(new GenericType<List<CohortGenerationInfo>>() {
+                });
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error getting cohort definition info", t);
+        }
+    }
+
+    /**
+     * Get a report for a given cohort definition, including statistics for
+     * each inclusion rule.
+     *
+     * @param id The cohort definition id
+     * @return The report object
+     * @throws OmopRepositoryException
+     */
+    public InclusionRuleReport getCohortDefinitionReport(Integer id) throws OmopRepositoryException {
+        try {
+            return client
+                .target(domain + "cohortdefinition/" + id + "/report/" + source)
+                .request(MediaType.APPLICATION_JSON)
+                .get(InclusionRuleReport.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error getting cohort definition report", t);
+        }
+    }
 }

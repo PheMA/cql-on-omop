@@ -13,11 +13,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.ohdsi.webapi.GenerationStatus;
+import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
+import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
+import java.util.List;
+
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static com.github.tomakehurst.wiremock.stubbing.Scenario.STARTED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -101,7 +107,7 @@ public class CohortServiceTest {
 
     @Test
     void testQueueCohortGeneration() throws Exception {
-        // Stub the cohort definition create request
+        // Stub the cohort definition generate request
         stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
             .willReturn(aResponse()
                 .withStatus(200)
@@ -125,7 +131,7 @@ public class CohortServiceTest {
 
     @Test
     void testQueueCohortGenerationFromCqlString() throws Exception {
-        // Stub the cohort definition create request
+        // Stub the cohort definition generate create request
         stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
             .willReturn(aResponse()
                 .withStatus(200)
@@ -151,7 +157,7 @@ public class CohortServiceTest {
 
     @Test
     void testQueryCohortGenerationFailureCase() {
-        // Stub the cohort definition create request
+        // Stub the cohort definition generate request
         stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
             .willReturn(aResponse()
                 .withStatus(500)
@@ -165,6 +171,167 @@ public class CohortServiceTest {
             cs.queueCohortGeneration(108);
         } catch (Exception e) {
             assertEquals(e.getMessage(), "Error queueing up cohort for generation");
+        }
+    }
+
+    @Test
+    void testCohortGenerationInfo() {
+        try {
+            // Stub the cohort definition info request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            List<CohortGenerationInfo> info = cs.getCohortDefinitionInfo(108);
+
+            assertEquals(info.size(), 1);
+            assertEquals(info.get(0).getId().getCohortDefinitionId(), 108);
+            assertEquals(info.get(0).getStatus(), GenerationStatus.COMPLETE);
+            assertNull(info.get(0).getFailMessage());
+        } catch (Exception e) {
+            assertNull(e);
+        }
+    }
+
+    @Test
+    void testCohortGenerationInfoFromCqlString() {
+        try {
+            // Stub the cohort definition generate create request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+            // Stub the cohort definition info request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+            String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            // Queue the cohort up for generation
+            List<CohortGenerationInfo> info = cs.getCohortDefinitionInfo(cqlString, "In Initial Population");
+
+            assertEquals(info.size(), 1);
+            assertEquals(info.get(0).getId().getCohortDefinitionId(), 108);
+            assertEquals(info.get(0).getStatus(), GenerationStatus.COMPLETE);
+            assertNull(info.get(0).getFailMessage());
+        } catch (Exception e) {
+            assertNull(e);
+        }
+    }
+
+    @Test
+    void testCohortGenerationInfoFailureCase() {
+        try {
+            // Stub the cohort definition info request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .willReturn(aResponse()
+                    .withStatus(500)
+                    .withHeader("Content-Type", "text/plain")
+                    .withBody("Womp womp")));
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            cs.getCohortDefinitionInfo(108);
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "Error getting cohort definition info");
+        }
+    }
+
+    @Test
+    void testCohortGenerationReport() {
+        try {
+            // Stub the cohort definition info request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+            // Stub the cohort definition report request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/report/phema-test"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/report/report.108.json"))));
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            InclusionRuleReport report = cs.getCohortDefinitionReport(108);
+
+            assertEquals(report.inclusionRuleStats.size(), 2);
+            assertEquals(report.summary.baseCount, 938);
+            assertEquals(report.summary.finalCount, 246);
+        } catch (Exception e) {
+            assertNull(e);
+        }
+    }
+
+    @Test
+    void testCohortGenerationReportFromCqlString() {
+        try {
+            // Stub the cohort definition generate create request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+            // Stub the cohort definition info request. Return "RUNNING" twice, then return "COMPLETE"
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .inScenario("Long running cohort generation")
+                .whenScenarioStateIs(STARTED)
+                .willSetStateTo("Running")
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.running.json"))));
+
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .inScenario("Long running cohort generation")
+                .whenScenarioStateIs("Running")
+                .willSetStateTo("Still running")
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.running.json"))));
+
+            stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+                .inScenario("Long running cohort generation")
+                .whenScenarioStateIs("Still running")
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+            // Stub the cohort definition report request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/report/phema-test"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/report/report.108.json"))));
+
+            String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            InclusionRuleReport report = cs.getCohortDefinitionReport(cqlString, "In Initial Population");
+
+            assertEquals(report.inclusionRuleStats.size(), 2);
+            assertEquals(report.summary.baseCount, 938);
+            assertEquals(report.summary.finalCount, 246);
+        } catch (Exception e) {
+            assertNull(e);
         }
     }
 }

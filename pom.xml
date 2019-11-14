@@ -219,6 +219,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.jodah</groupId>
+            <artifactId>failsafe</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
         <!-- OHDSI dependencies -->
         <dependency>
             <groupId>org.ohdsi</groupId>
