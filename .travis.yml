@@ -5,9 +5,18 @@ jdk:
 script:
   - mvn clean test jacoco:report coveralls:report
 
+before_deploy:
+  - mvn javadoc:javadoc
+
 deploy:
-  provider: script
-  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: script
+    script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: pages
+    local_dir: target/site/apidocs
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      tags: true

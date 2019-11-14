@@ -4,7 +4,7 @@
 
     <groupId>edu.phema</groupId>
     <artifactId>phema-elm-to-ohdsi</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>phema-elm-to-ohdsi</name>
@@ -287,6 +287,15 @@
                         <version>2.2.3</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <additionalOptions>-html5</additionalOptions>
+                    <doclint>none</doclint>
+                </configuration>
             </plugin>
         </plugins>
     </build>
