@@ -21,13 +21,15 @@ Currently the code runs only a very simple example.  Project plans will increase
     Error checking
     Logging
 
-## Usage:
+## Usage
+
+### CLI
 - Clone repository
 - `mvn install`
 
 Test files are located in the `resources/diabetes` directory.  The output will appear in the resources directory.
 
-### Configuration
+#### Configuration
 
 The application is configured using the [`config.properties`](./config/config.properties) file. The following properties
 are supported:
@@ -42,7 +44,7 @@ are supported:
 |VS_TAB| Name of the tab in the valueset spreadsheet (?) |
 |PHENOTYPE_EXPRESSIONS| Name of the CQL/ELM expression to evaluate |
 
-### Execution
+#### Execution
 
 Once configuration is complete, run the translator as follows:
 
@@ -55,6 +57,48 @@ Individual properties can also be overwritten on the command line as follows:
 ```
 mvn compile exec:java -Dexec.arguments="OMOP_BASE_URL=http://projectphema.org/WebAPI/ INPUT_FILE_NAME=autism/simple-dx-elm.xml"
 ```
+
+### Library
+
+To use the translator library, add the PhEMA Maven repo to your `pom.xml`:
+
+```xml
+<repositories>
+   <repository>
+        <id>phema-bintray</id>
+        <name>phema-bintray</name>
+        <url>https://dl.bintray.com/phema/maven</url>
+    </repository>
+</repositories>
+```
+
+Then add the library as a dependency:
+
+```xml
+<dependency>
+    <groupId>edu.phema</groupId>
+    <artifactId>phema-elm-to-ohdsi</artifactId>
+    <version>0.1.1</version>
+</dependency>
+```
+
+Then use the library:
+
+```java
+import edu.phema.elm_to_omop.api.CqlToElmTranslator;
+
+public class Main {
+    public static void main(String[] args) {
+        CqlToElmTranslator translator = new CqlToElmTranslator();
+
+        String cql = "define test: 1 + 1";
+
+        System.out.println(translator.cqlToElmJson(cql));
+    }
+}
+```
+
+See the [Javadoc](https://phema.github.io/elm-to-ohdsi-executer/) for the full API.
 
 ### Deployment
 
