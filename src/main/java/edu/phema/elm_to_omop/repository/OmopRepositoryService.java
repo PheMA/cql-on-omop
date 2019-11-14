@@ -1,17 +1,22 @@
 package edu.phema.elm_to_omop.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.helper.Terms;
 import edu.phema.elm_to_omop.model.omop.Concept;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlRequest;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
+import org.ohdsi.webapi.sqlrender.SourceStatement;
+import org.ohdsi.webapi.sqlrender.TranslatedStatement;
 
-import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -273,6 +278,79 @@ public class OmopRepositoryService implements IOmopRepositoryService {
                 .get(InclusionRuleReport.class);
         } catch (Throwable t) {
             throw new OmopRepositoryException("Error getting cohort definition report", t);
+        }
+    }
+
+    /**
+     * Gets the cohort definition for a given id
+     *
+     * @param id The cohort definition id
+     * @return The cohort definition
+     * @throws OmopRepositoryException
+     */
+    public CohortDefinitionDTO getCohortDefinition(Integer id) throws OmopRepositoryException {
+        try {
+            return client
+                .target(domain + "cohortdefinition/" + id)
+                .request(MediaType.APPLICATION_JSON)
+                .get(CohortDefinitionDTO.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error getting cohort definition", t);
+        }
+    }
+
+    /**
+     * Get the CQL for a given cohort definition. One of the following target dialects may optionally
+     * be specified:
+     * <p>
+     * - "sql server"
+     * - "pdw"
+     * - "oracle"
+     * - "postgresql"
+     * - "redshift"
+     * - "impala"
+     * - "netezza"
+     * </p>
+     *
+     * @param id The cohort definition id
+     * @return The generation result obejct
+     * @throws OmopRepositoryException
+     */
+    public GenerateSqlResult getCohortDefinitionSql(Integer id, String targetDialect) throws OmopRepositoryException {
+        try {
+            // Get the cohort definition
+            CohortDefinitionDTO cohortDefinition = getCohortDefinition(id);
+
+            GenerateSqlRequest request = new GenerateSqlRequest();
+            // 🤷🏻‍ Apparently they mix the use of string and POJOs internally
+            request.expression = new ObjectMapper().readValue(cohortDefinition.expression, CohortExpression.class);
+
+            // Get the SQL
+            Response response = client
+                .target(domain + "cohortdefinition/sql")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(request, MediaType.APPLICATION_JSON));
+            GenerateSqlResult result = response.readEntity(GenerateSqlResult.class);
+
+            // Translate if necessary
+            if (targetDialect != null) {
+                SourceStatement translateRequest = new SourceStatement();
+
+                translateRequest.sql = result.templateSql;
+                translateRequest.targetDialect = targetDialect;
+
+                Response translateResponse = client
+                    .target(domain + "sqlrender/translate")
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.entity(translateRequest, MediaType.APPLICATION_JSON));
+                TranslatedStatement translated = translateResponse.readEntity(TranslatedStatement.class);
+
+                result.templateSql = translated.targetSQL;
+            }
+
+            return result;
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error getting cohort definition sql", t);
         }
     }
 }

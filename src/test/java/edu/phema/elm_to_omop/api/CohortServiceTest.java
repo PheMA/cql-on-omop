@@ -3,7 +3,9 @@ package edu.phema.elm_to_omop.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import com.google.gson.JsonObject;
 import edu.phema.elm_to_omop.PhemaTestHelper;
+import edu.phema.elm_to_omop.api.exception.CohortServiceException;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
@@ -17,6 +19,7 @@ import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.util.List;
@@ -332,6 +335,81 @@ public class CohortServiceTest {
             assertEquals(report.summary.finalCount, 246);
         } catch (Exception e) {
             assertNull(e);
+        }
+    }
+
+    @Test
+    void testSqlRendering() throws Exception {
+        // Stub getting the cohort definition
+        stubFor(get(urlEqualTo("/cohortdefinition/87"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/cohortdefinition.87.json"))));
+
+        // Stub the SQL render request
+        stubFor(post(urlEqualTo("/cohortdefinition/sql"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/sql/sql.87.json"))));
+
+        CohortService cs = new CohortService(valuesetService, omopRepository);
+
+        GenerateSqlResult result = cs.getCohortDefinitionSql(87, null);
+
+        GenerateSqlResult expected = new ObjectMapper().readValue(PhemaTestHelper.getFileAsString("responses/cohortdefinition/sql/sql.87.json"), GenerateSqlResult.class);
+
+        assertEquals(result.templateSql, expected.templateSql);
+    }
+
+    @Test
+    void testSqlRenderingWithTranslate() throws Exception {
+        // Stub getting the cohort definition
+        stubFor(get(urlEqualTo("/cohortdefinition/87"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/cohortdefinition.87.json"))));
+
+        // Stub the SQL render request
+        stubFor(post(urlEqualTo("/cohortdefinition/sql"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/sql/sql.87.json"))));
+
+        // Stub the SQL translate request
+        stubFor(post(urlEqualTo("/sqlrender/translate"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/sqlrender/translate/sql.87.postgresql.json"))));
+
+        CohortService cs = new CohortService(valuesetService, omopRepository);
+
+        GenerateSqlResult result = cs.getCohortDefinitionSql(87, "postgresql");
+
+        GenerateSqlResult expected = new ObjectMapper().readValue(PhemaTestHelper.getFileAsString("responses/cohortservice/getCohortDefinitionSql/sql.87.postgresql.json"), GenerateSqlResult.class);
+
+        assertEquals(result.templateSql, expected.templateSql);
+    }
+
+    @Test
+    void testSqlRenderingFailureCase() throws Exception {
+        try {
+            // Stub getting the cohort definition
+            stubFor(get(urlEqualTo("/cohortdefinition/87"))
+                .willReturn(aResponse()
+                    .withStatus(500)
+                    .withHeader("Content-Type", "text/plain")
+                    .withBody("Womp womp")));
+
+            CohortService cs = new CohortService(valuesetService, omopRepository);
+
+            GenerateSqlResult result = cs.getCohortDefinitionSql(87, null);
+        } catch (CohortServiceException e) {
+            assertEquals(e.getMessage(), "Error getting cohort definition sql");
         }
     }
 }

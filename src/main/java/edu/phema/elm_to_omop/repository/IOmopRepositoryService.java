@@ -5,6 +5,7 @@ import org.json.simple.parser.ParseException;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
@@ -35,6 +36,15 @@ public interface IOmopRepositoryService {
     public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException;
 
     /**
+     * Gets the cohort definition for a given id
+     *
+     * @param id The cohort definition id
+     * @return The cohort definition
+     * @throws OmopRepositoryException
+     */
+    public CohortDefinitionDTO getCohortDefinition(Integer id) throws OmopRepositoryException;
+
+    /**
      * Queue up a specific cohort definition for generation. This will return
      * the created cohort definition job.
      *
@@ -62,4 +72,23 @@ public interface IOmopRepositoryService {
      * @throws OmopRepositoryException
      */
     public InclusionRuleReport getCohortDefinitionReport(Integer id) throws OmopRepositoryException;
+
+    /**
+     * Get the CQL for a given cohort definition. One of the following target dialects may optionally
+     * be specified:
+     * <p>
+     * - "sql server"
+     * - "pdw"
+     * - "oracle"
+     * - "postgresql"
+     * - "redshift"
+     * - "impala"
+     * - "netezza"
+     * </p>
+     *
+     * @param id The cohort definition id
+     * @return The generation result obejct
+     * @throws OmopRepositoryException
+     */
+    public GenerateSqlResult getCohortDefinitionSql(Integer id, String targetDialect) throws OmopRepositoryException;
 }

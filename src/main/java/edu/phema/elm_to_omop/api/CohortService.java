@@ -14,6 +14,7 @@ import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.time.temporal.ChronoUnit;
@@ -226,6 +227,32 @@ public class CohortService {
             return omopService.getCohortDefinitionReport(cohortDefinition.id);
         } catch (Throwable t) {
             throw new CohortServiceException("Error getting cohort definition report", t);
+        }
+    }
+
+    /**
+     * Gets the cohort definition SQL. One of the following target dialects may optionally
+     * be specified:
+     * <p>
+     * - "sql server"
+     * - "pdw"
+     * - "oracle"
+     * - "postgresql"
+     * - "redshift"
+     * - "impala"
+     * - "netezza"
+     * </p>
+     *
+     * @param id            The cohort definition id
+     * @param targetDialect The target SQL dialect
+     * @return The resulting SQL
+     * @throws CohortServiceException
+     */
+    public GenerateSqlResult getCohortDefinitionSql(Integer id, String targetDialect) throws CohortServiceException {
+        try {
+            return omopService.getCohortDefinitionSql(id, targetDialect);
+        } catch (Throwable t) {
+            throw new CohortServiceException("Error getting cohort definition sql", t);
         }
     }
 }
