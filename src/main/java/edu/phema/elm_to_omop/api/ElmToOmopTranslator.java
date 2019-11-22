@@ -10,12 +10,16 @@ import edu.phema.elm_to_omop.io.OmopWriter;
 import edu.phema.elm_to_omop.io.ValueSetReader;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
+import edu.phema.elm_to_omop.translate.OmopTranslateContext;
+import edu.phema.elm_to_omop.translate.OmopTranslateVisitor;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
 import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.hl7.elm.r1.Expression;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.circe.cohortdefinition.CohortExpression;
 
 import java.io.IOException;
 import java.util.List;
@@ -156,5 +160,21 @@ public class ElmToOmopTranslator {
         }
 
         return results.toString();
+    }
+
+    /**
+     * Translate an ELM expression into a Circe cohort expression
+     *
+     * @param expression The expression to translate
+     * @return The equivalent Circe cohort expression
+     */
+    public CohortExpression translate(Expression expression) {
+        OmopTranslateContext context = new OmopTranslateContext();
+
+        OmopTranslateVisitor visitor = new OmopTranslateVisitor();
+
+        visitor.visitElement(expression, context);
+
+        return context.generateCohortExpression();
     }
 }

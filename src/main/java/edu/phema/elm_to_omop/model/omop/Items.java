@@ -1,6 +1,7 @@
 package edu.phema.elm_to_omop.model.omop;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.ohdsi.circe.vocabulary.Concept;
 
 @JsonPropertyOrder({ "concept" })
 public class Items {

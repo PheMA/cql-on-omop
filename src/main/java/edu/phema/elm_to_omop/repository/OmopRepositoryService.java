@@ -2,12 +2,12 @@ package edu.phema.elm_to_omop.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.helper.Terms;
-import edu.phema.elm_to_omop.model.omop.Concept;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
@@ -63,26 +63,15 @@ public class OmopRepositoryService implements IOmopRepositoryService {
         return content;
     }
 
-    public Concept getConceptMetadata(String id) throws IOException, ParseException {
-        String url = domain + "vocabulary/" + source + "/concept/" + id;
-        String response = get(url);
-
-        JSONParser parser = new JSONParser();
-        JSONObject jObj = (JSONObject) parser.parse(response.toString());
-
-        Concept concept = new Concept();
-        concept.setId("" + jObj.get(Terms.CONCEPT_ID));
-        concept.setName("" + jObj.get(Terms.CONCEPT_NAME));
-        concept.setStandardConcept("" + jObj.get(Terms.STANDARD_CONCEPT));
-        concept.setStandardConceptCaption("" + jObj.get(Terms.STANDARD_CONCEPT_CAPTION));
-        concept.setInvalidReason("" + jObj.get(Terms.INVALID_REASON));
-        concept.setInvalidReasonCaption("" + jObj.get(Terms.INVALID_REASON_CAPTION));
-        concept.setConceptCode("" + jObj.get(Terms.CONCEPT_CODE));
-        concept.setDomainId("" + jObj.get(Terms.DOMAIN_ID));
-        concept.setVocabularyId("" + jObj.get(Terms.VOCABULARY_ID));
-        concept.setConceptClassId("" + jObj.get(Terms.CONCEPT_CLASS_ID));
-
-        return concept;
+    public Concept getConceptMetadata(String id) throws OmopRepositoryException {
+        try {
+            return client
+                .target(domain + "vocabulary/" + source + "/concept/" + id)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Concept.class);
+        } catch (Throwable t) {
+            throw new OmopRepositoryException("Error creating cohort", t);
+        }
     }
 
     /*

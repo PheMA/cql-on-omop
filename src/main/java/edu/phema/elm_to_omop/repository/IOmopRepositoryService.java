@@ -1,7 +1,7 @@
 package edu.phema.elm_to_omop.repository;
 
-import edu.phema.elm_to_omop.model.omop.Concept;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
@@ -15,7 +15,7 @@ import java.util.List;
  * Represents and instance of an OMOP server
  */
 public interface IOmopRepositoryService {
-    Concept getConceptMetadata(String id) throws IOException, ParseException;
+    Concept getConceptMetadata(String id) throws OmopRepositoryException;
 
     String postCohortDefinition(String cohortDefinitionJson) throws IOException, ParseException;
 

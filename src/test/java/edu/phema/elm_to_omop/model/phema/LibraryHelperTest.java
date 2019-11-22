@@ -1,11 +1,11 @@
 package edu.phema.elm_to_omop.model.phema;
 
-import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
+import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.model.PhemaAssumptionException;
 import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
-import edu.phema.elm_to_omop.model.omop.Concept;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.model.omop.InclusionRule;
+import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
 import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
 import org.cqframework.cql.cql2elm.CqlTranslator;
@@ -21,9 +21,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.circe.vocabulary.Concept;
 
 import java.math.BigDecimal;
-import java.net.URI;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -91,8 +92,23 @@ class LibraryHelperTest {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
         InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
         assertNotNull(rule);
-        assertEquals("{\"name\": \"Diabetes\",  \"expression\": {\"Type\": \"ALL\",  \"CriteriaList\": [{ \"Criteria\": { \"ConditionOccurrence\": { \"CodesetId\": 0 } }, \"StartWindow\": { \"Start\": {  \"Coeff\": -1 }, \"End\": { \"Coeff\": 1 } }, \"Occurrence\": { \"Type\": 2, \"Count\": 1 }} ], \"DemographicCriteriaList\": [], \"Groups\": [] }}",
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("translated/old/ExistsDirectCondition.json"),
             rule.getJsonFragment());
+    }
+
+    @Test
+    void generateInclusionRule_ExistsDirectCondition2() throws Exception {
+        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
+
+        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
+
+        assertNotNull(ce);
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("translated/ExistsDirectCondition.json"),
+            PhemaTestHelper.getJson(rule));
     }
 
     @Test
