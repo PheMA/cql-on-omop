@@ -1,12 +1,9 @@
 package edu.phema.elm_to_omop.io;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.omop.ExpressionDefinition;
-import edu.phema.elm_to_omop.model.omop.InclusionRule;
-import edu.phema.elm_to_omop.model.omop.OmopRoot;
 import edu.phema.elm_to_omop.model.phema.LibraryHelper;
-import org.hl7.elm.r1.Expression;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
@@ -66,20 +63,11 @@ public class OmopWriter {
      * @throws IOException
      */
     public String generateOmopJson(ExpressionDef expression, Library elmContents, List<ConceptSet> conceptSets) throws Exception {
-        OmopRoot root = new OmopRoot();
-        root.setName(expression.getName());
-        root.setDescription(elmContents.getLocalId());
-        root.setExpressionType("SIMPLE_EXPRESSION");          // TODO: hard coded value
+        CohortDefinitionDTO cohortDefinition = this.generateCohortDefinition(expression, elmContents, conceptSets);
 
-        // TODO Get the concept sets that are relevant to the expression.  This may require some recursion through dependent expressions
-        ExpressionDefinition exDef = new ExpressionDefinition();
-        root.setExpression(exDef);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-        Expression exp = expression.getExpression();
-        java.util.List<InclusionRule> inclusionRules = LibraryHelper.generateInclusionRules(elmContents, exp, conceptSets);
-        exDef.setInclusionRules(inclusionRules);
-        exDef.setConceptSets(conceptSets);
-
-        return root.getJson();
+        return mapper.writeValueAsString(cohortDefinition);
     }
 }

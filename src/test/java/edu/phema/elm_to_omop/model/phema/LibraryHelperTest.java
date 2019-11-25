@@ -4,7 +4,6 @@ import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.model.PhemaAssumptionException;
 import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.omop.InclusionRule;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.valueset.IValuesetService;
 import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
@@ -90,17 +89,6 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_ExistsDirectCondition() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/ExistsDirectCondition.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_ExistsDirectCondition2() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
 
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
@@ -114,17 +102,6 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_ExistsFromExpression() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/ExistsFromExpression.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_ExistsFromExpression2() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from expression");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
@@ -136,17 +113,6 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_ExistsFromReferencedExpression() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from referenced expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/ExistsFromReferencedExpression.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_ExistsFromReferencedExpression2() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from referenced expression");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
@@ -160,17 +126,6 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrDirectConditions() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or direct conditions");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/OrDirectConditions.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_OrDirectConditions2() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or direct conditions");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
@@ -182,25 +137,6 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_BooleanFromExpressions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from expressions");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/BooleanFromExpressions.1.json"),
-            rule.getJsonFragment());
-
-        expression = LibraryHelper.getExpressionDefByName(library, "And from expressions");
-        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/BooleanFromExpressions.2.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_BooleanFromExpressions2() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from expressions");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
@@ -223,17 +159,6 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrMixedDirectAndExpression() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or mixed direct and expression");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/OrMixedDirectAndExpression.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_OrMixedDirectAndExpression2() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or mixed direct and expression");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
@@ -246,17 +171,6 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_OrFromReferencedExpressions() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from referenced expressions");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/OrFromReferencedExpressions.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_OrFromReferencedExpressions2() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from referenced expressions");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
@@ -268,49 +182,6 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_CountDirectCondition() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Greater than direct condition");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountDirectCondition.1.json"),
-            rule.getJsonFragment());
-
-        expression = LibraryHelper.getExpressionDefByName(library, "Greater than or equal direct condition");
-        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountDirectCondition.2.json"),
-            rule.getJsonFragment());
-
-        expression = LibraryHelper.getExpressionDefByName(library, "Equal direct condition");
-        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountDirectCondition.3.json"),
-            rule.getJsonFragment());
-
-        expression = LibraryHelper.getExpressionDefByName(library, "Less than direct condition");
-        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountDirectCondition.4.json"),
-            rule.getJsonFragment());
-
-        expression = LibraryHelper.getExpressionDefByName(library, "Less than or equal direct condition");
-        rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-        assertNotNull(rule);
-
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountDirectCondition.5.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_CountDirectCondition2() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Greater than direct condition");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
@@ -360,22 +231,11 @@ class LibraryHelperTest {
     @Test
     void generateInclusionRule_CountFromExpression_Invalid() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count from expression");
-        assertThrows(Exception.class, () -> LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets));
+        assertThrows(Exception.class, () -> LibraryHelper.generateCohortExpression(library, expression, conceptSets));
     }
 
     @Test
     void generateInclusionRule_CountExpressionReference() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count expression reference");
-        InclusionRule rule = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets).get(0);
-
-        assertNotNull(rule);
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/CountExpressionReference.json"),
-            rule.getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_CountExpressionReference2() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count expression reference");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
@@ -388,34 +248,6 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_NestedBooleanDirectConditions() throws Exception {
-        // This expression is in the form of:
-        //   item1 AND (item2 OR item3)
-        // We expect just one expression because the item1 expression will be turned into the criteria for the expression,
-        // and the items in the parentheses will be represented in that criteria's Groups collection.
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean direct conditions");
-        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
-        assertNotNull(rules);
-        assertEquals(1, rules.size());
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/NestedBooleanDirectConditions.1.json"),
-            rules.get(0).getJsonFragment());
-
-        // This expression is in the form of:
-        //   (item1 OR item2) AND (item1 OR item3)
-        // We still expect just one rule to be created, because the criteria in parentheses will get unpacked into the
-        // Groups portion of the initial expression.  Note that there is no criteria in the CriteriaList - this is
-        // correct, and is allowed by Atlas.
-        expression = LibraryHelper.getExpressionDefByName(library, "Two nested boolean direct conditions");
-        rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
-        assertNotNull(rules);
-        assertEquals(1, rules.size());
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/NestedBooleanDirectConditions.2.json"),
-            rules.get(0).getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_NestedBooleanDirectConditions2() throws Exception {
         // This expression is in the form of:
         //   item1 AND (item2 OR item3)
         // We expect just one expression because the item1 expression will be turned into the criteria for the expression,
@@ -446,17 +278,6 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_NestedBooleanFromReferencedBooleanExpressions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean from referenced boolean expressions");
-        List<InclusionRule> rules = LibraryHelper.generateInclusionRules(library, expression.getExpression(), conceptSets);
-        assertNotNull(rules);
-        assertEquals(1, rules.size());
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getFileAsString("translated/old/NestedBooleanFromReferencedBooleanExpressions.json"),
-            rules.get(0).getJsonFragment());
-    }
-
-    @Test
-    void generateInclusionRule_NestedBooleanFromReferencedBooleanExpressions2() throws Exception {
         ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean from referenced boolean expressions");
         CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
         List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
