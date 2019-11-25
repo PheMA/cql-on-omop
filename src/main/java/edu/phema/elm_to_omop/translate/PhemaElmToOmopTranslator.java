@@ -1,15 +1,12 @@
-package edu.phema.elm_to_omop.model.phema;
+package edu.phema.elm_to_omop.model;
 
+import edu.phema.elm_to_omop.helper.CirceConstants;
+import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.model.PhemaAssumptionException;
 import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
-import edu.phema.elm_to_omop.model.omop.CirceConstants;
-import edu.phema.elm_to_omop.model.omop.CirceUtil;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.*;
-import org.ohdsi.circe.cohortdefinition.CohortExpression;
-import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
-import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
-import org.ohdsi.circe.cohortdefinition.Window;
+import org.ohdsi.circe.cohortdefinition.*;
 import org.ohdsi.circe.cohortdefinition.Window.Endpoint;
 
 import java.math.BigDecimal;
@@ -21,7 +18,7 @@ import java.util.stream.Collectors;
 /**
  * Extension of the CQL Library class to provide utility functions
  */
-public class LibraryHelper {
+public class PhemaElmToOmopTranslator {
     public static ExpressionDef getExpressionDefByName(Library library, String expressionName) {
         if (library == null || expressionName == null) {
             return null;
@@ -43,8 +40,8 @@ public class LibraryHelper {
      * @return An OHDSI cohort expression that can be included in a cohort definition
      * @throws Exception
      */
-    public static CohortExpression generateCohortExpression(Library library, ExpressionDef expressionDef, List<ConceptSet> conceptSets) throws Exception {
-        List<org.ohdsi.circe.cohortdefinition.InclusionRule> inclusionRules = new ArrayList<>();
+    public static CohortExpression generateCohortExpression(Library library, ExpressionDef expressionDef, List<PhemaConceptSet> conceptSets) throws Exception {
+        List<InclusionRule> inclusionRules = new ArrayList<>();
 
         Expression expression = expressionDef.getExpression();
 
@@ -75,7 +72,7 @@ public class LibraryHelper {
         cohortExpression.title = expressionDef.getName();
 
         org.ohdsi.circe.cohortdefinition.ConceptSet[] circeConceptSets = new org.ohdsi.circe.cohortdefinition.ConceptSet[conceptSets.size()];
-        cohortExpression.conceptSets = conceptSets.stream().map(CirceUtil::convertConceptSetToCirce).collect(Collectors.toList()).toArray(circeConceptSets);
+        cohortExpression.conceptSets = conceptSets.stream().map(PhemaConceptSet::getCirceConceptSet).collect(Collectors.toList()).toArray(circeConceptSets);
         cohortExpression.inclusionRules = inclusionRules;
 
         return cohortExpression;
@@ -105,7 +102,7 @@ public class LibraryHelper {
      * @return An OHDSI CriteriaGroup representing the Query or Exists expression
      * @throws Exception
      */
-    private static CriteriaGroup generateCriteriaGroupForQueryOrExists(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup generateCriteriaGroupForQueryOrExists(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         Retrieve retrieveExpression = null;
 
         CriteriaGroup corelatedCriteriaGroup = null;
@@ -203,9 +200,9 @@ public class LibraryHelper {
             throw new Exception("Unable to generate an inclusion rule for the Query or Exists expression");
         }
 
-        ConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
-        org.ohdsi.circe.cohortdefinition.Criteria criteria = generateCriteria2(matchedSet, corelatedCriteriaGroup);
+        org.ohdsi.circe.cohortdefinition.Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();
 
@@ -290,7 +287,7 @@ public class LibraryHelper {
      * @return The CriteriaGroup representing the binary expression
      * @throws Exception
      */
-    private static CriteriaGroup getCriteriaGroupForBinaryExpression(BinaryExpression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup getCriteriaGroupForBinaryExpression(BinaryExpression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.type = getInclusionExpressionType(expression).toString();
 
@@ -324,10 +321,10 @@ public class LibraryHelper {
      * @param conceptSet
      * @return
      */
-    private static org.ohdsi.circe.cohortdefinition.Criteria generateCriteria2(ConceptSet conceptSet, CriteriaGroup corelatedCriteria) {
+    private static Criteria generateCriteria(PhemaConceptSet conceptSet, CriteriaGroup corelatedCriteria) {
         // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR and OHDSI types
         org.ohdsi.circe.cohortdefinition.ConditionOccurrence conditionOccurrence = new org.ohdsi.circe.cohortdefinition.ConditionOccurrence();
-        conditionOccurrence.codesetId = conceptSet.getId();
+        conditionOccurrence.codesetId = conceptSet.id;
 
         if (corelatedCriteria != null) {
             conditionOccurrence.CorrelatedCriteria = corelatedCriteria;
@@ -345,7 +342,7 @@ public class LibraryHelper {
      * @return The CorelatedCriteria for the expression
      * @throws Exception
      */
-    private static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         Expression referencedExp = expression;
         if (expression instanceof ExpressionRef) {
             referencedExp = getExpressionReferenceTarget((ExpressionRef) expression, library);
@@ -368,16 +365,16 @@ public class LibraryHelper {
             throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
         }
 
-        ConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
-        corelatedCriteria.criteria = generateCriteria2(matchedSet, null);
+        corelatedCriteria.criteria = generateCriteria(matchedSet, null);
 
         return corelatedCriteria;
     }
 
-    private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         Expression referencedExp = expression;
         if (expression instanceof ExpressionRef) {
             referencedExp = getExpressionReferenceTarget((ExpressionRef) expression, library);
@@ -400,11 +397,11 @@ public class LibraryHelper {
             throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
         }
 
-        ConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
-        corelatedCriteria.criteria = generateCriteria2(matchedSet, null);
+        corelatedCriteria.criteria = generateCriteria(matchedSet, null);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.criteriaList = new CorelatedCriteria[]{corelatedCriteria};
@@ -510,7 +507,7 @@ public class LibraryHelper {
      * @return
      * @throws Exception
      */
-    private static ConceptSet getConceptSetForRetrieve(Retrieve retrieveExpression, Library library, List<ConceptSet> conceptSets) throws Exception {
+    private static PhemaConceptSet getConceptSetForRetrieve(Retrieve retrieveExpression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         // TODO  would be nice to have a convenience method to enumerate out all the codes of interest.
         if (!(retrieveExpression.getCodes() instanceof ValueSetRef)) {
             throw new PhemaNotImplementedException("Currently the translator is only able to handle ValueSetRef query sources");
@@ -523,7 +520,7 @@ public class LibraryHelper {
             throw new Exception(String.format("Could not find the referenced value set %s in the library", valueSet.getName()));
         }
 
-        ConceptSet matchedSet = findConceptSetByOid(conceptSets, valueSetDef.get().getId());
+        PhemaConceptSet matchedSet = findConceptSetByOid(conceptSets, valueSetDef.get().getId());
         if (matchedSet == null) {
             throw new Exception(String.format("Failed to find the value set referenced with OID %s", valueSetDef.get().getId()));
         }
@@ -578,11 +575,11 @@ public class LibraryHelper {
      * @param oid
      * @return
      */
-    private static ConceptSet findConceptSetByOid(List<ConceptSet> conceptSets, String oid) {
-        Optional<ConceptSet> conceptSet = conceptSets.stream().filter(x -> x.getOid().equals(oid) ||
+    private static PhemaConceptSet findConceptSetByOid(List<PhemaConceptSet> conceptSets, String oid) {
+        Optional<PhemaConceptSet> conceptSet = conceptSets.stream().filter(x -> x.getOid().equals(oid) ||
             x.getOid().endsWith(oid)) // endsWith allows us to ignore namespace prefixes
             .findFirst();
-        return conceptSet.isPresent() ? conceptSet.get() : null;
+        return conceptSet.orElse(null);
     }
 
     /**

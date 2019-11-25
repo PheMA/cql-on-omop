@@ -1,8 +1,6 @@
 package edu.phema.elm_to_omop.io;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -12,8 +10,8 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import edu.phema.elm_to_omop.helper.Terms;
-import edu.phema.elm_to_omop.model.phema.PhemaCode;
-import edu.phema.elm_to_omop.model.phema.PhemaValueSet;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaCode;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 
 
 /**

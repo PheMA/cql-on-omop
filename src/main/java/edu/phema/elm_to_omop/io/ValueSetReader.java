@@ -1,14 +1,14 @@
 package edu.phema.elm_to_omop.io;
 
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.omop.Expression;
-import edu.phema.elm_to_omop.model.omop.Items;
-import edu.phema.elm_to_omop.model.phema.PhemaCode;
-import edu.phema.elm_to_omop.model.phema.PhemaValueSet;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryException;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaCode;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.ohdsi.circe.vocabulary.Concept;
+import org.ohdsi.circe.vocabulary.ConceptSetExpression;
+import org.ohdsi.circe.vocabulary.ConceptSetExpression.ConceptSetItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,37 +24,42 @@ public class ValueSetReader {
         this.repository = repository;
     }
 
-    public List<ConceptSet> getConceptSets(String valueSetPath, String tab) throws IOException, OmopRepositoryException, InvalidFormatException {
+    public List<PhemaConceptSet> getConceptSets(String valueSetPath, String tab) throws IOException, OmopRepositoryException, InvalidFormatException {
         SpreadsheetReader vsReader = new SpreadsheetReader();
         ArrayList<PhemaValueSet> codes = vsReader.getSpreadsheetData(valueSetPath, tab);
         return getConceptSets(codes);
     }
 
-    private List<ConceptSet> getConceptSets(ArrayList<PhemaValueSet> pvsList) throws OmopRepositoryException {
-        List<ConceptSet> conceptSets = new ArrayList<ConceptSet>();
-        Expression expression = null;
+    private List<PhemaConceptSet> getConceptSets(ArrayList<PhemaValueSet> pvsList) throws OmopRepositoryException {
+        List<PhemaConceptSet> conceptSets = new ArrayList<>();
+        ConceptSetExpression expression = null;
 
         int conceptSetId = 0;
-        ConceptSet conceptSet = null;
-        Items items = null;
+        PhemaConceptSet conceptSet = null;
+        ArrayList<ConceptSetItem> itemsList = null;
         for (PhemaValueSet pvs : pvsList) {
-            expression = new Expression();
-            conceptSet = new ConceptSet();
-            conceptSet.setId(conceptSetId);
+            conceptSet = new PhemaConceptSet();
             conceptSet.setOid(pvs.getOid());
-            conceptSet.setName(pvs.getName());
 
+            conceptSet.id = conceptSetId;
+            conceptSet.name = pvs.getName();
 
             ArrayList<PhemaCode> codes = pvs.getCodes();
+            itemsList = new ArrayList<>();
             for (PhemaCode code : codes) {
                 Concept concept = repository.getConceptMetadata(code.getCode());
 
-                items = new Items();
-                items.setConcept(concept);
-                expression.addItem(items);
+                ConceptSetItem item = new ConceptSetItem();
+                item.concept = concept;
+                itemsList.add(item);
             }
 
-            conceptSet.setExpression(expression);
+            ConceptSetItem[] items = new ConceptSetItem[itemsList.size()];
+            expression = new ConceptSetExpression();
+            expression.items = itemsList.toArray(items);
+
+            conceptSet.expression = expression;
+
             conceptSets.add(conceptSet);
             conceptSetId++;
         }

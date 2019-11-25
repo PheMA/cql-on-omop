@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.model.omop;
+package edu.phema.elm_to_omop.helper;
 
 /**
  * Various enums that should in theory

@@ -3,13 +3,12 @@ package edu.phema.elm_to_omop.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import com.google.gson.JsonObject;
 import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.api.exception.CohortServiceException;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +18,8 @@ import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
-import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 
 import java.util.List;
 

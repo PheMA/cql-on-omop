@@ -1,12 +1,9 @@
-package edu.phema.elm_to_omop.valueset;
+package edu.phema.elm_to_omop.vocabulary;
 
 import edu.phema.elm_to_omop.io.ValueSetReader;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.omop.Items;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
-import org.ohdsi.circe.vocabulary.ConceptSetExpression;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +37,7 @@ public class SpreadsheetValuesetService implements IValuesetService {
     }
 
     @Override
-    public List<ConceptSet> getConceptSets() throws Exception {
+    public List<PhemaConceptSet> getConceptSets() throws Exception {
         ValueSetReader valueSetReader = new ValueSetReader(this.omopService);
 
         return valueSetReader.getConceptSets(valuesetSpreadsheetPath, valuesetSpreadsheetTab);

@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.model.omop;
+package edu.phema.elm_to_omop.helper;
 
 import org.ohdsi.circe.cohortdefinition.Criteria;
 import org.ohdsi.circe.cohortdefinition.InclusionRule;
@@ -6,14 +6,11 @@ import org.ohdsi.circe.cohortdefinition.Occurrence;
 import org.ohdsi.circe.cohortdefinition.PrimaryCriteria;
 import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 import org.ohdsi.circe.cohortdefinition.*;
-import org.ohdsi.circe.vocabulary.ConceptSetExpression;
-import org.ohdsi.circe.vocabulary.ConceptSetExpression.ConceptSetItem;
 import org.ohdsi.webapi.cohortdefinition.ExpressionType;
 import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Various utility methods, some of which are necessary because
@@ -87,40 +84,6 @@ public class CirceUtil {
         inclusionRule.expression = criteriaGroup;
 
         return inclusionRule;
-    }
-
-    /**
-     * Converts an instance of our ConceptSet class to a Circe ConceptSet. We still need
-     * our ConceptSet class because it contains a reference to a valuset oid, which we
-     * need while translating the ELM library.
-     *
-     * @param conceptSet The PhEMA ConceptSet instance
-     * @return The Circe ConceptSet
-     */
-    public static org.ohdsi.circe.cohortdefinition.ConceptSet convertConceptSetToCirce(ConceptSet conceptSet) {
-        if (conceptSet == null) return null;
-
-        org.ohdsi.circe.cohortdefinition.ConceptSet circeConceptSet = new org.ohdsi.circe.cohortdefinition.ConceptSet();
-
-        circeConceptSet.id = conceptSet.getId();
-        circeConceptSet.name = conceptSet.getName();
-
-        List<ConceptSetItem> concepts = new ArrayList<>();
-        ConceptSetItem conceptSetItem;
-        for (Items concept : conceptSet.getExpression().getItems()) {
-            conceptSetItem = new ConceptSetExpression.ConceptSetItem();
-            conceptSetItem.concept = concept.getConcept();
-            concepts.add(conceptSetItem);
-        }
-
-        ConceptSetExpression conceptSetExpression = new ConceptSetExpression();
-
-        ConceptSetItem[] items = new ConceptSetItem[concepts.size()];
-        conceptSetExpression.items = concepts.toArray(items);
-
-        circeConceptSet.expression = conceptSetExpression;
-
-        return circeConceptSet;
     }
 
     /**

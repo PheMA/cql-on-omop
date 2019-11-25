@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.model.phema;
+package edu.phema.elm_to_omop.vocabulary.phema;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ public class PhemaValueSet {
         this.codes = codes;
     }
 
-    public void add(PhemaCode code)  {
+    public void add(PhemaCode code) {
         codes.add(code);
     }
 

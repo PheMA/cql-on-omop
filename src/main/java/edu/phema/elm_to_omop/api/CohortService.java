@@ -3,19 +3,19 @@ package edu.phema.elm_to_omop.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.api.exception.CohortServiceException;
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import net.jodah.failsafe.Failsafe;
 import net.jodah.failsafe.RetryPolicy;
 import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
-import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class CohortService {
     private Logger logger;
-    private List<ConceptSet> conceptSets;
+    private List<PhemaConceptSet> conceptSets;
 
     private Config config;
     private IValuesetService valuesetService;
@@ -106,7 +106,7 @@ public class CohortService {
     public CohortDefinitionDTO createCohortDefinition(String cqlString, String statementName) throws CohortServiceException {
 
         try {
-            ElmToOmopTranslator translator = new ElmToOmopTranslator(config, valuesetService);
+            ElmToOmopTranslator translator = new ElmToOmopTranslator(valuesetService);
 
             // The following deserialization will hopefully eventually become unnecessary
             String cohortDefinitionJSon = translator.cqlToOmopDoubleEscaped(cqlString, statementName);

@@ -7,19 +7,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
+import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.io.OmopWriter;
-import edu.phema.elm_to_omop.io.ValueSetReader;
-import edu.phema.elm_to_omop.model.omop.CirceUtil;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.phema.LibraryHelper;
+import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.translate.OmopTranslateContext;
-import edu.phema.elm_to_omop.translate.OmopTranslateVisitor;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.hl7.elm.r1.Expression;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
@@ -38,7 +33,7 @@ import java.util.logging.Logger;
  */
 public class ElmToOmopTranslator {
     private Logger logger;
-    private List<ConceptSet> conceptSets;
+    private List<PhemaConceptSet> conceptSets;
 
     /**
      * Specify configuration to use for the translation
@@ -67,13 +62,13 @@ public class ElmToOmopTranslator {
      * Specify configuration to use for the translation, as well as a custom valueset reader.
      * This is most to support mocking during testing
      *
-     * @param config @see edu.phema.elm_to_omop.helper.Config
+     * @param valuesetService The service to use to retrieve the concept sets
      * @throws InvalidFormatException
      * @throws ParseException
      * @throws IOException
      * @throws NullPointerException
      */
-    public ElmToOmopTranslator(Config config, IValuesetService valuesetService) throws OmopTranslatorException {
+    public ElmToOmopTranslator(IValuesetService valuesetService) throws OmopTranslatorException {
         logger = Logger.getLogger(this.getClass().getName());
 
         try {
@@ -138,7 +133,7 @@ public class ElmToOmopTranslator {
 
         ExpressionDef expressionDef = expressionDefOptional.get();
 
-        CohortExpression cohortExpression = LibraryHelper.generateCohortExpression(library, expressionDef, this.conceptSets);
+        CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(library, expressionDef, this.conceptSets);
 
         CohortDefinitionService.CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
 
@@ -185,21 +180,5 @@ public class ElmToOmopTranslator {
         }
 
         return results.toString();
-    }
-
-    /**
-     * Translate an ELM expression into a Circe cohort expression
-     *
-     * @param expression The expression to translate
-     * @return The equivalent Circe cohort expression
-     */
-    public CohortExpression translate(Expression expression) {
-        OmopTranslateContext context = new OmopTranslateContext();
-
-        OmopTranslateVisitor visitor = new OmopTranslateVisitor();
-
-        visitor.visitElement(expression, context);
-
-        return context.generateCohortExpression();
     }
 }

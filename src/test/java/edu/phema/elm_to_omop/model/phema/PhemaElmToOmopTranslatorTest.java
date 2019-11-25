@@ -1,12 +1,13 @@
 package edu.phema.elm_to_omop.model.phema;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
+import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.model.PhemaAssumptionException;
 import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.cqframework.cql.cql2elm.CqlTranslator;
 import org.cqframework.cql.cql2elm.CqlTranslatorException;
 import org.cqframework.cql.cql2elm.LibraryManager;
@@ -30,14 +31,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
-class LibraryHelperTest {
+class PhemaElmToOmopTranslatorTest {
     // In our CQL file, we may allow true errors to occur for our testing.  Since everything is in one file, we need
     // to define the threshold of known errors here.
     private static final int ALLOWED_ERRORS_IN_CQL = 1;
 
     private CqlTranslator translator;
     private Library library;
-    private List<ConceptSet> conceptSets;
+    private List<PhemaConceptSet> conceptSets;
 
     @Mock
     private IOmopRepositoryService omopRepository;
@@ -67,30 +68,30 @@ class LibraryHelperTest {
 
     @Test
     void getExpressionDefByName_Null() {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, null);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, null);
         assertNull(expression);
 
-        expression = LibraryHelper.getExpressionDefByName(null, "Expression");
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(null, "Expression");
         assertNull(expression);
     }
 
     @Test
     void getExpressionDefByName_Invalid() {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Invalid Expression Name");
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Invalid Expression Name");
         assertNull(expression);
     }
 
     @Test
     void getExpressionDefByName_Valid() {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Exists direct condition");
         assertNotNull(expression);
     }
 
     @Test
     void generateInclusionRule_ExistsDirectCondition() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists direct condition");
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Exists direct condition");
 
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(ce);
@@ -101,8 +102,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_ExistsFromExpression() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from expression");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Exists from expression");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -113,8 +114,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_ExistsFromReferencedExpression() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Exists from referenced expression");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Exists from referenced expression");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -125,8 +126,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_OrDirectConditions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or direct conditions");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Or direct conditions");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -137,8 +138,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_BooleanFromExpressions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from expressions");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Or from expressions");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -146,8 +147,8 @@ class LibraryHelperTest {
             PhemaTestHelper.getFileAsString("translated/BooleanFromExpressions.1.json"),
             PhemaTestHelper.getJson(rule));
 
-        expression = LibraryHelper.getExpressionDefByName(library, "And from expressions");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "And from expressions");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -158,8 +159,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_OrMixedDirectAndExpression() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or mixed direct and expression");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Or mixed direct and expression");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -170,8 +171,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_OrFromReferencedExpressions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Or from referenced expressions");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Or from referenced expressions");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -182,8 +183,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_CountDirectCondition() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Greater than direct condition");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Greater than direct condition");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -191,8 +192,8 @@ class LibraryHelperTest {
             PhemaTestHelper.getFileAsString("translated/CountDirectCondition.1.json"),
             PhemaTestHelper.getJson(rule));
 
-        expression = LibraryHelper.getExpressionDefByName(library, "Greater than or equal direct condition");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Greater than or equal direct condition");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -200,8 +201,8 @@ class LibraryHelperTest {
             PhemaTestHelper.getFileAsString("translated/CountDirectCondition.2.json"),
             PhemaTestHelper.getJson(rule));
 
-        expression = LibraryHelper.getExpressionDefByName(library, "Equal direct condition");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Equal direct condition");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -209,8 +210,8 @@ class LibraryHelperTest {
             PhemaTestHelper.getFileAsString("translated/CountDirectCondition.3.json"),
             PhemaTestHelper.getJson(rule));
 
-        expression = LibraryHelper.getExpressionDefByName(library, "Less than direct condition");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Less than direct condition");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -218,8 +219,8 @@ class LibraryHelperTest {
             PhemaTestHelper.getFileAsString("translated/CountDirectCondition.4.json"),
             PhemaTestHelper.getJson(rule));
 
-        expression = LibraryHelper.getExpressionDefByName(library, "Less than or equal direct condition");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Less than or equal direct condition");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -230,14 +231,14 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_CountFromExpression_Invalid() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count from expression");
-        assertThrows(Exception.class, () -> LibraryHelper.generateCohortExpression(library, expression, conceptSets));
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Count from expression");
+        assertThrows(Exception.class, () -> PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets));
     }
 
     @Test
     void generateInclusionRule_CountExpressionReference() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Count expression reference");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Count expression reference");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
         assertNotNull(rule);
@@ -252,8 +253,8 @@ class LibraryHelperTest {
         //   item1 AND (item2 OR item3)
         // We expect just one expression because the item1 expression will be turned into the criteria for the expression,
         // and the items in the parentheses will be represented in that criteria's Groups collection.
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean direct conditions");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Nested boolean direct conditions");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
         assertNotNull(rules);
         assertEquals(1, rules.size());
@@ -266,8 +267,8 @@ class LibraryHelperTest {
         // We still expect just one rule to be created, because the criteria in parentheses will get unpacked into the
         // Groups portion of the initial expression.  Note that there is no criteria in the CriteriaList - this is
         // correct, and is allowed by Atlas.
-        expression = LibraryHelper.getExpressionDefByName(library, "Two nested boolean direct conditions");
-        ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Two nested boolean direct conditions");
+        ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         rules = ce.inclusionRules;
         assertNotNull(rules);
         assertEquals(1, rules.size());
@@ -278,8 +279,8 @@ class LibraryHelperTest {
 
     @Test
     void generateInclusionRule_NestedBooleanFromReferencedBooleanExpressions() throws Exception {
-        ExpressionDef expression = LibraryHelper.getExpressionDefByName(library, "Nested boolean from referenced boolean expressions");
-        CohortExpression ce = LibraryHelper.generateCohortExpression(library, expression, conceptSets);
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Nested boolean from referenced boolean expressions");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
         assertNotNull(rules);
         assertEquals(1, rules.size());
@@ -309,8 +310,8 @@ class LibraryHelperTest {
     @Test
     void convertToDays_NullEmpty() {
         // Entire object is null or empty
-        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(null));
-        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(new Quantity()));
+        assertThrows(PhemaAssumptionException.class, () -> PhemaElmToOmopTranslator.convertToDays(null));
+        assertThrows(PhemaAssumptionException.class, () -> PhemaElmToOmopTranslator.convertToDays(new Quantity()));
     }
 
     @Test
@@ -318,10 +319,10 @@ class LibraryHelperTest {
         // One of our required attributes is missing
         Quantity quantity = new Quantity();
         quantity.setUnit("days");
-        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
+        assertThrows(PhemaAssumptionException.class, () -> PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit(null);
         quantity.setValue(BigDecimal.valueOf(100));
-        assertThrows(PhemaAssumptionException.class, () -> LibraryHelper.convertToDays(quantity));
+        assertThrows(PhemaAssumptionException.class, () -> PhemaElmToOmopTranslator.convertToDays(quantity));
     }
 
     @Test
@@ -330,11 +331,11 @@ class LibraryHelperTest {
         quantity.setValue(BigDecimal.valueOf(100));
 
         quantity.setUnit("d");
-        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+        assertThrows(PhemaNotImplementedException.class, () -> PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("blah");
-        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+        assertThrows(PhemaNotImplementedException.class, () -> PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("dayss");
-        assertThrows(PhemaNotImplementedException.class, () -> LibraryHelper.convertToDays(quantity));
+        assertThrows(PhemaNotImplementedException.class, () -> PhemaElmToOmopTranslator.convertToDays(quantity));
     }
 
     @Test
@@ -342,10 +343,10 @@ class LibraryHelperTest {
         Quantity quantity = new Quantity();
         quantity.setUnit("days");
         quantity.setValue(BigDecimal.valueOf(100));
-        assertEquals(BigDecimal.valueOf(100), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(100), PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("day");
         quantity.setValue(BigDecimal.valueOf(1));
-        assertEquals(BigDecimal.valueOf(1), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(1), PhemaElmToOmopTranslator.convertToDays(quantity));
     }
 
     @Test
@@ -353,13 +354,13 @@ class LibraryHelperTest {
         Quantity quantity = new Quantity();
         quantity.setUnit("years");
         quantity.setValue(BigDecimal.valueOf(10));
-        assertEquals(BigDecimal.valueOf(3650), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(3650), PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("year");
         quantity.setValue(BigDecimal.valueOf(1));
-        assertEquals(BigDecimal.valueOf(365), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(365), PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("year");
         quantity.setValue(BigDecimal.valueOf(0.5));
-        assertEquals(BigDecimal.valueOf(182.5), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(182.5), PhemaElmToOmopTranslator.convertToDays(quantity));
     }
 
     @Test
@@ -367,12 +368,12 @@ class LibraryHelperTest {
         Quantity quantity = new Quantity();
         quantity.setUnit("months");
         quantity.setValue(BigDecimal.valueOf(10));
-        assertEquals(BigDecimal.valueOf(300), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(300), PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("month");
         quantity.setValue(BigDecimal.valueOf(1));
-        assertEquals(BigDecimal.valueOf(30), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(30), PhemaElmToOmopTranslator.convertToDays(quantity));
         quantity.setUnit("month");
         quantity.setValue(BigDecimal.valueOf(0.5));
-        assertEquals(BigDecimal.valueOf(15.0), LibraryHelper.convertToDays(quantity));
+        assertEquals(BigDecimal.valueOf(15.0), PhemaElmToOmopTranslator.convertToDays(quantity));
     }
 }

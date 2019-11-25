@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.model.phema;
+package edu.phema.elm_to_omop.vocabulary.phema;
 
 /**
  * PhemaCode objects represent the codes used within a PhemaValueSet.

@@ -3,11 +3,11 @@ package edu.phema.elm_to_omop;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.helper.MyFormatter;
 import edu.phema.elm_to_omop.io.OmopWriter;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.phenotype.FilePhenotype;
 import edu.phema.elm_to_omop.phenotype.PhenotypeException;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.elm.r1.ExpressionDef;
 import org.json.simple.parser.ParseException;
@@ -62,7 +62,7 @@ public class ElmToOmopConverter {
             // read the value set csv and add to the objects
             SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, directory + config.getVsFileName(), config.getTab());
 
-            List<ConceptSet> conceptSets = valuesetService.getConceptSets();
+            List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
 
             // For each phenotype definition, get the OMOP JSON and write it out to file
             for (ExpressionDef phenotypeExpression : phenotype.getPhenotypeExpressions()) {

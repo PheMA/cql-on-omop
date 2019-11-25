@@ -2,8 +2,8 @@ package edu.phema.elm_to_omop.io;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
-import edu.phema.elm_to_omop.model.phema.LibraryHelper;
+import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
@@ -26,7 +26,7 @@ public class OmopWriter {
      * Makes sure the json has been created and writes it to file designated in the configuration
      * Returns the json string
      */
-    public String writeOmopJson(ExpressionDef expression, Library elmContents, java.util.List<ConceptSet> conceptSets, String directory, String filename) throws Exception {
+    public String writeOmopJson(ExpressionDef expression, Library elmContents, List<PhemaConceptSet> conceptSets, String directory, String filename) throws Exception {
         String jsonFileName = directory + filename;
         try (FileWriter jsonFile = new FileWriter(jsonFileName)) {
             String json = generateOmopJson(expression, elmContents, conceptSets);
@@ -35,22 +35,6 @@ public class OmopWriter {
             jsonFile.write(json);
             return json;
         }
-    }
-
-    public CohortDefinitionDTO generateCohortDefinition(ExpressionDef expressionDef, Library elmContents, List<ConceptSet> conceptSets) throws Exception {
-        CohortDefinitionDTO cohortDefinition = new CohortDefinitionDTO();
-
-        cohortDefinition.name = expressionDef.getName();
-        cohortDefinition.description = elmContents.getLocalId();
-        cohortDefinition.expressionType = ExpressionType.SIMPLE_EXPRESSION;
-
-        CohortExpression cohortExpression = LibraryHelper.generateCohortExpression(elmContents, expressionDef, conceptSets);
-
-        // This manual serialization isn't required in later versions of the WebAPI, see:
-        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
-        cohortDefinition.expression = new ObjectMapper().writeValueAsString(cohortExpression);
-
-        return cohortDefinition;
     }
 
     /**
@@ -62,12 +46,37 @@ public class OmopWriter {
      * @return
      * @throws IOException
      */
-    public String generateOmopJson(ExpressionDef expression, Library elmContents, List<ConceptSet> conceptSets) throws Exception {
+    public String generateOmopJson(ExpressionDef expression, Library elmContents, List<PhemaConceptSet> conceptSets) throws Exception {
         CohortDefinitionDTO cohortDefinition = this.generateCohortDefinition(expression, elmContents, conceptSets);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         return mapper.writeValueAsString(cohortDefinition);
+    }
+
+    /**
+     * Internal method that takes care of generating the Circe cohort definition
+     *
+     * @param expressionDef The ELM expression definition
+     * @param elmContents   The ELM library
+     * @param conceptSets   The concept sets corresponding to the valuesets referenced in the library
+     * @return The Circe cohort definition
+     * @throws Exception
+     */
+    private CohortDefinitionDTO generateCohortDefinition(ExpressionDef expressionDef, Library elmContents, List<PhemaConceptSet> conceptSets) throws Exception {
+        CohortDefinitionDTO cohortDefinition = new CohortDefinitionDTO();
+
+        cohortDefinition.name = expressionDef.getName();
+        cohortDefinition.description = elmContents.getLocalId();
+        cohortDefinition.expressionType = ExpressionType.SIMPLE_EXPRESSION;
+
+        CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(elmContents, expressionDef, conceptSets);
+
+        // This manual serialization isn't required in later versions of the WebAPI, see:
+        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
+        cohortDefinition.expression = new ObjectMapper().writeValueAsString(cohortExpression);
+
+        return cohortDefinition;
     }
 }
