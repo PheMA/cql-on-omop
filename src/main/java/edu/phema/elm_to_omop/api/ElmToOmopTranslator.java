@@ -1,5 +1,7 @@
 package edu.phema.elm_to_omop.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,7 +10,9 @@ import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.io.OmopWriter;
 import edu.phema.elm_to_omop.io.ValueSetReader;
+import edu.phema.elm_to_omop.model.omop.CirceUtil;
 import edu.phema.elm_to_omop.model.omop.ConceptSet;
+import edu.phema.elm_to_omop.model.phema.LibraryHelper;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.OmopTranslateContext;
 import edu.phema.elm_to_omop.translate.OmopTranslateVisitor;
@@ -20,6 +24,7 @@ import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.io.IOException;
 import java.util.List;
@@ -79,30 +84,12 @@ public class ElmToOmopTranslator {
     }
 
     protected String cqlToOmopDoubleEscaped(String cqlString, String statementName) throws Exception {
-        if (statementName == null) {
-            throw new CqlStatementNotFoundException("No named CQL statement specified");
-        }
+        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = this.cqlToOmopCohortDefinition(cqlString, statementName);
 
-        CqlToElmTranslator translator = new CqlToElmTranslator();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-        Library library = translator.cqlToElm(cqlString);
-
-        List<ExpressionDef> expressions = library.getStatements().getDef();
-
-        Optional<ExpressionDef> expressionDef = expressions.stream()
-            .filter(x -> statementName.equals(x.getName()))
-            .findFirst();
-
-        if (!expressionDef.isPresent()) {
-            throw new CqlStatementNotFoundException("Could not find statement " + statementName);
-        }
-
-        OmopWriter omopWriter = new OmopWriter(logger);
-
-        // 😔 Strangely, the OHDSI WebAPI expects the expression to be posted as a stringified JSON
-        // object, but we want to show the actual JSON to the user, so the following lines take
-        // care of un-stringifying the expression JSON.
-        return omopWriter.generateOmopJson(expressionDef.get(), library, this.conceptSets);
+        return mapper.writeValueAsString(cohortDefinition);
     }
 
     /**
@@ -128,6 +115,44 @@ public class ElmToOmopTranslator {
         root.add("expression", expression);
 
         return root;
+    }
+
+    public CohortDefinitionService.CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
+        if (statementName == null) {
+            throw new CqlStatementNotFoundException("No named CQL statement specified");
+        }
+
+        CqlToElmTranslator translator = new CqlToElmTranslator();
+
+        Library library = translator.cqlToElm(cqlString);
+
+        List<ExpressionDef> expressions = library.getStatements().getDef();
+
+        Optional<ExpressionDef> expressionDefOptional = expressions.stream()
+            .filter(x -> statementName.equals(x.getName()))
+            .findFirst();
+
+        if (!expressionDefOptional.isPresent()) {
+            throw new CqlStatementNotFoundException("Could not find statement " + statementName);
+        }
+
+        ExpressionDef expressionDef = expressionDefOptional.get();
+
+        CohortExpression cohortExpression = LibraryHelper.generateCohortExpression(library, expressionDef, this.conceptSets);
+
+        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        cohortDefinition.name = expressionDef.getName();
+        cohortDefinition.description = library.getLocalId();
+
+        // This manual serialization isn't required in later versions of the WebAPI, see:
+        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
+        cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
+
+        return cohortDefinition;
     }
 
     /**

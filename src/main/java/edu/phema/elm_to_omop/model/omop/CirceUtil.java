@@ -8,6 +8,8 @@ import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 import org.ohdsi.circe.cohortdefinition.*;
 import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 import org.ohdsi.circe.vocabulary.ConceptSetExpression.ConceptSetItem;
+import org.ohdsi.webapi.cohortdefinition.ExpressionType;
+import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -145,7 +147,7 @@ public class CirceUtil {
     /**
      * Generate an empty Occurrence with the default value of "at least 1".
      *
-     * @return
+     * @return The default occurrence
      */
     public static Occurrence defaultOccurrence() {
         Occurrence occurrence = new Occurrence();
@@ -154,5 +156,18 @@ public class CirceUtil {
         occurrence.count = 1;
 
         return occurrence;
+    }
+
+    /**
+     * Creates a cohort definition and sets the type to SIMPLE_EXPRESSION.
+     *
+     * @return The default cohort definition
+     */
+    public static CohortDefinitionService.CohortDefinitionDTO getDefaultCohortDefinition() {
+        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = new CohortDefinitionService.CohortDefinitionDTO();
+
+        cohortDefinition.expressionType = ExpressionType.SIMPLE_EXPRESSION;
+
+        return cohortDefinition;
     }
 }
