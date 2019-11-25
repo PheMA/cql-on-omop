@@ -9,6 +9,7 @@ import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.helper.Config;
+import edu.phema.elm_to_omop.phenotype.IPhenotype;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
@@ -20,8 +21,10 @@ import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.webapi.service.CohortDefinitionService;
+import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -112,7 +115,40 @@ public class ElmToOmopTranslator {
         return root;
     }
 
-    public CohortDefinitionService.CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
+    /**
+     * Builds a cohort definition from a name, description, and expression
+     *
+     * @param name             The name of the cohort definition
+     * @param description      The cohort definition description
+     * @param cohortExpression The cohort definition expression logic
+     * @return The Circe cohort definition
+     * @throws Exception
+     */
+    private CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
+        CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        cohortDefinition.name = name;
+        cohortDefinition.description = description;
+
+        // This manual serialization isn't required in later versions of the WebAPI, see:
+        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
+        cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
+
+        return cohortDefinition;
+    }
+
+    /**
+     * Create a Circe cohort definition from a CQL string and a statement name
+     *
+     * @param cqlString     The CQL string
+     * @param statementName The statement name to use as the phenotype
+     * @return The Circe cohort definition
+     * @throws Exception
+     */
+    public CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
         if (statementName == null) {
             throw new CqlStatementNotFoundException("No named CQL statement specified");
         }
@@ -135,19 +171,7 @@ public class ElmToOmopTranslator {
 
         CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(library, expressionDef, this.conceptSets);
 
-        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
-        cohortDefinition.name = expressionDef.getName();
-        cohortDefinition.description = library.getLocalId();
-
-        // This manual serialization isn't required in later versions of the WebAPI, see:
-        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
-        cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
-
-        return cohortDefinition;
+        return buildCohortDefinition(expressionDef.getName(), library.getLocalId(), cohortExpression);
     }
 
     /**
@@ -180,5 +204,29 @@ public class ElmToOmopTranslator {
         }
 
         return results.toString();
+    }
+
+    /**
+     * Translate a phenotype into list of cohort definitions
+     *
+     * @param phenotype   The phenotype
+     * @param conceptSets The PhEMA concept sets
+     * @return The Circe cohort definition
+     */
+    public List<CohortDefinitionDTO> translatePhenotype(IPhenotype phenotype, List<PhemaConceptSet> conceptSets) throws OmopTranslatorException {
+        List<CohortDefinitionDTO> cohortDefinitions = new ArrayList<>();
+
+        for (ExpressionDef expressionDef : phenotype.getPhenotypeExpressions()) {
+
+            try {
+                CohortExpression expression = PhemaElmToOmopTranslator.generateCohortExpression(phenotype.getPhenotypeElm(), expressionDef, conceptSets);
+
+                cohortDefinitions.add(buildCohortDefinition(expressionDef.getName(), phenotype.getPhenotypeElm().getLocalId(), expression));
+            } catch (Throwable t) {
+                throw new OmopTranslatorException("Error translating phenotype", t);
+            }
+        }
+
+        return cohortDefinitions;
     }
 }

@@ -25,6 +25,10 @@ public class PhemaTestHelper {
         }
     }
 
+    public static String getResourcePath(String resource) {
+        return PhemaTestHelper.class.getClassLoader().getResource(resource).getPath();
+    }
+
     public static void assertStringsEqualIgnoreWhitespace(String lhs, String rhs) {
         String left = lhs.replaceAll("\\s+", "");
         String right = rhs.replaceAll("\\s+", "");
