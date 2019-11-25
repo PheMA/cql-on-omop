@@ -76,7 +76,11 @@ public class LibraryHelper {
         } else {
             throw new Exception("The translator is currently unable to generate OHDSI inclusion rules for this type of expression");
         }
-        criteriaGroup.type = CirceConstants.CriteriaGroupType.ALL.toString();
+
+        // Default to ALL if not set
+        if (criteriaGroup.type == null) {
+            criteriaGroup.type = CirceConstants.CriteriaGroupType.ALL.toString();
+        }
 
         inclusionRules.add(CirceUtil.inclusionRuleFromCriteriaGroup(expressionDef.getName(), expressionDef.getName(), criteriaGroup));
 
@@ -590,7 +594,8 @@ public class LibraryHelper {
         }
 
         Retrieve retrieveExpression = null;
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = new org.ohdsi.circe.cohortdefinition.Occurrence();
+        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
+
         if (referencedExp instanceof Retrieve) {
             retrieveExpression = (Retrieve) referencedExp;
         } else if (referencedExp instanceof Exists) {
@@ -622,9 +627,7 @@ public class LibraryHelper {
         }
 
         Retrieve retrieveExpression = null;
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = new org.ohdsi.circe.cohortdefinition.Occurrence();
-        occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
-        occurrence.count = 1;
+        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
 
         if (referencedExp instanceof Retrieve) {
             retrieveExpression = (Retrieve) referencedExp;
@@ -759,9 +762,8 @@ public class LibraryHelper {
 
         int countValue = Integer.parseInt(countString);
 
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = new org.ohdsi.circe.cohortdefinition.Occurrence();
-        occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
-
+        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
+        occurrence.count = countValue;
 
         if (referencedExp instanceof Greater) {
             occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
@@ -769,7 +771,6 @@ public class LibraryHelper {
             occurrence.count++;
         } else if (referencedExp instanceof GreaterOrEqual) {
             occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
-            occurrence.count = countValue;
         } else if (referencedExp instanceof Equal) {
             occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.EXACTLY;
         } else if (referencedExp instanceof Less) {

@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop.model.omop;
 
 import org.ohdsi.circe.cohortdefinition.Criteria;
 import org.ohdsi.circe.cohortdefinition.InclusionRule;
+import org.ohdsi.circe.cohortdefinition.Occurrence;
 import org.ohdsi.circe.cohortdefinition.PrimaryCriteria;
 import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 import org.ohdsi.circe.cohortdefinition.*;
@@ -139,5 +140,19 @@ public class CirceUtil {
         corelatedCriteria.startWindow = startWindow;
 
         return corelatedCriteria;
+    }
+
+    /**
+     * Generate an empty Occurrence with the default value of "at least 1".
+     *
+     * @return
+     */
+    public static Occurrence defaultOccurrence() {
+        Occurrence occurrence = new Occurrence();
+
+        occurrence.type = Occurrence.AT_LEAST;
+        occurrence.count = 1;
+
+        return occurrence;
     }
 }
