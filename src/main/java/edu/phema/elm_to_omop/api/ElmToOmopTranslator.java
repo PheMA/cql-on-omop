@@ -9,7 +9,7 @@ import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;

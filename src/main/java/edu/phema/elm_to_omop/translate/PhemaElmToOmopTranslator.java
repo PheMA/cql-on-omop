@@ -1,9 +1,7 @@
-package edu.phema.elm_to_omop.model;
+package edu.phema.elm_to_omop.translate;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
-import edu.phema.elm_to_omop.model.PhemaAssumptionException;
-import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.*;

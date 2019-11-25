@@ -1,9 +1,9 @@
 package edu.phema.elm_to_omop.model.phema;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
-import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
-import edu.phema.elm_to_omop.model.PhemaAssumptionException;
-import edu.phema.elm_to_omop.model.PhemaNotImplementedException;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.translate.PhemaAssumptionException;
+import edu.phema.elm_to_omop.translate.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;

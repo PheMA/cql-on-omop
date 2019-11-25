@@ -2,7 +2,7 @@ package edu.phema.elm_to_omop.io;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.phema.elm_to_omop.model.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
