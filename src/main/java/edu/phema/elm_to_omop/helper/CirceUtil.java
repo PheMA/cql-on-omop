@@ -1,10 +1,5 @@
 package edu.phema.elm_to_omop.helper;
 
-import org.ohdsi.circe.cohortdefinition.Criteria;
-import org.ohdsi.circe.cohortdefinition.InclusionRule;
-import org.ohdsi.circe.cohortdefinition.Occurrence;
-import org.ohdsi.circe.cohortdefinition.PrimaryCriteria;
-import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 import org.ohdsi.circe.cohortdefinition.*;
 import org.ohdsi.webapi.cohortdefinition.ExpressionType;
 import org.ohdsi.webapi.service.CohortDefinitionService;

@@ -1,14 +1,12 @@
 package edu.phema.elm_to_omop.repository;
 
-import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
-import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

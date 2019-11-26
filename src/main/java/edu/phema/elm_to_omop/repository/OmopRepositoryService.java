@@ -1,11 +1,6 @@
 package edu.phema.elm_to_omop.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.phema.elm_to_omop.helper.Terms;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
@@ -23,14 +18,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.List;
 
 /**
