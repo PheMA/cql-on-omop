@@ -42,8 +42,13 @@ public class ElmToOmopConverter {
         System.out.println(mapper.writeValueAsString(cohortDefinition));
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
+        ElmToOmopConverter converter = new ElmToOmopConverter();
 
+        converter.run(args, getResourceDirectory());
+    }
+
+    public void run(String[] args, String resourceDirectory) {
         try {
             // Setup configuration
             Config config;
@@ -55,7 +60,6 @@ public class ElmToOmopConverter {
 
             FileHandler fh = setUpLogging("elmToOhdsiConverter.log");
 
-            String directory = getResourceDirectory();
             logger.info("Config: " + config.configString());
 
             String domain = config.getOmopBaseUrl();
@@ -68,10 +72,10 @@ public class ElmToOmopConverter {
             // 1. Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
             //    the CQL/ELM can be vague if not explicitly defined otherwise.
             // 2. Read the elm file and set up the objects
-            FilePhenotype phenotype = new FilePhenotype(directory + config.getInputFileName(), config.getPhenotypeExpressions());
+            FilePhenotype phenotype = new FilePhenotype(resourceDirectory + config.getInputFileName(), config.getPhenotypeExpressions());
 
             // read the value set csv and add to the objects
-            SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, directory + config.getVsFileName(), config.getTab());
+            SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, resourceDirectory + config.getVsFileName(), config.getTab());
 
             List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
 
@@ -98,7 +102,7 @@ public class ElmToOmopConverter {
             }
 
             // Write the resulting cohort definitions to out to the filesystem
-            omopWriter.writeOmopJson(cohortDefinitions, directory, config.getOutFileName());
+            omopWriter.writeOmopJson(cohortDefinitions, resourceDirectory, config.getOutFileName());
         } catch (PhenotypeException pe) {
             System.out.println(pe.getMessage());
             pe.printStackTrace();
