@@ -1,10 +1,14 @@
 language: java
+
 jdk:
   - openjdk10
 
+os:
+  - linux
+  - windows
+
 script:
   - mvn clean test jacoco:report coveralls:report
-  - mvn clean compile exec:java
 
 before_deploy:
   - mvn javadoc:javadoc
