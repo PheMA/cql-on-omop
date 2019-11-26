@@ -23,8 +23,16 @@ public class SpreadsheetReader {
     public ArrayList<PhemaValueSet> getSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
         ArrayList<PhemaValueSet> valueSets = new ArrayList<PhemaValueSet>();
 
+        InputStream in;
         try {
-            InputStream in = getClass().getResourceAsStream(patientFileLoc);
+            // First try to read file as resource
+            in = SpreadsheetReader.class.getResourceAsStream(patientFileLoc);
+
+            // If that doesn't work, try as file
+            if (in == null) {
+                in = new FileInputStream(patientFileLoc);
+            }
+
             Reader reader = new BufferedReader(new InputStreamReader(in));
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
             valueSets = readSheet(csvParser, sheetName);
