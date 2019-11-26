@@ -4,6 +4,7 @@ jdk:
 
 script:
   - mvn clean test jacoco:report coveralls:report
+  - mvn clean compile exec:java
 
 before_deploy:
   - mvn javadoc:javadoc
