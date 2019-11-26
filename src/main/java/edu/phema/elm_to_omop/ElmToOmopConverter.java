@@ -1,5 +1,9 @@
 package edu.phema.elm_to_omop;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.phema.elm_to_omop.api.CohortService;
+import edu.phema.elm_to_omop.api.ElmToOmopTranslator;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.helper.MyFormatter;
 import edu.phema.elm_to_omop.io.OmopWriter;
@@ -9,14 +13,14 @@ import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.hl7.elm.r1.ExpressionDef;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
+import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -30,6 +34,13 @@ import java.util.logging.Logger;
  */
 public class ElmToOmopConverter {
     private static Logger logger = Logger.getLogger(ElmToOmopConverter.class.getName());
+
+    public static void printCohortDefinition(CohortDefinitionDTO cohortDefinition) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        System.out.println(mapper.writeValueAsString(cohortDefinition));
+    }
 
     public static void main(String args[]) {
 
@@ -65,31 +76,29 @@ public class ElmToOmopConverter {
             List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
 
             // For each phenotype definition, get the OMOP JSON and write it out to file
-            for (ExpressionDef phenotypeExpression : phenotype.getPhenotypeExpressions()) {
-                String omopJson = omopWriter.writeOmopJson(phenotypeExpression, phenotype.getPhenotypeElm(), conceptSets, directory, config.getOutFileName());
-                System.out.println(omopJson);
+            ElmToOmopTranslator translator = new ElmToOmopTranslator(valuesetService);
+            CohortService cohortService = new CohortService(config, valuesetService);
+            List<CohortDefinitionDTO> cohortDefinitions = translator.translatePhenotype(phenotype, conceptSets);
+
+            for (CohortDefinitionDTO cohortDefinition : cohortDefinitions) {
+                printCohortDefinition(cohortDefinition);
 
                 // connect to the webAPI and post the cohort definition
-                String id = omopService.postCohortDefinition(omopJson);
-                System.out.println("cohort definition id = " + id);
+                CohortDefinitionDTO created = omopService.createCohortDefinition(cohortDefinition);
+                System.out.println("cohort definition id = " + created.id);
 
                 // use the webAPI to generate the cohort results
-                omopService.generateCohort(id);
+                omopService.queueCohortGeneration(created.id);
 
                 // keep pinging the repository until the definition has completed running
-                String status = "";
-                int count = 1;
-                while (!status.equalsIgnoreCase("COMPLETE") && count < 1000) {
-                    status = omopService.getExecutionStatus(id);
-                    TimeUnit.SECONDS.sleep(1);
-                    count++;
-                }
+                InclusionRuleReport report = cohortService.getCohortDefinitionReport(created.id);
 
                 // get the final count
-                String numPatients = omopService.getCohortCount(id);
-                System.out.println("numPatients = " + numPatients);
-
+                System.out.println("numPatients = " + report.summary.finalCount);
             }
+
+            // Write the resulting cohort definitions to out to the filesystem
+            omopWriter.writeOmopJson(cohortDefinitions, directory, config.getOutFileName());
         } catch (PhenotypeException pe) {
             System.out.println(pe.getMessage());
             pe.printStackTrace();

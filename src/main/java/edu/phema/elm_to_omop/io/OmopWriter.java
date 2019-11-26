@@ -38,6 +38,28 @@ public class OmopWriter {
     }
 
     /**
+     * Serializes a list Circe cohort definitions to a file
+     *
+     * @param cohortDefinitions The cohort definitions
+     * @param directory         The directory to write the file to
+     * @param filename          The filename
+     */
+    public void writeOmopJson(List<CohortDefinitionDTO> cohortDefinitions, String directory, String filename) {
+        String jsonFileName = directory + filename;
+        try (FileWriter jsonFile = new FileWriter(jsonFileName)) {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+            String json = mapper.writeValueAsString(cohortDefinitions);
+
+            logger.info(String.format("Preparing to write JSON to %s", jsonFileName));
+            jsonFile.write(json);
+        } catch (Exception e) {
+            logger.severe("Error writing cohort definition to file");
+        }
+    }
+
+    /**
      * Create the OMOP JSON from an ELM Library object, and associated populated list of OMOP ConceptSets
      *
      * @param expression  The expression that defines the phenotype overall
@@ -64,7 +86,7 @@ public class OmopWriter {
      * @return The Circe cohort definition
      * @throws Exception
      */
-    private CohortDefinitionDTO generateCohortDefinition(ExpressionDef expressionDef, Library elmContents, List<PhemaConceptSet> conceptSets) throws Exception {
+    public CohortDefinitionDTO generateCohortDefinition(ExpressionDef expressionDef, Library elmContents, List<PhemaConceptSet> conceptSets) throws Exception {
         CohortDefinitionDTO cohortDefinition = new CohortDefinitionDTO();
 
         cohortDefinition.name = expressionDef.getName();

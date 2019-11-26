@@ -191,11 +191,20 @@ public class CohortService {
      * Gets the report for a given cohort definition.
      *
      * @param id The cohort definition id
-     * @return The report
+     * @return The cohort report
      * @throws CohortServiceException
      */
     public InclusionRuleReport getCohortDefinitionReport(Integer id) throws CohortServiceException {
         try {
+            omopService.queueCohortGeneration(id);
+
+            RetryPolicy retryPolicy = new RetryPolicy();
+            // FIXME: Just taking the first info object can't be correct
+            retryPolicy.handleResultIf(info -> ((List<CohortGenerationInfo>) info).get(0).getStatus() != GenerationStatus.COMPLETE);
+            retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
+
+            Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(id));
+
             return omopService.getCohortDefinitionReport(id);
         } catch (Throwable t) {
             throw new CohortServiceException("Error getting cohort definition report", t);
@@ -208,23 +217,14 @@ public class CohortService {
      *
      * @param cqlString     The CQL string
      * @param statementName The CQL statement name that defines the cohort
-     * @return
+     * @return The cohort report
      * @throws CohortServiceException
      */
     public InclusionRuleReport getCohortDefinitionReport(String cqlString, String statementName) throws CohortServiceException {
         try {
             CohortDefinitionDTO cohortDefinition = createCohortDefinition(cqlString, statementName);
 
-            omopService.queueCohortGeneration(cohortDefinition.id);
-
-            RetryPolicy retryPolicy = new RetryPolicy();
-            // FIXME: Just taking the first info object can't be correct
-            retryPolicy.handleResultIf(info -> ((List<CohortGenerationInfo>) info).get(0).getStatus() != GenerationStatus.COMPLETE);
-            retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
-
-            Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(cohortDefinition.id));
-
-            return omopService.getCohortDefinitionReport(cohortDefinition.id);
+            return getCohortDefinitionReport(cohortDefinition.id);
         } catch (Throwable t) {
             throw new CohortServiceException("Error getting cohort definition report", t);
         }

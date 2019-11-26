@@ -15,15 +15,14 @@ import java.util.List;
  * Represents and instance of an OMOP server
  */
 public interface IOmopRepositoryService {
-    Concept getConceptMetadata(String id) throws OmopRepositoryException;
-
-    String postCohortDefinition(String cohortDefinitionJson) throws IOException, ParseException;
-
-    String generateCohort(String id) throws IOException, ParseException;
-
-    String getExecutionStatus(String id) throws IOException, ParseException;
-
-    String getCohortCount(String id) throws IOException, ParseException;
+    /**
+     * Gets concept metadata for a given concept ID
+     *
+     * @param id The concept ID
+     * @return The concept metadata
+     * @throws OmopRepositoryException
+     */
+    public Concept getConceptMetadata(String id) throws OmopRepositoryException;
 
     /**
      * Create a new cohort definition in the OMOP database. This only creates

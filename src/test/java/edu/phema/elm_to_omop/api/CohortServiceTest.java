@@ -253,6 +253,13 @@ public class CohortServiceTest {
     @Test
     void testCohortGenerationReport() {
         try {
+            // Stub the cohort definition generate create request
+            stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
             // Stub the cohort definition info request
             stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
                 .willReturn(aResponse()
