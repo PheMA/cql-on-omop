@@ -1,5 +1,8 @@
 package edu.phema.elm_to_omop;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,10 +25,21 @@ public class PhemaTestHelper {
         }
     }
 
+    public static String getResourcePath(String resource) {
+        return PhemaTestHelper.class.getClassLoader().getResource(resource).getPath();
+    }
+
     public static void assertStringsEqualIgnoreWhitespace(String lhs, String rhs) {
         String left = lhs.replaceAll("\\s+", "");
         String right = rhs.replaceAll("\\s+", "");
 
         assertEquals(left, right);
+    }
+
+    public static String getJson(Object o) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        return mapper.writeValueAsString(o);
     }
 }

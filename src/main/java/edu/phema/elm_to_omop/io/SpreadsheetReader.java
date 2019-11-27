@@ -1,19 +1,16 @@
 package edu.phema.elm_to_omop.io;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.logging.Logger;
-
+import edu.phema.elm_to_omop.helper.Terms;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaCode;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import edu.phema.elm_to_omop.helper.Terms;
-import edu.phema.elm_to_omop.model.phema.PhemaCode;
-import edu.phema.elm_to_omop.model.phema.PhemaValueSet;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,8 +22,16 @@ public class SpreadsheetReader {
     public ArrayList<PhemaValueSet> getSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
         ArrayList<PhemaValueSet> valueSets = new ArrayList<PhemaValueSet>();
 
+        InputStream in;
         try {
-            InputStream in = getClass().getResourceAsStream(patientFileLoc);
+            // First try to read file as resource
+            in = SpreadsheetReader.class.getResourceAsStream(patientFileLoc);
+
+            // If that doesn't work, try as file
+            if (in == null) {
+                in = new FileInputStream(patientFileLoc);
+            }
+
             Reader reader = new BufferedReader(new InputStreamReader(in));
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
             valueSets = readSheet(csvParser, sheetName);

@@ -3,19 +3,19 @@ package edu.phema.elm_to_omop.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.api.exception.CohortServiceException;
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import net.jodah.failsafe.Failsafe;
 import net.jodah.failsafe.RetryPolicy;
 import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
-import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class CohortService {
     private Logger logger;
-    private List<ConceptSet> conceptSets;
+    private List<PhemaConceptSet> conceptSets;
 
     private Config config;
     private IValuesetService valuesetService;
@@ -106,7 +106,7 @@ public class CohortService {
     public CohortDefinitionDTO createCohortDefinition(String cqlString, String statementName) throws CohortServiceException {
 
         try {
-            ElmToOmopTranslator translator = new ElmToOmopTranslator(config, valuesetService);
+            ElmToOmopTranslator translator = new ElmToOmopTranslator(valuesetService);
 
             // The following deserialization will hopefully eventually become unnecessary
             String cohortDefinitionJSon = translator.cqlToOmopDoubleEscaped(cqlString, statementName);
@@ -191,11 +191,20 @@ public class CohortService {
      * Gets the report for a given cohort definition.
      *
      * @param id The cohort definition id
-     * @return The report
+     * @return The cohort report
      * @throws CohortServiceException
      */
     public InclusionRuleReport getCohortDefinitionReport(Integer id) throws CohortServiceException {
         try {
+            omopService.queueCohortGeneration(id);
+
+            RetryPolicy retryPolicy = new RetryPolicy();
+            // FIXME: Just taking the first info object can't be correct
+            retryPolicy.handleResultIf(info -> ((List<CohortGenerationInfo>) info).get(0).getStatus() != GenerationStatus.COMPLETE);
+            retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
+
+            Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(id));
+
             return omopService.getCohortDefinitionReport(id);
         } catch (Throwable t) {
             throw new CohortServiceException("Error getting cohort definition report", t);
@@ -208,23 +217,14 @@ public class CohortService {
      *
      * @param cqlString     The CQL string
      * @param statementName The CQL statement name that defines the cohort
-     * @return
+     * @return The cohort report
      * @throws CohortServiceException
      */
     public InclusionRuleReport getCohortDefinitionReport(String cqlString, String statementName) throws CohortServiceException {
         try {
             CohortDefinitionDTO cohortDefinition = createCohortDefinition(cqlString, statementName);
 
-            omopService.queueCohortGeneration(cohortDefinition.id);
-
-            RetryPolicy retryPolicy = new RetryPolicy();
-            // FIXME: Just taking the first info object can't be correct
-            retryPolicy.handleResultIf(info -> ((List<CohortGenerationInfo>) info).get(0).getStatus() != GenerationStatus.COMPLETE);
-            retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
-
-            Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(cohortDefinition.id));
-
-            return omopService.getCohortDefinitionReport(cohortDefinition.id);
+            return getCohortDefinitionReport(cohortDefinition.id);
         } catch (Throwable t) {
             throw new CohortServiceException("Error getting cohort definition report", t);
         }

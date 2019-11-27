@@ -1,0 +1,29 @@
+{
+  "name": "LessOrEqual",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CodesetId": 0
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 1,
+          "Count": 2
+        }
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": []
+  }
+}

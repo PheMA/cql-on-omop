@@ -1,6 +1,10 @@
 language: java
+
 jdk:
   - openjdk10
+
+os:
+  - linux
 
 script:
   - mvn clean test jacoco:report coveralls:report

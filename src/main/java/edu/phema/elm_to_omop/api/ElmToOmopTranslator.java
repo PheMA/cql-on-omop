@@ -1,23 +1,30 @@
 package edu.phema.elm_to_omop.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
+import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.helper.Config;
-import edu.phema.elm_to_omop.io.OmopWriter;
-import edu.phema.elm_to_omop.io.ValueSetReader;
-import edu.phema.elm_to_omop.model.omop.ConceptSet;
+import edu.phema.elm_to_omop.phenotype.IPhenotype;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.json.simple.parser.ParseException;
+import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.webapi.service.CohortDefinitionService;
+import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -29,7 +36,7 @@ import java.util.logging.Logger;
  */
 public class ElmToOmopTranslator {
     private Logger logger;
-    private List<ConceptSet> conceptSets;
+    private List<PhemaConceptSet> conceptSets;
 
     /**
      * Specify configuration to use for the translation
@@ -58,13 +65,13 @@ public class ElmToOmopTranslator {
      * Specify configuration to use for the translation, as well as a custom valueset reader.
      * This is most to support mocking during testing
      *
-     * @param config @see edu.phema.elm_to_omop.helper.Config
+     * @param valuesetService The service to use to retrieve the concept sets
      * @throws InvalidFormatException
      * @throws ParseException
      * @throws IOException
      * @throws NullPointerException
      */
-    public ElmToOmopTranslator(Config config, IValuesetService valuesetService) throws OmopTranslatorException {
+    public ElmToOmopTranslator(IValuesetService valuesetService) throws OmopTranslatorException {
         logger = Logger.getLogger(this.getClass().getName());
 
         try {
@@ -75,30 +82,12 @@ public class ElmToOmopTranslator {
     }
 
     protected String cqlToOmopDoubleEscaped(String cqlString, String statementName) throws Exception {
-        if (statementName == null) {
-            throw new CqlStatementNotFoundException("No named CQL statement specified");
-        }
+        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = this.cqlToOmopCohortDefinition(cqlString, statementName);
 
-        CqlToElmTranslator translator = new CqlToElmTranslator();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-        Library library = translator.cqlToElm(cqlString);
-
-        List<ExpressionDef> expressions = library.getStatements().getDef();
-
-        Optional<ExpressionDef> expressionDef = expressions.stream()
-            .filter(x -> statementName.equals(x.getName()))
-            .findFirst();
-
-        if (!expressionDef.isPresent()) {
-            throw new CqlStatementNotFoundException("Could not find statement " + statementName);
-        }
-
-        OmopWriter omopWriter = new OmopWriter(logger);
-
-        // 😔 Strangely, the OHDSI WebAPI expects the expression to be posted as a stringified JSON
-        // object, but we want to show the actual JSON to the user, so the following lines take
-        // care of un-stringifying the expression JSON.
-        return omopWriter.generateOmopJson(expressionDef.get(), library, this.conceptSets);
+        return mapper.writeValueAsString(cohortDefinition);
     }
 
     /**
@@ -124,6 +113,65 @@ public class ElmToOmopTranslator {
         root.add("expression", expression);
 
         return root;
+    }
+
+    /**
+     * Builds a cohort definition from a name, description, and expression
+     *
+     * @param name             The name of the cohort definition
+     * @param description      The cohort definition description
+     * @param cohortExpression The cohort definition expression logic
+     * @return The Circe cohort definition
+     * @throws Exception
+     */
+    private CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
+        CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        cohortDefinition.name = name;
+        cohortDefinition.description = description;
+
+        // This manual serialization isn't required in later versions of the WebAPI, see:
+        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
+        cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
+
+        return cohortDefinition;
+    }
+
+    /**
+     * Create a Circe cohort definition from a CQL string and a statement name
+     *
+     * @param cqlString     The CQL string
+     * @param statementName The statement name to use as the phenotype
+     * @return The Circe cohort definition
+     * @throws Exception
+     */
+    public CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
+        if (statementName == null) {
+            throw new CqlStatementNotFoundException("No named CQL statement specified");
+        }
+
+        CqlToElmTranslator translator = new CqlToElmTranslator();
+
+        Library library = translator.cqlToElm(cqlString);
+
+        List<ExpressionDef> expressions = library.getStatements().getDef();
+
+        Optional<ExpressionDef> expressionDefOptional = expressions.stream()
+            .filter(x -> statementName.equals(x.getName()))
+            .findFirst();
+
+        if (!expressionDefOptional.isPresent()) {
+            throw new CqlStatementNotFoundException("Could not find statement " + statementName);
+        }
+
+        ExpressionDef expressionDef = expressionDefOptional.get();
+
+        CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(library, expressionDef, this.conceptSets);
+
+        return buildCohortDefinition(expressionDef.getName(), library.getLocalId(), cohortExpression);
     }
 
     /**
@@ -156,5 +204,29 @@ public class ElmToOmopTranslator {
         }
 
         return results.toString();
+    }
+
+    /**
+     * Translate a phenotype into list of cohort definitions
+     *
+     * @param phenotype   The phenotype
+     * @param conceptSets The PhEMA concept sets
+     * @return The Circe cohort definition
+     */
+    public List<CohortDefinitionDTO> translatePhenotype(IPhenotype phenotype, List<PhemaConceptSet> conceptSets) throws OmopTranslatorException {
+        List<CohortDefinitionDTO> cohortDefinitions = new ArrayList<>();
+
+        for (ExpressionDef expressionDef : phenotype.getPhenotypeExpressions()) {
+
+            try {
+                CohortExpression expression = PhemaElmToOmopTranslator.generateCohortExpression(phenotype.getPhenotypeElm(), expressionDef, conceptSets);
+
+                cohortDefinitions.add(buildCohortDefinition(expressionDef.getName(), phenotype.getPhenotypeElm().getLocalId(), expression));
+            } catch (Throwable t) {
+                throw new OmopTranslatorException("Error translating phenotype", t);
+            }
+        }
+
+        return cohortDefinitions;
     }
 }

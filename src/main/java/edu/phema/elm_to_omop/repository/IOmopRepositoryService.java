@@ -1,29 +1,26 @@
 package edu.phema.elm_to_omop.repository;
 
-import edu.phema.elm_to_omop.model.omop.Concept;
-import org.json.simple.parser.ParseException;
+import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.job.JobExecutionResource;
-import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
+import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
  * Represents and instance of an OMOP server
  */
 public interface IOmopRepositoryService {
-    Concept getConceptMetadata(String id) throws IOException, ParseException;
-
-    String postCohortDefinition(String cohortDefinitionJson) throws IOException, ParseException;
-
-    String generateCohort(String id) throws IOException, ParseException;
-
-    String getExecutionStatus(String id) throws IOException, ParseException;
-
-    String getCohortCount(String id) throws IOException, ParseException;
+    /**
+     * Gets concept metadata for a given concept ID
+     *
+     * @param id The concept ID
+     * @return The concept metadata
+     * @throws OmopRepositoryException
+     */
+    public Concept getConceptMetadata(String id) throws OmopRepositoryException;
 
     /**
      * Create a new cohort definition in the OMOP database. This only creates

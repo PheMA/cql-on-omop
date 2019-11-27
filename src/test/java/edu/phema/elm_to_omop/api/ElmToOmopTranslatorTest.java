@@ -6,8 +6,8 @@ import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
-import edu.phema.elm_to_omop.valueset.IValuesetService;
-import edu.phema.elm_to_omop.valueset.SpreadsheetValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +58,7 @@ public class ElmToOmopTranslatorTest {
         Config config = new Config(Config.getDefaultConfigPath());
 
         assertDoesNotThrow(() -> {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
         });
     }
 
@@ -67,7 +67,7 @@ public class ElmToOmopTranslatorTest {
         Config config = new Config(Config.getDefaultConfigPath());
 
         try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
 
             String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
 
@@ -86,7 +86,7 @@ public class ElmToOmopTranslatorTest {
         Config config = new Config(Config.getDefaultConfigPath());
 
         try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(config, valuesetService);
+            ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
 
             String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-multiple.cql");
 

@@ -1,36 +1,14 @@
 {
-  "name": "InInitialPopulation",
-  "description": "InInitialPopulation",
+  "name": "In Initial Population",
   "expressionType": "SIMPLE_EXPRESSION",
   "expression": {
-    "ConceptSets": [
-      {
-        "id": 0,
-        "name": "Diabetes",
-        "expression": {
-          "items": [
-            {
-              "concept": {
-                "CONCEPT_ID": 45917083,
-                "CONCEPT_NAME": "controlledtype1diabeteswithneuropathy",
-                "STANDARD_CONCEPT": "N",
-                "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-                "INVALID_REASON": "V",
-                "INVALID_REASON_CAPTION": "Valid",
-                "CONCEPT_CODE": "154239",
-                "DOMAIN_ID": "Condition",
-                "VOCABULARY_ID": "CIEL",
-                "CONCEPT_CLASS_ID": "Diagnosis"
-              }
-            }
-          ]
-        }
-      }
-    ],
+    "Title": "In Initial Population",
     "PrimaryCriteria": {
       "CriteriaList": [
         {
-          "VisitOccurrence": {}
+          "VisitOccurrence": {
+            "VisitTypeExclude": false
+          }
         }
       ],
       "ObservationWindow": {
@@ -41,6 +19,33 @@
         "Type": "First"
       }
     },
+    "ConceptSets": [
+      {
+        "id": 0,
+        "name": "Diabetes",
+        "expression": {
+          "items": [
+            {
+              "concept": {
+                "CONCEPT_ID": 45917083,
+                "CONCEPT_NAME": "controlled type 1 diabetes with neuropathy",
+                "STANDARD_CONCEPT": "N",
+                "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+                "INVALID_REASON": "V",
+                "INVALID_REASON_CAPTION": "Valid",
+                "CONCEPT_CODE": "154239",
+                "DOMAIN_ID": "Condition",
+                "VOCABULARY_ID": "CIEL",
+                "CONCEPT_CLASS_ID": "Diagnosis"
+              },
+              "isExcluded": false,
+              "includeDescendants": false,
+              "includeMapped": false
+            }
+          ]
+        }
+      }
+    ],
     "QualifiedLimit": {
       "Type": "First"
     },
@@ -49,14 +54,16 @@
     },
     "InclusionRules": [
       {
-        "name": "Diabetes",
+        "name": "In Initial Population",
+        "description": "In Initial Population",
         "expression": {
           "Type": "ALL",
           "CriteriaList": [
             {
               "Criteria": {
                 "ConditionOccurrence": {
-                  "CodesetId": 0
+                  "CodesetId": 0,
+                  "ConditionTypeExclude": false
                 }
               },
               "StartWindow": {
@@ -69,8 +76,10 @@
               },
               "Occurrence": {
                 "Type": 2,
-                "Count": 1
-              }
+                "Count": 1,
+                "IsDistinct": false
+              },
+              "RestrictVisit": false
             }
           ],
           "DemographicCriteriaList": [],
@@ -78,11 +87,9 @@
         }
       }
     ],
-    "CensoringCriteria": [],
     "CollapseSettings": {
       "CollapseType": "ERA",
       "EraPad": 0
-    },
-    "CensorWindow": {}
+    }
   }
 }

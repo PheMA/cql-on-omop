@@ -1,0 +1,7 @@
+[
+  {
+    "name": "CliTest",
+    "expressionType": "SIMPLE_EXPRESSION",
+    "expression": "{\"Title\":\"CliTest\",\"PrimaryCriteria\":{\"CriteriaList\":[{\"VisitOccurrence\":{\"VisitTypeExclude\":false}}],\"ObservationWindow\":{\"PriorDays\":0,\"PostDays\":0},\"PrimaryCriteriaLimit\":{\"Type\":\"First\"}},\"ConceptSets\":[{\"id\":0,\"name\":\"Diabetes\",\"expression\":{\"items\":[{\"concept\":{\"CONCEPT_ID\":45917083,\"CONCEPT_NAME\":\"controlled type 1 diabetes with neuropathy\",\"STANDARD_CONCEPT\":\"N\",\"STANDARD_CONCEPT_CAPTION\":\"Non-Standard\",\"INVALID_REASON\":\"V\",\"INVALID_REASON_CAPTION\":\"Valid\",\"CONCEPT_CODE\":\"154239\",\"DOMAIN_ID\":\"Condition\",\"VOCABULARY_ID\":\"CIEL\",\"CONCEPT_CLASS_ID\":\"Diagnosis\"},\"isExcluded\":false,\"includeDescendants\":false,\"includeMapped\":false}]}}],\"QualifiedLimit\":{\"Type\":\"First\"},\"ExpressionLimit\":{\"Type\":\"First\"},\"InclusionRules\":[{\"name\":\"CliTest\",\"description\":\"CliTest\",\"expression\":{\"Type\":\"ALL\",\"CriteriaList\":[{\"Criteria\":{\"ConditionOccurrence\":{\"CodesetId\":0,\"ConditionTypeExclude\":false}},\"StartWindow\":{\"Start\":{\"Coeff\":-1},\"End\":{\"Coeff\":1}},\"Occurrence\":{\"Type\":2,\"Count\":1,\"IsDistinct\":false},\"RestrictVisit\":false}],\"DemographicCriteriaList\":[],\"Groups\":[]}}],\"CollapseSettings\":{\"CollapseType\":\"ERA\",\"EraPad\":0}}"
+  }
+]
