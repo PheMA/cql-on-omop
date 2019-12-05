@@ -5,6 +5,8 @@ using QUICK
 valueset "Diabetes VS": '1.2.3.4.5'
 valueset "Hypertension VS": '2.3.4.5.6'
 valueset "Afib VS": '3.4.5.6.7'
+valueset "Statin VS": '4.5.6.7.8'
+valueset "Colonoscopy VS": '5.6.7.8.9'
 
 context Patient
 
@@ -116,3 +118,9 @@ define "Temporal relationship - flipped criteria":
 
 define "Temporal relationship static interval":
   [Condition: "Diabetes VS"] C where C.onsetDateTime during Interval[@2018-01-01, @2019-01-01)
+
+define "MedicationStatementTest":
+  exists(["MedicationStatement": "Statin VS"])
+
+define "ProcedureTest":
+  exists(["Procedure": "Colonoscopy VS"])
