@@ -1,0 +1,17 @@
+{
+  "name": "AgegtValue",
+  "description": "AgegtValue",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 77,
+          "Op": "gt"
+        }
+      }
+    ],
+    "Groups": []
+  }
+}

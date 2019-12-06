@@ -1,0 +1,17 @@
+{
+  "name": "ValueltAge",
+  "description": "ValueltAge",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 55,
+          "Op": "gt"
+        }
+      }
+    ],
+    "Groups": []
+  }
+}

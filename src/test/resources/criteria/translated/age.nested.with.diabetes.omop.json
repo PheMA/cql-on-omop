@@ -1,0 +1,67 @@
+{
+  "name": "Diabetes and Specific Ages",
+  "description": "Diabetes and Specific Ages",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CodesetId": 0,
+            "ConditionTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 1,
+          "IsDistinct": false
+        },
+        "RestrictVisit": false
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": [
+      {
+        "Type": "ANY",
+        "CriteriaList": [],
+        "DemographicCriteriaList": [
+          {
+            "Age": {
+              "Value": 18,
+              "Op": "lt"
+            }
+          }
+        ],
+        "Groups": [
+          {
+            "Type": "ALL",
+            "CriteriaList": [],
+            "DemographicCriteriaList": [
+              {
+                "Age": {
+                  "Value": 65,
+                  "Op": "gte"
+                }
+              },
+              {
+                "Age": {
+                  "Value": 87,
+                  "Op": "lt"
+                }
+              }
+            ],
+            "Groups": []
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop.translate;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
+import edu.phema.elm_to_omop.translate.map.NumericRangeOperatorMap;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.*;
@@ -46,14 +47,34 @@ public class PhemaElmToOmopTranslator {
         CriteriaGroup criteriaGroup;
         if (isNumericComparison(expression)) {
             criteriaGroup = generateCriteriaGroupForExpression(expression, library, conceptSets);
-        } else if (expression instanceof BinaryExpression) {
-            criteriaGroup = getCriteriaGroupForBinaryExpression((BinaryExpression) expression, library, conceptSets);
         } else if (expression instanceof Query || expression instanceof Exists) {
             criteriaGroup = generateCriteriaGroupForQueryOrExists(expression, library, conceptSets);
+        } else if (expression instanceof UnaryExpression) {
+            // For some reason, the CQL parser will generate Not(Equal) (two AST nodes) instead of a single NotEqual node
+            // So, we collapse Not(Equal) into a NotEqual expression below
+            Not not = null;
+            if (expression instanceof Not) {
+                not = (Not) expression;
+
+                NotEqual notEqual = null;
+                if (not.getOperand() instanceof Equal) {
+                    Equal equal = (Equal) not.getOperand();
+
+                    notEqual = new NotEqual();
+
+                    notEqual = notEqual.withOperand(equal.getOperand());
+                }
+
+                criteriaGroup = generateCriteriaGroupForExpression(notEqual, library, conceptSets);
+            } else {
+                throw new Exception(String.format("Negation not supported for operand: %s", not.getOperand().getClass().getName()));
+            }
+        } else if (expression instanceof BinaryExpression) {
+            criteriaGroup = getCriteriaGroupForBinaryExpression((BinaryExpression) expression, library, conceptSets);
         } else if (expression instanceof ExpressionRef) {
             criteriaGroup = generateCriteriaGroupForExpression(expression, library, conceptSets);
         } else {
-            throw new Exception("The translator is currently unable to generate OHDSI inclusion rules for this type of expression");
+            throw new Exception(String.format("The translator is currently unable to generate OHDSI inclusion rules for this type of expression: %s", expression.getClass().getName()));
         }
 
         // Default to ALL if not set
@@ -69,7 +90,7 @@ public class PhemaElmToOmopTranslator {
 
         cohortExpression.title = expressionDef.getName();
 
-        org.ohdsi.circe.cohortdefinition.ConceptSet[] circeConceptSets = new org.ohdsi.circe.cohortdefinition.ConceptSet[conceptSets.size()];
+        ConceptSet[] circeConceptSets = new ConceptSet[conceptSets.size()];
         cohortExpression.conceptSets = conceptSets.stream().map(PhemaConceptSet::getCirceConceptSet).collect(Collectors.toList()).toArray(circeConceptSets);
         cohortExpression.inclusionRules = inclusionRules;
 
@@ -200,7 +221,7 @@ public class PhemaElmToOmopTranslator {
 
         PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
-        org.ohdsi.circe.cohortdefinition.Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup);
+        Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();
 
@@ -208,8 +229,8 @@ public class PhemaElmToOmopTranslator {
         corelatedCriteria.criteria = criteria;
 
         // TODO - hardcoding for now
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = new org.ohdsi.circe.cohortdefinition.Occurrence();
-        occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
+        Occurrence occurrence = new Occurrence();
+        occurrence.type = Occurrence.AT_LEAST;
         occurrence.count = 1;
 
         corelatedCriteria.occurrence = occurrence;
@@ -289,25 +310,30 @@ public class PhemaElmToOmopTranslator {
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.type = getInclusionExpressionType(expression).toString();
 
-        List<Expression> operands = expression.getOperand();
-        for (Expression operandExp : operands) {
-            // If we have an expression reference, we really need to look ahead and figure out what it is.  That way
-            // we can properly translate the target expression.
+        for (Expression operand : expression.getOperand()) {
+            Expression operandExp = operand;
+
+            // Resolve expression reference
             if (operandExp instanceof ExpressionRef) {
                 operandExp = getExpressionReferenceTarget((ExpressionRef) operandExp, library);
             }
 
-            if (isBooleanExpression(operandExp)) {
-                criteriaGroup.groups = CirceUtil.addCriteriaGroup(criteriaGroup.groups,
-                    getCriteriaGroupForBinaryExpression((BinaryExpression) operandExp, library, conceptSets));
-                continue;
-            }
-            CorelatedCriteria corelatedCriteria = generateCorelatedCriteriaForExpression(operandExp, library, conceptSets);
-            if (corelatedCriteria == null) {
-                throw new PhemaNotImplementedException("The translator was unable to process this type of expression");
-            }
+            if (isDemographicExpression(operandExp)) {
+                DemographicCriteria demographicCriteria = generateDemographicCriteria(operandExp);
 
-            criteriaGroup.criteriaList = CirceUtil.addCorelatedCriteria(criteriaGroup.criteriaList, corelatedCriteria);
+                criteriaGroup.demographicCriteriaList = CirceUtil.addDemographicCriteria(criteriaGroup.demographicCriteriaList, demographicCriteria);
+            } else {
+                // Are we nesting even further?
+                if (isBooleanExpression(operandExp)) {
+                    criteriaGroup.groups = CirceUtil.addCriteriaGroup(criteriaGroup.groups, getCriteriaGroupForBinaryExpression((BinaryExpression) operandExp, library, conceptSets));
+                } else {
+                    CorelatedCriteria corelatedCriteria = generateCorelatedCriteriaForExpression(operandExp, library, conceptSets);
+                    if (corelatedCriteria == null) {
+                        throw new PhemaNotImplementedException("The translator was unable to process this type of expression");
+                    }
+                    criteriaGroup.criteriaList = CirceUtil.addCorelatedCriteria(criteriaGroup.criteriaList, corelatedCriteria);
+                }
+            }
         }
 
         return criteriaGroup;
@@ -321,7 +347,7 @@ public class PhemaElmToOmopTranslator {
      */
     private static Criteria generateCriteria(PhemaConceptSet conceptSet, CriteriaGroup corelatedCriteria) {
         // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR and OHDSI types
-        org.ohdsi.circe.cohortdefinition.ConditionOccurrence conditionOccurrence = new org.ohdsi.circe.cohortdefinition.ConditionOccurrence();
+        ConditionOccurrence conditionOccurrence = new ConditionOccurrence();
         conditionOccurrence.codesetId = conceptSet.id;
 
         if (corelatedCriteria != null) {
@@ -347,7 +373,7 @@ public class PhemaElmToOmopTranslator {
         }
 
         Retrieve retrieveExpression = null;
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
+        Occurrence occurrence = CirceUtil.defaultOccurrence();
 
         if (referencedExp instanceof Retrieve) {
             retrieveExpression = (Retrieve) referencedExp;
@@ -356,11 +382,11 @@ public class PhemaElmToOmopTranslator {
         } else if (referencedExp instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query) referencedExp);
         } else if (isNumericComparison(referencedExp)) {
-            occurrence = getNumericComparisonOccurrence2((BinaryExpression) referencedExp);
+            occurrence = getNumericComparisonOccurrence((BinaryExpression) referencedExp);
             retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) referencedExp);
         } else {
             // TODO - Need to handle more than simple query types
-            throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
+            throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
         }
 
         PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
@@ -372,6 +398,66 @@ public class PhemaElmToOmopTranslator {
         return corelatedCriteria;
     }
 
+    private static boolean isDemographicExpression(Expression expression) throws Exception {
+        // For now we only hand binary operators related to age
+        if (!(expression instanceof BinaryExpression)) {
+            return false;
+        }
+
+        Expression lhs = ((BinaryExpression) expression).getOperand().get(0);
+        Expression rhs = ((BinaryExpression) expression).getOperand().get(1);
+
+        // For now we only support simple boolean operators with CalculateAge compared to a literal: e.g. AgeInYears() >= 18
+        return ((lhs instanceof CalculateAge) && (rhs instanceof Literal)) || ((rhs instanceof CalculateAge) && (lhs instanceof Literal));
+    }
+
+    private static DemographicCriteria generateDemographicCriteria(Expression expression) throws Exception {
+        // We've already checked this in the method above
+        BinaryExpression binaryExpression = (BinaryExpression) expression;
+
+        boolean inverted = !(binaryExpression.getOperand().get(0) instanceof CalculateAge);
+
+        CalculateAge calculateAge = inverted
+            ? (CalculateAge) binaryExpression.getOperand().get(1)
+            : (CalculateAge) binaryExpression.getOperand().get(0);
+
+        Literal literal = inverted
+            ? (Literal) binaryExpression.getOperand().get(0)
+            : (Literal) binaryExpression.getOperand().get(1);
+
+        if (calculateAge.getPrecision() != DateTimePrecision.YEAR) {
+            throw new PhemaNotImplementedException("Age criteria are only support at the YEAR precision");
+        }
+
+        if (!literal.getValueType().getLocalPart().equals("Integer")) {
+            throw new PhemaNotImplementedException("Ages must be compared against integer values");
+        }
+
+        NumericRange numericRange = new NumericRange();
+
+        numericRange.value = Integer.parseInt(literal.getValue());
+
+        numericRange.op = inverted
+            ? NumericRangeOperatorMap.inverted.get(binaryExpression.getClass().getName())
+            : NumericRangeOperatorMap.natural.get(binaryExpression.getClass().getName());
+
+        DemographicCriteria demographicCriteria = new DemographicCriteria();
+
+        demographicCriteria.age = numericRange;
+
+        return demographicCriteria;
+    }
+
+    private static CriteriaGroup generateCriteriaGroupForDemographicExpression(Expression expression) throws Exception {
+        CriteriaGroup criteriaGroup = new CriteriaGroup();
+
+        DemographicCriteria demographicCriteria = generateDemographicCriteria(expression);
+
+        criteriaGroup.demographicCriteriaList = CirceUtil.addDemographicCriteria(criteriaGroup.demographicCriteriaList, demographicCriteria);
+
+        return criteriaGroup;
+    }
+
     private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
         Expression referencedExp = expression;
         if (expression instanceof ExpressionRef) {
@@ -379,16 +465,18 @@ public class PhemaElmToOmopTranslator {
         }
 
         Retrieve retrieveExpression = null;
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
+        Occurrence occurrence = CirceUtil.defaultOccurrence();
 
-        if (referencedExp instanceof Retrieve) {
+        if (isDemographicExpression(referencedExp)) {
+            return generateCriteriaGroupForDemographicExpression(referencedExp);
+        } else if (referencedExp instanceof Retrieve) {
             retrieveExpression = (Retrieve) referencedExp;
         } else if (referencedExp instanceof Exists) {
             return generateCriteriaGroupForExpression(((Exists) referencedExp).getOperand(), library, conceptSets);
         } else if (referencedExp instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query) referencedExp);
         } else if (isNumericComparison(referencedExp)) {
-            occurrence = getNumericComparisonOccurrence2((BinaryExpression) referencedExp);
+            occurrence = getNumericComparisonOccurrence((BinaryExpression) referencedExp);
             retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) referencedExp);
         } else {
             // TODO - Need to handle more than simple query types
@@ -455,7 +543,7 @@ public class PhemaElmToOmopTranslator {
      * @return
      * @throws Exception
      */
-    private static org.ohdsi.circe.cohortdefinition.Occurrence getNumericComparisonOccurrence2(BinaryExpression referencedExp) throws Exception {
+    private static Occurrence getNumericComparisonOccurrence(BinaryExpression referencedExp) throws Exception {
         List<Expression> operands = referencedExp.getOperand();
         // We are assuming there are 2 operands to build an occurrence.  If that's violated, we throw an exception.  At
         // that point we'll need to revisit what to do to expand our assumptions.
@@ -475,23 +563,23 @@ public class PhemaElmToOmopTranslator {
 
         int countValue = Integer.parseInt(countString);
 
-        org.ohdsi.circe.cohortdefinition.Occurrence occurrence = CirceUtil.defaultOccurrence();
+        Occurrence occurrence = CirceUtil.defaultOccurrence();
         occurrence.count = countValue;
 
         if (referencedExp instanceof Greater) {
-            occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
+            occurrence.type = Occurrence.AT_LEAST;
             // Because OHDSI uses "at least" (which is >=), we adjust the count value for equivalency
             occurrence.count++;
         } else if (referencedExp instanceof GreaterOrEqual) {
-            occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_LEAST;
+            occurrence.type = Occurrence.AT_LEAST;
         } else if (referencedExp instanceof Equal) {
-            occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.EXACTLY;
+            occurrence.type = Occurrence.EXACTLY;
         } else if (referencedExp instanceof Less) {
-            occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_MOST;
+            occurrence.type = Occurrence.AT_MOST;
             // Because OHDSI uses "at most" (which is <=), we adjust the count value for equivalency
             occurrence.count--;
         } else if (referencedExp instanceof LessOrEqual) {
-            occurrence.type = org.ohdsi.circe.cohortdefinition.Occurrence.AT_MOST;
+            occurrence.type = Occurrence.AT_MOST;
         }
         return occurrence;
     }

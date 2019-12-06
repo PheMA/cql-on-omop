@@ -63,6 +63,21 @@ public class CirceUtil {
     }
 
     /**
+     * Extends a primitive array of DemographicCriterias by adding a new DemographicCriteria.
+     * This is necessary because Circe uses primitive arrays instead of Java collections.
+     *
+     * @param demographicCriteriaGroupArray The primitive DemographicCriteria array to extend
+     * @param demographicCriteria           The new DemographicCriteria to add
+     * @return The extended DemographicCriteria array
+     */
+    public static DemographicCriteria[] addDemographicCriteria(DemographicCriteria[] demographicCriteriaGroupArray, DemographicCriteria demographicCriteria) {
+        DemographicCriteria[] newGroupArray = new DemographicCriteria[demographicCriteriaGroupArray.length + 1];
+        ArrayList<DemographicCriteria> groupArrayList = new ArrayList<>(Arrays.asList(demographicCriteriaGroupArray));
+        groupArrayList.add(demographicCriteria);
+        return groupArrayList.toArray(newGroupArray);
+    }
+
+    /**
      * InclusionRules are just a thin wrapper around CriteriaGroups, which contain the
      * expression logic. This method performs the wrapping.
      *

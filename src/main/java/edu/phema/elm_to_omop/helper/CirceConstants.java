@@ -21,4 +21,23 @@ public class CirceConstants {
             return typeString;
         }
     }
+
+    public enum NumericRangeOperator {
+        LESS_THAN("lt"),
+        LESS_THAN_OR_EQUAL("lte"),
+        EQUAL("eq"),
+        NOT_EQUAL("!eq"),
+        GREATER_THAN("gt"),
+        GREATER_THAN_OR_EQUAL("gte");
+
+        private final String opString;
+
+        NumericRangeOperator(final String opString) {
+            this.opString = opString;
+        }
+
+        public String toString() {
+            return opString;
+        }
+    }
 }
