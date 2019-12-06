@@ -1,0 +1,49 @@
+value_set_oid,value_set_name,code,description,code_system,code_system_version,code_system_oid,tty
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.21,Acute systolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.42,Chronic combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.43,Acute on chronic combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428,Heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.31,Acute diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.0,"Congestive heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.1,Left heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.41,Acute combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.9,"Heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.20,"Systolic heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.22,Chronic systolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.3,Diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.30,"Diastolic heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.40,"Combined systolic and diastolic heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.23,Acute on chronic systolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.4,Combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.2,Systolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.32,Chronic diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.33,Acute on chronic diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.8,Other heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.81,Right heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.810,"Right heart failure, unspecified",ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.811,Acute right heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.812,Chronic right heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.813,Acute on chronic right heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.814,Right heart failure due to left heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.82,Biventricular heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.83,High output heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.84,End stage heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.89,Other heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50,Heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.2,Systolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.3,Diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.4,Combined systolic (congestive) and diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.1,"Left ventricular failure, unspecified",ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.9,"Heart failure, unspecified",ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.32,Chronic diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.40,Unspecified combined systolic (congestive) and diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.21,Acute systolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.31,Acute diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.33,Acute on chronic diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.23,Acute on chronic systolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.43,Acute on chronic combined systolic (congestive) and diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.22,Chronic systolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.20,Unspecified systolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.42,Chronic combined systolic (congestive) and diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.41,Acute combined systolic (congestive) and diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,I50.30,Unspecified diastolic (congestive) heart failure,ICD10CM,ICD10CM FY2020 code descriptions,2.16.840.1.113883.6.90,FN
