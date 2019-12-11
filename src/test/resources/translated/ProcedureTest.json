@@ -1,13 +1,106 @@
-
+{
+  "Title": "ProcedureTest",
+  "PrimaryCriteria": {
+    "CriteriaList": [
+      {
+        "VisitOccurrence": {
+          "VisitTypeExclude": false
+        }
+      }
+    ],
+    "ObservationWindow": {
+      "PriorDays": 0,
+      "PostDays": 0
+    },
+    "PrimaryCriteriaLimit": {
+      "Type": "First"
+    }
+  },
+  "ConceptSets": [
+    {
+      "id": 0,
+      "name": "Diabetes",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "name": "Hypertension",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Atrial Fibrilation",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Statin VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Colonoscopy VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    }
+  ],
+  "QualifiedLimit": {
+    "Type": "First"
+  },
+  "ExpressionLimit": {
+    "Type": "First"
+  },
+  "InclusionRules": [
     {
       "name": "ProcedureTest",
+      "description": "ProcedureTest",
       "expression": {
         "Type": "ALL",
         "CriteriaList": [
           {
             "Criteria": {
               "ProcedureOccurrence": {
-                "CodesetId": 0
+                "CodesetId": 4,
+                "ProcedureTypeExclude": false
               }
             },
             "StartWindow": {
@@ -20,12 +113,19 @@
             },
             "Occurrence": {
               "Type": 2,
-              "Count": 1
-            }
+              "Count": 1,
+              "IsDistinct": false
+            },
+            "RestrictVisit": false
           }
         ],
         "DemographicCriteriaList": [],
         "Groups": []
       }
     }
-
+  ],
+  "CollapseSettings": {
+    "CollapseType": "ERA",
+    "EraPad": 0
+  }
+}

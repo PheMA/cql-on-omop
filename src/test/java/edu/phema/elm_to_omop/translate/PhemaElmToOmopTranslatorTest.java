@@ -306,28 +306,30 @@ class PhemaElmToOmopTranslatorTest {
 
     @Test
     void translateFhirToOhdsi_MedicationStatement() throws Exception {
-      ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "MedicationStatementTest");
-      CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
-      List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
-      assertNotNull(rules);
-      assertEquals(1, rules.size());
-      //TODO - This assertion fails until translation code is implemented
-//      PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-//        PhemaTestHelper.getFileAsString("translated/MedicationStatementTest.json"),
-//        PhemaTestHelper.getJson(rules.get(0)));
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "MedicationStatementTest");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+
+        List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
+        assertNotNull(rules);
+        assertEquals(1, rules.size());
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("translated/MedicationStatementTest.json"),
+            PhemaTestHelper.getJson(ce));
     }
 
     @Test
     void translateFhirToOhdsi_Procedure() throws Exception {
-      ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "ProcedureTest");
-      CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
-      List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
-      assertNotNull(rules);
-      assertEquals(1, rules.size());
-      //TODO - This assertion fails until translation code is implemented
-//      PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-//        PhemaTestHelper.getFileAsString("translated/ProcedureTest.json"),
-//        PhemaTestHelper.getJson(rules.get(0)));
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "ProcedureTest");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+
+        List<org.ohdsi.circe.cohortdefinition.InclusionRule> rules = ce.inclusionRules;
+        assertNotNull(rules);
+        assertEquals(1, rules.size());
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("translated/ProcedureTest.json"),
+            PhemaTestHelper.getJson(ce));
     }
 
     @Test
