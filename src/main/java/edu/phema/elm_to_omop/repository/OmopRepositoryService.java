@@ -11,6 +11,7 @@ import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlRequest;
 import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import org.ohdsi.webapi.sqlrender.SourceStatement;
 import org.ohdsi.webapi.sqlrender.TranslatedStatement;
+import org.ohdsi.webapi.vocabulary.ConceptSearch;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -42,7 +43,9 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public OmopRepositoryService(String domain, String source) {
         this.domain = domain;
         this.source = source;
+
         this.client = ClientBuilder.newClient();
+        client.register(ObjectMapperContextResolver.class);
     }
 
     /**
@@ -60,6 +63,35 @@ public class OmopRepositoryService implements IOmopRepositoryService {
                 .get(Concept.class);
         } catch (Throwable t) {
             throw new OmopRepositoryException("Error creating cohort", t);
+        }
+    }
+
+    /**
+     * Submits a query to the WebAPIs /vocabulary/search endpoint
+     * that specifies a query and a vocabularyId
+     *
+     * @param query        The code, or partial code from the vocabulary
+     * @param vocabularyId The ID of the vocabulary (e.g. "CPT4)
+     * @return
+     * @throws OmopRepositoryException
+     */
+    public List<Concept> vocabularySearch(String query, String vocabularyId) throws OmopRepositoryException {
+        try {
+            ConceptSearch conceptSearch = new ConceptSearch();
+
+            conceptSearch.query = query;
+            conceptSearch.vocabularyId = new String[]{vocabularyId};
+
+            Response response = client
+                .target(domain + "vocabulary/search")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(conceptSearch, MediaType.APPLICATION_JSON));
+
+            return response.readEntity(new GenericType<List<Concept>>() {
+            });
+
+        } catch (Exception e) {
+            throw new OmopRepositoryException("Error performing vocabulary search", e);
         }
     }
 
