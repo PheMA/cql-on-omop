@@ -1,0 +1,17 @@
+{
+  "name": "AgeeqValue",
+  "description": "AgeeqValue",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 33,
+          "Op": "eq"
+        }
+      }
+    ],
+    "Groups": []
+  }
+}

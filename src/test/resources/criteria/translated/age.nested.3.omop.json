@@ -1,0 +1,37 @@
+{
+  "name": "Nested Ages 3",
+  "description": "Nested Ages 3",
+  "expression": {
+    "Type": "ANY",
+    "CriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 18,
+          "Op": "lt"
+        }
+      }
+    ],
+    "Groups": [
+      {
+        "Type": "ALL",
+        "CriteriaList": [],
+        "DemographicCriteriaList": [
+          {
+            "Age": {
+              "Value": 65,
+              "Op": "gte"
+            }
+          },
+          {
+            "Age": {
+              "Value": 87,
+              "Op": "lt"
+            }
+          }
+        ],
+        "Groups": []
+      }
+    ]
+  }
+}

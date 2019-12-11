@@ -1,0 +1,17 @@
+{
+  "name": "AgeltValue",
+  "description": "AgeltValue",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 55,
+          "Op": "lt"
+        }
+      }
+    ],
+    "Groups": []
+  }
+}
