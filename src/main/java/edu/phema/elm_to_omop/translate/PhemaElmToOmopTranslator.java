@@ -349,32 +349,33 @@ public class PhemaElmToOmopTranslator {
         String elemName = "";
 
         ListType opType = null;
-        if(expression instanceof Exists) {
+        if (expression instanceof Exists) {
             Expression op = ((Exists) expression).getOperand();
             opType = (ListType) op.getResultType();
             ClassType elemType = (ClassType) opType.getElementType();
             elemName = elemType.getName();
-        }
-        else  {
+        } else {
             elemName = "Condition";
-;       }
+        }
 
-        // TODO - Need to map between QDM/FHIR and OHDSI types
-        if(elemName.contains("Condition")) {
-            criteria = new org.ohdsi.circe.cohortdefinition.ConditionOccurrence();
+        // Mappings implemented from: http://build.fhir.org/ig/HL7/cdmh/profiles.html#omop-to-fhir-mappings
+        if (elemName.contains("Condition")) {
+            criteria = new ConditionOccurrence();
             ((ConditionOccurrence) criteria).codesetId = conceptSet.id;
+        } else if (elemName.contains("Procedure")) {
+            criteria = new ProcedureOccurrence();
+            ((ProcedureOccurrence) criteria).codesetId = conceptSet.id;
+        } else if (elemName.contains("MedicationStatement")) {
+            criteria = new DrugExposure();
+            ((DrugExposure) criteria).codesetId = conceptSet.id;
+        }
 
-            if (corelatedCriteria != null) {
-                criteria.CorrelatedCriteria = corelatedCriteria;
-            }
+        // TODO: Implement the reset of the mappings and criteria beyond `codesetId`.
+
+        if (corelatedCriteria != null) {
+            criteria.CorrelatedCriteria = corelatedCriteria;
         }
-        else if(elemName.contains("Procedure")) {
-            criteria = new org.ohdsi.circe.cohortdefinition.ProcedureOccurrence();
-        }
-        else if(elemName.contains("MedicationStatement")) {
-            // no no no....
-            criteria = new org.ohdsi.circe.cohortdefinition.Observation();
-        }
+
         return criteria;
     }
 
