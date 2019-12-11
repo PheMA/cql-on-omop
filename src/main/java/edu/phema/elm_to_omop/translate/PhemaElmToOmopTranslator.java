@@ -4,6 +4,9 @@ import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.translate.map.NumericRangeOperatorMap;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
+import org.hl7.cql.model.ClassType;
+import org.hl7.cql.model.DataType;
+import org.hl7.cql.model.ListType;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.*;
 import org.ohdsi.circe.cohortdefinition.Window.Endpoint;
@@ -221,7 +224,7 @@ public class PhemaElmToOmopTranslator {
 
         PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
 
-        Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup);
+        Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup, expression);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();
 
@@ -229,12 +232,7 @@ public class PhemaElmToOmopTranslator {
         corelatedCriteria.criteria = criteria;
 
         // TODO - hardcoding for now
-        Occurrence occurrence = new Occurrence();
-        occurrence.type = Occurrence.AT_LEAST;
-        occurrence.count = 1;
-
-        corelatedCriteria.occurrence = occurrence;
-
+        corelatedCriteria.occurrence = CirceUtil.defaultOccurrence();
         criteriaGroup.criteriaList = new CorelatedCriteria[]{corelatedCriteria};
 
         return criteriaGroup;
@@ -345,16 +343,39 @@ public class PhemaElmToOmopTranslator {
      * @param conceptSet
      * @return
      */
-    private static Criteria generateCriteria(PhemaConceptSet conceptSet, CriteriaGroup corelatedCriteria) {
-        // TODO - Can't assume it's an occurrence.  Need to map between QDM/FHIR and OHDSI types
-        ConditionOccurrence conditionOccurrence = new ConditionOccurrence();
-        conditionOccurrence.codesetId = conceptSet.id;
+    private static Criteria generateCriteria(PhemaConceptSet conceptSet, CriteriaGroup corelatedCriteria, Expression expression) {
 
-        if (corelatedCriteria != null) {
-            conditionOccurrence.CorrelatedCriteria = corelatedCriteria;
+        Criteria criteria = null;
+        String elemName = "";
+
+        ListType opType = null;
+        if(expression instanceof Exists) {
+            Expression op = ((Exists) expression).getOperand();
+            opType = (ListType) op.getResultType();
+            ClassType elemType = (ClassType) opType.getElementType();
+            elemName = elemType.getName();
         }
+        else  {
+            elemName = "Condition";
+;       }
 
-        return conditionOccurrence;
+        // TODO - Need to map between QDM/FHIR and OHDSI types
+        if(elemName.contains("Condition")) {
+            criteria = new org.ohdsi.circe.cohortdefinition.ConditionOccurrence();
+            ((ConditionOccurrence) criteria).codesetId = conceptSet.id;
+
+            if (corelatedCriteria != null) {
+                criteria.CorrelatedCriteria = corelatedCriteria;
+            }
+        }
+        else if(elemName.contains("Procedure")) {
+            criteria = new org.ohdsi.circe.cohortdefinition.ProcedureOccurrence();
+        }
+        else if(elemName.contains("MedicationStatement")) {
+            // no no no....
+            criteria = new org.ohdsi.circe.cohortdefinition.Observation();
+        }
+        return criteria;
     }
 
     /**
@@ -375,6 +396,8 @@ public class PhemaElmToOmopTranslator {
         Retrieve retrieveExpression = null;
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
+        DataType dt = referencedExp.getResultType();
+
         if (referencedExp instanceof Retrieve) {
             retrieveExpression = (Retrieve) referencedExp;
         } else if (referencedExp instanceof Exists) {
@@ -393,7 +416,7 @@ public class PhemaElmToOmopTranslator {
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
-        corelatedCriteria.criteria = generateCriteria(matchedSet, null);
+        corelatedCriteria.criteria = generateCriteria(matchedSet, null, expression);
 
         return corelatedCriteria;
     }
@@ -487,7 +510,7 @@ public class PhemaElmToOmopTranslator {
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
-        corelatedCriteria.criteria = generateCriteria(matchedSet, null);
+        corelatedCriteria.criteria = generateCriteria(matchedSet, null, expression);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.criteriaList = new CorelatedCriteria[]{corelatedCriteria};
