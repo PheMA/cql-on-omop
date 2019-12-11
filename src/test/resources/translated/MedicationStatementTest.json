@@ -1,32 +1,11 @@
 {
-  "ConceptSets": [
-    {
-      "id": 0,
-      "name": "Statin",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Dose Group",
-              "CONCEPT_CODE": "1158285",
-              "CONCEPT_ID": 36223225,
-              "CONCEPT_NAME": "atorvastatin Pill",
-              "DOMAIN_ID": "Drug",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "C",
-              "STANDARD_CONCEPT_CAPTION": "Classification",
-              "VOCABULARY_ID": "RxNorm"
-            }
-          }
-        ]
-      }
-    }
-  ],
+  "Title": "MedicationStatementTest",
   "PrimaryCriteria": {
     "CriteriaList": [
       {
-        "VisitOccurrence": {}
+        "VisitOccurrence": {
+          "VisitTypeExclude": false
+        }
       }
     ],
     "ObservationWindow": {
@@ -37,6 +16,73 @@
       "Type": "First"
     }
   },
+  "ConceptSets": [
+    {
+      "id": 0,
+      "name": "Diabetes",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "name": "Hypertension",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Atrial Fibrilation",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Statin VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Colonoscopy VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    }
+  ],
   "QualifiedLimit": {
     "Type": "First"
   },
@@ -46,13 +92,15 @@
   "InclusionRules": [
     {
       "name": "MedicationStatementTest",
+      "description": "MedicationStatementTest",
       "expression": {
         "Type": "ALL",
         "CriteriaList": [
           {
             "Criteria": {
               "DrugExposure": {
-                "CodesetId": 0
+                "CodesetId": 3,
+                "DrugTypeExclude": false
               }
             },
             "StartWindow": {
@@ -65,8 +113,10 @@
             },
             "Occurrence": {
               "Type": 2,
-              "Count": 1
-            }
+              "Count": 1,
+              "IsDistinct": false
+            },
+            "RestrictVisit": false
           }
         ],
         "DemographicCriteriaList": [],
@@ -74,10 +124,8 @@
       }
     }
   ],
-  "CensoringCriteria": [],
   "CollapseSettings": {
     "CollapseType": "ERA",
     "EraPad": 0
-  },
-  "CensorWindow": {}
+  }
 }

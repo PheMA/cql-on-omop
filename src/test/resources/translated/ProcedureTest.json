@@ -1,32 +1,11 @@
 {
-  "ConceptSets": [
-    {
-      "id": 0,
-      "name": "Colonoscopy",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "4-dig billing code",
-              "CONCEPT_CODE": "45.23",
-              "CONCEPT_ID": 2002703,
-              "CONCEPT_NAME": "Colonoscopy",
-              "DOMAIN_ID": "Procedure",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "ICD9Proc"
-            }
-          }
-        ]
-      }
-    }
-  ],
+  "Title": "ProcedureTest",
   "PrimaryCriteria": {
     "CriteriaList": [
       {
-        "VisitOccurrence": {}
+        "VisitOccurrence": {
+          "VisitTypeExclude": false
+        }
       }
     ],
     "ObservationWindow": {
@@ -37,6 +16,73 @@
       "Type": "First"
     }
   },
+  "ConceptSets": [
+    {
+      "id": 0,
+      "name": "Diabetes",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "name": "Hypertension",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Atrial Fibrilation",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Statin VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Colonoscopy VS",
+      "expression": {
+        "items": [
+          {
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    }
+  ],
   "QualifiedLimit": {
     "Type": "First"
   },
@@ -46,13 +92,15 @@
   "InclusionRules": [
     {
       "name": "ProcedureTest",
+      "description": "ProcedureTest",
       "expression": {
         "Type": "ALL",
         "CriteriaList": [
           {
             "Criteria": {
               "ProcedureOccurrence": {
-                "CodesetId": 0
+                "CodesetId": 4,
+                "ProcedureTypeExclude": false
               }
             },
             "StartWindow": {
@@ -65,8 +113,10 @@
             },
             "Occurrence": {
               "Type": 2,
-              "Count": 1
-            }
+              "Count": 1,
+              "IsDistinct": false
+            },
+            "RestrictVisit": false
           }
         ],
         "DemographicCriteriaList": [],
@@ -74,10 +124,8 @@
       }
     }
   ],
-  "CensoringCriteria": [],
   "CollapseSettings": {
     "CollapseType": "ERA",
     "EraPad": 0
-  },
-  "CensorWindow": {}
+  }
 }
