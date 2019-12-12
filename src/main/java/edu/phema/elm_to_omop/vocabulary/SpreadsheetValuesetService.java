@@ -3,6 +3,7 @@ package edu.phema.elm_to_omop.vocabulary;
 import edu.phema.elm_to_omop.io.ValueSetReader;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
 
 import java.util.List;
 
@@ -37,10 +38,13 @@ public class SpreadsheetValuesetService implements IValuesetService {
     }
 
     @Override
-    public List<PhemaConceptSet> getConceptSets() throws Exception {
+    public List<PhemaConceptSet> getConceptSets() throws ValuesetServiceException {
         ValueSetReader valueSetReader = new ValueSetReader(this.omopService);
-
-        return valueSetReader.getConceptSets(valuesetSpreadsheetPath, valuesetSpreadsheetTab);
+        try {
+            return valueSetReader.getConceptSets(valuesetSpreadsheetPath, valuesetSpreadsheetTab);
+        } catch (Exception e) {
+            throw new ValuesetServiceException("Error reading concept sets from spreadsheet", e);
+        }
     }
 
     public IOmopRepositoryService getOmopService() {
@@ -65,5 +69,14 @@ public class SpreadsheetValuesetService implements IValuesetService {
 
     public void setValuesetSpreadsheetTab(String valuesetSpreadsheetTab) {
         this.valuesetSpreadsheetTab = valuesetSpreadsheetTab;
+    }
+
+    @Override
+    public PhemaConceptSetList getConceptSetList() throws ValuesetServiceException {
+        PhemaConceptSetList conceptSetList = new PhemaConceptSetList();
+
+        conceptSetList.setConceptSets(getConceptSets());
+
+        return conceptSetList;
     }
 }

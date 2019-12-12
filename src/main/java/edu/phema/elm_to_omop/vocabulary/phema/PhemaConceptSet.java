@@ -1,5 +1,6 @@
 package edu.phema.elm_to_omop.vocabulary.phema;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.ohdsi.circe.cohortdefinition.ConceptSet;
 import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 
@@ -12,6 +13,7 @@ import org.ohdsi.circe.vocabulary.ConceptSetExpression;
  * name, which would obviate the need for this
  * class.
  */
+@JsonIgnoreProperties(value = {"circeConceptSet"})
 public class PhemaConceptSet extends ConceptSet {
 
     /**
