@@ -23,6 +23,17 @@ public interface IOmopRepositoryService {
     public Concept getConceptMetadata(String id) throws OmopRepositoryException;
 
     /**
+     * Submits a query to the WebAPIs /vocabulary/search endpoint
+     * that specifies a query and a vocabularyId
+     *
+     * @param query        The code, or partial code from the vocabulary
+     * @param vocabularyId The ID of the vocabulary (e.g. "CPT4)
+     * @return
+     * @throws OmopRepositoryException
+     */
+    public List<Concept> vocabularySearch(String query, String vocabularyId) throws OmopRepositoryException;
+
+    /**
      * Create a new cohort definition in the OMOP database. This only creates
      * the definition, and does not actually generate the cohort.
      *
