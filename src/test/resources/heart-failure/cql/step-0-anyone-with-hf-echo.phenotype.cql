@@ -7,4 +7,4 @@ valueset "Echo VS": '2.16.840.1.999999.1'
 context Patient
 
 define "Case":
-	exists(["Procedure": "Echo VS"])
+    exists(["Procedure": "Echo VS"])

@@ -5,4 +5,4 @@ using QUICK
 context Patient
 
 define "Case":
-	AgeInYears() >= 18
+    AgeInYears() >= 18

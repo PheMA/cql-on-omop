@@ -10,27 +10,27 @@ valueset "Inpatient Encounter VS": '2.16.840.1.999999.3'
 valueset "Outpatient Encounter VS": '2.16.840.1.999999.4'
 
 define "Adult":
-	AgeInYears() >= 18
+    AgeInYears() >= 18
 
 define "Has Echo":
-	exists(["Procedure": "Echo VS"])
+    exists(["Procedure": "Echo VS"])
 
 define "Has HF Dx":
-	exists(["Condition": "HF Dx VS"])
+    exists(["Condition": "HF Dx VS"])
 
 define "Inpatient Encounters With HF Dx":
-[Encounter: "Inpatient Encounter VS"] E
-  with [Condition: "HF Dx VS"] C
-    such that E.id = C.encounter
+    [Encounter: "Inpatient Encounter VS"] E
+        with [Condition: "HF Dx VS"] C
+            such that E.id = C.encounter
 
 define "Outpatient Encounters With HF Dx":
-[Encounter: "Outpatient Encounter VS"] E
-  with [Condition: "HF Dx VS"] C
-    such that E.id = C.encounter
+    [Encounter: "Outpatient Encounter VS"] E
+        with [Condition: "HF Dx VS"] C
+            such that E.id = C.encounter
 
 define "Encounter Criteria":
-	exists("Inpatient Encounters With HF Dx") or
-	Count("Outpatient Encounters With HF Dx") >= 2
+    exists("Inpatient Encounters With HF Dx") or
+    Count("Outpatient Encounters With HF Dx") >= 2
 
 define "Case":
-	"Adult" and "Has Echo" and "Encounter Criteria"
+    "Adult" and "Has Echo" and "Encounter Criteria"
