@@ -2,10 +2,10 @@ library "PhEMA Heart Failure" version '0.2.0'
 
 using QUICK
 
-context Patient
-
 valueset "Echo VS": '2.16.840.1.999999.1'
-valueset "HF Dx VS": '2.16.840.1.999999.2'
+valueset "HF Dx VS": '2.16.840.1.113883.3.526.3.376'
+
+context Patient
 
 define "Adult":
     AgeInYears() >= 18

@@ -6,6 +6,7 @@ import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.*;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
 import org.cqframework.cql.cql2elm.CqlTranslator;
 import org.cqframework.cql.cql2elm.CqlTranslatorException;
 import org.cqframework.cql.cql2elm.LibraryManager;
@@ -112,6 +113,28 @@ public class HeartFailurePhenotypeTest {
         assertNotNull(ce);
         PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
             PhemaTestHelper.getFileAsString("heart-failure/translated/step-2-adults-with-hf-echo.omop.json"),
+            PhemaTestHelper.getJson(ce));
+    }
+
+    @Test
+    public void StepThreeTest() throws Exception {
+        // Set up the ELM tree
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-3-adults-with-echo-and-dx.phenotype.cql"), modelManager, libraryManager);
+        library = translator.toELM();
+
+        // Use the JSON file valueset service
+        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/2.16.840.1.999999.1-and-2.16.840.1.113883.3.526.3.376.valueset.omop.json");
+        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
+        conceptSets = valuesetService.getConceptSets();
+
+        // Generate the cohort expression
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+
+        // Assert against expected
+        assertNotNull(ce);
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("heart-failure/translated/step-3-adults-with-echo-and-dx.omop.json"),
             PhemaTestHelper.getJson(ce));
     }
 }
