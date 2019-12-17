@@ -36,34 +36,24 @@ public class HeartFailurePhenotypeTest {
     private IValuesetService valuesetService;
 
     private ModelManager modelManager;
+    private LibraryManager libraryManager;
 
     @BeforeEach
     public void setup() throws Exception {
 
-        HeartFailurePhenotypeTestHelper.createMockOmopServer(47474);
-
-/*
-        OMOP_BASE_URL=http://52.162.236.199/WebAPI/
-        SOURCE=OHDSI-CDMV5
-            */
+//        HeartFailurePhenotypeTestHelper.createMockOmopServer(47474);
 
         omopRepository = new OmopRepositoryService("http://52.162.236.199/WebAPI/", "OHDSI-CDMV5");
 
 
-//        String vsPath = "/heart-failure/valuesets/heart-failure-diagnosis-icd-codes.valueset.csv";
-//        valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
-
         modelManager = new ModelManager();
-//        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-2-adults-with-hf-echo.phenotype.cql"), modelManager, new LibraryManager(modelManager));
-//        library = translator.toELM();
-
-//        conceptSets = valuesetService.getConceptSets();
+        libraryManager = new LibraryManager(modelManager);
     }
 
     @Test
     public void StepZeroTest() throws Exception {
         // Set up the ELM tree
-        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-0-anyone-with-hf-echo.phenotype.cql"), modelManager, new LibraryManager(modelManager));
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-0-anyone-with-hf-echo.phenotype.cql"), modelManager, libraryManager);
         library = translator.toELM();
 
         // Use the JSON file valueset service
@@ -85,10 +75,10 @@ public class HeartFailurePhenotypeTest {
     @Test
     public void StepOneTest() throws Exception {
         // Set up the ELM tree
-        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-1-adults-only.phenotype.cql"), modelManager, new LibraryManager(modelManager));
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-1-adults-only.phenotype.cql"), modelManager, libraryManager);
         library = translator.toELM();
 
-        // Use the JSON file valueset service
+        // Use the empty valueset service
         valuesetService = new EmptyValuesetService();
         conceptSets = valuesetService.getConceptSets();
 
@@ -100,6 +90,28 @@ public class HeartFailurePhenotypeTest {
         assertNotNull(ce);
         PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
             PhemaTestHelper.getFileAsString("heart-failure/translated/step-1-adults-only.omop.json"),
+            PhemaTestHelper.getJson(ce));
+    }
+
+    @Test
+    public void StepTwoTest() throws Exception {
+        // Set up the ELM tree
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-2-adults-with-hf-echo.phenotype.cql"), modelManager, libraryManager);
+        library = translator.toELM();
+
+        // Use the JSON file valueset service
+        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/2.16.840.1.999999.1.heart-failure-echocardiography-cpt-codes.valueset.omop.json");
+        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
+        conceptSets = valuesetService.getConceptSets();
+
+        // Generate the cohort expression
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+
+        // Assert against expected
+        assertNotNull(ce);
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("heart-failure/translated/step-2-adults-with-hf-echo.omop.json"),
             PhemaTestHelper.getJson(ce));
     }
 }
