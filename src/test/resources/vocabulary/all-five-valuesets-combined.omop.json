@@ -39,16 +39,16 @@
         },
         {
           "concept": {
-            "CONCEPT_ID": 44823119,
-            "CONCEPT_NAME": "Acute on chronic combined systolic and diastolic heart failure",
+            "CONCEPT_ID": 45567181,
+            "CONCEPT_NAME": "Acute on chronic combined systolic (congestive) and diastolic (congestive) heart failure",
             "STANDARD_CONCEPT": "N",
             "STANDARD_CONCEPT_CAPTION": "Non-Standard",
             "INVALID_REASON": "V",
             "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.43",
+            "CONCEPT_CODE": "I50.43",
             "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "5-dig billing code"
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
           },
           "isExcluded": false,
           "includeDescendants": false,
@@ -56,16 +56,16 @@
         },
         {
           "concept": {
-            "CONCEPT_ID": 44824250,
-            "CONCEPT_NAME": "Heart failure",
+            "CONCEPT_ID": 45576878,
+            "CONCEPT_NAME": "Chronic systolic (congestive) heart failure",
             "STANDARD_CONCEPT": "N",
             "STANDARD_CONCEPT_CAPTION": "Non-Standard",
             "INVALID_REASON": "V",
             "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428",
+            "CONCEPT_CODE": "I50.22",
             "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "3-dig nonbill code"
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
           },
           "isExcluded": false,
           "includeDescendants": false,
@@ -73,16 +73,16 @@
         },
         {
           "concept": {
-            "CONCEPT_ID": 44824251,
-            "CONCEPT_NAME": "Acute diastolic heart failure",
+            "CONCEPT_ID": 45586587,
+            "CONCEPT_NAME": "Unspecified systolic (congestive) heart failure",
             "STANDARD_CONCEPT": "N",
             "STANDARD_CONCEPT_CAPTION": "Non-Standard",
             "INVALID_REASON": "V",
             "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.31",
+            "CONCEPT_CODE": "I50.20",
             "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "5-dig billing code"
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
           },
           "isExcluded": false,
           "includeDescendants": false,
@@ -90,16 +90,16 @@
         },
         {
           "concept": {
-            "CONCEPT_ID": 44826642,
-            "CONCEPT_NAME": "Congestive heart failure, unspecified",
+            "CONCEPT_ID": 45586588,
+            "CONCEPT_NAME": "Chronic combined systolic (congestive) and diastolic (congestive) heart failure",
             "STANDARD_CONCEPT": "N",
             "STANDARD_CONCEPT_CAPTION": "Non-Standard",
             "INVALID_REASON": "V",
             "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.0",
+            "CONCEPT_CODE": "I50.42",
             "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "4-dig billing code"
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
           },
           "isExcluded": false,
           "includeDescendants": false,
@@ -107,16 +107,16 @@
         },
         {
           "concept": {
-            "CONCEPT_ID": 44827794,
-            "CONCEPT_NAME": "Left heart failure",
+            "CONCEPT_ID": 45591469,
+            "CONCEPT_NAME": "Acute combined systolic (congestive) and diastolic (congestive) heart failure",
             "STANDARD_CONCEPT": "N",
             "STANDARD_CONCEPT_CAPTION": "Non-Standard",
             "INVALID_REASON": "V",
             "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.1",
+            "CONCEPT_CODE": "I50.41",
             "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "4-dig billing code"
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
           },
           "isExcluded": false,
           "includeDescendants": false,
@@ -307,6 +307,74 @@
           "isExcluded": false,
           "includeDescendants": false,
           "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44824250,
+            "CONCEPT_NAME": "Heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "3-dig nonbill code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44824251,
+            "CONCEPT_NAME": "Acute diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.31",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44826642,
+            "CONCEPT_NAME": "Congestive heart failure, unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.0",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44827794,
+            "CONCEPT_NAME": "Left heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.1",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
         }
       ]
     },
@@ -314,6 +382,65 @@
   },
   {
     "id": 3,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 44820869,
+            "CONCEPT_NAME": "Acute systolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.21",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44820870,
+            "CONCEPT_NAME": "Chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.42",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44823119,
+            "CONCEPT_NAME": "Acute on chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.43",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.999999.2"
+  },
+  {
+    "id": 4,
     "expression": {
       "items": [
         {
@@ -387,132 +514,5 @@
       ]
     },
     "oid": "2.16.840.1.999999.3"
-  },
-  {
-    "id": 4,
-    "expression": {
-      "items": [
-        {
-          "concept": {
-            "CONCEPT_ID": 44820869,
-            "CONCEPT_NAME": "Acute systolic heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.21",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "5-dig billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 44820870,
-            "CONCEPT_NAME": "Chronic combined systolic and diastolic heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.42",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "5-dig billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 45567181,
-            "CONCEPT_NAME": "Acute on chronic combined systolic (congestive) and diastolic (congestive) heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "I50.43",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD10CM",
-            "CONCEPT_CLASS_ID": "5-char billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 45576878,
-            "CONCEPT_NAME": "Chronic systolic (congestive) heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "I50.22",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD10CM",
-            "CONCEPT_CLASS_ID": "5-char billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 45586587,
-            "CONCEPT_NAME": "Unspecified systolic (congestive) heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "I50.20",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD10CM",
-            "CONCEPT_CLASS_ID": "5-char billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 45586588,
-            "CONCEPT_NAME": "Chronic combined systolic (congestive) and diastolic (congestive) heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "I50.42",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD10CM",
-            "CONCEPT_CLASS_ID": "5-char billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        },
-        {
-          "concept": {
-            "CONCEPT_ID": 45591469,
-            "CONCEPT_NAME": "Acute combined systolic (congestive) and diastolic (congestive) heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "I50.41",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD10CM",
-            "CONCEPT_CLASS_ID": "5-char billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        }
-      ]
-    },
-    "oid": "2.16.840.1.999999.2"
   }
 ]

@@ -14,6 +14,7 @@ import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,7 +73,7 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
         if (csvFiles == null) {
             return new ArrayList<>();
         } else {
-            return Arrays.stream(csvFiles).map(File::getPath).collect(Collectors.toList());
+            return Arrays.stream(csvFiles).map(File::getPath).sorted().collect(Collectors.toList());
         }
     }
 
