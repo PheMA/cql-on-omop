@@ -1,0 +1,333 @@
+[
+  {
+    "id": 0,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 2313867,
+            "CONCEPT_NAME": "Transthoracic echocardiography for congenital cardiac anomalies; complete",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93303",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313868,
+            "CONCEPT_NAME": "Transthoracic echocardiography for congenital cardiac anomalies; follow-up or limited study",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93304",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313869,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, complete, with spectral Doppler echocardiography, and with color flow Doppler echocardiography",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93306",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313870,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, complete, without spectral or color Doppler echocardiography",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93307",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313871,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, follow-up or limited study",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93308",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313872,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); including probe placement, image acquisition, interpretation and report",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93312",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313873,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); placement of transesophageal probe only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93313",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313874,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); image acquisition, interpretation and report only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93314",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313875,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; including probe placement, image acquisition, interpretation and report",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93315",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313876,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; placement of transesophageal probe only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93316",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313877,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; image acquisition, interpretation and report only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93317",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313878,
+            "CONCEPT_NAME": "Echocardiography, transesophageal (TEE) for monitoring purposes, including probe placement, real time 2-dimensional image acquisition and interpretation leading to ongoing (continuous) assessment of (dynamically changing) cardiac pumping function and to t",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93318",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313879,
+            "CONCEPT_NAME": "Doppler echocardiography, pulsed wave and/or continuous wave with spectral display (List separately in addition to codes for echocardiographic imaging); complete",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93320",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313880,
+            "CONCEPT_NAME": "Doppler echocardiography, pulsed wave and/or continuous wave with spectral display (List separately in addition to codes for echocardiographic imaging); follow-up or limited study (List separately in addition to codes for echocardiographic imaging)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93321",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313881,
+            "CONCEPT_NAME": "Doppler echocardiography color flow velocity mapping (List separately in addition to codes for echocardiography)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93325",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313882,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, during rest and cardiovascular stress test using treadmill, bicycle exercise and/or pharmacologically induced stress, with interpretation ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93350",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313883,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, during rest and cardiovascular stress test using treadmill, bicycle exercise and/or pharmacologically induced stress, with interpretation ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93351",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313884,
+            "CONCEPT_NAME": "Use of echocardiographic contrast agent during stress echocardiography (List separately in addition to code for primary procedure)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93352",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 46257454,
+            "CONCEPT_NAME": "Insertion of probe in esophagus for heart ultrasound examination",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93355",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.999999.1"
+  }
+]
