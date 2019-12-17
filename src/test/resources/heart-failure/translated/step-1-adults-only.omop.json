@@ -1,9 +1,11 @@
 {
-  "ConceptSets": [],
+  "Title": "Case",
   "PrimaryCriteria": {
     "CriteriaList": [
       {
-        "VisitOccurrence": {}
+        "VisitOccurrence": {
+          "VisitTypeExclude": false
+        }
       }
     ],
     "ObservationWindow": {
@@ -14,6 +16,7 @@
       "Type": "First"
     }
   },
+  "ConceptSets": [],
   "QualifiedLimit": {
     "Type": "First"
   },
@@ -22,7 +25,8 @@
   },
   "InclusionRules": [
     {
-      "name": "Age Greater Than 18",
+      "name": "Case",
+      "description": "Case",
       "expression": {
         "Type": "ALL",
         "CriteriaList": [],
@@ -30,7 +34,7 @@
           {
             "Age": {
               "Value": 18,
-              "Op": "gt"
+              "Op": "gte"
             }
           }
         ],
@@ -38,10 +42,8 @@
       }
     }
   ],
-  "CensoringCriteria": [],
   "CollapseSettings": {
     "CollapseType": "ERA",
     "EraPad": 0
-  },
-  "CensorWindow": {}
+  }
 }

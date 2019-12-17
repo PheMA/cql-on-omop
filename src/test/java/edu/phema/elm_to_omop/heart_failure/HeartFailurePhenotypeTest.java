@@ -81,4 +81,25 @@ public class HeartFailurePhenotypeTest {
             PhemaTestHelper.getFileAsString("heart-failure/translated/step-0-anyone-with-hf-echo.omop.json"),
             PhemaTestHelper.getJson(ce));
     }
+
+    @Test
+    public void StepOneTest() throws Exception {
+        // Set up the ELM tree
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-1-adults-only.phenotype.cql"), modelManager, new LibraryManager(modelManager));
+        library = translator.toELM();
+
+        // Use the JSON file valueset service
+        valuesetService = new EmptyValuesetService();
+        conceptSets = valuesetService.getConceptSets();
+
+        // Generate the cohort expression
+        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+
+        // Assert against expected
+        assertNotNull(ce);
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("heart-failure/translated/step-1-adults-only.omop.json"),
+            PhemaTestHelper.getJson(ce));
+    }
 }
