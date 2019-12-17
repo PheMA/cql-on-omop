@@ -4,6 +4,7 @@ import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.translate.map.NumericRangeOperatorMap;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
+import edu.phema.transform.ElmTransformer;
 import org.hl7.cql.model.ClassType;
 import org.hl7.cql.model.DataType;
 import org.hl7.cql.model.ListType;
@@ -45,7 +46,10 @@ public class PhemaElmToOmopTranslator {
     public static CohortExpression generateCohortExpression(Library library, ExpressionDef expressionDef, List<PhemaConceptSet> conceptSets) throws Exception {
         List<InclusionRule> inclusionRules = new ArrayList<>();
 
-        Expression expression = expressionDef.getExpression();
+        ElmTransformer elmTransformer = new ElmTransformer();
+        ExpressionDef singleTreeExpressionDef = elmTransformer.resolveReferences(library, expressionDef);
+
+        Expression expression = singleTreeExpressionDef.getExpression();
 
         CriteriaGroup criteriaGroup;
         if (isNumericComparison(expression)) {
@@ -74,8 +78,6 @@ public class PhemaElmToOmopTranslator {
             }
         } else if (expression instanceof BinaryExpression) {
             criteriaGroup = getCriteriaGroupForBinaryExpression((BinaryExpression) expression, library, conceptSets);
-        } else if (expression instanceof ExpressionRef) {
-            criteriaGroup = generateCriteriaGroupForExpression(expression, library, conceptSets);
         } else {
             throw new Exception(String.format("The translator is currently unable to generate OHDSI inclusion rules for this type of expression: %s", expression.getClass().getName()));
         }
@@ -210,9 +212,6 @@ public class PhemaElmToOmopTranslator {
             }
         } else if (expression instanceof Exists) {
             Exists exists = (Exists) expression;
-            if (exists.getOperand() instanceof ExpressionRef) {
-                return generateCriteriaGroupForExpression(expression, library, conceptSets);
-            }
             retrieveExpression = getExistsRetrieveExpression(exists);
         } else if (expression instanceof Retrieve) {
             retrieveExpression = (Retrieve) expression;
@@ -311,11 +310,6 @@ public class PhemaElmToOmopTranslator {
         for (Expression operand : expression.getOperand()) {
             Expression operandExp = operand;
 
-            // Resolve expression reference
-            if (operandExp instanceof ExpressionRef) {
-                operandExp = getExpressionReferenceTarget((ExpressionRef) operandExp, library);
-            }
-
             if (isDemographicExpression(operandExp)) {
                 DemographicCriteria demographicCriteria = generateDemographicCriteria(operandExp);
 
@@ -380,7 +374,7 @@ public class PhemaElmToOmopTranslator {
     }
 
     /**
-     * Given an ExpressionRef from CQL/ELM, convert it into an OHDSI CorelatedCriteria.
+     * Given an Expression from CQL/ELM, convert it into an OHDSI CorelatedCriteria.
      *
      * @param expression  The ELM expression
      * @param library     The ELM library
@@ -389,25 +383,20 @@ public class PhemaElmToOmopTranslator {
      * @throws Exception
      */
     private static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
-        Expression referencedExp = expression;
-        if (expression instanceof ExpressionRef) {
-            referencedExp = getExpressionReferenceTarget((ExpressionRef) expression, library);
-        }
-
         Retrieve retrieveExpression = null;
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
-        DataType dt = referencedExp.getResultType();
+        DataType dt = expression.getResultType();
 
-        if (referencedExp instanceof Retrieve) {
-            retrieveExpression = (Retrieve) referencedExp;
-        } else if (referencedExp instanceof Exists) {
-            return generateCorelatedCriteriaForExpression(((Exists) referencedExp).getOperand(), library, conceptSets);
-        } else if (referencedExp instanceof Query) {
-            retrieveExpression = getQueryRetrieveExpression((Query) referencedExp);
-        } else if (isNumericComparison(referencedExp)) {
-            occurrence = getNumericComparisonOccurrence((BinaryExpression) referencedExp);
-            retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) referencedExp);
+        if (expression instanceof Retrieve) {
+            retrieveExpression = (Retrieve) expression;
+        } else if (expression instanceof Exists) {
+            return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), library, conceptSets);
+        } else if (expression instanceof Query) {
+            retrieveExpression = getQueryRetrieveExpression((Query) expression);
+        } else if (isNumericComparison(expression)) {
+            occurrence = getNumericComparisonOccurrence((BinaryExpression) expression);
+            retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) expression);
         } else {
             // TODO - Need to handle more than simple query types
             throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
@@ -483,25 +472,20 @@ public class PhemaElmToOmopTranslator {
     }
 
     private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
-        Expression referencedExp = expression;
-        if (expression instanceof ExpressionRef) {
-            referencedExp = getExpressionReferenceTarget((ExpressionRef) expression, library);
-        }
-
         Retrieve retrieveExpression = null;
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
-        if (isDemographicExpression(referencedExp)) {
-            return generateCriteriaGroupForDemographicExpression(referencedExp);
-        } else if (referencedExp instanceof Retrieve) {
-            retrieveExpression = (Retrieve) referencedExp;
-        } else if (referencedExp instanceof Exists) {
-            return generateCriteriaGroupForExpression(((Exists) referencedExp).getOperand(), library, conceptSets);
-        } else if (referencedExp instanceof Query) {
-            retrieveExpression = getQueryRetrieveExpression((Query) referencedExp);
-        } else if (isNumericComparison(referencedExp)) {
-            occurrence = getNumericComparisonOccurrence((BinaryExpression) referencedExp);
-            retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) referencedExp);
+        if (isDemographicExpression(expression)) {
+            return generateCriteriaGroupForDemographicExpression(expression);
+        } else if (expression instanceof Retrieve) {
+            retrieveExpression = (Retrieve) expression;
+        } else if (expression instanceof Exists) {
+            return generateCriteriaGroupForExpression(((Exists) expression).getOperand(), library, conceptSets);
+        } else if (expression instanceof Query) {
+            retrieveExpression = getQueryRetrieveExpression((Query) expression);
+        } else if (isNumericComparison(expression)) {
+            occurrence = getNumericComparisonOccurrence((BinaryExpression) expression);
+            retrieveExpression = getBinaryExpressionRetrieveExpression((BinaryExpression) expression);
         } else {
             // TODO - Need to handle more than simple query types
             throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
@@ -517,24 +501,6 @@ public class PhemaElmToOmopTranslator {
         criteriaGroup.criteriaList = new CorelatedCriteria[]{corelatedCriteria};
 
         return criteriaGroup;
-    }
-
-    /**
-     * Helper method to take an expression reference, and track back to the object that it refers to.
-     *
-     * @param expressionRef
-     * @param library
-     * @return
-     * @throws Exception
-     */
-    private static Expression getExpressionReferenceTarget(ExpressionRef expressionRef, Library library) throws Exception {
-        Optional<ExpressionDef> referencedExpDef = library.getStatements().getDef().stream().filter(x -> x.getName().equals(expressionRef.getName())).findFirst();
-        if (!referencedExpDef.isPresent()) {
-            // TODO - This could be because things are referenced in other libraries.  Will need to handle that situation.
-            throw new Exception(String.format("Could not find the referenced expression %s in the library", expressionRef.getName()));
-        }
-
-        return referencedExpDef.get().getExpression();
     }
 
     /**
