@@ -20,6 +20,10 @@ public class PhemaConceptSetList {
         conceptSets.add(phemaConceptSet);
     }
 
+    public void addAllConceptSets(List<PhemaConceptSet> conceptSets) {
+        this.conceptSets.addAll(conceptSets);
+    }
+
     public ArrayList<PhemaConceptSet> getConceptSets() {
         return conceptSets;
     }
@@ -30,6 +34,10 @@ public class PhemaConceptSetList {
 
     public void addNotFoundCode(PhemaCode phemaCode) {
         notFoundList.add(phemaCode);
+    }
+
+    public void addAllNotFoundCodes(List<PhemaCode> notFoundCodes) {
+        notFoundList.addAll(notFoundCodes);
     }
 
     public ArrayList<PhemaCode> getNotFoundCodes() {

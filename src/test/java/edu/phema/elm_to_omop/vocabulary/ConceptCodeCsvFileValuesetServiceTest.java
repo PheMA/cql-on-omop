@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop.vocabulary;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
@@ -44,7 +45,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
     @Test
     public void test() throws Exception {
         // Test simple case with one terminology where all codes exists
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-only.csv", "");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-only.csv");
         PhemaConceptSetList concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
@@ -52,7 +53,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
         assertEquals(concepts.getNotFoundCodes().size(), 0);
 
         // Test two terminologies where all codes exists
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10.csv", "");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10.csv");
         concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
@@ -60,11 +61,36 @@ public class ConceptCodeCsvFileValuesetServiceTest {
         assertEquals(concepts.getNotFoundCodes().size(), 0);
 
         // Test two terminologies where some codes don't exist
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10-and-missing.csv", "");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10-and-missing.csv");
         concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
         assertEquals(concepts.getConceptSets().get(0).expression.items.length, 7);
+        assertEquals(concepts.getNotFoundCodes().size(), 2);
+    }
+
+    @Test
+    public void testMultiple() throws Exception {
+        // Test loading a directory containing multiple valueset CSV files
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/two-valuesets.valueset.csv");
+        PhemaConceptSetList concepts = valuesetService.getConceptSetList();
+
+        assertEquals(concepts.getConceptSets().size(), 2);
+        assertEquals(concepts.getConceptSets().get(0).expression.items.length, 3);
+        assertEquals(concepts.getConceptSets().get(1).expression.items.length, 4);
+        assertEquals(concepts.getNotFoundCodes().size(), 0);
+    }
+
+    @Test
+    public void testDirectory() throws Exception {
+        // Test loading a directory containing multiple valueset CSV files
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary");
+        PhemaConceptSetList concepts = valuesetService.getConceptSetList();
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getJson(concepts.getConceptSets()),
+            PhemaTestHelper.getFileAsString("vocabulary/all-five-valuesets-combined.omop.json"));
+        assertEquals(concepts.getConceptSets().size(), 5);
         assertEquals(concepts.getNotFoundCodes().size(), 2);
     }
 }
