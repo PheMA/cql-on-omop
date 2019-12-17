@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Empty value set service. Useful in cases
- * where you are using criteria that rely on
+ * where you are using criteria that do not rely on
  * terminologies (e.g. Demographic criteria)
  */
 public class EmptyValuesetService implements IValuesetService {
