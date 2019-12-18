@@ -44,6 +44,8 @@ public class PhemaElmToOmopTranslator {
      * @throws Exception
      */
     public static CohortExpression generateCohortExpression(Library library, ExpressionDef expressionDef, List<PhemaConceptSet> conceptSets) throws Exception {
+        PhemaElmaToOmopTranslatorContext context = new PhemaElmaToOmopTranslatorContext(library, conceptSets);
+
         List<InclusionRule> inclusionRules = new ArrayList<>();
 
         ElmTransformer elmTransformer = new ElmTransformer();
@@ -53,9 +55,9 @@ public class PhemaElmToOmopTranslator {
 
         CriteriaGroup criteriaGroup;
         if (isNumericComparison(expression)) {
-            criteriaGroup = generateCriteriaGroupForExpression(expression, library, conceptSets);
+            criteriaGroup = generateCriteriaGroupForExpression(expression, context);
         } else if (expression instanceof Query || expression instanceof Exists) {
-            criteriaGroup = generateCriteriaGroupForQueryOrExists(expression, library, conceptSets);
+            criteriaGroup = generateCriteriaGroupForQueryOrExists(expression, context);
         } else if (expression instanceof UnaryExpression) {
             // For some reason, the CQL parser will generate Not(Equal) (two AST nodes) instead of a single NotEqual node
             // So, we collapse Not(Equal) into a NotEqual expression below
@@ -72,12 +74,12 @@ public class PhemaElmToOmopTranslator {
                     notEqual = notEqual.withOperand(equal.getOperand());
                 }
 
-                criteriaGroup = generateCriteriaGroupForExpression(notEqual, library, conceptSets);
+                criteriaGroup = generateCriteriaGroupForExpression(notEqual, context);
             } else {
                 throw new Exception(String.format("Negation not supported for operand: %s", not.getOperand().getClass().getName()));
             }
         } else if (expression instanceof BinaryExpression) {
-            criteriaGroup = getCriteriaGroupForBinaryExpression((BinaryExpression) expression, library, conceptSets);
+            criteriaGroup = getCriteriaGroupForBinaryExpression((BinaryExpression) expression, context);
         } else {
             throw new Exception(String.format("The translator is currently unable to generate OHDSI inclusion rules for this type of expression: %s", expression.getClass().getName()));
         }
@@ -120,13 +122,12 @@ public class PhemaElmToOmopTranslator {
      * Helper method to take a Query expression and convert it into an OHDSI CriteriaGroup.  This is used when the top-level
      * expression for a phenotype is a simple query.
      *
-     * @param expression  The ELM expression
-     * @param library     The ELM library
-     * @param conceptSets The set of concepts referenced by the library
+     * @param expression The ELM expression
+     * @param context    The ELM translation context
      * @return An OHDSI CriteriaGroup representing the Query or Exists expression
      * @throws Exception
      */
-    private static CriteriaGroup generateCriteriaGroupForQueryOrExists(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup generateCriteriaGroupForQueryOrExists(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
         Retrieve retrieveExpression = null;
 
         CriteriaGroup corelatedCriteriaGroup = null;
@@ -150,7 +151,7 @@ public class PhemaElmToOmopTranslator {
 
                     // Get an inclusion rule (which contains an inclusion expression, which is what we really need) for the
                     // associated/referenced object for this relationship.
-                    corelatedCriteriaGroup = generateCriteriaGroupForQueryOrExists(with.getExpression(), library, conceptSets);
+                    corelatedCriteriaGroup = generateCriteriaGroupForQueryOrExists(with.getExpression(), context);
                     if (corelatedCriteriaGroup.criteriaList.length != 1) {
                         throw new PhemaAssumptionException(String.format("We expected exactly one rule but received %d", corelatedCriteriaGroup.criteriaList.length));
                     }
@@ -221,7 +222,7 @@ public class PhemaElmToOmopTranslator {
             throw new Exception("Unable to generate an inclusion rule for the Query or Exists expression");
         }
 
-        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, context);
 
         Criteria criteria = generateCriteria(matchedSet, corelatedCriteriaGroup, expression);
 
@@ -297,13 +298,12 @@ public class PhemaElmToOmopTranslator {
      * Helper method to take a BinaryExpression expression and convert it into an OHDSI CriteriaGroup.  This is used when the top-level
      * expression for a phenotype is a boolean rule (e.g., And, Or) - which derive from BinaryExpression.
      *
-     * @param expression  The ELM expression
-     * @param library     The ELM library
-     * @param conceptSets The set of concepts referenced by the library
+     * @param expression The ELM expression
+     * @param context    The ELM translation context
      * @return The CriteriaGroup representing the binary expression
      * @throws Exception
      */
-    private static CriteriaGroup getCriteriaGroupForBinaryExpression(BinaryExpression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup getCriteriaGroupForBinaryExpression(BinaryExpression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.type = getInclusionExpressionType(expression).toString();
 
@@ -317,9 +317,9 @@ public class PhemaElmToOmopTranslator {
             } else {
                 // Are we nesting even further?
                 if (isBooleanExpression(operandExp)) {
-                    criteriaGroup.groups = CirceUtil.addCriteriaGroup(criteriaGroup.groups, getCriteriaGroupForBinaryExpression((BinaryExpression) operandExp, library, conceptSets));
+                    criteriaGroup.groups = CirceUtil.addCriteriaGroup(criteriaGroup.groups, getCriteriaGroupForBinaryExpression((BinaryExpression) operandExp, context));
                 } else {
-                    CorelatedCriteria corelatedCriteria = generateCorelatedCriteriaForExpression(operandExp, library, conceptSets);
+                    CorelatedCriteria corelatedCriteria = generateCorelatedCriteriaForExpression(operandExp, context);
                     if (corelatedCriteria == null) {
                         throw new PhemaNotImplementedException("The translator was unable to process this type of expression");
                     }
@@ -376,13 +376,12 @@ public class PhemaElmToOmopTranslator {
     /**
      * Given an Expression from CQL/ELM, convert it into an OHDSI CorelatedCriteria.
      *
-     * @param expression  The ELM expression
-     * @param library     The ELM library
-     * @param conceptSets The set of concepts referenced by the library
+     * @param expression The ELM expression
+     * @param context    The ELM translation context
      * @return The CorelatedCriteria for the expression
      * @throws Exception
      */
-    private static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
+    private static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
         Retrieve retrieveExpression = null;
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
@@ -391,7 +390,7 @@ public class PhemaElmToOmopTranslator {
         if (expression instanceof Retrieve) {
             retrieveExpression = (Retrieve) expression;
         } else if (expression instanceof Exists) {
-            return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), library, conceptSets);
+            return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
         } else if (expression instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query) expression);
         } else if (isNumericComparison(expression)) {
@@ -402,7 +401,7 @@ public class PhemaElmToOmopTranslator {
             throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
         }
 
-        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, context);
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
@@ -471,7 +470,7 @@ public class PhemaElmToOmopTranslator {
         return criteriaGroup;
     }
 
-    private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
+    private static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
         Retrieve retrieveExpression = null;
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
@@ -480,7 +479,7 @@ public class PhemaElmToOmopTranslator {
         } else if (expression instanceof Retrieve) {
             retrieveExpression = (Retrieve) expression;
         } else if (expression instanceof Exists) {
-            return generateCriteriaGroupForExpression(((Exists) expression).getOperand(), library, conceptSets);
+            return generateCriteriaGroupForExpression(((Exists) expression).getOperand(), context);
         } else if (expression instanceof Query) {
             retrieveExpression = getQueryRetrieveExpression((Query) expression);
         } else if (isNumericComparison(expression)) {
@@ -491,7 +490,7 @@ public class PhemaElmToOmopTranslator {
             throw new PhemaNotImplementedException(String.format("Currently the translator is only able to process Query and Retrieve expressions"));
         }
 
-        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, library, conceptSets);
+        PhemaConceptSet matchedSet = getConceptSetForRetrieve(retrieveExpression, context);
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
         corelatedCriteria.occurrence = occurrence;
@@ -578,25 +577,24 @@ public class PhemaElmToOmopTranslator {
      * Given a Retrieve ELM expression, determine the resulting value set (OHDSI ConceptSet) that we need to retrieve
      *
      * @param retrieveExpression
-     * @param library
-     * @param conceptSets
+     * @param context            The ELM translation context
      * @return
      * @throws Exception
      */
-    private static PhemaConceptSet getConceptSetForRetrieve(Retrieve retrieveExpression, Library library, List<PhemaConceptSet> conceptSets) throws Exception {
+    private static PhemaConceptSet getConceptSetForRetrieve(Retrieve retrieveExpression, PhemaElmaToOmopTranslatorContext context) throws Exception {
         // TODO  would be nice to have a convenience method to enumerate out all the codes of interest.
         if (!(retrieveExpression.getCodes() instanceof ValueSetRef)) {
             throw new PhemaNotImplementedException("Currently the translator is only able to handle ValueSetRef query sources");
         }
         // TODO - we search by name, but should really be searching by Library and Name (will need more than just the Library passed in
         ValueSetRef valueSet = (ValueSetRef) retrieveExpression.getCodes();
-        Optional<ValueSetDef> valueSetDef = library.getValueSets().getDef().stream().filter(x -> x.getName().equals(valueSet.getName())).findFirst();
+        Optional<ValueSetDef> valueSetDef = context.getLibrary().getValueSets().getDef().stream().filter(x -> x.getName().equals(valueSet.getName())).findFirst();
         if (!valueSetDef.isPresent()) {
             // TODO - This could be because things are referenced in other libraries.  Will need to handle that situation.
             throw new Exception(String.format("Could not find the referenced value set %s in the library", valueSet.getName()));
         }
 
-        PhemaConceptSet matchedSet = findConceptSetByOid(conceptSets, valueSetDef.get().getId());
+        PhemaConceptSet matchedSet = findConceptSetByOid(context.getConceptSets(), valueSetDef.get().getId());
         if (matchedSet == null) {
             throw new Exception(String.format("Failed to find the value set referenced with OID %s", valueSetDef.get().getId()));
         }
