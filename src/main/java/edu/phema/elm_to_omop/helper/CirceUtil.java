@@ -114,6 +114,8 @@ public class CirceUtil {
 
         corelatedCriteria.startWindow = startWindow;
 
+        corelatedCriteria.occurrence = defaultOccurrence();
+
         return corelatedCriteria;
     }
 
@@ -142,5 +144,42 @@ public class CirceUtil {
         cohortDefinition.expressionType = ExpressionType.SIMPLE_EXPRESSION;
 
         return cohortDefinition;
+    }
+
+    /**
+     * Generates a Circe CriteriaGroup from a single CorelatedCriteria and group inclusion properties
+     *
+     * @param criteria The CorelatedCriteria
+     * @param type     The inclusion type
+     * @param count    The inclusion count
+     * @return The created CriteriaGroup
+     */
+    public static CriteriaGroup groupFromCorelatedCriteria(CorelatedCriteria criteria, CirceConstants.CriteriaGroupType type, Integer count) {
+        CriteriaGroup group = new CriteriaGroup();
+
+        group.criteriaList = new CorelatedCriteria[]{criteria};
+
+        group.type = type.toString();
+        group.count = count;
+
+        return group;
+    }
+
+    /**
+     * Generates a Circe CriteriaGroup from a single Criteria, group inclusion, and restrictVisit properties. Defaults
+     * are used for the occurrence and window properties.
+     *
+     * @param criteria The Criteria
+     * @param type     The inclusion type
+     * @param count    The inclusion count
+     * @return The created CriteriaGroup
+     */
+    public static CriteriaGroup groupFromCriteria(Criteria criteria, CirceConstants.CriteriaGroupType type, Integer count, boolean restrictVisit) {
+        CorelatedCriteria corelatedCriteria = defaultCorelatedCriteria();
+
+        corelatedCriteria.criteria = criteria;
+        corelatedCriteria.restrictVisit = restrictVisit;
+
+        return groupFromCorelatedCriteria(corelatedCriteria, type, count);
     }
 }

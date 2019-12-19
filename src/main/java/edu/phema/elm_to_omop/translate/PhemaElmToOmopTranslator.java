@@ -2,6 +2,7 @@ package edu.phema.elm_to_omop.translate;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
+import edu.phema.elm_to_omop.translate.correlation.CorrelatedQueryTranslator;
 import edu.phema.elm_to_omop.translate.map.NumericRangeOperatorMap;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import edu.phema.transform.ElmTransformer;
@@ -142,74 +143,76 @@ public class PhemaElmToOmopTranslator {
                     throw new PhemaNotImplementedException("The translator is currently only able to handle a single relationship for a data element");
                 }
 
-                // Store the alias (needed later)
-                String primaryAlias = query.getSource().get(0).getAlias();
-                RelationshipClause clause = relationships.get(0);
-                if (clause instanceof With) {
-                    With with = (With) clause;
-                    String secondaryAlias = with.getAlias();
+                corelatedCriteriaGroup = CorrelatedQueryTranslator.generatedCriteriaGroupForCorrelatedQuery(query, context);
 
-                    // Get an inclusion rule (which contains an inclusion expression, which is what we really need) for the
-                    // associated/referenced object for this relationship.
-                    corelatedCriteriaGroup = generateCriteriaGroupForQueryOrExists(with.getExpression(), context);
-                    if (corelatedCriteriaGroup.criteriaList.length != 1) {
-                        throw new PhemaAssumptionException(String.format("We expected exactly one rule but received %d", corelatedCriteriaGroup.criteriaList.length));
-                    }
-                    correlatedCriteria = corelatedCriteriaGroup.criteriaList[0];
-
-                    Expression suchThat = with.getSuchThat();
-                    if (!(suchThat instanceof In)) {
-                        // TODO: Eventually we'll extend it to BinaryExpression, but need to understand what other types we need
-                        throw new PhemaNotImplementedException("The translator is currently only able to process In expressions");
-                    }
-
-                    In in = (In) suchThat;
-                    List<Expression> operands = in.getOperand();
-                    if (operands.size() != 2) {
-                        throw new PhemaAssumptionException(String.format("We expected exactly two operands but found %d", operands.size()));
-                    }
-
-                    // Now identify the actual temporal constraint, and set that in the window.
-                    Property property = (Property) getExpressionOfType(operands, Property.class);
-                    Interval interval = (Interval) getExpressionOfType(operands, Interval.class);
-                    if (!property.getPath().equals("onsetDateTime")) {
-                        throw new PhemaNotImplementedException("The translator is only able to process onsetDateTime temporal relationships");
-                    }
-
-                    if (primaryAlias.equals(property.getScope())) {
-                        // TODO: This probably happens when we flip the order so that the expression reads "A with B such that A.date 30 days before B.date"
-                        // In that case, we need to flip more objects around.  What was outer in CQL needs to become inner in OHDSI because of how
-                        // relationships are built.
-                        throw new PhemaNotImplementedException("The translator is only able to process simple relationships");
-                    }
-                    // This happens when the expression reads "A with B such that B.date 30 days before A.date"
-                    else if (secondaryAlias.equals(property.getScope())) {
-                        // TODO: This is over-fitted to our first use case... need to really evaluate how flexible this is
-                        // If the data element is "high", then this is <.  If it's "low", then it's >
-                        boolean lessThan = true;
-                        Property relatedProperty = (Property) interval.getHigh();
-                        BinaryExpression intervalExpression = (BinaryExpression) interval.getLow();
-                        if (relatedProperty == null) {
-                            lessThan = false;
-                            relatedProperty = (Property) interval.getLow();
-                            intervalExpression = (BinaryExpression) interval.getHigh();
-                        }
-
-                        Endpoint start = calculateStartEndpoint(intervalExpression);
-
-                        Window startWindow = new Window();
-
-                        startWindow.start = calculateStartEndpoint(intervalExpression);
-
-                        startWindow.end = new Window().new Endpoint();
-                        startWindow.end.coeff = 1;
-                        startWindow.end.days = 0;
-
-                        correlatedCriteria.startWindow = startWindow;
-                    }
-                } else {
-                    throw new PhemaNotImplementedException("The translator is currently only able to process With relationships");
-                }
+//                // Store the alias (needed later)
+//                String primaryAlias = query.getSource().get(0).getAlias();
+//                RelationshipClause clause = relationships.get(0);
+//                if (clause instanceof With) {
+//                    With with = (With) clause;
+//                    String secondaryAlias = with.getAlias();
+//
+//                    // Get an inclusion rule (which contains an inclusion expression, which is what we really need) for the
+//                    // associated/referenced object for this relationship.
+//                    corelatedCriteriaGroup = generateCriteriaGroupForQueryOrExists(with.getExpression(), library, conceptSets);
+//                    if (corelatedCriteriaGroup.criteriaList.length != 1) {
+//                        throw new PhemaAssumptionException(String.format("We expected exactly one rule but received %d", corelatedCriteriaGroup.criteriaList.length));
+//                    }
+//                    correlatedCriteria = corelatedCriteriaGroup.criteriaList[0];
+//
+//                    Expression suchThat = with.getSuchThat();
+//                    if (!(suchThat instanceof In)) {
+//                        // TODO: Eventually we'll extend it to BinaryExpression, but need to understand what other types we need
+//                        throw new PhemaNotImplementedException("The translator is currently only able to process In expressions");
+//                    }
+//
+//                    In in = (In) suchThat;
+//                    List<Expression> operands = in.getOperand();
+//                    if (operands.size() != 2) {
+//                        throw new PhemaAssumptionException(String.format("We expected exactly two operands but found %d", operands.size()));
+//                    }
+//
+//                    // Now identify the actual temporal constraint, and set that in the window.
+//                    Property property = (Property) getExpressionOfType(operands, Property.class);
+//                    Interval interval = (Interval) getExpressionOfType(operands, Interval.class);
+//                    if (!property.getPath().equals("onsetDateTime")) {
+//                        throw new PhemaNotImplementedException("The translator is only able to process onsetDateTime temporal relationships");
+//                    }
+//
+//                    if (primaryAlias.equals(property.getScope())) {
+//                        // TODO: This probably happens when we flip the order so that the expression reads "A with B such that A.date 30 days before B.date"
+//                        // In that case, we need to flip more objects around.  What was outer in CQL needs to become inner in OHDSI because of how
+//                        // relationships are built.
+//                        throw new PhemaNotImplementedException("The translator is only able to process simple relationships");
+//                    }
+//                    // This happens when the expression reads "A with B such that B.date 30 days before A.date"
+//                    else if (secondaryAlias.equals(property.getScope())) {
+//                        // TODO: This is over-fitted to our first use case... need to really evaluate how flexible this is
+//                        // If the data element is "high", then this is <.  If it's "low", then it's >
+//                        boolean lessThan = true;
+//                        Property relatedProperty = (Property) interval.getHigh();
+//                        BinaryExpression intervalExpression = (BinaryExpression) interval.getLow();
+//                        if (relatedProperty == null) {
+//                            lessThan = false;
+//                            relatedProperty = (Property) interval.getLow();
+//                            intervalExpression = (BinaryExpression) interval.getHigh();
+//                        }
+//
+//                        Endpoint start = calculateStartEndpoint(intervalExpression);
+//
+//                        Window startWindow = new Window();
+//
+//                        startWindow.start = calculateStartEndpoint(intervalExpression);
+//
+//                        startWindow.end = new Window().new Endpoint();
+//                        startWindow.end.coeff = 1;
+//                        startWindow.end.days = 0;
+//
+//                        correlatedCriteria.startWindow = startWindow;
+//                    }
+//                } else {
+//                    throw new PhemaNotImplementedException("The translator is currently only able to process With relationships");
+//                }
             }
         } else if (expression instanceof Exists) {
             Exists exists = (Exists) expression;
