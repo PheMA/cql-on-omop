@@ -1,0 +1,108 @@
+{
+  "name": "Encounter Criteria",
+  "description": "Encounter Criteria",
+  "expression": {
+    "Type": "ANY",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CorrelatedCriteria": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ProcedureOccurrence": {
+                      "CodesetId": 3,
+                      "ProcedureTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": {
+                      "Coeff": -1
+                    },
+                    "End": {
+                      "Coeff": 1
+                    }
+                  },
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  },
+                  "RestrictVisit": true
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            },
+            "CodesetId": 0,
+            "ConditionTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "RestrictVisit": false
+      },
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CorrelatedCriteria": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ProcedureOccurrence": {
+                      "CodesetId": 1,
+                      "ProcedureTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": {
+                      "Coeff": -1
+                    },
+                    "End": {
+                      "Coeff": 1
+                    }
+                  },
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  },
+                  "RestrictVisit": true
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            },
+            "CodesetId": 0,
+            "ConditionTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 2,
+          "IsDistinct": false
+        },
+        "RestrictVisit": false
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": []
+  }
+}

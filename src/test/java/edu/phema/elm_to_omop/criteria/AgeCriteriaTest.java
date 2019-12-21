@@ -2,9 +2,8 @@ package edu.phema.elm_to_omop.criteria;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
-import edu.phema.elm_to_omop.translate.PhemaAssumptionException;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
-import edu.phema.elm_to_omop.translate.PhemaNotImplementedException;
+import edu.phema.elm_to_omop.translate.exception.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
@@ -13,8 +12,8 @@ import org.cqframework.cql.cql2elm.LibraryManager;
 import org.cqframework.cql.cql2elm.ModelManager;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
@@ -51,9 +50,8 @@ public class AgeCriteriaTest {
         conceptSets = valuesetService.getConceptSets();
     }
 
-
     private void runTest(String statementName, String resultFilename) throws Exception {
-        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, statementName);
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, statementName);
         CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
         org.ohdsi.circe.cohortdefinition.InclusionRule rule = ce.inclusionRules.get(0);
 
@@ -87,11 +85,11 @@ public class AgeCriteriaTest {
     @Test
     public void AgeErrorCases() {
         // Make sure we fail if age is not specified in years
-        final ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Error bad precision");
+        final ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Error bad precision");
         assertThrows(PhemaNotImplementedException.class, () -> PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets));
 
         // The translator will give us a type mismatch error here
-        PhemaElmToOmopTranslator.getExpressionDefByName(library, "Error non-numeric");
+        PhemaTestHelper.getExpressionDefByName(library, "Error non-numeric");
         assertEquals(translator.getErrors().size(), 1);
     }
 

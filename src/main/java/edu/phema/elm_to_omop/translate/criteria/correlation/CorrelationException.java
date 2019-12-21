@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 public class CorrelationException extends Exception {
     public CorrelationException(String message) {

@@ -1,4 +1,4 @@
-package edu.phema.elm_to_omop.translate.map;
+package edu.phema.elm_to_omop.translate.util.map;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import org.hl7.elm.r1.*;

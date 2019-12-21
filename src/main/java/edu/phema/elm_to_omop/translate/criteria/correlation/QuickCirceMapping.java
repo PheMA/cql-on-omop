@@ -1,5 +1,10 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
+/**
+ * Class representing a mapping from a QUICK resource attribute to pair to a Circe criteria and attribute
+ * <p>
+ * Note: Not currently used
+ */
 public class QuickCirceMapping {
     private CorrelationConstants.QuickResourceType quickResource;
     private CorrelationConstants.QuickResourceAttribute quickResourceAttribute;

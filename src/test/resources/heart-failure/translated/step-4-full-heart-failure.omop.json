@@ -2528,20 +2528,6 @@
       }
     }
   ],
-  "PrimaryCriteria": {
-    "CriteriaList": [
-      {
-        "VisitOccurrence": {}
-      }
-    ],
-    "ObservationWindow": {
-      "PriorDays": 0,
-      "PostDays": 0
-    },
-    "PrimaryCriteriaLimit": {
-      "Type": "First"
-    }
-  },
   "QualifiedLimit": {
     "Type": "First"
   },
@@ -2550,141 +2536,159 @@
   },
   "InclusionRules": [
     {
-      "name": "Age Greater Than 18",
+      "name": "Case",
+      "description": "Case",
       "expression": {
         "Type": "ALL",
         "CriteriaList": [],
-        "DemographicCriteriaList": [
-          {
-            "Age": {
-              "Value": 18,
-              "Op": "gte"
-            }
-          }
-        ],
-        "Groups": []
-      }
-    },
-    {
-      "name": "echo",
-      "expression": {
-        "Type": "ALL",
-        "CriteriaList": [
-          {
-            "Criteria": {
-              "ProcedureOccurrence": {
-                "CodesetId": 3
-              }
-            },
-            "StartWindow": {
-              "Start": {
-                "Coeff": -1
-              },
-              "End": {
-                "Coeff": 1
-              }
-            },
-            "Occurrence": {
-              "Type": 2,
-              "Count": 1
-            }
-          }
-        ],
         "DemographicCriteriaList": [],
-        "Groups": []
-      }
-    },
-    {
-      "name": "HF diagnosis",
-      "description": "HF diagnosed in 2 outpatient encounters or an inpatient encounter",
-      "expression": {
-        "Type": "AT_LEAST",
-        "Count": 1,
-        "CriteriaList": [
+        "Groups": [
           {
-            "Criteria": {
-              "ConditionOccurrence": {
-                "CorrelatedCriteria": {
-                  "Type": "AT_LEAST",
-                  "Count": 1,
-                  "CriteriaList": [
-                    {
-                      "Criteria": {
-                        "ProcedureOccurrence": {
-                          "CodesetId": 1
-                        }
-                      },
-                      "StartWindow": {
-                        "Start": {
-                          "Days": 0,
-                          "Coeff": -1
-                        },
-                        "End": {
-                          "Days": 0,
-                          "Coeff": 1
-                        }
-                      },
-                      "Occurrence": {
-                        "IsDistinct": true,
-                        "Type": 2,
-                        "Count": 2
-                      },
-                      "RestrictVisit": true
-                    },
-                    {
-                      "Criteria": {
-                        "ProcedureOccurrence": {
-                          "CodesetId": 0
-                        }
-                      },
-                      "StartWindow": {
-                        "Start": {
-                          "Days": 0,
-                          "Coeff": -1
-                        },
-                        "End": {
-                          "Days": 0,
-                          "Coeff": 1
-                        }
-                      },
-                      "Occurrence": {
-                        "IsDistinct": true,
-                        "Type": 2,
-                        "Count": 1
-                      },
-                      "RestrictVisit": true
-                    }
-                  ],
-                  "DemographicCriteriaList": [],
-                  "Groups": []
+            "Type": "ALL",
+            "CriteriaList": [
+              {
+                "Criteria": {
+                  "ProcedureOccurrence": {
+                    "CodesetId": 3,
+                    "ProcedureTypeExclude": false
+                  }
                 },
-                "CodesetId": 2
+                "StartWindow": {
+                  "Start": {
+                    "Coeff": -1
+                  },
+                  "End": {
+                    "Coeff": 1
+                  }
+                },
+                "Occurrence": {
+                  "Type": 2,
+                  "Count": 1,
+                  "IsDistinct": false
+                },
+                "RestrictVisit": false
               }
-            },
-            "StartWindow": {
-              "Start": {
-                "Coeff": -1
+            ],
+            "DemographicCriteriaList": [
+              {
+                "Age": {
+                  "Value": 18,
+                  "Op": "gte"
+                }
+              }
+            ],
+            "Groups": []
+          },
+          {
+            "Type": "ANY",
+            "CriteriaList": [
+              {
+                "Criteria": {
+                  "ConditionOccurrence": {
+                    "CorrelatedCriteria": {
+                      "Type": "ALL",
+                      "CriteriaList": [
+                        {
+                          "Criteria": {
+                            "ProcedureOccurrence": {
+                              "CodesetId": 0,
+                              "ProcedureTypeExclude": false
+                            }
+                          },
+                          "StartWindow": {
+                            "Start": {
+                              "Coeff": -1
+                            },
+                            "End": {
+                              "Coeff": 1
+                            }
+                          },
+                          "Occurrence": {
+                            "Type": 2,
+                            "Count": 1,
+                            "IsDistinct": false
+                          },
+                          "RestrictVisit": true
+                        }
+                      ],
+                      "DemographicCriteriaList": [],
+                      "Groups": []
+                    },
+                    "CodesetId": 2,
+                    "ConditionTypeExclude": false
+                  }
+                },
+                "StartWindow": {
+                  "Start": {
+                    "Coeff": -1
+                  },
+                  "End": {
+                    "Coeff": 1
+                  }
+                },
+                "RestrictVisit": false
               },
-              "End": {
-                "Coeff": 1
+              {
+                "Criteria": {
+                  "ConditionOccurrence": {
+                    "CorrelatedCriteria": {
+                      "Type": "ALL",
+                      "CriteriaList": [
+                        {
+                          "Criteria": {
+                            "ProcedureOccurrence": {
+                              "CodesetId": 1,
+                              "ProcedureTypeExclude": false
+                            }
+                          },
+                          "StartWindow": {
+                            "Start": {
+                              "Coeff": -1
+                            },
+                            "End": {
+                              "Coeff": 1
+                            }
+                          },
+                          "Occurrence": {
+                            "Type": 2,
+                            "Count": 1,
+                            "IsDistinct": false
+                          },
+                          "RestrictVisit": true
+                        }
+                      ],
+                      "DemographicCriteriaList": [],
+                      "Groups": []
+                    },
+                    "CodesetId": 2,
+                    "ConditionTypeExclude": false
+                  }
+                },
+                "StartWindow": {
+                  "Start": {
+                    "Coeff": -1
+                  },
+                  "End": {
+                    "Coeff": 1
+                  }
+                },
+                "Occurrence": {
+                  "Type": 2,
+                  "Count": 2,
+                  "IsDistinct": false
+                },
+                "RestrictVisit": false
               }
-            },
-            "Occurrence": {
-              "IsDistinct": true,
-              "Type": 2,
-              "Count": 1
-            }
+            ],
+            "DemographicCriteriaList": [],
+            "Groups": []
           }
-        ],
-        "DemographicCriteriaList": [],
-        "Groups": []
+        ]
       }
     }
   ],
-  "CensoringCriteria": [],
   "CollapseSettings": {
     "CollapseType": "ERA",
     "EraPad": 0
-  },
-  "CensorWindow": {}
+  }
 }

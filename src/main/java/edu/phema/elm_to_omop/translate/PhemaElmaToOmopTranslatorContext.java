@@ -1,8 +1,11 @@
 package edu.phema.elm_to_omop.translate;
 
+import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.hl7.elm.r1.Library;
+import org.hl7.elm.r1.Retrieve;
 import org.hl7.elm.r1.ValueSetDef;
+import org.hl7.elm.r1.ValueSetRef;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,5 +55,11 @@ public class PhemaElmaToOmopTranslatorContext {
         } else {
             throw new PhemaTranslationException(String.format("Value set %s not found", valuesetReference));
         }
+    }
+
+    public int getCodesetIdForRetrieve(Retrieve retrieve) throws PhemaTranslationException {
+        String valuesetReference = ((ValueSetRef) retrieve.getCodes()).getName();
+
+        return getCodesetId(valuesetReference);
     }
 }

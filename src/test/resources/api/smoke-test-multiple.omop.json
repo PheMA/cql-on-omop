@@ -157,9 +157,9 @@
             "CriteriaList": [
               {
                 "Criteria": {
-                  "ConditionOccurrence": {
+                  "Measurement": {
                     "CodesetId": 0,
-                    "ConditionTypeExclude": false
+                    "MeasurementTypeExclude": false
                   }
                 },
                 "StartWindow": {

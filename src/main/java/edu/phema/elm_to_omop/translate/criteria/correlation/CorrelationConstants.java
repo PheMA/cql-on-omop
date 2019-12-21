@@ -1,7 +1,7 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
-import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
+import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,7 +98,7 @@ public class CorrelationConstants {
 
     public static List<QuickCirceMapping> quickCirceMappings = new ArrayList<>();
 
-    public static Map<Correlation, CorrelatedQueryCriteriaGroupGeneratorFunction<Correlation, PhemaElmaToOmopTranslatorContext, CriteriaGroup>> generators = new HashMap<>();
+    public static Map<Correlation, CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmaToOmopTranslatorContext, CorelatedCriteria>> generators = new HashMap<>();
 
     static {
         try {
@@ -112,7 +112,7 @@ public class CorrelationConstants {
 
             // Functions for generating correlated criteria
 
-            generators.put(Correlation.from("Encounter", "id", "Condition", "encounter"), CorrelatedQueryCriteriaGroupGenerator::encounterCondition);
+            generators.put(Correlation.from("Encounter", "id", "Condition", "encounter"), CorrelatedQueryCorelatedCriteriaGenerator::encounterCondition);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

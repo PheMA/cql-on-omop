@@ -2,10 +2,13 @@ package edu.phema.elm_to_omop;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hl7.elm.r1.ExpressionDef;
+import org.hl7.elm.r1.Library;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,5 +44,16 @@ public class PhemaTestHelper {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         return mapper.writeValueAsString(o);
+    }
+
+    public static ExpressionDef getExpressionDefByName(Library library, String expressionName) {
+        if (library == null || expressionName == null) {
+            return null;
+        }
+
+        Optional<ExpressionDef> phenotypeExpression = library.getStatements().getDef().stream()
+            .filter(x -> expressionName.equals(x.getName()))
+            .findFirst();
+        return phenotypeExpression.isPresent() ? phenotypeExpression.get() : null;
     }
 }

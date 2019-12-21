@@ -1,7 +1,10 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 import java.util.Objects;
 
+/**
+ * Class representing a QUICK resource and attribute pair
+ */
 public class QuickResourceAttributePair {
     public QuickResource resource;
     public CorrelationConstants.QuickResourceAttribute attribute;

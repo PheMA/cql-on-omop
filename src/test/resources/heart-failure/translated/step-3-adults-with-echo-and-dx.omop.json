@@ -1095,9 +1095,9 @@
             "CriteriaList": [
               {
                 "Criteria": {
-                  "ConditionOccurrence": {
+                  "ProcedureOccurrence": {
                     "CodesetId": 1,
-                    "ConditionTypeExclude": false
+                    "ProcedureTypeExclude": false
                   }
                 },
                 "StartWindow": {

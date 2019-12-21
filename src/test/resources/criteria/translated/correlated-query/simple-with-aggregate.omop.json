@@ -1,6 +1,6 @@
 {
-  "name": "Simplest Case",
-  "description": "Simplest Case",
+  "name": "With Aggregate",
+  "description": "With Aggregate",
   "expression": {
     "Type": "ALL",
     "CriteriaList": [
@@ -47,6 +47,11 @@
           "End": {
             "Coeff": 1
           }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 4,
+          "IsDistinct": false
         },
         "RestrictVisit": false
       }

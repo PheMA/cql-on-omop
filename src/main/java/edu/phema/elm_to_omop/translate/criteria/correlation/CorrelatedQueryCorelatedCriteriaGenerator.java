@@ -1,17 +1,17 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
-import edu.phema.elm_to_omop.translate.PhemaTranslationException;
+import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import org.hl7.elm.r1.Equal;
 import org.hl7.elm.r1.Expression;
 import org.ohdsi.circe.cohortdefinition.ConditionOccurrence;
+import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
 import org.ohdsi.circe.cohortdefinition.ProcedureOccurrence;
 
-public class CorrelatedQueryCriteriaGroupGenerator {
-
+public class CorrelatedQueryCorelatedCriteriaGenerator {
     /**
      * Generate a correlated criteria for a QUICK Encounter/Condition correlation
      *
@@ -19,23 +19,18 @@ public class CorrelatedQueryCriteriaGroupGenerator {
      * @param context     The ELM translation context
      * @return The corresponding Circe CriteriaGroup
      */
-    public static CriteriaGroup encounterCondition(Correlation correlation, PhemaElmaToOmopTranslatorContext context) throws CorrelationException, PhemaTranslationException {
+    public static CorelatedCriteria encounterCondition(Correlation correlation, PhemaElmaToOmopTranslatorContext context) throws CorrelationException, PhemaTranslationException {
         QuickResourceAttributePair lhs = correlation.getLhs();
         QuickResourceAttributePair rhs = correlation.getRhs();
 
         QuickResource encounter, condition;
-        CorrelationConstants.QuickResourceAttribute encounterAttribute, conditionAttribute;
 
         if (lhs.getResource().getType().equals(CorrelationConstants.QuickResourceType.ENCOUNTER)) {
             encounter = lhs.getResource();
-            encounterAttribute = lhs.getAttribute();
             condition = rhs.getResource();
-            conditionAttribute = rhs.getAttribute();
         } else {
             condition = lhs.getResource();
-            conditionAttribute = lhs.getAttribute();
             encounter = rhs.getResource();
-            encounterAttribute = rhs.getAttribute();
         }
 
         Expression correlationExpression = correlation.getCorrelationExpression();
@@ -47,11 +42,11 @@ public class CorrelatedQueryCriteriaGroupGenerator {
             procedureOccurrence.codesetId = context.getCodesetId(encounter.getValuesetFilter());
 
             // It's important to restrict the visit here, since this is what the CQL is explicitly stating
-            CriteriaGroup procedureGroup = CirceUtil.groupFromCriteria(procedureOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
+            CriteriaGroup procedureGroup = CirceUtil.criteriaGroupFromCriteria(procedureOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
 
             conditionOccurrence.CorrelatedCriteria = procedureGroup;
 
-            return CirceUtil.groupFromCriteria(conditionOccurrence, CirceConstants.CriteriaGroupType.ALL, null, false);
+            return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, null, false);
         } else {
             throw new CorrelationException(String.format("Correlation expression %s not supported for Encounter/Condition correlation", correlationExpression.getClass().getSimpleName()));
         }

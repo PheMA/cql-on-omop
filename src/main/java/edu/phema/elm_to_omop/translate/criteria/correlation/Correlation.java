@@ -1,9 +1,12 @@
-package edu.phema.elm_to_omop.translate.correlation;
+package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 import org.hl7.elm.r1.Expression;
 
 import java.util.Objects;
 
+/**
+ * Class encapsulating two QuickResourceAttributePairs and a correlation Expression. We refer to this as a correlation.
+ */
 public class Correlation {
     public QuickResourceAttributePair lhs;
     public QuickResourceAttributePair rhs;

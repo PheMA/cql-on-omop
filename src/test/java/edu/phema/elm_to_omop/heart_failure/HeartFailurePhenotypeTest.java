@@ -47,7 +47,7 @@ public class HeartFailurePhenotypeTest {
         conceptSets = valuesetService.getConceptSets();
 
         // Generate the cohort expression
-        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
         CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
 
         // Assert against expected
@@ -68,7 +68,7 @@ public class HeartFailurePhenotypeTest {
         conceptSets = valuesetService.getConceptSets();
 
         // Generate the cohort expression
-        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
         CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
 
         // Assert against expected
@@ -90,7 +90,7 @@ public class HeartFailurePhenotypeTest {
         conceptSets = valuesetService.getConceptSets();
 
         // Generate the cohort expression
-        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
         CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
 
         // Assert against expected
@@ -112,7 +112,7 @@ public class HeartFailurePhenotypeTest {
         conceptSets = valuesetService.getConceptSets();
 
         // Generate the cohort expression
-        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
         CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
 
         // Assert against expected
@@ -133,16 +133,14 @@ public class HeartFailurePhenotypeTest {
         valuesetService = new PhemaJsonConceptSetService(valuesetJson);
         conceptSets = valuesetService.getConceptSets();
 
-        // FIXME: Currently expected to fail
+        // Generate the cohort expression
+        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
+        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
 
-//        // Generate the cohort expression
-//        ExpressionDef expression = PhemaElmToOmopTranslator.getExpressionDefByName(library, "Case");
-//        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
-//
-//        // Assert against expected
-//        assertNotNull(ce);
-//        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-//            PhemaTestHelper.getFileAsString("heart-failure/translated/step-4-full-heart-failure.omop.json"),
-//            PhemaTestHelper.getJson(ce));
+        // Assert against expected
+        assertNotNull(ce);
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("heart-failure/translated/step-4-full-heart-failure.omop.json"),
+            PhemaTestHelper.getJson(ce));
     }
 }
