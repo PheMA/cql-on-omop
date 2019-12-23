@@ -1,6 +1,9 @@
 package edu.phema.elm_to_omop.heart_failure;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
+import edu.phema.elm_to_omop.api.ElmToOmopTranslator;
+import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
+import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.EmptyValuesetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
@@ -14,6 +17,7 @@ import org.hl7.elm.r1.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.util.List;
 
@@ -143,4 +147,27 @@ public class HeartFailurePhenotypeTest {
             PhemaTestHelper.getFileAsString("heart-failure/translated/step-4-full-heart-failure.omop.json"),
             PhemaTestHelper.getJson(ce));
     }
+
+//    @Test
+//    public void createHFPhenotypeInTestInstance() throws Exception {
+//        // Set up the ELM tree
+//        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-4-full-heart-failure.phenotype.cql"), modelManager, libraryManager);
+//        library = translator.toELM();
+//
+//        // Use the JSON file valueset service
+//        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets.omop.json");
+//        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
+//        conceptSets = valuesetService.getConceptSets();
+//
+//        // Generate the cohort expression
+//        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
+//        CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
+//
+//        // Create the cohort definition in the test instance
+//        IOmopRepositoryService omopRepositoryService = new OmopRepositoryService("http://52.162.236.199/WebAPI/", "OHDSI-CDMV5");
+//        ElmToOmopTranslator elmToOmopTranslator = new ElmToOmopTranslator(valuesetService);
+//
+//        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = elmToOmopTranslator.buildCohortDefinition("HF Phenotype from CQL", "Created by test cases", ce);
+//        omopRepositoryService.createCohortDefinition(cohortDefinition);
+//    }
 }
