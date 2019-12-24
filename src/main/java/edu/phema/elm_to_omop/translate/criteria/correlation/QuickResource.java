@@ -28,8 +28,8 @@ public class QuickResource {
 
     @Override
     public int hashCode() {
-        int hash = Objects.hash(type);
-        return hash;
+        // Ignore value set filter
+        return Objects.hash(type);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class QuickResource {
         if (!(o instanceof QuickResource)) {
             return false;
         }
-
+        // Ignore value set filter
         return type.equals(((QuickResource) o).getType());
     }
 

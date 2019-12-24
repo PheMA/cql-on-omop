@@ -96,22 +96,15 @@ public class CorrelationConstants {
      */
     public static List<CorrelatedQuickPair> supportedQuickCorrelations = new ArrayList<>();
 
-    public static List<QuickCirceMapping> quickCirceMappings = new ArrayList<>();
-
     public static Map<Correlation, CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmaToOmopTranslatorContext, CorelatedCriteria>> generators = new HashMap<>();
 
     static {
         try {
             // Encounter.id = Condition.encounter
+            // TODO: Condition.onsetDateTime <temporal operator> Condition.onsetDateTime, and others
             supportedQuickCorrelations.add(new CorrelatedQuickPair(new QuickResource(QuickResourceType.ENCOUNTER, null), QuickResourceAttribute.ID, new QuickResource(QuickResourceType.CONDITION, null), QuickResourceAttribute.ENCOUNTER));
 
-            // TODO: Condition.onsetDateTime <temporal operator> Condition.onsetDateTime
-
-            // QUICK to Circe mappings
-            quickCirceMappings.add(new QuickCirceMapping(QuickResourceType.ENCOUNTER, QuickResourceAttribute.ID, CirceCriteria.PROCEDURE_OCCURRENCE, CirceCriteriaAttribute.CODESET_ID));
-
             // Functions for generating correlated criteria
-
             generators.put(Correlation.from("Encounter", "id", "Condition", "encounter"), CorrelatedQueryCorelatedCriteriaGenerator::encounterCondition);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
