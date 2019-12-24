@@ -46,7 +46,7 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
 
             conditionOccurrence.CorrelatedCriteria = procedureGroup;
 
-            return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, null, false);
+            return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, CirceUtil.defaultOccurrence(), false);
         } else {
             throw new CorrelationException(String.format("Correlation expression %s not supported for Encounter/Condition correlation", correlationExpression.getClass().getSimpleName()));
         }
