@@ -1,9 +1,6 @@
 package edu.phema.elm_to_omop.heart_failure;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
-import edu.phema.elm_to_omop.api.ElmToOmopTranslator;
-import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
-import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.EmptyValuesetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
@@ -17,7 +14,6 @@ import org.hl7.elm.r1.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
-import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.util.List;
 
