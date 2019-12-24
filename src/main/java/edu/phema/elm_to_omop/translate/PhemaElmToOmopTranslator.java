@@ -13,7 +13,6 @@ import org.ohdsi.circe.cohortdefinition.InclusionRule;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -46,7 +45,7 @@ public class PhemaElmToOmopTranslator {
      * @throws Exception
      */
     public static CohortExpression generateCohortExpression(Library library, ExpressionDef expressionDef, List<PhemaConceptSet> conceptSets) throws Exception {
-        PhemaElmaToOmopTranslatorContext context = new PhemaElmaToOmopTranslatorContext(library, conceptSets);
+        PhemaElmToOmopTranslatorContext context = new PhemaElmToOmopTranslatorContext(library, conceptSets);
 
         List<InclusionRule> inclusionRules = new ArrayList<>();
 

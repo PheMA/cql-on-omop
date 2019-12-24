@@ -1,6 +1,6 @@
 package edu.phema.elm_to_omop.translate.criteria;
 
-import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import edu.phema.elm_to_omop.translate.util.map.QuickResourceCirceCriteriaMap;
@@ -9,7 +9,7 @@ import org.hl7.elm.r1.Retrieve;
 import org.ohdsi.circe.cohortdefinition.*;
 
 public class CriteriaTranslator {
-    private static Criteria generateCriteriaForRetrieve(Retrieve retrieve, PhemaElmaToOmopTranslatorContext context) throws PhemaTranslationException {
+    private static Criteria generateCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws PhemaTranslationException {
         String resourceType = retrieve.getDataType().getLocalPart();
 
         Class<? extends Criteria> criteriaClass = QuickResourceCirceCriteriaMap.resourceCriteriaMap.get(resourceType);
@@ -41,7 +41,7 @@ public class CriteriaTranslator {
         }
     }
 
-    public static Criteria generateCriteriaForExpression(Expression expression, PhemaElmaToOmopTranslatorContext context) throws PhemaNotImplementedException, PhemaTranslationException {
+    public static Criteria generateCriteriaForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws PhemaNotImplementedException, PhemaTranslationException {
         if (expression instanceof Retrieve) {
             return generateCriteriaForRetrieve((Retrieve) expression, context);
         } else {

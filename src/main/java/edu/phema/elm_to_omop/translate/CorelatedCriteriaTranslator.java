@@ -24,7 +24,7 @@ import java.util.List;
  * Confusingly, a Criteria has field called CorelatedCriteria, which is of type CriteriaGroup.
  */
 public class CorelatedCriteriaTranslator {
-    private static CorelatedCriteria generateCorelatedCriteriaForRetrieve(Retrieve retrieve, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    private static CorelatedCriteria generateCorelatedCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws Exception {
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
         CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
@@ -35,7 +35,7 @@ public class CorelatedCriteriaTranslator {
         return corelatedCriteria;
     }
 
-    private static CorelatedCriteria generateCorelatedCriteriaForQuery(Query query, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    private static CorelatedCriteria generateCorelatedCriteriaForQuery(Query query, PhemaElmToOmopTranslatorContext context) throws Exception {
         List<RelationshipClause> relationships = query.getRelationship();
 
         if (relationships == null || relationships.size() == 0) {
@@ -66,7 +66,7 @@ public class CorelatedCriteriaTranslator {
      * @return The CorelatedCriteria for the expression
      * @throws Exception
      */
-    public static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    public static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
         if (expression instanceof Retrieve) {
             return generateCorelatedCriteriaForRetrieve((Retrieve) expression, context);
         } else if (expression instanceof Exists) {

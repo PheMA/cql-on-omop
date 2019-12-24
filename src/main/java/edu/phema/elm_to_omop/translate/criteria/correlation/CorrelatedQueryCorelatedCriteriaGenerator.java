@@ -2,7 +2,7 @@ package edu.phema.elm_to_omop.translate.criteria.correlation;
 
 import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
-import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import org.hl7.elm.r1.Equal;
 import org.hl7.elm.r1.Expression;
@@ -18,7 +18,7 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
      * @param context     The ELM translation context
      * @return The corresponding Circe CriteriaGroup
      */
-    public static CorelatedCriteria encounterCondition(Correlation correlation, PhemaElmaToOmopTranslatorContext context) throws CorrelationException, PhemaTranslationException {
+    public static CorelatedCriteria encounterCondition(Correlation correlation, PhemaElmToOmopTranslatorContext context) throws CorrelationException, PhemaTranslationException {
         QuickResourceAttributePair lhs = correlation.getLhs();
         QuickResourceAttributePair rhs = correlation.getRhs();
 

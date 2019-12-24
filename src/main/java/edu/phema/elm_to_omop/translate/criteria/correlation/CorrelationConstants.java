@@ -1,6 +1,6 @@
 package edu.phema.elm_to_omop.translate.criteria.correlation;
 
-import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class CorrelationConstants {
      */
     public static List<CorrelatedQuickPair> supportedQuickCorrelations = new ArrayList<>();
 
-    public static Map<Correlation, CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmaToOmopTranslatorContext, CorelatedCriteria>> generators = new HashMap<>();
+    public static Map<Correlation, CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmToOmopTranslatorContext, CorelatedCriteria>> generators = new HashMap<>();
 
     static {
         try {

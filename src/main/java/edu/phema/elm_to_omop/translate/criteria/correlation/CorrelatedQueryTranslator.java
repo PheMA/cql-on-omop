@@ -1,6 +1,6 @@
 package edu.phema.elm_to_omop.translate.criteria.correlation;
 
-import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import org.hl7.elm.r1.*;
@@ -114,12 +114,12 @@ public class CorrelatedQueryTranslator {
      * @throws CorrelationException
      * @throws PhemaTranslationException
      */
-    public static CorelatedCriteria generateCorelatedCriteriaForCorrelatedQuery(Query query, PhemaElmaToOmopTranslatorContext context) throws
+    public static CorelatedCriteria generateCorelatedCriteriaForCorrelatedQuery(Query query, PhemaElmToOmopTranslatorContext context) throws
         PhemaNotImplementedException, CorrelationException, PhemaTranslationException {
 
         Correlation correlation = getCorrelation(query);
 
-        CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmaToOmopTranslatorContext, CorelatedCriteria> generator = CorrelationConstants.generators.get(correlation);
+        CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmToOmopTranslatorContext, CorelatedCriteria> generator = CorrelationConstants.generators.get(correlation);
 
         if (generator == null) {
             throw new CorrelationException(String.format("Unsupported correlation: %s", correlation.toString()));

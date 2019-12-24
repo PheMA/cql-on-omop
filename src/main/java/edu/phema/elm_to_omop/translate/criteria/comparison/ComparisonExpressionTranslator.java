@@ -2,7 +2,7 @@ package edu.phema.elm_to_omop.translate.criteria.comparison;
 
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.translate.CorelatedCriteriaTranslator;
-import edu.phema.elm_to_omop.translate.PhemaElmaToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
@@ -78,7 +78,7 @@ public class ComparisonExpressionTranslator {
      * @return The created CorelatedCriteria
      * @throws Exception
      */
-    public static CorelatedCriteria generateCorelatedCriteriaForComparison(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    public static CorelatedCriteria generateCorelatedCriteriaForComparison(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
         Occurrence occurrence = getNumericComparisonOccurrence((BinaryExpression) expression);
 
         Expression comparisonSource = getNumericComparisonSourceExpression(expression);

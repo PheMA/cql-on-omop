@@ -38,7 +38,7 @@ public class CriteriaGroupTranslator {
      * @return The created "ANY" or "ALL" CriteriaGroup
      * @throws Exception
      */
-    private static CriteriaGroup generateCriteriaGroupForBinaryExpression(BinaryExpression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    private static CriteriaGroup generateCriteriaGroupForBinaryExpression(BinaryExpression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
         CriteriaGroup criteriaGroup = new CriteriaGroup();
         criteriaGroup.type = PhemaElmToOmopTranslator.getInclusionExpressionType(expression).toString();
 
@@ -75,7 +75,7 @@ public class CriteriaGroupTranslator {
      * @return The created CriteriaGroup
      * @throws Exception
      */
-    public static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, PhemaElmaToOmopTranslatorContext context) throws Exception {
+    public static CriteriaGroup generateCriteriaGroupForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
         Expression expr = PhemaElmToOmopTranslator.invertNot(expression);
 
         CriteriaGroup criteriaGroup = new CriteriaGroup();

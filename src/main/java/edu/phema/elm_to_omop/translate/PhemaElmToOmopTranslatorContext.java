@@ -10,11 +10,11 @@ import org.hl7.elm.r1.ValueSetRef;
 import java.util.List;
 import java.util.Optional;
 
-public class PhemaElmaToOmopTranslatorContext {
+public class PhemaElmToOmopTranslatorContext {
     private Library library;
     private List<PhemaConceptSet> conceptSets;
 
-    public PhemaElmaToOmopTranslatorContext(Library library, List<PhemaConceptSet> conceptSets) {
+    public PhemaElmToOmopTranslatorContext(Library library, List<PhemaConceptSet> conceptSets) {
         this.library = library;
         this.conceptSets = conceptSets;
     }
