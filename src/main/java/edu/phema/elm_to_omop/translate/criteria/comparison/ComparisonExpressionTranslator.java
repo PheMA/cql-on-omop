@@ -149,6 +149,10 @@ public class ComparisonExpressionTranslator {
         } else if (expression instanceof LessOrEqual) {
             occurrence.type = Occurrence.AT_MOST;
         }
+
+        // We want to default to counting distinct occurrences
+        occurrence.isDistinct = true;
+
         return occurrence;
     }
 }
