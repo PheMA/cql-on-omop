@@ -8,7 +8,6 @@ import org.hl7.elm.r1.Equal;
 import org.hl7.elm.r1.Expression;
 import org.ohdsi.circe.cohortdefinition.ConditionOccurrence;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
-import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
 import org.ohdsi.circe.cohortdefinition.ProcedureOccurrence;
 
 public class CorrelatedQueryCorelatedCriteriaGenerator {
@@ -41,12 +40,15 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
             conditionOccurrence.codesetId = context.getCodesetId(condition.getValuesetFilter());
             procedureOccurrence.codesetId = context.getCodesetId(encounter.getValuesetFilter());
 
-            // It's important to restrict the visit here, since this is what the CQL is explicitly stating
-            CriteriaGroup procedureGroup = CirceUtil.criteriaGroupFromCriteria(procedureOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
-
-            conditionOccurrence.CorrelatedCriteria = procedureGroup;
-
-            return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, CirceUtil.defaultOccurrence(), false);
+            // Make sure the outer retrieve is the parent Circe criteria
+            if (lhs.getResource().getType().equals(CorrelationConstants.QuickResourceType.ENCOUNTER)) {
+                // It's important to restrict the visit here, since this is what the CQL is explicitly stating
+                procedureOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(conditionOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
+                return CirceUtil.corelatedCriteriaFromCriteria(procedureOccurrence, CirceUtil.defaultOccurrence(), false);
+            } else {
+                conditionOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(procedureOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
+                return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, CirceUtil.defaultOccurrence(), false);
+            }
         } else {
             throw new CorrelationException(String.format("Correlation expression %s not supported for Encounter/Condition correlation", correlationExpression.getClass().getSimpleName()));
         }
