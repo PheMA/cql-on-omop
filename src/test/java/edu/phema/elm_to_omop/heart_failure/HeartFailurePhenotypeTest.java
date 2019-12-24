@@ -129,7 +129,7 @@ public class HeartFailurePhenotypeTest {
         library = translator.toELM();
 
         // Use the JSON file valueset service
-        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets.omop.json");
+        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets-from-atlas.omop.json");
         valuesetService = new PhemaJsonConceptSetService(valuesetJson);
         conceptSets = valuesetService.getConceptSets();
 
@@ -151,7 +151,7 @@ public class HeartFailurePhenotypeTest {
 //        library = translator.toELM();
 //
 //        // Use the JSON file valueset service
-//        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets.omop.json");
+//        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets-from-vsac.omop.json");
 //        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
 //        conceptSets = valuesetService.getConceptSets();
 //
@@ -163,7 +163,7 @@ public class HeartFailurePhenotypeTest {
 //        IOmopRepositoryService omopRepositoryService = new OmopRepositoryService("http://52.162.236.199/WebAPI/", "OHDSI-CDMV5");
 //        ElmToOmopTranslator elmToOmopTranslator = new ElmToOmopTranslator(valuesetService);
 //
-//        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = elmToOmopTranslator.buildCohortDefinition("HF Phenotype from CQL", "Created by test cases", ce);
+//        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = elmToOmopTranslator.buildCohortDefinition("HF Phenotype from CQL", "Created by Java test case with value sets from VSAC", ce);
 //        omopRepositoryService.createCohortDefinition(cohortDefinition);
 //    }
 }

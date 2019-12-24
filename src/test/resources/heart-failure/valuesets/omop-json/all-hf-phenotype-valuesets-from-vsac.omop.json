@@ -1,0 +1,3727 @@
+[
+  {
+    "id": 0,
+    "name": "Inpatient Encounter (2.16.840.1.113762.1.4.1182.286 from VSAC)",
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 2514404,
+            "CONCEPT_NAME": "Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination; and Medical decision making that is straightforward or of ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99221",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514405,
+            "CONCEPT_NAME": "Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99222",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514406,
+            "CONCEPT_NAME": "Initial hospital care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99223",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514407,
+            "CONCEPT_NAME": "Subsequent hospital care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Medical decision making that is straightforward or o",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99231",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514408,
+            "CONCEPT_NAME": "Subsequent hospital care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of moder",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99232",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514409,
+            "CONCEPT_NAME": "Subsequent hospital care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of high complexity. Counseling and/or coor",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99233",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514413,
+            "CONCEPT_NAME": "Hospital discharge day management; 30 minutes or less",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99238",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514414,
+            "CONCEPT_NAME": "Hospital discharge day management; more than 30 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99239",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514420,
+            "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physic",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99251",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514421,
+            "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of ca",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99252",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514422,
+            "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99253",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514423,
+            "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other phy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99254",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514424,
+            "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physici",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99255",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514441,
+            "CONCEPT_NAME": "Critical care, evaluation and management of the critically ill or critically injured patient; first 30-74 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99291",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514454,
+            "CONCEPT_NAME": "Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination; and Medical decision making that is straightforwar",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99304",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514455,
+            "CONCEPT_NAME": "Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coor",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99305",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514456,
+            "CONCEPT_NAME": "Initial nursing facility care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordina",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99306",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514457,
+            "CONCEPT_NAME": "Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Cou",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99307",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514458,
+            "CONCEPT_NAME": "Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99308",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514459,
+            "CONCEPT_NAME": "Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99309",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514460,
+            "CONCEPT_NAME": "Subsequent nursing facility care, per day, for the evaluation and management of a patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of high complexity. Coun",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99310",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514464,
+            "CONCEPT_NAME": "Nursing facility discharge day management; 30 minutes or less",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99315",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514465,
+            "CONCEPT_NAME": "Nursing facility discharge day management; more than 30 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99316",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514466,
+            "CONCEPT_NAME": "Evaluation and management of a patient involving an annual nursing facility assessment, which requires these 3 key components: A detailed interval history; A comprehensive examination; and Medical decision making that is of low to moderate complexity. Cou",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99318",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514470,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99324",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514471,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseli",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99325",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514472,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of car",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99326",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514473,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordinat",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99327",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514474,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99328",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514478,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Co",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99334",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514479,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99335",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514480,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counselin",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99336",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514481,
+            "CONCEPT_NAME": "Domiciliary or rest home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of moderate to high com",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99337",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.113762.1.4.1182.286"
+  },
+  {
+    "id": 1,
+    "name": "Outpatient Encounter (2.16.840.1.113883.3.464.1003.101.11.1277 from VSAC)",
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 2414390,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination o",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99201",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414391,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; Straightforward medical decision making. Counseling a",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99202",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414392,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; Medical decision making of low complexity. Counseling and/or coordination of care with ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99203",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414393,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordinatio",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99204",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414394,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99205",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414395,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, that may not require the presence of a physician or other qualified health care professional. Usually, the presenting problem(s) are minimal. Typically, 5 minute",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99211",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414396,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counselin",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99212",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414397,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused history; An expanded problem focused examination; Medical decision making of low",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99213",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2414398,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed history; A detailed examination; Medical decision making of moderate complexity. Counseling and/o",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99214",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514399,
+            "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99215",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514415,
+            "CONCEPT_NAME": "Office consultation for a new or established patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physician",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99241",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514416,
+            "CONCEPT_NAME": "Office consultation for a new or established patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99242",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514417,
+            "CONCEPT_NAME": "Office consultation for a new or established patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other qua",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99243",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514418,
+            "CONCEPT_NAME": "Office consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physic",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99244",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514419,
+            "CONCEPT_NAME": "Office consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physicians",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99245",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514484,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99341",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514485,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Medical decision making of low complexity. Counseling and/or coordinati",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99342",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514486,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other physici",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99343",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514487,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with oth",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99344",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514488,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other p",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99345",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514489,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused interval history; A problem focused examination; Straightforward medical decision making. Counseling and/or coor",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99347",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514490,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused interval history; An expanded problem focused examination; Medical decision making of low complexity. ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99348",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514491,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed interval history; A detailed examination; Medical decision making of moderate complexity. Counseling and/or coordinatio",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99349",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514492,
+            "CONCEPT_NAME": "Home visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive interval history; A comprehensive examination; Medical decision making of moderate to high complexity. Counseling ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99350",
+            "DOMAIN_ID": "Observation",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514516,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99381",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514517,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99382",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514518,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99383",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514519,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99384",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514520,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99385",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514521,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99386",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514522,
+            "CONCEPT_NAME": "Initial comprehensive preventive medicine evaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diagnos",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99387",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514523,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99391",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514524,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99392",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514525,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99393",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514526,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99394",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514527,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99395",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514528,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99396",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514529,
+            "CONCEPT_NAME": "Periodic comprehensive preventive medicine reevaluation and management of an individual including an age and gender appropriate history, examination, counseling/anticipatory guidance/risk factor reduction interventions, and the ordering of laboratory/diag",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99397",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514530,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to an individual (separate procedure); approximately 15 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99401",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514531,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to an individual (separate procedure); approximately 30 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99402",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514532,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to an individual (separate procedure); approximately 45 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99403",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514533,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to an individual (separate procedure); approximately 60 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99404",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514538,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to individuals in a group setting (separate procedure); approximately 30 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99411",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514539,
+            "CONCEPT_NAME": "Preventive medicine counseling and/or risk factor reduction intervention(s) provided to individuals in a group setting (separate procedure); approximately 60 minutes",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99412",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514541,
+            "CONCEPT_NAME": "Unlisted preventive medicine service",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99429",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514553,
+            "CONCEPT_NAME": "Work related or medical disability examination by the treating physician that includes: Completion of a medical history commensurate with the patient's condition; Performance of an examination commensurate with the patient's condition; Formulation of a di",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99455",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2514554,
+            "CONCEPT_NAME": "Work related or medical disability examination by other than the treating physician that includes: Completion of a medical history commensurate with the patient's condition; Performance of an examination commensurate with the patient's condition; Formulat",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99456",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 725120,
+            "CONCEPT_NAME": "Assessment of and care planning for a patient with cognitive impairment, requiring an independent historian, in the office or other outpatient, home or domiciliary or rest home, with all of the following required elements: Cognition-focused evaluation inc",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "99483",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.113883.3.464.1003.101.11.1277"
+  },
+  {
+    "id": 2,
+    "name": "Heart Failure Diagnosis (2.16.840.1.113883.3.526.3.376 from VSAC)",
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 44833557,
+            "CONCEPT_NAME": "Malignant hypertensive heart disease with heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "402.01",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44823110,
+            "CONCEPT_NAME": "Benign hypertensive heart disease with heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "402.11",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44831230,
+            "CONCEPT_NAME": "Unspecified hypertensive heart disease with heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "402.91",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44819692,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, malignant, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.01",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44819693,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, malignant, with heart failure and with chronic kidney disease stage V or end stage renal disease",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.03",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44819695,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, benign, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.11",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44820856,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, benign, with heart failure and chronic kidney disease stage V or end stage renal disease",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.13",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44819696,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, unspecified, with heart failure and with chronic kidney disease stage I through stage IV, or unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.91",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44824235,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease, unspecified, with heart failure and chronic kidney disease stage V or end stage renal disease",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "404.93",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44824250,
+            "CONCEPT_NAME": "Heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "3-dig nonbill code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44827794,
+            "CONCEPT_NAME": "Left heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.1",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44834732,
+            "CONCEPT_NAME": "Systolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.2",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig nonbill code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44820869,
+            "CONCEPT_NAME": "Acute systolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.21",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44831248,
+            "CONCEPT_NAME": "Chronic systolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.22",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44833573,
+            "CONCEPT_NAME": "Acute on chronic systolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.23",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44831249,
+            "CONCEPT_NAME": "Diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.3",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig nonbill code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44824251,
+            "CONCEPT_NAME": "Acute diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.31",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44835943,
+            "CONCEPT_NAME": "Chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.32",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44835944,
+            "CONCEPT_NAME": "Acute on chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.33",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44833574,
+            "CONCEPT_NAME": "Combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.4",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig nonbill code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44827795,
+            "CONCEPT_NAME": "Acute combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.41",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44820870,
+            "CONCEPT_NAME": "Chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.42",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44823119,
+            "CONCEPT_NAME": "Acute on chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.43",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "5-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44827796,
+            "CONCEPT_NAME": "Heart failure, unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "428.9",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD9CM",
+            "CONCEPT_CLASS_ID": "4-dig billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4267800,
+            "CONCEPT_NAME": "Acute left-sided heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "364006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 314378,
+            "CONCEPT_NAME": "Hypertensive heart disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "5148006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4206009,
+            "CONCEPT_NAME": "Chronic left-sided congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "5375005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4004279,
+            "CONCEPT_NAME": "High output heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "10091002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4023479,
+            "CONCEPT_NAME": "Acute congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "10633002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4103448,
+            "CONCEPT_NAME": "Low output heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "25544003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 319835,
+            "CONCEPT_NAME": "Congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "42343007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4184497,
+            "CONCEPT_NAME": "Rheumatic left ventricular failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "43736008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4185565,
+            "CONCEPT_NAME": "Low cardiac output syndrome",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "44088000",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4195785,
+            "CONCEPT_NAME": "Right heart failure secondary to left heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "44313006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 444101,
+            "CONCEPT_NAME": "Hypertensive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "46113002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 444031,
+            "CONCEPT_NAME": "Chronic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "48447003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 442310,
+            "CONCEPT_NAME": "Acute heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "56675007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4327205,
+            "CONCEPT_NAME": "Acute left-sided congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "74960003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 315295,
+            "CONCEPT_NAME": "Congestive rheumatic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "82523003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 316994,
+            "CONCEPT_NAME": "Malignant hypertensive heart disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "83105008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 316139,
+            "CONCEPT_NAME": "Heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "84114007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439846,
+            "CONCEPT_NAME": "Left heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "85232009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4229440,
+            "CONCEPT_NAME": "Chronic congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "88805009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4236658,
+            "CONCEPT_NAME": "Pleural effusion due to congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "90727007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4242669,
+            "CONCEPT_NAME": "Biventricular congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "92506005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4009047,
+            "CONCEPT_NAME": "Chronic left-sided heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "111283005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439698,
+            "CONCEPT_NAME": "Benign hypertensive heart disease with congestive cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194767001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439696,
+            "CONCEPT_NAME": "Hypertensive heart and renal disease with (congestive) heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194779001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439694,
+            "CONCEPT_NAME": "Hypertensive heart and renal disease with both (congestive) heart failure and renal failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194781004",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4111554,
+            "CONCEPT_NAME": "Decompensated cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195111005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4108244,
+            "CONCEPT_NAME": "Compensated cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195112003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4108245,
+            "CONCEPT_NAME": "Acute left ventricular failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195114002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4071869,
+            "CONCEPT_NAME": "Congenital cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "206586007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4124705,
+            "CONCEPT_NAME": "Heart failure as a complication of care",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "233924009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4199500,
+            "CONCEPT_NAME": "Refractory heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "314206003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4259490,
+            "CONCEPT_NAME": "Cardiorespiratory failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "410431009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 443580,
+            "CONCEPT_NAME": "Systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "417996009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 443587,
+            "CONCEPT_NAME": "Diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "418304008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4311437,
+            "CONCEPT_NAME": "Decompensated chronic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "424404003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4139864,
+            "CONCEPT_NAME": "Congestive heart failure due to left ventricular systolic dysfunction",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "426263006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4142561,
+            "CONCEPT_NAME": "Congestive heart failure due to valvular disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "426611007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40479192,
+            "CONCEPT_NAME": "Chronic systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "441481004",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40479576,
+            "CONCEPT_NAME": "Chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "441530006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40480602,
+            "CONCEPT_NAME": "Acute on chronic systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443253003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40480603,
+            "CONCEPT_NAME": "Acute systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443254009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40481042,
+            "CONCEPT_NAME": "Acute diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443343001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40481043,
+            "CONCEPT_NAME": "Acute on chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443344007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43020657,
+            "CONCEPT_NAME": "Heart failure due to end stage congenital heart disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "471880001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44784442,
+            "CONCEPT_NAME": "Symptomatic congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "698594003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766164,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703272007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766165,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to coronary artery disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703273002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766166,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to myocarditis",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703274008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766167,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703275009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45773075,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to heart valve disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703276005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36713488,
+            "CONCEPT_NAME": "Congestive heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "717840005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782728,
+            "CONCEPT_NAME": "Hypertensive heart AND chronic kidney disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15781000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782713,
+            "CONCEPT_NAME": "Congestive heart failure with right heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "23341000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021825,
+            "CONCEPT_NAME": "Congestive heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "67431000119105",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021826,
+            "CONCEPT_NAME": "Congestive heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "67441000119101",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44784345,
+            "CONCEPT_NAME": "Congestive heart failure as early postoperative complication",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "72481000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782428,
+            "CONCEPT_NAME": "Congestive heart failure due to cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "101281000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021840,
+            "CONCEPT_NAME": "Systolic heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120851000119104",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43020421,
+            "CONCEPT_NAME": "Systolic heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120861000119102",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43530642,
+            "CONCEPT_NAME": "Systolic heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120871000119108",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021841,
+            "CONCEPT_NAME": "Diastolic heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120881000119106",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021842,
+            "CONCEPT_NAME": "Diastolic heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120891000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43530643,
+            "CONCEPT_NAME": "Diastolic heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120901000119108",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782718,
+            "CONCEPT_NAME": "Acute combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153931000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782719,
+            "CONCEPT_NAME": "Chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153941000119100",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782733,
+            "CONCEPT_NAME": "Acute on chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153951000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712927,
+            "CONCEPT_NAME": "Congestive heart failure stage C due to Ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629541000119106",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712928,
+            "CONCEPT_NAME": "Congestive heart failure stage B due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629591000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36717359,
+            "CONCEPT_NAME": "Systolic heart failure stage B due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629641000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712929,
+            "CONCEPT_NAME": "Systolic heart failure stage C due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629741000119102",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35615055,
+            "CONCEPT_NAME": "Saddle embolus of pulmonary artery with acute cor pulmonale",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15964701000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35207669,
+            "CONCEPT_NAME": "Hypertensive heart disease with heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I11.0",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35207673,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I13.0",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35207674,
+            "CONCEPT_NAME": "Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I13.2",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35207792,
+            "CONCEPT_NAME": "Left ventricular failure, unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.1",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45586587,
+            "CONCEPT_NAME": "Unspecified systolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.20",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45543182,
+            "CONCEPT_NAME": "Acute systolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.21",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45576878,
+            "CONCEPT_NAME": "Chronic systolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.22",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45567180,
+            "CONCEPT_NAME": "Acute on chronic systolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.23",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45601038,
+            "CONCEPT_NAME": "Unspecified diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.30",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45548022,
+            "CONCEPT_NAME": "Acute diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.31",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45533456,
+            "CONCEPT_NAME": "Chronic diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.32",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45562355,
+            "CONCEPT_NAME": "Acute on chronic diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.33",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45533457,
+            "CONCEPT_NAME": "Unspecified combined systolic (congestive) and diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.40",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45591469,
+            "CONCEPT_NAME": "Acute combined systolic (congestive) and diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.41",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45586588,
+            "CONCEPT_NAME": "Chronic combined systolic (congestive) and diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.42",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45567181,
+            "CONCEPT_NAME": "Acute on chronic combined systolic (congestive) and diastolic (congestive) heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.43",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 1326605,
+            "CONCEPT_NAME": "Right heart failure due to left heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.814",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "6-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 1326606,
+            "CONCEPT_NAME": "Biventricular heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.82",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 1326607,
+            "CONCEPT_NAME": "High output heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.83",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 1326608,
+            "CONCEPT_NAME": "End stage heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.84",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 1326609,
+            "CONCEPT_NAME": "Other heart failure",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.89",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "5-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35207793,
+            "CONCEPT_NAME": "Heart failure, unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.9",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.113883.3.526.3.376"
+  },
+  {
+    "id": 3,
+    "name": "Echocardiogram (Custom from CSV)",
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 2313867,
+            "CONCEPT_NAME": "Transthoracic echocardiography for congenital cardiac anomalies; complete",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93303",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313868,
+            "CONCEPT_NAME": "Transthoracic echocardiography for congenital cardiac anomalies; follow-up or limited study",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93304",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313869,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, complete, with spectral Doppler echocardiography, and with color flow Doppler echocardiography",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93306",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313870,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, complete, without spectral or color Doppler echocardiography",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93307",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313871,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, follow-up or limited study",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93308",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313872,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); including probe placement, image acquisition, interpretation and report",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93312",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313873,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); placement of transesophageal probe only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93313",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313874,
+            "CONCEPT_NAME": "Echocardiography, transesophageal, real-time with image documentation (2D) (with or without M-mode recording); image acquisition, interpretation and report only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93314",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313875,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; including probe placement, image acquisition, interpretation and report",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93315",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313876,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; placement of transesophageal probe only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93316",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313877,
+            "CONCEPT_NAME": "Transesophageal echocardiography for congenital cardiac anomalies; image acquisition, interpretation and report only",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93317",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313878,
+            "CONCEPT_NAME": "Echocardiography, transesophageal (TEE) for monitoring purposes, including probe placement, real time 2-dimensional image acquisition and interpretation leading to ongoing (continuous) assessment of (dynamically changing) cardiac pumping function and to t",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93318",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313879,
+            "CONCEPT_NAME": "Doppler echocardiography, pulsed wave and/or continuous wave with spectral display (List separately in addition to codes for echocardiographic imaging); complete",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93320",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313880,
+            "CONCEPT_NAME": "Doppler echocardiography, pulsed wave and/or continuous wave with spectral display (List separately in addition to codes for echocardiographic imaging); follow-up or limited study (List separately in addition to codes for echocardiographic imaging)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93321",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313881,
+            "CONCEPT_NAME": "Doppler echocardiography color flow velocity mapping (List separately in addition to codes for echocardiography)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93325",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313882,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, during rest and cardiovascular stress test using treadmill, bicycle exercise and/or pharmacologically induced stress, with interpretation ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93350",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313883,
+            "CONCEPT_NAME": "Echocardiography, transthoracic, real-time with image documentation (2D), includes M-mode recording, when performed, during rest and cardiovascular stress test using treadmill, bicycle exercise and/or pharmacologically induced stress, with interpretation ",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93351",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 2313884,
+            "CONCEPT_NAME": "Use of echocardiographic contrast agent during stress echocardiography (List separately in addition to code for primary procedure)",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93352",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 46257454,
+            "CONCEPT_NAME": "Echocardiography, transesophageal (TEE) for guidance of a transcatheter intracardiac or great vessel(s) structural intervention(s) (eg, TAVR, transcatheter pulmonary valve replacement, mitral valve repair, paravalvular regurgitation repair, left atrial ap",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93355",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.999999.1"
+  }
+]
