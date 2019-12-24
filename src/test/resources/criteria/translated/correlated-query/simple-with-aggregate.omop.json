@@ -6,15 +6,15 @@
     "CriteriaList": [
       {
         "Criteria": {
-          "ConditionOccurrence": {
+          "ProcedureOccurrence": {
             "CorrelatedCriteria": {
               "Type": "ALL",
               "CriteriaList": [
                 {
                   "Criteria": {
-                    "ProcedureOccurrence": {
-                      "CodesetId": 1,
-                      "ProcedureTypeExclude": false
+                    "ConditionOccurrence": {
+                      "CodesetId": 0,
+                      "ConditionTypeExclude": false
                     }
                   },
                   "StartWindow": {
@@ -36,8 +36,8 @@
               "DemographicCriteriaList": [],
               "Groups": []
             },
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
+            "CodesetId": 1,
+            "ProcedureTypeExclude": false
           }
         },
         "StartWindow": {
@@ -51,7 +51,7 @@
         "Occurrence": {
           "Type": 2,
           "Count": 4,
-          "IsDistinct": false
+          "IsDistinct": true
         },
         "RestrictVisit": false
       }

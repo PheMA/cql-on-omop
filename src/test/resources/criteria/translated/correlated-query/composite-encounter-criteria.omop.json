@@ -6,15 +6,15 @@
     "CriteriaList": [
       {
         "Criteria": {
-          "ConditionOccurrence": {
+          "ProcedureOccurrence": {
             "CorrelatedCriteria": {
               "Type": "ALL",
               "CriteriaList": [
                 {
                   "Criteria": {
-                    "ProcedureOccurrence": {
-                      "CodesetId": 3,
-                      "ProcedureTypeExclude": false
+                    "ConditionOccurrence": {
+                      "CodesetId": 0,
+                      "ConditionTypeExclude": false
                     }
                   },
                   "StartWindow": {
@@ -36,8 +36,8 @@
               "DemographicCriteriaList": [],
               "Groups": []
             },
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
+            "CodesetId": 3,
+            "ProcedureTypeExclude": false
           }
         },
         "StartWindow": {
@@ -48,19 +48,24 @@
             "Coeff": 1
           }
         },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 1,
+          "IsDistinct": false
+        },
         "RestrictVisit": false
       },
       {
         "Criteria": {
-          "ConditionOccurrence": {
+          "ProcedureOccurrence": {
             "CorrelatedCriteria": {
               "Type": "ALL",
               "CriteriaList": [
                 {
                   "Criteria": {
-                    "ProcedureOccurrence": {
-                      "CodesetId": 1,
-                      "ProcedureTypeExclude": false
+                    "ConditionOccurrence": {
+                      "CodesetId": 0,
+                      "ConditionTypeExclude": false
                     }
                   },
                   "StartWindow": {
@@ -82,8 +87,8 @@
               "DemographicCriteriaList": [],
               "Groups": []
             },
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
+            "CodesetId": 1,
+            "ProcedureTypeExclude": false
           }
         },
         "StartWindow": {
@@ -97,7 +102,7 @@
         "Occurrence": {
           "Type": 2,
           "Count": 2,
-          "IsDistinct": false
+          "IsDistinct": true
         },
         "RestrictVisit": false
       }
