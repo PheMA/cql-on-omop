@@ -153,5 +153,4 @@ can then be turned into one or more actual cohorts that exist in OHDSI. If no id
 to find any public definition (`<def accessLevel="Public">`) that is not used within another expression.  This will give
 us "top-level" expressions, which are most likely the phenotypes of interest.
 
-## Circe UML Diagram
-![Circe UML Diagram](https://user-images.githubusercontent.com/668093/69661634-98248f80-1037-11ea-9f42-6b26fc34f80e.png)
+For further implementation considerations, see the [design document](docs/DESIGN.md).
