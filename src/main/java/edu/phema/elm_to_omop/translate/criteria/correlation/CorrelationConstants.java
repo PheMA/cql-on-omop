@@ -92,19 +92,15 @@ public class CorrelationConstants {
     }
 
     /**
-     * Contains the QUICK resource-attribute pairs for which we support correlation
+     * Contains the QUICK resource-attribute pairs for which we support correlation, along with the translation
+     * generator function
      */
-    public static List<CorrelatedQuickPair> supportedQuickCorrelations = new ArrayList<>();
-
     public static Map<Correlation, CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmToOmopTranslatorContext, CorelatedCriteria>> generators = new HashMap<>();
 
     static {
         try {
-            // Encounter.id = Condition.encounter
-            // TODO: Condition.onsetDateTime <temporal operator> Condition.onsetDateTime, and others
-            supportedQuickCorrelations.add(new CorrelatedQuickPair(new QuickResource(QuickResourceType.ENCOUNTER, null), QuickResourceAttribute.ID, new QuickResource(QuickResourceType.CONDITION, null), QuickResourceAttribute.ENCOUNTER));
-
             // Functions for generating correlated criteria
+            // TODO: Condition.onsetDateTime <temporal operator> Condition.onsetDateTime, and others
             generators.put(Correlation.from("Encounter", "id", "Condition", "encounter"), CorrelatedQueryCorelatedCriteriaGenerator::encounterCondition);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
