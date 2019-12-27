@@ -22,7 +22,7 @@
         "Occurrence": {
           "Type": 1,
           "Count": 1,
-          "IsDistinct": false
+          "IsDistinct": true
         },
         "RestrictVisit": false
       }

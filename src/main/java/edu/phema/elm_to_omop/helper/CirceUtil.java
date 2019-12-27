@@ -13,25 +13,6 @@ import java.util.Arrays;
  * generate invalid objects using the empty default constructors.
  */
 public class CirceUtil {
-
-    /**
-     * The translator focuses on creating InclusionRules (CriteraGroups really),
-     * and we let the initial population consist of anyone with any visit
-     * occurrence
-     *
-     * @return A PrimaryCriteria representing any visit occurrence
-     */
-    public static PrimaryCriteria getDefaultPrimaryCriteria() {
-        PrimaryCriteria primaryCriteria = new PrimaryCriteria();
-
-        primaryCriteria.observationWindow = new ObservationFilter();
-        primaryCriteria.criteriaList = new Criteria[]{
-            new VisitOccurrence()
-        };
-
-        return primaryCriteria;
-    }
-
     /**
      * Extends a primitive array of CriteriaGroups by adding a new CriteriaGroup.
      * This is necessary because Circe uses primitive arrays instead of Java collections.
@@ -78,22 +59,21 @@ public class CirceUtil {
     }
 
     /**
-     * InclusionRules are just a thin wrapper around CriteriaGroups, which contain the
-     * expression logic. This method performs the wrapping.
+     * The translator focuses on creating InclusionRules (CriteraGroups really),
+     * and we let the initial population consist of anyone with any visit
+     * occurrence
      *
-     * @param name          The name of the InclusionRule
-     * @param description   The description of the InclusionRule
-     * @param criteriaGroup The CriteriaGroup (expression) to wrap
-     * @return The created InclusionRule
+     * @return A PrimaryCriteria representing any visit occurrence
      */
-    public static InclusionRule inclusionRuleFromCriteriaGroup(String name, String description, CriteriaGroup criteriaGroup) {
-        InclusionRule inclusionRule = new InclusionRule();
+    public static PrimaryCriteria defaultPrimaryCriteria() {
+        PrimaryCriteria primaryCriteria = new PrimaryCriteria();
 
-        inclusionRule.name = name;
-        inclusionRule.description = description;
-        inclusionRule.expression = criteriaGroup;
+        primaryCriteria.observationWindow = new ObservationFilter();
+        primaryCriteria.criteriaList = new Criteria[]{
+            new VisitOccurrence()
+        };
 
-        return inclusionRule;
+        return primaryCriteria;
     }
 
     /**
@@ -113,6 +93,8 @@ public class CirceUtil {
         startWindow.end.coeff = 1;
 
         corelatedCriteria.startWindow = startWindow;
+
+        corelatedCriteria.occurrence = defaultOccurrence();
 
         return corelatedCriteria;
     }
@@ -136,11 +118,86 @@ public class CirceUtil {
      *
      * @return The default cohort definition
      */
-    public static CohortDefinitionService.CohortDefinitionDTO getDefaultCohortDefinition() {
+    public static CohortDefinitionService.CohortDefinitionDTO defaultCohortDefinition() {
         CohortDefinitionService.CohortDefinitionDTO cohortDefinition = new CohortDefinitionService.CohortDefinitionDTO();
 
         cohortDefinition.expressionType = ExpressionType.SIMPLE_EXPRESSION;
 
         return cohortDefinition;
+    }
+
+    /**
+     * InclusionRules are just a thin wrapper around CriteriaGroups, which contain the
+     * expression logic. This method performs the wrapping.
+     *
+     * @param name          The name of the InclusionRule
+     * @param description   The description of the InclusionRule
+     * @param criteriaGroup The CriteriaGroup (expression) to wrap
+     * @return The created InclusionRule
+     */
+    public static InclusionRule inclusionRuleFromCriteriaGroup(String name, String description, CriteriaGroup criteriaGroup) {
+        InclusionRule inclusionRule = new InclusionRule();
+
+        inclusionRule.name = name;
+        inclusionRule.description = description;
+        inclusionRule.expression = criteriaGroup;
+
+        return inclusionRule;
+    }
+
+    /**
+     * Returns a CorelatedCriteria from a Circe Criteria instance, Occurrence object, and restrictVisit boolean
+     *
+     * @param criteria      The Criteria instance to wrap
+     * @param occurrence    The Occurrence object
+     * @param restrictVisit Whether or not to restrict the CorelatedCriteria to same visit as the parent Criteria or
+     *                      cohort entry event
+     * @return The created CorelatedCriteria
+     */
+    public static CorelatedCriteria corelatedCriteriaFromCriteria(Criteria criteria, Occurrence occurrence, boolean restrictVisit) {
+        CorelatedCriteria corelatedCriteria = defaultCorelatedCriteria();
+
+        corelatedCriteria.criteria = criteria;
+        corelatedCriteria.occurrence = occurrence;
+        corelatedCriteria.restrictVisit = restrictVisit;
+
+        return corelatedCriteria;
+    }
+
+    /**
+     * Generates a Circe CriteriaGroup from a single CorelatedCriteria and group inclusion properties
+     *
+     * @param criteria The CorelatedCriteria
+     * @param type     The inclusion type
+     * @param count    The inclusion count
+     * @return The created CriteriaGroup
+     */
+    public static CriteriaGroup criteriaGroupFromCorelatedCriteria(CorelatedCriteria criteria, CirceConstants.CriteriaGroupType type, Integer count) {
+        CriteriaGroup group = new CriteriaGroup();
+
+        group.criteriaList = new CorelatedCriteria[]{criteria};
+
+        group.type = type.toString();
+        group.count = count;
+
+        return group;
+    }
+
+    /**
+     * Generates a Circe CriteriaGroup from a single Criteria, group inclusion, and restrictVisit properties. Defaults
+     * are used for the occurrence and window properties.
+     *
+     * @param criteria The Criteria
+     * @param type     The inclusion type
+     * @param count    The inclusion count
+     * @return The created CriteriaGroup
+     */
+    public static CriteriaGroup criteriaGroupFromCriteria(Criteria criteria, CirceConstants.CriteriaGroupType type, Integer count, boolean restrictVisit) {
+        CorelatedCriteria corelatedCriteria = defaultCorelatedCriteria();
+
+        corelatedCriteria.criteria = criteria;
+        corelatedCriteria.restrictVisit = restrictVisit;
+
+        return criteriaGroupFromCorelatedCriteria(corelatedCriteria, type, count);
     }
 }

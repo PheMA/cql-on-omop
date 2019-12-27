@@ -124,8 +124,8 @@ public class ElmToOmopTranslator {
      * @return The Circe cohort definition
      * @throws Exception
      */
-    private CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
-        CohortDefinitionDTO cohortDefinition = CirceUtil.getDefaultCohortDefinition();
+    public CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
+        CohortDefinitionDTO cohortDefinition = CirceUtil.defaultCohortDefinition();
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

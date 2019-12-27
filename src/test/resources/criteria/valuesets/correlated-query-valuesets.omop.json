@@ -1,0 +1,77 @@
+[
+  {
+    "id": 0,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 35207793,
+            "CONCEPT_NAME": "Heart failure, unspecified",
+            "STANDARD_CONCEPT": "N",
+            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "I50.9",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "ICD10CM",
+            "CONCEPT_CLASS_ID": "4-char billing code"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "1.2.3.4.5"
+  },
+  {
+    "id": 1,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 46257454,
+            "CONCEPT_NAME": "Insertion of probe in esophagus for heart ultrasound examination",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93355",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "6.7.8.9.10"
+  },
+  {
+    "id": 3,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 46257454,
+            "CONCEPT_NAME": "Insertion of probe in esophagus for heart ultrasound examination",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "93355",
+            "DOMAIN_ID": "Procedure",
+            "VOCABULARY_ID": "CPT4",
+            "CONCEPT_CLASS_ID": "CPT4"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "11.12.13.14.15"
+  }
+]

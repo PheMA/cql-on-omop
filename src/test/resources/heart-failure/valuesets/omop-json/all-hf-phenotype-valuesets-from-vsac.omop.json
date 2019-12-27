@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "name": "Inpatient Encounter (2.16.840.1.113762.1.4.1182.286 from VSAC)",
     "expression": {
       "items": [
         {
@@ -570,6 +571,7 @@
   },
   {
     "id": 1,
+    "name": "Outpatient Encounter (2.16.840.1.113883.3.464.1003.101.11.1277 from VSAC)",
     "expression": {
       "items": [
         {
@@ -1394,6 +1396,7 @@
   },
   {
     "id": 2,
+    "name": "Heart Failure Diagnosis (2.16.840.1.113883.3.526.3.376 from VSAC)",
     "expression": {
       "items": [
         {
@@ -1806,6 +1809,1213 @@
         },
         {
           "concept": {
+            "CONCEPT_ID": 4267800,
+            "CONCEPT_NAME": "Acute left-sided heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "364006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 314378,
+            "CONCEPT_NAME": "Hypertensive heart disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "5148006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4206009,
+            "CONCEPT_NAME": "Chronic left-sided congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "5375005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4004279,
+            "CONCEPT_NAME": "High output heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "10091002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4023479,
+            "CONCEPT_NAME": "Acute congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "10633002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4103448,
+            "CONCEPT_NAME": "Low output heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "25544003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 319835,
+            "CONCEPT_NAME": "Congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "42343007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4184497,
+            "CONCEPT_NAME": "Rheumatic left ventricular failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "43736008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4185565,
+            "CONCEPT_NAME": "Low cardiac output syndrome",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "44088000",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4195785,
+            "CONCEPT_NAME": "Right heart failure secondary to left heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "44313006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 444101,
+            "CONCEPT_NAME": "Hypertensive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "46113002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 444031,
+            "CONCEPT_NAME": "Chronic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "48447003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 442310,
+            "CONCEPT_NAME": "Acute heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "56675007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4327205,
+            "CONCEPT_NAME": "Acute left-sided congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "74960003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 315295,
+            "CONCEPT_NAME": "Congestive rheumatic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "82523003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 316994,
+            "CONCEPT_NAME": "Malignant hypertensive heart disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "83105008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 316139,
+            "CONCEPT_NAME": "Heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "84114007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439846,
+            "CONCEPT_NAME": "Left heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "85232009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4229440,
+            "CONCEPT_NAME": "Chronic congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "88805009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4236658,
+            "CONCEPT_NAME": "Pleural effusion due to congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "90727007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4242669,
+            "CONCEPT_NAME": "Biventricular congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "92506005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4009047,
+            "CONCEPT_NAME": "Chronic left-sided heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "111283005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439698,
+            "CONCEPT_NAME": "Benign hypertensive heart disease with congestive cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194767001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439696,
+            "CONCEPT_NAME": "Hypertensive heart and renal disease with (congestive) heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194779001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 439694,
+            "CONCEPT_NAME": "Hypertensive heart and renal disease with both (congestive) heart failure and renal failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "194781004",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4111554,
+            "CONCEPT_NAME": "Decompensated cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195111005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4108244,
+            "CONCEPT_NAME": "Compensated cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195112003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4108245,
+            "CONCEPT_NAME": "Acute left ventricular failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "195114002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4071869,
+            "CONCEPT_NAME": "Congenital cardiac failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "206586007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4124705,
+            "CONCEPT_NAME": "Heart failure as a complication of care",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "233924009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4199500,
+            "CONCEPT_NAME": "Refractory heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "314206003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4259490,
+            "CONCEPT_NAME": "Cardiorespiratory failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "410431009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 443580,
+            "CONCEPT_NAME": "Systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "417996009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 443587,
+            "CONCEPT_NAME": "Diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "418304008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4311437,
+            "CONCEPT_NAME": "Decompensated chronic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "424404003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4139864,
+            "CONCEPT_NAME": "Congestive heart failure due to left ventricular systolic dysfunction",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "426263006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 4142561,
+            "CONCEPT_NAME": "Congestive heart failure due to valvular disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "426611007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40479192,
+            "CONCEPT_NAME": "Chronic systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "441481004",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40479576,
+            "CONCEPT_NAME": "Chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "441530006",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40480602,
+            "CONCEPT_NAME": "Acute on chronic systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443253003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40480603,
+            "CONCEPT_NAME": "Acute systolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443254009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40481042,
+            "CONCEPT_NAME": "Acute diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443343001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 40481043,
+            "CONCEPT_NAME": "Acute on chronic diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "443344007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43020657,
+            "CONCEPT_NAME": "Heart failure due to end stage congenital heart disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "471880001",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44784442,
+            "CONCEPT_NAME": "Symptomatic congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "698594003",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766164,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703272007",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766165,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to coronary artery disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703273002",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766166,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to myocarditis",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703274008",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45766167,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703275009",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 45773075,
+            "CONCEPT_NAME": "Heart failure with reduced ejection fraction due to heart valve disease",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "703276005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36713488,
+            "CONCEPT_NAME": "Congestive heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "717840005",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782728,
+            "CONCEPT_NAME": "Hypertensive heart AND chronic kidney disease with congestive heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15781000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782713,
+            "CONCEPT_NAME": "Congestive heart failure with right heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "23341000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021825,
+            "CONCEPT_NAME": "Congestive heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "67431000119105",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021826,
+            "CONCEPT_NAME": "Congestive heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "67441000119101",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44784345,
+            "CONCEPT_NAME": "Congestive heart failure as early postoperative complication",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "72481000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782428,
+            "CONCEPT_NAME": "Congestive heart failure due to cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "101281000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021840,
+            "CONCEPT_NAME": "Systolic heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120851000119104",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43020421,
+            "CONCEPT_NAME": "Systolic heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120861000119102",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43530642,
+            "CONCEPT_NAME": "Systolic heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120871000119108",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021841,
+            "CONCEPT_NAME": "Diastolic heart failure stage D",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120881000119106",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43021842,
+            "CONCEPT_NAME": "Diastolic heart failure stage C",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120891000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 43530643,
+            "CONCEPT_NAME": "Diastolic heart failure stage B",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "120901000119108",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782718,
+            "CONCEPT_NAME": "Acute combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153931000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782719,
+            "CONCEPT_NAME": "Chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153941000119100",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 44782733,
+            "CONCEPT_NAME": "Acute on chronic combined systolic and diastolic heart failure",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "153951000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712927,
+            "CONCEPT_NAME": "Congestive heart failure stage C due to Ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629541000119106",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712928,
+            "CONCEPT_NAME": "Congestive heart failure stage B due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629591000119103",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36717359,
+            "CONCEPT_NAME": "Systolic heart failure stage B due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629641000119107",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 36712929,
+            "CONCEPT_NAME": "Systolic heart failure stage C due to ischemic cardiomyopathy",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15629741000119102",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 35615055,
+            "CONCEPT_NAME": "Saddle embolus of pulmonary artery with acute cor pulmonale",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "15964701000119109",
+            "DOMAIN_ID": "Condition",
+            "VOCABULARY_ID": "SNOMED",
+            "CONCEPT_CLASS_ID": "Clinical Finding"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
             "CONCEPT_ID": 35207669,
             "CONCEPT_NAME": "Hypertensive heart disease with heart failure",
             "STANDARD_CONCEPT": "N",
@@ -2184,6 +3394,7 @@
   },
   {
     "id": 3,
+    "name": "Echocardiogram (Custom from CSV)",
     "expression": {
       "items": [
         {

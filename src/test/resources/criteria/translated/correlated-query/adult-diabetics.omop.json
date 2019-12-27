@@ -1,6 +1,6 @@
 {
-  "name": "Count expression reference",
-  "description": "Count expression reference",
+  "name": "Adult Diabetics",
+  "description": "Adult Diabetics",
   "expression": {
     "Type": "ALL",
     "CriteriaList": [
@@ -21,13 +21,20 @@
         },
         "Occurrence": {
           "Type": 2,
-          "Count": 3,
-          "IsDistinct": true
+          "Count": 1,
+          "IsDistinct": false
         },
         "RestrictVisit": false
       }
     ],
-    "DemographicCriteriaList": [],
+    "DemographicCriteriaList": [
+      {
+        "Age": {
+          "Value": 18,
+          "Op": "gte"
+        }
+      }
+    ],
     "Groups": []
   }
 }

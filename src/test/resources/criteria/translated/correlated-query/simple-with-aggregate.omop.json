@@ -1,0 +1,62 @@
+{
+  "name": "With Aggregate",
+  "description": "With Aggregate",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ProcedureOccurrence": {
+            "CorrelatedCriteria": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ConditionOccurrence": {
+                      "CodesetId": 0,
+                      "ConditionTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": {
+                      "Coeff": -1
+                    },
+                    "End": {
+                      "Coeff": 1
+                    }
+                  },
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  },
+                  "RestrictVisit": true
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            },
+            "CodesetId": 1,
+            "ProcedureTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 4,
+          "IsDistinct": true
+        },
+        "RestrictVisit": false
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": []
+  }
+}

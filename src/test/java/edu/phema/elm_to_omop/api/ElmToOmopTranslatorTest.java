@@ -3,7 +3,6 @@ package edu.phema.elm_to_omop.api;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import edu.phema.elm_to_omop.PhemaTestHelper;
-import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
@@ -20,7 +19,6 @@ import java.util.List;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(MockitoExtension.class)
 public class ElmToOmopTranslatorTest {
@@ -55,50 +53,32 @@ public class ElmToOmopTranslatorTest {
 
     @Test
     void conceptSetSetupTest() {
-        Config config = new Config(Config.getDefaultConfigPath());
-
         assertDoesNotThrow(() -> {
             ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
         });
     }
 
     @Test
-    void omopTranslatorApiSmokeTest() {
-        Config config = new Config(Config.getDefaultConfigPath());
+    void omopTranslatorApiSmokeTest() throws Exception {
+        ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
 
-        try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
+        String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
 
-            String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple.cql");
-
-            String omopJson = translate.cqlToOmopJson(cqlString, "In Initial Population");
-
-            String expected = PhemaTestHelper.getFileAsString("api/smoke-test-simple.omop.json");
-
-            PhemaTestHelper.assertStringsEqualIgnoreWhitespace(omopJson, expected);
-        } catch (Exception e) {
-            assertNull(e);
-        }
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("api/smoke-test-simple.omop.json"),
+            translate.cqlToOmopJson(cqlString, "In Initial Population"));
     }
 
     @Test
-    void OmopTranslatorMultipleStatementTest() {
-        Config config = new Config(Config.getDefaultConfigPath());
+    void OmopTranslatorMultipleStatementTest() throws Exception {
+        ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
 
-        try {
-            ElmToOmopTranslator translate = new ElmToOmopTranslator(valuesetService);
+        String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-multiple.cql");
 
-            String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-multiple.cql");
+        List<String> names = Arrays.asList("In Initial Population", "Another Statement");
 
-            List<String> names = Arrays.asList("In Initial Population", "Another Statement");
-
-            String omopJson = translate.cqlToOmopJson(cqlString, names);
-
-            String expected = PhemaTestHelper.getFileAsString("api/smoke-test-multiple.omop.json");
-
-            PhemaTestHelper.assertStringsEqualIgnoreWhitespace(omopJson, expected);
-        } catch (Exception e) {
-            assertNull(e);
-        }
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getFileAsString("api/smoke-test-multiple.omop.json"),
+            translate.cqlToOmopJson(cqlString, names));
     }
 }

@@ -239,6 +239,13 @@
             <artifactId>circe</artifactId>
             <version>${ohdsi.circe.version}</version>
         </dependency>
+
+        <!-- PhEMA dependencies -->
+        <dependency>
+            <groupId>edu.phema</groupId>
+            <artifactId>elm-utils</artifactId>
+            <version>0.0.8</version>
+        </dependency>
     </dependencies>
 
     <build>

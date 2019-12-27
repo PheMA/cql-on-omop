@@ -1,6 +1,6 @@
 {
-  "name": "Count expression reference",
-  "description": "Count expression reference",
+  "name": "Simple Aggregate",
+  "description": "Simple Aggregate",
   "expression": {
     "Type": "ALL",
     "CriteriaList": [
@@ -21,7 +21,7 @@
         },
         "Occurrence": {
           "Type": 2,
-          "Count": 3,
+          "Count": 55,
           "IsDistinct": true
         },
         "RestrictVisit": false

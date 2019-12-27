@@ -23,77 +23,77 @@ valueset_oid,valueset_name,code,description,code_system,code_system_version,code
 2.16.840.1.113883.3.526.3.376,Heart Failure,428.42,Chronic combined systolic and diastolic heart failure,ICD9CM,2013,2.16.840.1.113883.6.103,PT
 2.16.840.1.113883.3.526.3.376,Heart Failure,428.43,Acute on chronic combined systolic and diastolic heart failure,ICD9CM,2013,2.16.840.1.113883.6.103,PT
 2.16.840.1.113883.3.526.3.376,Heart Failure,428.9,"Heart failure, unspecified",ICD9CM,2013,2.16.840.1.113883.6.103,PT
-2.16.840.1.113883.3.526.3.376,Heart Failure,364006,Acute left-sided heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,5148006,Hypertensive heart disease with congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,5375005,Chronic left-sided congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,10091002,High output heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,10633002,Acute congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,25544003,Low output heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,42343007,Congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,43736008,Rheumatic left ventricular failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,44088000,Low cardiac output syndrome (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,44313006,Right heart failure secondary to left heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,46113002,Hypertensive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,48447003,Chronic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,56675007,Acute heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,74960003,Acute left-sided congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,82523003,Congestive rheumatic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,83105008,Malignant hypertensive heart disease with congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,84114007,Heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,85232009,Left heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,88805009,Chronic congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,90727007,Pleural effusion due to congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,92506005,Biventricular congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,111283005,Chronic left-sided heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,194767001,Benign hypertensive heart disease with congestive cardiac failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,194779001,Hypertensive heart and renal disease with (congestive) heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,194781004,Hypertensive heart and renal disease with both (congestive) heart failure and renal failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,195111005,Decompensated cardiac failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,195112003,Compensated cardiac failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,195114002,Acute left ventricular failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,206586007,Congenital cardiac failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,233924009,Heart failure as a complication of care (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,314206003,Refractory heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,410431009,Cardiorespiratory failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,417996009,Systolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,418304008,Diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,424404003,Decompensated chronic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,426263006,Congestive heart failure due to left ventricular systolic dysfunction (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,426611007,Congestive heart failure due to valvular disease (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,441481004,Chronic systolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,441530006,Chronic diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,443253003,Acute on chronic systolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,443254009,Acute systolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,443343001,Acute diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,443344007,Acute on chronic diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,471880001,Heart failure due to end stage congenital heart disease (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,698594003,Symptomatic congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,703272007,Heart failure with reduced ejection fraction (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,703273002,Heart failure with reduced ejection fraction due to coronary artery disease (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,703274008,Heart failure with reduced ejection fraction due to myocarditis (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,703275009,Heart failure with reduced ejection fraction due to cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,703276005,Heart failure with reduced ejection fraction due to heart valve disease (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,717840005,Congestive heart failure stage B (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15781000119107,Hypertensive heart AND chronic kidney disease with congestive heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,23341000119109,Congestive heart failure with right heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,67431000119105,Congestive heart failure stage D (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,67441000119101,Congestive heart failure stage C (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,72481000119103,Congestive heart failure as early postoperative complication (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,101281000119107,Congestive heart failure due to cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120851000119104,Systolic heart failure stage D (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120861000119102,Systolic heart failure stage C (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120871000119108,Systolic heart failure stage B (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120881000119106,Diastolic heart failure stage D (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120891000119109,Diastolic heart failure stage C (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,120901000119108,Diastolic heart failure stage B (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,153931000119109,Acute combined systolic and diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,153941000119100,Chronic combined systolic and diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,153951000119103,Acute on chronic combined systolic and diastolic heart failure (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15629541000119106,Congestive heart failure stage C due to Ischemic cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15629591000119103,Congestive heart failure stage B due to ischemic cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15629641000119107,Systolic heart failure stage B due to ischemic cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15629741000119102,Systolic heart failure stage C due to ischemic cardiomyopathy (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
-2.16.840.1.113883.3.526.3.376,Heart Failure,15964701000119109,Acute cor pulmonale co-occurrent and due to saddle embolus of pulmonary artery (disorder),SNOMEDCT,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,364006,Acute left-sided heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,5148006,Hypertensive heart disease with congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,5375005,Chronic left-sided congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,10091002,High output heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,10633002,Acute congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,25544003,Low output heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,42343007,Congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,43736008,Rheumatic left ventricular failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,44088000,Low cardiac output syndrome (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,44313006,Right heart failure secondary to left heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,46113002,Hypertensive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,48447003,Chronic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,56675007,Acute heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,74960003,Acute left-sided congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,82523003,Congestive rheumatic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,83105008,Malignant hypertensive heart disease with congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,84114007,Heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,85232009,Left heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,88805009,Chronic congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,90727007,Pleural effusion due to congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,92506005,Biventricular congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,111283005,Chronic left-sided heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,194767001,Benign hypertensive heart disease with congestive cardiac failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,194779001,Hypertensive heart and renal disease with (congestive) heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,194781004,Hypertensive heart and renal disease with both (congestive) heart failure and renal failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,195111005,Decompensated cardiac failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,195112003,Compensated cardiac failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,195114002,Acute left ventricular failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,206586007,Congenital cardiac failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,233924009,Heart failure as a complication of care (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,314206003,Refractory heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,410431009,Cardiorespiratory failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,417996009,Systolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,418304008,Diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,424404003,Decompensated chronic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,426263006,Congestive heart failure due to left ventricular systolic dysfunction (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,426611007,Congestive heart failure due to valvular disease (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,441481004,Chronic systolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,441530006,Chronic diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,443253003,Acute on chronic systolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,443254009,Acute systolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,443343001,Acute diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,443344007,Acute on chronic diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,471880001,Heart failure due to end stage congenital heart disease (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,698594003,Symptomatic congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,703272007,Heart failure with reduced ejection fraction (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,703273002,Heart failure with reduced ejection fraction due to coronary artery disease (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,703274008,Heart failure with reduced ejection fraction due to myocarditis (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,703275009,Heart failure with reduced ejection fraction due to cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,703276005,Heart failure with reduced ejection fraction due to heart valve disease (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,717840005,Congestive heart failure stage B (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15781000119107,Hypertensive heart AND chronic kidney disease with congestive heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,23341000119109,Congestive heart failure with right heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,67431000119105,Congestive heart failure stage D (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,67441000119101,Congestive heart failure stage C (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,72481000119103,Congestive heart failure as early postoperative complication (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,101281000119107,Congestive heart failure due to cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120851000119104,Systolic heart failure stage D (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120861000119102,Systolic heart failure stage C (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120871000119108,Systolic heart failure stage B (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120881000119106,Diastolic heart failure stage D (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120891000119109,Diastolic heart failure stage C (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,120901000119108,Diastolic heart failure stage B (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,153931000119109,Acute combined systolic and diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,153941000119100,Chronic combined systolic and diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,153951000119103,Acute on chronic combined systolic and diastolic heart failure (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15629541000119106,Congestive heart failure stage C due to Ischemic cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15629591000119103,Congestive heart failure stage B due to ischemic cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15629641000119107,Systolic heart failure stage B due to ischemic cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15629741000119102,Systolic heart failure stage C due to ischemic cardiomyopathy (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
+2.16.840.1.113883.3.526.3.376,Heart Failure,15964701000119109,Acute cor pulmonale co-occurrent and due to saddle embolus of pulmonary artery (disorder),SNOMED,2019-09,2.16.840.1.113883.6.96,FN
 2.16.840.1.113883.3.526.3.376,Heart Failure,I11.0,Hypertensive heart disease with heart failure,ICD10CM,2020,2.16.840.1.113883.6.90,PT
 2.16.840.1.113883.3.526.3.376,Heart Failure,I13.0,"Hypertensive heart and chronic kidney disease with heart failure and stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",ICD10CM,2020,2.16.840.1.113883.6.90,PT
 2.16.840.1.113883.3.526.3.376,Heart Failure,I13.2,"Hypertensive heart and chronic kidney disease with heart failure and with stage 5 chronic kidney disease, or end stage renal disease",ICD10CM,2020,2.16.840.1.113883.6.90,PT

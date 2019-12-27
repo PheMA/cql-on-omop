@@ -102,10 +102,12 @@ See the [Javadoc](https://phema.github.io/elm-to-ohdsi-executer/) for the full A
 
 ### Deployment
 
-The maven artifact for this project is hosted on [Bintray](https://bintray.com/beta/#/phema/maven/phema-elm-to-ohdsi?tab=overview).
-To publish a new version, you must be a member of the [`phema` organization](https://bintray.com/phema) on Bintray. Once you have created an account
-and joined the organization, read [this article](https://blog.bintray.com/2015/09/17/publishing-your-maven-project-to-bintray/)
-for instructions on how to publish. Basically,
+The maven artifact for this project is hosted on
+[Bintray](https://bintray.com/beta/#/phema/maven/phema-elm-to-ohdsi?tab=overview). To publish a new version, you must be
+a member of the [`phema` organization](https://bintray.com/phema) on Bintray. Once you have created an account and
+joined the organization, read [this
+article](https://blog.bintray.com/2015/09/17/publishing-your-maven-project-to-bintray/) for instructions on how to
+publish. Basically,
 
 1. Add the following to the `<servers>` tag in your Maven `settings.xml` file (probaby at `~/.m2/settings.xml`):
 
@@ -140,119 +142,15 @@ Additional information on the ELM schema can be found at - [https://cql.hl7.org/
 
 ## Processing Methodology
 
-CQL allows for multiple expressions to be created, which contain a named identifier.  This is very powerful for reuse, but the challenge is that it requires a naming convention to identify the main "entry point" of the logic.  For things like quality measures, pre-established terms (e.g., "Initial Patient Population", "Numerator", "Denominator") may make this more readily identifiable.  For a phenotype, we may have multiple definitions in a single phenotype - e.g., "Type 2 Diabetes Cases", "Type 2 Diabetes Controls".
+CQL allows for multiple expressions to be created, which contain a named identifier. This is very powerful for reuse,
+but the challenge is that it requires a naming convention to identify the main "entry point" of the logic.  For things
+like quality measures, pre-established terms (e.g., "Initial Patient Population", "Numerator", "Denominator") may make
+this more readily identifiable.  For a phenotype, we may have multiple definitions in a single phenotype - e.g., "Type 2
+Diabetes Cases", "Type 2 Diabetes Controls".
 
-We will need the user to specify a list of expression identifiers to use for the phenotype.  During translation, these can then be turned into one or more actual cohorts that exist in OHDSI.    If no identifier is provided, our best guess is to find any public definition (`<def accessLevel="Public">`) that is not used within another expression.  This will give us "top-level" expressions, which are most likely the phenotypes of interest.
+We will need the user to specify a list of expression identifiers to use for the phenotype. During translation, these
+can then be turned into one or more actual cohorts that exist in OHDSI. If no identifier is provided, our best guess is
+to find any public definition (`<def accessLevel="Public">`) that is not used within another expression.  This will give
+us "top-level" expressions, which are most likely the phenotypes of interest.
 
-
-## OHDSI JSON structure
-```
-{
-    name:
-    description:
-    expressionType:
-    expression:
-    {  
-        ConceptSets: 
-        [ 
-            { 
-                id:  
-                name: 
-                expression: 
-                {  
-                    items: 
-                    [
-                        { 
-                            concept: 
-                            {   
-                                CONCEPT_ID:   
-                                CONCEPT_NAME:
-                                STANDARD_CONCEPT: 
-                                STANDARD_CONCEPT_CAPTION:
-                                INVALID_REASON: 
-                                INVALID_REASON_CAPTION: 
-                                CONCEPT_CODE: 
-                                DOMAIN_ID: 
-                                VOCABULARY_ID:   
-                                CONCEPT_CLASS_ID: 
-                            }   // concept         
-                        }   // items
-                    ]   // items       
-                }   // explression    
-            }   // ConceptSets
-        ],  // ConceptSets
-        PrimaryCriteria: 
-        {     
-            CriteriaList: 
-            [       
-                {         
-                    VisitOccurrence: {}       
-                }     
-            ],       
-            ObservationWindow: 
-            {       
-                PriorDays: ,       
-                PostDays:          
-            },     
-            PrimaryCriteriaLimit: 
-            {       
-                Type: 
-            }   
-        },       // primaryCriteria
-        QualifiedLimit: 
-        {     
-            Type: 
-        },   
-        ExpressionLimit: 
-        {     
-            Type: 
-        },   
-        InclusionRules: 
-        [     
-            {       
-                name:        
-                expression: 
-                {         
-                    Type: ALL,         
-                    CriteriaList: 
-                    [           
-                        { 
-                            Criteria: 
-                            {   
-                                ConditionOccurrence: 
-                                {     
-                                    CodesetId:   
-                                } 
-                            },   // 
-                            StartWindow: 
-                            {   
-                                Start: 
-                                {     
-                                    Coeff:    
-                                },   
-                                End: {     
-                                    Coeff:  
-                                } 
-                            },   // startWindow
-                            Occurrence: 
-                            {   
-                              Type:    
-                              Count:  
-                            }           
-                        }         // CriteriaList
-                    ],      // CriteriaList   
-                    DemographicCriteriaList: [],         
-                    Groups: []       
-                }      // expression
-            }     // InclusionRules
-        ],     // InclusionRules
-        CensoringCriteria: [],   
-        CollapseSettings: 
-        {     
-            CollapseType:      
-            EraPad:    
-        },   
-        CensorWindow: {} 
-    }
-}
-```
+For further implementation considerations, see the [design document](docs/DESIGN.md).
