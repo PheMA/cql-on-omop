@@ -20,7 +20,6 @@ import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
 import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.FileHandler;
@@ -47,10 +46,10 @@ public class ElmToOmopConverter {
     public static void main(String[] args) {
         ElmToOmopConverter converter = new ElmToOmopConverter();
 
-        converter.run(args, getResourceDirectory());
+        converter.run(args);
     }
 
-    public void run(String[] args, String resourceDirectory) {
+    public void run(String[] args) {
         try {
             // Setup configuration
             Config config;
@@ -74,16 +73,16 @@ public class ElmToOmopConverter {
             // 1. Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
             //    the CQL/ELM can be vague if not explicitly defined otherwise.
             // 2. Read the elm file and set up the objects
-            FilePhenotype phenotype = new FilePhenotype(resourceDirectory + config.getInputFileName(), config.getPhenotypeExpressions());
+            FilePhenotype phenotype = new FilePhenotype(config.getInputFileName(), config.getPhenotypeExpressions());
 
             // read the value set csv and add to the objects.  If the tab is specified, we assume that it is a spreadsheet.  Otherwise we will use the
             // default CSV reader.
             IValuesetService valuesetService = null;
             if (config.isTabSpecified()) {
-                valuesetService = new SpreadsheetValuesetService(omopService, resourceDirectory + config.getVsFileName(), config.getTab());
+                valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
             }
             else {
-                valuesetService = new ConceptCodeCsvFileValuesetService(omopService, resourceDirectory + config.getVsFileName(), true);
+                valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
             }
 
             List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
@@ -111,7 +110,7 @@ public class ElmToOmopConverter {
             }
 
             // Write the resulting cohort definitions to out to the filesystem
-            omopWriter.writeOmopJson(cohortDefinitions, resourceDirectory, config.getOutFileName());
+            omopWriter.writeOmopJson(cohortDefinitions, config.getOutFileName());
         } catch (PhenotypeException pe) {
             System.out.println(pe.getMessage());
             pe.printStackTrace();
@@ -134,15 +133,5 @@ public class ElmToOmopConverter {
         logger.addHandler(fh);
         fh.setFormatter(new MyFormatter());
         return fh;
-    }
-
-    private static String getResourceDirectory() {
-        String workingDir = System.getProperty("user.dir");
-
-        if (!workingDir.endsWith("src" + File.separator + "main")) {
-            workingDir += File.separator + "src" + File.separator + "main";
-        }
-
-        return workingDir + File.separator + "resources" + File.separator;
     }
 }

@@ -67,22 +67,22 @@ public class CliTest {
 
     @Test
     public void CliTest() throws Exception {
-        String[] args = new String[]{
-              "OMOP_BASE_URL=http://localhost:53333/",
-              "VS_FILE_NAME=/cli/simple.csv",
-              "INPUT_FILE_NAME=/cli/simple.cql",
-              "OUT_FILE_NAME=/cli/simple.omop.json",
-              "SOURCE=phema-test",
-              "PHENOTYPE_EXPRESSIONS=CliTest"
-            };
-
         try {
             ElmToOmopConverter converter = new ElmToOmopConverter();
 
             URL resource = getClass().getResource("LibraryHelperTests.cql");
             File file = Paths.get(resource.toURI()).toFile();
 
-            converter.run(args, file.getParent());
+            String[] args = new String[]{
+              "OMOP_BASE_URL=http://localhost:53333/",
+              String.format("VS_FILE_NAME=%s", PhemaTestHelper.getResourcePath("cli/simple.csv")),
+              String.format("INPUT_FILE_NAME=%s", PhemaTestHelper.getResourcePath("cli/simple.cql")),
+              String.format("OUT_FILE_NAME=%s/cli/simple.omop.json", file.getParent()),
+              "SOURCE=phema-test",
+              "PHENOTYPE_EXPRESSIONS=CliTest"
+            };
+
+          converter.run(args);
 
             PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
                 PhemaTestHelper.getFileAsString("cli/simple-expected.omop.json"),
