@@ -48,5 +48,55 @@
       ]
     },
     "oid": "88.77.66.55"
+  },
+  {
+    "id": 3,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 9201,
+            "CONCEPT_NAME": "Inpatient Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "IP",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "Inpatient Encounter"
+  },
+  {
+    "id": 4,
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 9202,
+            "CONCEPT_NAME": "Outpatient Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "OP",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "Outpatient Encounter"
   }
 ]
