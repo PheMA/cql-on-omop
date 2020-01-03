@@ -24,12 +24,12 @@ public class CliTest {
 
         WireMock.configureFor("localhost", wireMockServer.port());
 
-        // Stub the concept get request
-        stubFor(get(urlEqualTo("/vocabulary/phema-test/concept/45917083"))
+        // Stub the concept search request
+        stubFor(post(urlEqualTo("/vocabulary/search"))
             .willReturn(aResponse()
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")
-                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concept.45917083.json"))));
+                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concepts.45917083.json"))));
 
         // Stub the cohort definition create request
         stubFor(post(urlEqualTo("/cohortdefinition"))
@@ -68,13 +68,13 @@ public class CliTest {
     @Test
     public void CliTest() throws Exception {
         String[] args = new String[]{
-            "OMOP_BASE_URL=http://localhost:53333/",
-            "VS_FILE_NAME=/cli/simple.csv",
-            "INPUT_FILE_NAME=/cli/simple.cql",
-            "OUT_FILE_NAME=/cli/simple.omop.json",
-            "SOURCE=phema-test",
-            "PHENOTYPE_EXPRESSIONS=CliTest"
-        };
+              "OMOP_BASE_URL=http://localhost:53333/",
+              "VS_FILE_NAME=/cli/simple.csv",
+              "INPUT_FILE_NAME=/cli/simple.cql",
+              "OUT_FILE_NAME=/cli/simple.omop.json",
+              "SOURCE=phema-test",
+              "PHENOTYPE_EXPRESSIONS=CliTest"
+            };
 
         try {
             ElmToOmopConverter converter = new ElmToOmopConverter();

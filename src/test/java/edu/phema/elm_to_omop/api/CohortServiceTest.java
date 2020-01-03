@@ -42,12 +42,12 @@ public class CohortServiceTest {
 
         WireMock.configureFor("localhost", wireMockServer.port());
 
-        // Stub the concept get request
-        stubFor(get(urlEqualTo("/vocabulary/phema-test/concept/45917083"))
+        // Stub the concept post request
+        stubFor(post(urlEqualTo("/vocabulary/search"))
             .willReturn(aResponse()
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")
-                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concept.45917083.json"))));
+                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concepts.45917083.json"))));
 
         // Stub the cohort definition create request
         stubFor(post(urlEqualTo("/cohortdefinition"))
@@ -58,7 +58,7 @@ public class CohortServiceTest {
 
         omopRepository = new OmopRepositoryService("http://localhost:53333/", "phema-test");
 
-        String vsPath = "/api/valuesets/simple.csv";
+        String vsPath = PhemaTestHelper.getResourcePath("api/valuesets/simple.csv");
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
     }
 

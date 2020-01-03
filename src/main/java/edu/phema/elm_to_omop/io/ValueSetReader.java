@@ -13,6 +13,7 @@ import org.ohdsi.circe.vocabulary.ConceptSetExpression.ConceptSetItem;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Reads Value sets from a spreadsheet formatted in PhEMA authoring tool standard.
@@ -47,11 +48,18 @@ public class ValueSetReader {
             ArrayList<PhemaCode> codes = pvs.getCodes();
             itemsList = new ArrayList<>();
             for (PhemaCode code : codes) {
-                Concept concept = repository.getConceptMetadata(code.getCode());
+                List<Concept> concepts = repository.vocabularySearch(code.getCode(), code.getCodeSystem());
 
-                ConceptSetItem item = new ConceptSetItem();
-                item.concept = concept;
-                itemsList.add(item);
+                // Filter for only exact matches (this isn't possible current with the OHDSI WebAPI)
+                concepts = concepts.stream()
+                    .filter(c -> c.conceptCode.equals(code.getCode()))
+                    .collect(Collectors.toList());
+
+                for (Concept concept : concepts) {
+                    ConceptSetItem item = new ConceptSetItem();
+                    item.concept = concept;
+                    itemsList.add(item);
+                }
             }
 
             ConceptSetItem[] items = new ConceptSetItem[itemsList.size()];

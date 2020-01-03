@@ -1,7 +1,10 @@
 package edu.phema.elm_to_omop.vocabulary;
 
+import edu.phema.elm_to_omop.helper.Terms;
 import edu.phema.elm_to_omop.io.SpreadsheetReader;
+import edu.phema.elm_to_omop.io.SpreadsheetWriter;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
+import edu.phema.elm_to_omop.repository.OmopRepositoryException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaCode;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
@@ -11,6 +14,7 @@ import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +27,13 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
 
     private String csvPath;
     private int conceptSetId;
+    private List<PhemaConceptSet> conceptSetCache;
+    private boolean enableCaching;
 
-    public ConceptCodeCsvFileValuesetService(IOmopRepositoryService omopService, String csvPath) {
+    public ConceptCodeCsvFileValuesetService(IOmopRepositoryService omopService, String csvPath, boolean enableCaching) {
         this.omopService = omopService;
         this.csvPath = csvPath;
+        this.enableCaching = enableCaching;
 
         this.conceptSetId = 0;
     }
@@ -117,6 +124,7 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
 
                 conceptSet = new PhemaConceptSet();
                 conceptSet.id = conceptSetId;
+                conceptSet.name = phemaValueSet.getName();
                 conceptSet.setOid(phemaValueSet.getOid());
 
                 ArrayList<PhemaCode> codes = phemaValueSet.getCodes();
@@ -124,23 +132,34 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
                 items = new ArrayList<>();
 
                 for (PhemaCode code : codes) {
-
-                    List<Concept> concept = omopService.vocabularySearch(code.getCode(), code.getCodeSystem());
-
-                    // Filter for only exact matches (this isn't possible current with the OHDSI WebAPI)
-                    concept = concept.stream()
+                    List<Concept> concepts = null;
+                    // If we have a cached entry with the OMOP concept ID, we can bypass the vocabulary search
+                    String omopConceptId = code.getOmopConceptId();
+                    if (omopConceptId == null || omopConceptId.equals("")) {
+                      concepts = omopService.vocabularySearch(code.getCode(), code.getCodeSystem());
+                      // Filter for only exact matches (this isn't possible current with the OHDSI WebAPI)
+                      concepts = concepts.stream()
                         .filter(c -> c.conceptCode.equals(code.getCode()))
                         .collect(Collectors.toList());
+                    }
+                    else {
+                      Concept concept = omopService.getConceptMetadata(code.getOmopConceptId());
+                      if (concept != null) {
+                          concepts = new ArrayList<Concept>(){{ add(concept); }};
+                      }
+                    }
 
-                    if (concept.size() > 1) {
+
+                    if (concepts.size() > 1) {
                         // The concept code is not specific enough
                         throw new ValuesetServiceException(String.format("Concept code %s does not specify a single concept in code system %s", code.getCode(), code.getCodeSystem()), null);
-                    } else if (concept.size() == 0) {
+                    } else if (concepts.size() == 0) {
                         // The code is missing in the OMOP instance
                         conceptSets.addNotFoundCode(code);
                     } else {
                         ConceptSetExpression.ConceptSetItem item = new ConceptSetExpression.ConceptSetItem();
-                        item.concept = concept.get(0);
+                        item.concept = concepts.get(0);
+                        code.setOmopConceptId(item.concept.conceptId.toString()); // Set this for later caching
                         items.add(item);
                     }
                 }
@@ -154,6 +173,10 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
                 conceptSets.addConceptSet(conceptSet);
                 conceptSetId++;
             }
+
+            if (this.enableCaching) {
+                cacheValueSets(csvFilePath + Terms.VS_CACHE_FILE_SUFFIX, valueSets);
+            }
         } catch (Exception e) {
             throw new ValuesetServiceException(String.format("Error reading valuset file: %s", csvFilePath), e);
         }
@@ -161,9 +184,18 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
         return conceptSets;
     }
 
+    private void cacheValueSets(String cacheFile, ArrayList<PhemaValueSet> valueSets) throws IOException {
+        SpreadsheetWriter writer = new SpreadsheetWriter();
+        writer.writeValueSetsCache(cacheFile, valueSets);
+    }
+
 
     @Override
     public List<PhemaConceptSet> getConceptSets() throws ValuesetServiceException {
-        return getConceptSetList().getConceptSets();
+        if (this.conceptSetCache == null) {
+          this.conceptSetCache = getConceptSetList().getConceptSets();
+        }
+
+        return this.conceptSetCache;
     }
 }

@@ -12,6 +12,7 @@ import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.phenotype.IPhenotype;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.vocabulary.ConceptCodeCsvFileValuesetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
@@ -52,7 +53,13 @@ public class ElmToOmopTranslator {
 
         OmopRepositoryService omopService = new OmopRepositoryService(config.getOmopBaseURL(), config.getSource());
 
-        SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+        IValuesetService valuesetService = null;
+        if (config.isTabSpecified()) {
+          valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+        }
+        else {
+          valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
+        }
 
         try {
             conceptSets = valuesetService.getConceptSets();

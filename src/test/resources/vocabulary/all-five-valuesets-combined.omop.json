@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "name":"HeartFailureICDCodes",
     "expression": {
       "items": [
         {
@@ -128,6 +129,7 @@
   },
   {
     "id": 1,
+    "name":"HeartFailureICDCodes",
     "expression": {
       "items": [
         {
@@ -255,6 +257,7 @@
   },
   {
     "id": 2,
+    "name":"HeartFailureICDCodes",
     "expression": {
       "items": [
         {
@@ -382,6 +385,7 @@
   },
   {
     "id": 3,
+    "name":"HeartFailureICDCodes",
     "expression": {
       "items": [
         {
@@ -441,6 +445,7 @@
   },
   {
     "id": 4,
+    "name":"HeartFailureICDCodes",
     "expression": {
       "items": [
         {
