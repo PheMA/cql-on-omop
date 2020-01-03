@@ -37,7 +37,7 @@ are supported:
 |**Name**|**Description**|
 |---|---|
 |OMOP_BASE_URL| The base URL of the OHDSI WebAPI (should end with `WebAPI/`)|
-|INPUT_FILE_NAME| The name of the CQL library relative to `src/main/resources`|
+|INPUT_FILE_NAME| The path of the CQL library relative to `src/main/resources`|
 |VS_FILE_NAME| Name of the valueset CSV file relative to `src/main/resources`|
 |OUT_FILE_NAME| Output filename (will be created in `src/main/resources`) |
 |SOURCE|The OHDSI data source name |
@@ -56,6 +56,11 @@ Individual properties can also be overwritten on the command line as follows:
 
 ```
 mvn compile exec:java -Dexec.arguments="OMOP_BASE_URL=http://projectphema.org/WebAPI/ INPUT_FILE_NAME=autism/simple-dx-elm.xml"
+```
+
+You can optionally build an executable JAR with all dependencies packaged (NOTE: this is a large file):
+```
+mvn clean package
 ```
 
 ### Library
