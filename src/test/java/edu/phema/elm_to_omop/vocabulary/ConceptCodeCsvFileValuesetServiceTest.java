@@ -45,7 +45,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
     @Test
     public void test() throws Exception {
         // Test simple case with one terminology where all codes exists
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-only.csv");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"));
         PhemaConceptSetList concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
@@ -53,7 +53,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
         assertEquals(concepts.getNotFoundCodes().size(), 0);
 
         // Test two terminologies where all codes exists
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10.csv");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-and-icd10.csv"));
         concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
@@ -61,7 +61,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
         assertEquals(concepts.getNotFoundCodes().size(), 0);
 
         // Test two terminologies where some codes don't exist
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/icd9-and-icd10-and-missing.csv");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-and-icd10-and-missing.csv"));
         concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 1);
@@ -72,7 +72,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
     @Test
     public void testMultiple() throws Exception {
         // Test loading a directory containing multiple valueset CSV files
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary/two-valuesets.valueset.csv");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/two-valuesets.valueset.csv"));
         PhemaConceptSetList concepts = valuesetService.getConceptSetList();
 
         assertEquals(concepts.getConceptSets().size(), 2);
@@ -84,7 +84,7 @@ public class ConceptCodeCsvFileValuesetServiceTest {
     @Test
     public void testDirectory() throws Exception {
         // Test loading a directory containing multiple valueset CSV files
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, "/vocabulary");
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary"));
         PhemaConceptSetList concepts = valuesetService.getConceptSetList();
 
         PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
