@@ -64,4 +64,12 @@ public class EncounterCriteriaTest {
             "criteria/valuesets/encounter-type-valuesets.omop.json",
             "criteria/translated/encounter/simple-case.omop.json");
     }
+
+    @Test
+    public void testFilterByCode() throws Exception {
+        runTest("Filter By Code",
+            "criteria/encounter-criteria.cql",
+            "criteria/valuesets/encounter-type-valuesets.omop.json",
+            "criteria/translated/encounter/filter-by-code.omop.json");
+    }
 }
