@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public class QuickResourceCirceCriteriaMap {
     public static Map<String, Class<? extends Criteria>> resourceCriteriaMap = new HashMap<String, Class<? extends Criteria>>() {{
-        // put("Encounter", VisitOccurrence.class);
-        // FIXME: Encounter types appear to be capture in the PROCEDURE_OCCURRENCE table
-        put("Encounter", ProcedureOccurrence.class);
+        // We currently support translating Encounter.class to VisitOccurrence
+        // TODO: Support translating Encounter.type
+        put("Encounter", VisitOccurrence.class);
 
         put("Procedure", ProcedureOccurrence.class);
         put("Observation", Measurement.class);
