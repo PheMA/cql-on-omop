@@ -42,7 +42,7 @@ public class ElmToOmopTranslatorTest {
 
         omopRepository = new OmopRepositoryService("http://localhost:53333/", "phema-test");
 
-        String vsPath = "/api/valuesets/simple.csv";
+        String vsPath = PhemaTestHelper.getResourcePath("api/valuesets/simple.csv");
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
     }
 

@@ -40,7 +40,7 @@ public class AgeCriteriaTest {
 
         lenient().when(omopRepository.getConceptMetadata("1.2.3.4")).thenReturn(new Concept());
 
-        String vsPath = "/LibraryHelperTests.csv";
+        String vsPath = PhemaTestHelper.getResourcePath("LibraryHelperTests.csv");
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");
 
         ModelManager modelManager = new ModelManager();

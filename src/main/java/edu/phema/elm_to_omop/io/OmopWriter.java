@@ -26,8 +26,7 @@ public class OmopWriter {
      * Makes sure the json has been created and writes it to file designated in the configuration
      * Returns the json string
      */
-    public String writeOmopJson(ExpressionDef expression, Library elmContents, List<PhemaConceptSet> conceptSets, String directory, String filename) throws Exception {
-        String jsonFileName = directory + filename;
+    public String writeOmopJson(ExpressionDef expression, Library elmContents, List<PhemaConceptSet> conceptSets, String jsonFileName) throws Exception {
         try (FileWriter jsonFile = new FileWriter(jsonFileName)) {
             String json = generateOmopJson(expression, elmContents, conceptSets);
 
@@ -41,11 +40,9 @@ public class OmopWriter {
      * Serializes a list Circe cohort definitions to a file
      *
      * @param cohortDefinitions The cohort definitions
-     * @param directory         The directory to write the file to
-     * @param filename          The filename
+     * @param jsonFileName      The filename
      */
-    public void writeOmopJson(List<CohortDefinitionDTO> cohortDefinitions, String directory, String filename) {
-        String jsonFileName = directory + filename;
+    public void writeOmopJson(List<CohortDefinitionDTO> cohortDefinitions, String jsonFileName) {
         try (FileWriter jsonFile = new FileWriter(jsonFileName)) {
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
