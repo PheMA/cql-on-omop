@@ -2,7 +2,7 @@ library "Correlated Query Test"
 
 using QUICK
 
-codesystem "ActCodes": 'http://hl7.org/fhir/ValueSet/v3-ActEncounterCode'
+codesystem "ActCodes": 'http://hl7.org/fhir/v3/ActCode'
 
 valueset "Inpatient VS": '77.66.55.44'
 valueset "Outpatient VS": '88.77.66.55'
