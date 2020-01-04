@@ -8,7 +8,7 @@ import org.hl7.elm.r1.Equal;
 import org.hl7.elm.r1.Expression;
 import org.ohdsi.circe.cohortdefinition.ConditionOccurrence;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
-import org.ohdsi.circe.cohortdefinition.ProcedureOccurrence;
+import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 
 public class CorrelatedQueryCorelatedCriteriaGenerator {
     /**
@@ -35,18 +35,18 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
         Expression correlationExpression = correlation.getCorrelationExpression();
         if (correlationExpression instanceof Equal) {
             ConditionOccurrence conditionOccurrence = new ConditionOccurrence();
-            ProcedureOccurrence procedureOccurrence = new ProcedureOccurrence();
+            VisitOccurrence visitOccurrence = new VisitOccurrence();
 
             conditionOccurrence.codesetId = context.getCodesetId(condition.getValuesetFilter());
-            procedureOccurrence.codesetId = context.getCodesetId(encounter.getValuesetFilter());
+            visitOccurrence.codesetId = context.getCodesetId(encounter.getValuesetFilter());
 
             // Make sure the outer retrieve is the parent Circe criteria
             if (lhs.getResource().getType().equals(CorrelationConstants.QuickResourceType.ENCOUNTER)) {
                 // It's important to restrict the visit here, since this is what the CQL is explicitly stating
-                procedureOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(conditionOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
-                return CirceUtil.corelatedCriteriaFromCriteria(procedureOccurrence, CirceUtil.defaultOccurrence(), false);
+                visitOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(conditionOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
+                return CirceUtil.corelatedCriteriaFromCriteria(visitOccurrence, CirceUtil.defaultOccurrence(), false);
             } else {
-                conditionOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(procedureOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
+                conditionOccurrence.CorrelatedCriteria = CirceUtil.criteriaGroupFromCriteria(visitOccurrence, CirceConstants.CriteriaGroupType.ALL, null, true);
                 return CirceUtil.corelatedCriteriaFromCriteria(conditionOccurrence, CirceUtil.defaultOccurrence(), false);
             }
         } else {

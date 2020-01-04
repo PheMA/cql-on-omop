@@ -6,7 +6,7 @@
     "CriteriaList": [
       {
         "Criteria": {
-          "ProcedureOccurrence": {
+          "VisitOccurrence": {
             "CorrelatedCriteria": {
               "Type": "ALL",
               "CriteriaList": [
@@ -37,7 +37,7 @@
               "Groups": []
             },
             "CodesetId": 3,
-            "ProcedureTypeExclude": false
+            "VisitTypeExclude": false
           }
         },
         "StartWindow": {
@@ -57,7 +57,7 @@
       },
       {
         "Criteria": {
-          "ProcedureOccurrence": {
+          "VisitOccurrence": {
             "CorrelatedCriteria": {
               "Type": "ALL",
               "CriteriaList": [
@@ -88,7 +88,7 @@
               "Groups": []
             },
             "CodesetId": 1,
-            "ProcedureTypeExclude": false
+            "VisitTypeExclude": false
           }
         },
         "StartWindow": {
