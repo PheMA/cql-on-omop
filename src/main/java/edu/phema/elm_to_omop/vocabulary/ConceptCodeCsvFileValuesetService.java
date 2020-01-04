@@ -2,10 +2,12 @@ package edu.phema.elm_to_omop.vocabulary;
 
 import edu.phema.elm_to_omop.io.SpreadsheetReader;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
+import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaCode;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
+import edu.phema.elm_to_omop.vocabulary.translate.PhemaVocabularyTranslator;
 import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 
@@ -14,7 +16,6 @@ import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,6 +102,35 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
         }
     }
 
+    /**
+     * Translate the code if supported by the translator
+     *
+     * @param code The code to potentially translate
+     * @return The translated code if translation is supported, else the original code
+     * @throws PhemaTranslationException
+     */
+    private PhemaCode translateIfSupported(PhemaCode code) throws PhemaTranslationException {
+        if (PhemaVocabularyTranslator.translationSupportedForCodeSystem(code.getCodeSystem())) {
+            return PhemaVocabularyTranslator.translateCode(code);
+        }
+
+        return code;
+    }
+
+    private ArrayList<PhemaCode> translateCodes(ArrayList<PhemaCode> codes) throws PhemaTranslationException {
+        ArrayList<PhemaCode> translated = new ArrayList<>();
+
+        for (PhemaCode code : codes) {
+            PhemaCode translatedCode = translateIfSupported(code);
+
+            if (!translated.contains(translatedCode)) {
+                translated.add(translatedCode);
+            }
+        }
+
+        return translated;
+    }
+
     private PhemaConceptSetList getConceptSet(String csvFilePath) throws ValuesetServiceException {
         PhemaConceptSetList conceptSets = new PhemaConceptSetList();
 
@@ -119,11 +149,11 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
                 conceptSet.id = conceptSetId;
                 conceptSet.setOid(phemaValueSet.getOid());
 
-                ArrayList<PhemaCode> codes = phemaValueSet.getCodes();
+                ArrayList<PhemaCode> translatedCodes = translateCodes(phemaValueSet.getCodes());
 
                 items = new ArrayList<>();
 
-                for (PhemaCode code : codes) {
+                for (PhemaCode code : translatedCodes) {
 
                     List<Concept> concept = omopService.vocabularySearch(code.getCode(), code.getCodeSystem());
 
