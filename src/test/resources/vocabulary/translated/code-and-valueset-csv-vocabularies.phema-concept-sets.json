@@ -27,6 +27,7 @@
   },
   {
     "id": 1,
+    "name": "Heart Failure ICD Codes",
     "expression": {
       "items": [
         {

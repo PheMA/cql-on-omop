@@ -73,7 +73,7 @@ public class MultiModalValuesetServiceTest {
         library = translator.toELM();
 
         IValuesetService elmCodeResolvingValuesetService = new ElmCodeResolvingValuesetService(omopRepository, library);
-        IValuesetService conceptCodeCsvFileValuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"));
+        IValuesetService conceptCodeCsvFileValuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"), false);
 
         IValuesetService multiModalValuesetService = new MultiModalValuesetService(elmCodeResolvingValuesetService, conceptCodeCsvFileValuesetService);
 
@@ -113,7 +113,7 @@ public class MultiModalValuesetServiceTest {
         library = translator.toELM();
 
         IValuesetService elmCodeResolvingValuesetService = new ElmCodeResolvingValuesetService(omopRepository, library);
-        IValuesetService conceptCodeCsvFileValuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"));
+        IValuesetService conceptCodeCsvFileValuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"), false);
 
         IValuesetService multiModalValuesetService = new MultiModalValuesetService(elmCodeResolvingValuesetService, conceptCodeCsvFileValuesetService);
 

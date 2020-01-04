@@ -42,7 +42,7 @@ public class VocabularyTranslationTest {
 
     @Test
     public void ActTranslationTest() throws Exception {
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/encounter/act-encounter-codes.valueset.csv"));
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/encounter/act-encounter-codes.valueset.csv"), false);
         conceptSets = valuesetService.getConceptSets();
 
         PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
