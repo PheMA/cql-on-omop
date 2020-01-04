@@ -5,10 +5,13 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
+import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSetList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -33,6 +36,12 @@ public class ConceptCodeCsvFileValuesetServiceTest {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")
                 .withTransformers("concept-transformer")));
+
+        stubFor(get(urlMatching("/vocabulary/.+/concept/\\d+"))
+            .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concept.45917083.json"))));
 
         omopRepository = new OmopRepositoryService("http://localhost:43333/", "OHDSI-CDMV5");
     }
@@ -67,6 +76,25 @@ public class ConceptCodeCsvFileValuesetServiceTest {
         assertEquals(concepts.getConceptSets().size(), 1);
         assertEquals(concepts.getConceptSets().get(0).expression.items.length, 7);
         assertEquals(concepts.getNotFoundCodes().size(), 2);
+    }
+
+    @Test
+    public void testCache() throws Exception {
+        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/cached/icd9-with-cache.csv"), true);
+        List<PhemaConceptSet> concepts = valuesetService.getConceptSets();
+
+        // The cache should be discovered, so only calls to the concept metadata service call
+        // should be made.  The search call should never be made.
+        verify(7, getRequestedFor(urlMatching("/vocabulary/.+/concept/\\d+")));
+        verify(0, postRequestedFor(urlEqualTo("/vocabulary/search")));
+
+        // The second part of caching is that once we load the concept sets, they are cached
+        // within the ConceptCodeCsvFileValuesetService object.  This subsequent call will mean
+        // no other calls to the metadata service call will be made.
+        concepts = valuesetService.getConceptSets();
+
+        verify(7, getRequestedFor(urlMatching("/vocabulary/.+/concept/\\d+")));
+        verify(0, postRequestedFor(urlEqualTo("/vocabulary/search")));
     }
 
     @Test

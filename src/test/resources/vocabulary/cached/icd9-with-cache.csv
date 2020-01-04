@@ -1,0 +1,8 @@
+value_set_oid,value_set_name,code,description,code_system,code_system_version,code_system_oid,tty
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.21,Acute systolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.42,Chronic combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.43,Acute on chronic combined systolic and diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428,Heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.31,Acute diastolic heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.0,"Congestive heart failure, unspecified",ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
+2.16.840.1.999999.2,Heart Failure ICD Codes,428.1,Left heart failure,ICD9CM,ICD9CM v32 master descriptions,2.16.840.1.113883.6.103,FN
