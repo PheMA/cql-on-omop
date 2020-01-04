@@ -37,8 +37,8 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
             ConditionOccurrence conditionOccurrence = new ConditionOccurrence();
             VisitOccurrence visitOccurrence = new VisitOccurrence();
 
-            conditionOccurrence.codesetId = context.getCodesetId(condition.getValuesetFilter());
-            visitOccurrence.codesetId = context.getCodesetId(encounter.getValuesetFilter());
+            conditionOccurrence.codesetId = context.getCodeSetIdForVocabularyReference(condition.getValuesetFilter());
+            visitOccurrence.codesetId = context.getCodeSetIdForVocabularyReference(encounter.getValuesetFilter());
 
             // Make sure the outer retrieve is the parent Circe criteria
             if (lhs.getResource().getType().equals(CorrelationConstants.QuickResourceType.ENCOUNTER)) {

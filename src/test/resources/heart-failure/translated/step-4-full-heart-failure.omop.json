@@ -19,583 +19,6 @@
   "ConceptSets": [
     {
       "id": 0,
-      "name": "Inpatient Encounter",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_ID": 2514563,
-              "CONCEPT_NAME": "Initial inpatient neonatal critical care, per day, for the evaluation and management of a critically ill neonate, 28 days of age or younger",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99468",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514565,
-              "CONCEPT_NAME": "Initial inpatient pediatric critical care, per day, for the evaluation and management of a critically ill infant or young child, 29 days through 24 months of age",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99471",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514567,
-              "CONCEPT_NAME": "Initial inpatient pediatric critical care, per day, for the evaluation and management of a critically ill infant or young child, 2 through 5 years of age",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99475",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514424,
-              "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination of care with other physici",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99255",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514423,
-              "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordination of care with other phy",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99254",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514422,
-              "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A detailed history; A detailed examination; and Medical decision making of low complexity. Counseling and/or coordination of care with other physicians, other ",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99253",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514421,
-              "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of ca",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99252",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514420,
-              "CONCEPT_NAME": "Inpatient consultation for a new or established patient, which requires these 3 key components: A problem focused history; A problem focused examination; and Straightforward medical decision making. Counseling and/or coordination of care with other physic",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99251",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514400,
-              "CONCEPT_NAME": "Observation care discharge day management (This code is to be utilized to report all services provided to a patient on discharge from  observation status  if the discharge is on other than the initial date of  observation status.  To report services to a ",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99217",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514411,
-              "CONCEPT_NAME": "Observation or inpatient hospital care, for the evaluation and management of a patient including admission and discharge on the same date, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision ma",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99235",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514412,
-              "CONCEPT_NAME": "Observation or inpatient hospital care, for the evaluation and management of a patient including admission and discharge on the same date, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision ma",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99236",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514410,
-              "CONCEPT_NAME": "Observation or inpatient hospital care, for the evaluation and management of a patient including admission and discharge on the same date, which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination;",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99234",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514496,
-              "CONCEPT_NAME": "Prolonged service in the inpatient or observation setting, requiring unit/floor time beyond the usual service; each additional 30 minutes (List separately in addition to code for prolonged service)",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99357",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514495,
-              "CONCEPT_NAME": "Prolonged service in the inpatient or observation setting, requiring unit/floor time beyond the usual service; first hour (List separately in addition to code for inpatient Evaluation and Management service)",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99356",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514564,
-              "CONCEPT_NAME": "Subsequent inpatient neonatal critical care, per day, for the evaluation and management of a critically ill neonate, 28 days of age or younger",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99469",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514566,
-              "CONCEPT_NAME": "Subsequent inpatient pediatric critical care, per day, for the evaluation and management of a critically ill infant or young child, 29 days through 24 months of age",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99472",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514568,
-              "CONCEPT_NAME": "Subsequent inpatient pediatric critical care, per day, for the evaluation and management of a critically ill infant or young child, 2 through 5 years of age",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99476",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 1,
-      "name": "Outpatient Encounter",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_ID": 2514403,
-              "CONCEPT_NAME": "Initial observation care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of high complexity. Counseling and/or coordination ",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99220",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514402,
-              "CONCEPT_NAME": "Initial observation care, per day, for the evaluation and management of a patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; and Medical decision making of moderate complexity. Counseling and/or coordinat",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99219",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514401,
-              "CONCEPT_NAME": "Initial observation care, per day, for the evaluation and management of a patient which requires these 3 key components: A detailed or comprehensive history; A detailed or comprehensive examination; and Medical decision making that is straightforward or o",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99218",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514400,
-              "CONCEPT_NAME": "Observation care discharge day management (This code is to be utilized to report all services provided to a patient on discharge from  observation status  if the discharge is on other than the initial date of  observation status.  To report services to a ",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99217",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414395,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, that may not require the presence of a physician or other qualified health care professional. Usually, the presenting problem(s) are minimal. Typically, 5 minute",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99211",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514399,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99215",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414398,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A detailed history; A detailed examination; Medical decision making of moderate complexity. Counseling and/o",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99214",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414397,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: An expanded problem focused history; An expanded problem focused examination; Medical decision making of low",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99213",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414396,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of an established patient, which requires at least 2 of these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counselin",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99212",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414394,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of high complexity. Counseling and/or coordination of",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99205",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414393,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A comprehensive history; A comprehensive examination; Medical decision making of moderate complexity. Counseling and/or coordinatio",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99204",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414392,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A detailed history; A detailed examination; Medical decision making of low complexity. Counseling and/or coordination of care with ",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99203",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414391,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: An expanded problem focused history; An expanded problem focused examination; Straightforward medical decision making. Counseling a",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99202",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2414390,
-              "CONCEPT_NAME": "Office or other outpatient visit for the evaluation and management of a new patient, which requires these 3 key components: A problem focused history; A problem focused examination; Straightforward medical decision making. Counseling and/or coordination o",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99201",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514494,
-              "CONCEPT_NAME": "Prolonged service in the office or other outpatient setting requiring direct patient contact beyond the usual service; each additional 30 minutes (List separately in addition to code for prolonged service)",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99355",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          },
-          {
-            "concept": {
-              "CONCEPT_ID": 2514493,
-              "CONCEPT_NAME": "Prolonged service in the office or other outpatient setting requiring direct patient contact beyond the usual service; first hour (List separately in addition to code for office or other outpatient Evaluation and Management service)",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "CONCEPT_CODE": "99354",
-              "DOMAIN_ID": "Procedure",
-              "VOCABULARY_ID": "CPT4",
-              "CONCEPT_CLASS_ID": "CPT4"
-            },
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
       "name": "Heart Failure Diagnosis",
       "expression": {
         "items": [
@@ -1657,7 +1080,7 @@
       }
     },
     {
-      "id": 3,
+      "id": 1,
       "name": "Echocardiogram",
       "expression": {
         "items": [
@@ -1986,6 +1409,56 @@
           }
         ]
       }
+    },
+    {
+      "id": 2,
+      "name": "Inpatient Encounter",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 9201,
+              "CONCEPT_NAME": "Inpatient Visit",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "CONCEPT_CODE": "IP",
+              "DOMAIN_ID": "Visit",
+              "VOCABULARY_ID": "Visit",
+              "CONCEPT_CLASS_ID": "Visit"
+            },
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Outpatient Encounter",
+      "expression": {
+        "items": [
+          {
+            "concept": {
+              "CONCEPT_ID": 9202,
+              "CONCEPT_NAME": "Outpatient Visit",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "CONCEPT_CODE": "OP",
+              "DOMAIN_ID": "Visit",
+              "VOCABULARY_ID": "Visit",
+              "CONCEPT_CLASS_ID": "Visit"
+            },
+            "isExcluded": false,
+            "includeDescendants": false,
+            "includeMapped": false
+          }
+        ]
+      }
     }
   ],
   "QualifiedLimit": {
@@ -2009,7 +1482,7 @@
               {
                 "Criteria": {
                   "ProcedureOccurrence": {
-                    "CodesetId": 3,
+                    "CodesetId": 1,
                     "ProcedureTypeExclude": false
                   }
                 },
@@ -2051,7 +1524,7 @@
                         {
                           "Criteria": {
                             "ConditionOccurrence": {
-                              "CodesetId": 2,
+                              "CodesetId": 0,
                               "ConditionTypeExclude": false
                             }
                           },
@@ -2074,7 +1547,7 @@
                       "DemographicCriteriaList": [],
                       "Groups": []
                     },
-                    "CodesetId": 0,
+                    "CodesetId": 2,
                     "VisitTypeExclude": false
                   }
                 },
@@ -2102,7 +1575,7 @@
                         {
                           "Criteria": {
                             "ConditionOccurrence": {
-                              "CodesetId": 2,
+                              "CodesetId": 0,
                               "ConditionTypeExclude": false
                             }
                           },
@@ -2125,7 +1598,7 @@
                       "DemographicCriteriaList": [],
                       "Groups": []
                     },
-                    "CodesetId": 1,
+                    "CodesetId": 3,
                     "VisitTypeExclude": false
                   }
                 },
