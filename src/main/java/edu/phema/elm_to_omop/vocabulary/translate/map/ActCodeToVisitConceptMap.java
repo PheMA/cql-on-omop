@@ -20,7 +20,7 @@ public class ActCodeToVisitConceptMap implements IVocabularyMap {
         // TODO: Have someone validate these mappings
         map.put("AMB", "OP");
         map.put("EMER", "ER");
-        map.put("FLD", "LCTP");
+        map.put("FLD", "OMOP4822457");
         map.put("HH", "OMOP4822459");
         map.put("IMP", "IP");
         map.put("ACUTE", "IP");
