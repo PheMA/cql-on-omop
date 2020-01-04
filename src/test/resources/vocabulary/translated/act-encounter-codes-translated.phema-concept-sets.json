@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "name": "Act Encounter Codes",
+    "expression": {
+      "items": [
+        {
+          "concept": {
+            "CONCEPT_ID": 9202,
+            "CONCEPT_NAME": "Outpatient Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "OP",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 9203,
+            "CONCEPT_NAME": "Emergency Room Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "ER",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 581476,
+            "CONCEPT_NAME": "Home Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "OMOP4822459",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        },
+        {
+          "concept": {
+            "CONCEPT_ID": 9201,
+            "CONCEPT_NAME": "Inpatient Visit",
+            "STANDARD_CONCEPT": "S",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "INVALID_REASON": "V",
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_CODE": "IP",
+            "DOMAIN_ID": "Visit",
+            "VOCABULARY_ID": "Visit",
+            "CONCEPT_CLASS_ID": "Visit"
+          },
+          "isExcluded": false,
+          "includeDescendants": false,
+          "includeMapped": false
+        }
+      ]
+    },
+    "oid": "2.16.840.1.999999.3"
+  }
+]

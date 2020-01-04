@@ -31,6 +31,8 @@ public class CriteriaTranslator {
                 ((DrugExposure) criteria).codesetId = codesetId;
             } else if (criteria instanceof Measurement) {
                 ((Measurement) criteria).codesetId = codesetId;
+            } else if (criteria instanceof VisitOccurrence) {
+                ((VisitOccurrence) criteria).codesetId = codesetId;
             } else {
                 throw new PhemaNotImplementedException(String.format("%s criteria are not yet implemented", criteria.getClass().getSimpleName()));
             }
