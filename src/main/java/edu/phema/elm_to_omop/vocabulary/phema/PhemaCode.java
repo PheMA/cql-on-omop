@@ -93,7 +93,6 @@ public class PhemaCode {
         PhemaCode other = (PhemaCode) obj;
 
         return code.equals(other.getCode()) &&
-            codeSystem.equals(other.getCodeSystem()) &&
-            codeSystemVersion.equals(other.getCodeSystemVersion());
+            codeSystem.equals(other.getCodeSystem());
     }
 }

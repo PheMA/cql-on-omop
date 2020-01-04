@@ -25,7 +25,7 @@ public class VocabularyTranslationTestTransformer extends ResponseTransformer {
 
         try {
             conceptSetsList = mapper
-                .readValue(PhemaTestHelper.getFileAsString("vocabulary/encounter/act-encounter-codes-translated.phema-concept-sets.json"), new TypeReference<List<PhemaConceptSet>>() {
+                .readValue(PhemaTestHelper.getFileAsString("vocabulary/encounter/vocabulary-testing-codes.phema-concept-sets.json"), new TypeReference<List<PhemaConceptSet>>() {
                 });
         } catch (Throwable t) {
             t.printStackTrace();
