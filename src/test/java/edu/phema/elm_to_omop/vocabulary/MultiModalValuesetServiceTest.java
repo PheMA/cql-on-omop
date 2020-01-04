@@ -107,6 +107,33 @@ public class MultiModalValuesetServiceTest {
             PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-vocabularies.phema-concept-sets.json"));
     }
 
+    @Test
+    public void testCaching() throws Exception {
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("vocabulary/cql/code-and-valueset-vocabularies.cql"), modelManager, libraryManager);
+        library = translator.toELM();
+
+        IValuesetService elmCodeResolvingValuesetService = new ElmCodeResolvingValuesetService(omopRepository, library);
+        IValuesetService conceptCodeCsvFileValuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/icd9-only.csv"));
+
+        IValuesetService multiModalValuesetService = new MultiModalValuesetService(elmCodeResolvingValuesetService, conceptCodeCsvFileValuesetService);
+
+        conceptSets = multiModalValuesetService.getConceptSets();
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getJson(conceptSets),
+            PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-csv-vocabularies.phema-concept-sets.json"));
+
+        verify(exactly(8), postRequestedFor(urlEqualTo("/vocabulary/search")));
+
+        conceptSets = multiModalValuesetService.getConceptSets();
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getJson(conceptSets),
+            PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-csv-vocabularies.phema-concept-sets.json"));
+
+        verify(exactly(8), postRequestedFor(urlEqualTo("/vocabulary/search")));
+    }
+
     @AfterAll
     public static void cleanup() {
         wireMockServer.stop();

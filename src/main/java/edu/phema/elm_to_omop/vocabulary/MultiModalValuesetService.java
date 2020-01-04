@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MultiModalValuesetService implements IValuesetService {
     private List<IValuesetService> valuesetServices;
-
+    private PhemaConceptSetList phemaConceptSetList;
     private int codesetId;
 
     public MultiModalValuesetService(IValuesetService... valuesetServices) {
@@ -19,6 +19,7 @@ public class MultiModalValuesetService implements IValuesetService {
         }
 
         codesetId = 0;
+        phemaConceptSetList = null;
     }
 
     private PhemaConceptSetList mergeConceptSetLists(List<PhemaConceptSetList> phemaConceptSetLists) {
@@ -42,15 +43,23 @@ public class MultiModalValuesetService implements IValuesetService {
         return phemaConceptSetListResult;
     }
 
-    @Override
-    public PhemaConceptSetList getConceptSetList() throws ValuesetServiceException {
+    private void prepareConceptSetList() throws ValuesetServiceException {
         List<PhemaConceptSetList> phemaConceptSetLists = new ArrayList<>();
 
         for (IValuesetService valuesetService : valuesetServices) {
             phemaConceptSetLists.add(valuesetService.getConceptSetList());
         }
 
-        return mergeConceptSetLists(phemaConceptSetLists);
+        this.phemaConceptSetList = mergeConceptSetLists(phemaConceptSetLists);
+    }
+
+    @Override
+    public PhemaConceptSetList getConceptSetList() throws ValuesetServiceException {
+        if (phemaConceptSetList == null) {
+            prepareConceptSetList();
+        }
+
+        return phemaConceptSetList;
     }
 
     @Override
