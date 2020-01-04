@@ -84,6 +84,29 @@ public class MultiModalValuesetServiceTest {
             PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-csv-vocabularies.phema-concept-sets.json"));
     }
 
+    @Test
+    public void testConsistentResults() throws Exception {
+        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("vocabulary/cql/code-and-valueset-vocabularies.cql"), modelManager, libraryManager);
+        library = translator.toELM();
+
+        IValuesetService elmCodeResolvingValuesetService = new ElmCodeResolvingValuesetService(omopRepository, library);
+        IValuesetService phemaJsonConceptSetService = new PhemaJsonConceptSetService(PhemaTestHelper.getFileAsString("vocabulary/heart-failure-diagnosis-icd-codes.phema-concept-sets.json"));
+
+        IValuesetService multiModalValuesetService = new MultiModalValuesetService(elmCodeResolvingValuesetService, phemaJsonConceptSetService);
+
+        conceptSets = multiModalValuesetService.getConceptSets();
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getJson(conceptSets),
+            PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-vocabularies.phema-concept-sets.json"));
+
+        conceptSets = multiModalValuesetService.getConceptSets();
+
+        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+            PhemaTestHelper.getJson(conceptSets),
+            PhemaTestHelper.getFileAsString("vocabulary/translated/code-and-valueset-vocabularies.phema-concept-sets.json"));
+    }
+
     @AfterAll
     public static void cleanup() {
         wireMockServer.stop();

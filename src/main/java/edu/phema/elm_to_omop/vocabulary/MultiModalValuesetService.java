@@ -36,6 +36,9 @@ public class MultiModalValuesetService implements IValuesetService {
             phemaConceptSetListResult.addAllNotFoundCodes(phemaConceptSetList.getNotFoundCodes());
         }
 
+        // Reset ID to produce consistent results
+        codesetId = 0;
+
         return phemaConceptSetListResult;
     }
 
