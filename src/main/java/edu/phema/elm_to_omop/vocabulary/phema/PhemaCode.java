@@ -89,4 +89,16 @@ public class PhemaCode {
 
     public void setOmopConceptId(String omopConceptId) { this.omopConceptId = omopConceptId; }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PhemaCode)) {
+            return false;
+        }
+
+        PhemaCode other = (PhemaCode) obj;
+
+        return code.equals(other.getCode()) &&
+            codeSystem.equals(other.getCodeSystem()) &&
+            codeSystemVersion.equals(other.getCodeSystemVersion());
+    }
 }
