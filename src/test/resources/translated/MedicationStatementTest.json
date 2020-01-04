@@ -23,6 +23,7 @@
       "expression": {
         "items": [
           {
+            "concept": {"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"45917083","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
             "isExcluded": false,
             "includeDescendants": false,
             "includeMapped": false
@@ -36,6 +37,7 @@
       "expression": {
         "items": [
           {
+            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"10725009","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
             "isExcluded": false,
             "includeDescendants": false,
             "includeMapped": false
@@ -49,6 +51,7 @@
       "expression": {
         "items": [
           {
+            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"233910005","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
             "isExcluded": false,
             "includeDescendants": false,
             "includeMapped": false
@@ -62,6 +65,7 @@
       "expression": {
         "items": [
           {
+            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"1158285","DOMAIN_ID":null,"VOCABULARY_ID":"RxNorm","CONCEPT_CLASS_ID":null},
             "isExcluded": false,
             "includeDescendants": false,
             "includeMapped": false
@@ -75,6 +79,7 @@
       "expression": {
         "items": [
           {
+            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"45.23","DOMAIN_ID":null,"VOCABULARY_ID":"ICD9","CONCEPT_CLASS_ID":null},
             "isExcluded": false,
             "includeDescendants": false,
             "includeMapped": false

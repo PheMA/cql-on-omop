@@ -15,20 +15,27 @@ import org.cqframework.cql.cql2elm.ModelManager;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
 import org.hl7.elm.r1.Quantity;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.circe.vocabulary.Concept;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PhemaElmToOmopTranslatorTest {
@@ -49,7 +56,17 @@ class PhemaElmToOmopTranslatorTest {
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        lenient().when(omopRepository.getConceptMetadata("1.2.3.4")).thenReturn(new Concept());
+        // mock for method vocabularySearch
+        when(omopRepository.vocabularySearch(anyString(), anyString())).thenAnswer(new Answer<ArrayList<Concept>>() {
+            @Override
+            public ArrayList<Concept> answer(InvocationOnMock invocation) throws Throwable {
+                Object[] arguments = invocation.getArguments();
+                Concept concept = new Concept();
+                concept.conceptCode = (String)arguments[0];
+                concept.vocabularyId = (String)arguments[1];
+                return new ArrayList<Concept>() {{ add(concept); }};
+            }
+        });
 
         String vsPath = PhemaTestHelper.getResourcePath("LibraryHelperTests.csv");
         valuesetService = new SpreadsheetValuesetService(omopRepository, vsPath, "simple");

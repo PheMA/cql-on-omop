@@ -33,12 +33,12 @@ public class ElmToOmopTranslatorTest {
 
         WireMock.configureFor("localhost", wireMockServer.port());
 
-        // Stub the concept get request
-        stubFor(get(urlEqualTo("/vocabulary/phema-test/concept/45917083"))
-            .willReturn(aResponse()
-                .withStatus(200)
-                .withHeader("Content-Type", "application/json")
-                .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concept.45917083.json"))));
+        // Stub the concept POST request
+        stubFor(post(urlEqualTo("/vocabulary/search"))
+          .willReturn(aResponse()
+            .withStatus(200)
+            .withHeader("Content-Type", "application/json")
+            .withBody(PhemaTestHelper.getFileAsString("responses/vocabulary/concepts.45917083.json"))));
 
         omopRepository = new OmopRepositoryService("http://localhost:53333/", "phema-test");
 

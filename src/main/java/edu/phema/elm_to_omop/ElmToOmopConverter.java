@@ -10,6 +10,8 @@ import edu.phema.elm_to_omop.io.OmopWriter;
 import edu.phema.elm_to_omop.phenotype.FilePhenotype;
 import edu.phema.elm_to_omop.phenotype.PhenotypeException;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
+import edu.phema.elm_to_omop.vocabulary.ConceptCodeCsvFileValuesetService;
+import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -73,8 +75,15 @@ public class ElmToOmopConverter {
             // 2. Read the elm file and set up the objects
             FilePhenotype phenotype = new FilePhenotype(config.getInputFileName(), config.getPhenotypeExpressions());
 
-            // read the value set csv and add to the objects
-            SpreadsheetValuesetService valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+            // read the value set csv and add to the objects.  If the tab is specified, we assume that it is a spreadsheet.  Otherwise we will use the
+            // default CSV reader.
+            IValuesetService valuesetService = null;
+            if (config.isTabSpecified()) {
+                valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+            }
+            else {
+                valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
+            }
 
             List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
 

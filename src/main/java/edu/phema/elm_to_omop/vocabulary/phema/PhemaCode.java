@@ -14,6 +14,7 @@ public class PhemaCode {
     private String codeSystemVersion;
     private String codeSystemOid;
     private String tty;
+    private String omopConceptId;
 
     public PhemaCode() {
         super();
@@ -51,6 +52,8 @@ public class PhemaCode {
         return tty;
     }
 
+    public String getOmopConceptId() { return omopConceptId; }
+
 
     public void setValueSetOid(String valueSetOid) {
         this.valueSetOid = valueSetOid;
@@ -83,5 +86,7 @@ public class PhemaCode {
     public void setTty(String tty) {
         this.tty = tty;
     }
+
+    public void setOmopConceptId(String omopConceptId) { this.omopConceptId = omopConceptId; }
 
 }

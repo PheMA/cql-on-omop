@@ -19,13 +19,20 @@ import java.util.logging.Logger;
 public class SpreadsheetReader {
     private static Logger logger = Logger.getLogger(SpreadsheetReader.class.getName());
 
-    public ArrayList<PhemaValueSet> getSpreadsheetData(String patientFileLoc, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
+    public ArrayList<PhemaValueSet> getSpreadsheetData(String filePath, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
         ArrayList<PhemaValueSet> valueSets = new ArrayList<PhemaValueSet>();
 
+        InputStream in = null;
         try {
-            InputStream in = new FileInputStream(patientFileLoc);
+            // First, do we have a cached version of the file available?
+            in = getInputStream(filePath + Terms.VS_CACHE_FILE_SUFFIX);
+            // If not, get the regular version
+            if (in == null) {
+                in = getInputStream(filePath);
+            }
+
             Reader reader = new BufferedReader(new InputStreamReader(in));
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
             valueSets = readSheet(csvParser, sheetName);
         } catch (FileNotFoundException e) {
             logger.severe("Error in opening the spreadsheet");
@@ -37,6 +44,15 @@ public class SpreadsheetReader {
         return valueSets;
     }
 
+    private InputStream getInputStream(String filePath) {
+      try {
+        InputStream in = new FileInputStream(filePath);
+        return in;
+      } catch (FileNotFoundException e) {
+        return null;
+      }
+    }
+
 
     private static ArrayList<PhemaValueSet> readSheet(CSVParser csvParser, String sheetName) throws IllegalArgumentException {
         ArrayList<PhemaCode> codeList = new ArrayList<PhemaCode>();
@@ -46,8 +62,8 @@ public class SpreadsheetReader {
         String currOid = null;
         int count = 0;
         PhemaCode code = new PhemaCode();
+        boolean isCachedVersion = (csvParser.getHeaderMap().containsKey(Terms.COL_OMOP_CONCEPT_ID_NAME));
         for (CSVRecord csvRecord : csvParser) {
-
             String vsOid = csvRecord.get(Terms.COL_VS_OID);
             if (currOid == null) {
                 currOid = vsOid;
@@ -76,6 +92,10 @@ public class SpreadsheetReader {
             code.setCodeSystemOid(csvRecord.get(Terms.COL_CS_OID));
             code.setTty(csvRecord.get(Terms.COL_TTY));
 
+            if (isCachedVersion) {
+              code.setOmopConceptId(csvRecord.get(Terms.COL_OMOP_CONCEPT_ID));
+            }
+
             codeList.add(code);
         }
 
@@ -84,9 +104,6 @@ public class SpreadsheetReader {
         pvs.setName(code.getValueSetName());
         pvs.setCodes(codeList);
         pvsList.add(pvs);
-
-        // take out headers
-        pvsList.remove(0);
 
         return pvsList;
     }

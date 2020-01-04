@@ -1,4 +1,5 @@
-{
+[
+  {
     "CONCEPT_ID": 45917083,
     "CONCEPT_NAME": "controlled type 1 diabetes with neuropathy",
     "STANDARD_CONCEPT": "N",
@@ -9,4 +10,5 @@
     "DOMAIN_ID": "Condition",
     "VOCABULARY_ID": "CIEL",
     "CONCEPT_CLASS_ID": "Diagnosis"
-}
+  }
+]

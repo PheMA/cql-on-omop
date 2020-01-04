@@ -62,7 +62,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Concept.class);
         } catch (Throwable t) {
-            throw new OmopRepositoryException("Error creating cohort", t);
+            throw new OmopRepositoryException(String.format("Error retrieving metadata for concept ID = %s", id), t);
         }
     }
 

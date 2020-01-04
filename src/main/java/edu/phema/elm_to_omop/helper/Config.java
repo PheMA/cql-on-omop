@@ -221,7 +221,7 @@ public final class Config {
             LOGGER.severe("ERROR - missing parameter SOURCE");
         }
         if (tab == null) {
-            LOGGER.severe("ERROR - missing parameter VS_TAB");
+            LOGGER.severe("INFO - missing optional parameter VS_TAB");
         }
     }
 
@@ -283,5 +283,13 @@ public final class Config {
 
     public void setPhenotypeExpressions(List<String> phenotypeExpressions) {
         this.phenotypeExpressions = phenotypeExpressions;
+    }
+
+  /**
+   * Determine if a value has been specified for the value set spreadsheet tab.
+   * @return
+   */
+  public boolean isTabSpecified() {
+        return (this.tab != null && !this.tab.equals(""));
     }
 }
