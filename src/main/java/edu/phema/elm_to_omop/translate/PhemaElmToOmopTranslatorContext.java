@@ -54,6 +54,29 @@ public class PhemaElmToOmopTranslatorContext {
         }
     }
 
+    /**
+     * Return the appropriate vocabulary reference depending on whether we are dealing with a value set or a code
+     *
+     * @param vocabularyReference The reference used in CQL
+     * @return The OID we use internally to identify the vocabulary reference
+     * @throws PhemaTranslationException
+     */
+    private String getInternalVocabularyReference(String vocabularyReference) throws PhemaTranslationException {
+        try {
+            ValueSetDef valueSetDef = getValueset(vocabularyReference);
+
+            return valueSetDef.getId();
+        } catch (PhemaTranslationException e) { /* Noop */ }
+
+        try {
+            CodeDef codeDef = getCode(vocabularyReference);
+
+            return codeDef.getName();
+        } catch (PhemaTranslationException e) {
+            throw new PhemaTranslationException(String.format("No valueset or code found for vocabulary reference %s", vocabularyReference));
+        }
+    }
+
     public int getCodesetId(String valuesetReference) throws PhemaTranslationException {
         ValueSetDef valueset = getValueset(valuesetReference);
 
@@ -69,49 +92,42 @@ public class PhemaElmToOmopTranslatorContext {
         }
     }
 
-    public int getCodeSetIdForCode(String code) throws PhemaTranslationException {
+    public int getCodeSetIdForVocabularyReference(String vocabularyReference) throws PhemaTranslationException {
+        String internalVocabularyReference = getInternalVocabularyReference(vocabularyReference);
+
         Optional<PhemaConceptSet> result = conceptSets
             .stream()
-            .filter(c -> c.getOid().equals(code))
+            .filter(c -> c.getOid().equals(internalVocabularyReference))
             .findFirst();
 
         if (result.isPresent()) {
             return result.get().id;
         } else {
-            throw new PhemaTranslationException(String.format("Codeset not found for code %d", code));
+            throw new PhemaTranslationException(String.format("Codeset not found for code %s", vocabularyReference));
         }
     }
 
-    /**
-     * This occurs when we are filtering a Retrieve using a single code instead of a value set. The ELM generated
-     * is of the form ToList(ToConcept(Code)), so we need to extract the code, then type to find a valueset containing
-     * just the given code.
-     *
-     * @param toList The ELM ToList expression wrapping the code
-     * @return The ID of the valueset provided by the ValuesetService implementation
-     * @throws PhemaTranslationException
-     */
-    public int getCodesetIdForToList(ToList toList) throws PhemaTranslationException {
-        ToConcept toConcept = (ToConcept) toList.getOperand();
-
-        CodeRef codeRef = (CodeRef) toConcept.getOperand();
-
-        CodeDef code = getCode(codeRef.getName());
-
-        return getCodeSetIdForCode(code.getName());
-    }
-
-    public int getCodesetIdForRetrieve(Retrieve retrieve) throws PhemaTranslationException {
+    public String getVocabularyReferenceForRetrieve(Retrieve retrieve) throws PhemaTranslationException {
         Expression codeExpression = retrieve.getCodes();
 
         if (codeExpression instanceof ValueSetRef) {
             // The retrieve references a value set
-            String valuesetReference = ((ValueSetRef) retrieve.getCodes()).getName();
-            return getCodesetId(valuesetReference);
+            return ((ValueSetRef) retrieve.getCodes()).getName();
         } else if (codeExpression instanceof ToList) {
-            return getCodesetIdForToList((ToList) codeExpression);
+            // The retrieve references a code
+            ToList toList = (ToList) codeExpression;
+            ToConcept toConcept = (ToConcept) toList.getOperand();
+            CodeRef codeRef = (CodeRef) toConcept.getOperand();
+
+            return codeRef.getName();
         } else {
             throw new PhemaTranslationException(String.format("Unable to retrieve codesetId for code expression of type %s", codeExpression.getClass().getSimpleName()));
         }
+    }
+
+    public int getCodesetIdForRetrieve(Retrieve retrieve) throws PhemaTranslationException {
+        String vocabularyReference = getVocabularyReferenceForRetrieve(retrieve);
+
+        return getCodeSetIdForVocabularyReference(vocabularyReference);
     }
 }

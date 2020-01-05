@@ -4,6 +4,7 @@ import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.EmptyValuesetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
+import edu.phema.elm_to_omop.vocabulary.MultiModalValuesetService;
 import edu.phema.elm_to_omop.vocabulary.PhemaJsonConceptSetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.cqframework.cql.cql2elm.CqlTranslator;
@@ -128,10 +129,18 @@ public class HeartFailurePhenotypeTest {
         translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-4-full-heart-failure.phenotype.cql"), modelManager, libraryManager);
         library = translator.toELM();
 
-        // Use the JSON file valueset service
-        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets-from-atlas.omop.json");
-        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
-        conceptSets = valuesetService.getConceptSets();
+        // Use the JSON file valueset service for Dx and Echo codes
+        String dxAndEchoValuesetsJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/hf-phenotype-valuesets-from-atlas.omop.json");
+        valuesetService = new PhemaJsonConceptSetService(dxAndEchoValuesetsJson);
+
+        // Use the JSON file valueset service for Visit concepts
+        String visitConceptsValuesetJson = PhemaTestHelper.getFileAsString("vocabulary/translated/elm-code-visit-concepts.phema-concept-sets.json");
+        IValuesetService visitValuesetService = new PhemaJsonConceptSetService(visitConceptsValuesetJson);
+
+        // Compose the above two valueset services
+        IValuesetService hfValuesetsService = new MultiModalValuesetService(valuesetService, visitValuesetService);
+
+        conceptSets = hfValuesetsService.getConceptSets();
 
         // Generate the cohort expression
         ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
@@ -150,10 +159,18 @@ public class HeartFailurePhenotypeTest {
 //        translator = CqlTranslator.fromStream(this.getClass().getClassLoader().getResourceAsStream("heart-failure/cql/step-4-full-heart-failure.phenotype.cql"), modelManager, libraryManager);
 //        library = translator.toELM();
 //
-//        // Use the JSON file valueset service
-//        String valuesetJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/all-hf-phenotype-valuesets-from-vsac.omop.json");
-//        valuesetService = new PhemaJsonConceptSetService(valuesetJson);
-//        conceptSets = valuesetService.getConceptSets();
+//        // Use the JSON file valueset service for Dx and Echo codes
+//        String dxAndEchoValuesetsJson = PhemaTestHelper.getFileAsString("heart-failure/valuesets/omop-json/hf-phenotype-valuesets-from-atlas.omop.json");
+//        valuesetService = new PhemaJsonConceptSetService(dxAndEchoValuesetsJson);
+//
+//        // Use the JSON file valueset service for Visit concepts
+//        String visitConceptsValuesetJson = PhemaTestHelper.getFileAsString("vocabulary/translated/elm-code-visit-concepts.phema-concept-sets.json");
+//        IValuesetService visitValuesetService = new PhemaJsonConceptSetService(visitConceptsValuesetJson);
+//
+//        // Compose the above two valueset services
+//        IValuesetService hfValuesetsService = new MultiModalValuesetService(valuesetService, visitValuesetService);
+//
+//        conceptSets = hfValuesetsService.getConceptSets();
 //
 //        // Generate the cohort expression
 //        ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, "Case");
@@ -161,7 +178,7 @@ public class HeartFailurePhenotypeTest {
 //
 //        // Create the cohort definition in the test instance
 //        IOmopRepositoryService omopRepositoryService = new OmopRepositoryService("http://52.162.236.199/WebAPI/", "OHDSI-CDMV5");
-//        ElmToOmopTranslator elmToOmopTranslator = new ElmToOmopTranslator(valuesetService);
+//        ElmToOmopTranslator elmToOmopTranslator = new ElmToOmopTranslator(hfValuesetsService);
 //
 //        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = elmToOmopTranslator.buildCohortDefinition("HF Phenotype from CQL", "Created by Java test case with value sets from VSAC", ce);
 //        omopRepositoryService.createCohortDefinition(cohortDefinition);

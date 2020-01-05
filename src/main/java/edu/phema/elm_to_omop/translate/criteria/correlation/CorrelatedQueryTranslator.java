@@ -39,18 +39,18 @@ public class CorrelatedQueryTranslator {
      * @return A map from aliases to QuickResource instances
      * @throws CorrelationException
      */
-    private static Map<String, QuickResource> setupAliases(Query query) throws CorrelationException {
+    private static Map<String, QuickResource> setupAliases(Query query, PhemaElmToOmopTranslatorContext context) throws CorrelationException, PhemaTranslationException {
         Map<String, QuickResource> aliases = new HashMap<>();
 
         AliasedQuerySource outerAliasedExpression = query.getSource().get(0);
         Retrieve outerRetrieve = (Retrieve) outerAliasedExpression.getExpression();
         String outerResourceType = outerRetrieve.getDataType().getLocalPart();
-        String outerValuesetFilter = ((ValueSetRef) (outerRetrieve).getCodes()).getName();
+        String outerValuesetFilter = context.getVocabularyReferenceForRetrieve(outerRetrieve);
 
         RelationshipClause innerAliasedExpression = query.getRelationship().get(0);
         Retrieve innerRetrieve = (Retrieve) innerAliasedExpression.getExpression();
         String innerResourceType = innerRetrieve.getDataType().getLocalPart();
-        String innerValuesetFilter = ((ValueSetRef) (innerRetrieve).getCodes()).getName();
+        String innerValuesetFilter = context.getVocabularyReferenceForRetrieve(innerRetrieve);
 
         aliases.put(outerAliasedExpression.getAlias(), QuickResource.from(outerResourceType, outerValuesetFilter));
         aliases.put(innerAliasedExpression.getAlias(), QuickResource.from(innerResourceType, innerValuesetFilter));
@@ -85,14 +85,14 @@ public class CorrelatedQueryTranslator {
      * @throws PhemaNotImplementedException
      * @throws CorrelationException
      */
-    private static Correlation getCorrelation(Query query) throws PhemaNotImplementedException, CorrelationException {
+    private static Correlation getCorrelation(Query query, PhemaElmToOmopTranslatorContext context) throws PhemaNotImplementedException, CorrelationException, PhemaTranslationException {
         Expression correlationExpression = query.getRelationship().get(0).getSuchThat();
 
         if (!correlationExpressionSupported(correlationExpression)) {
             throw new PhemaNotImplementedException(String.format("Correlation not support for %s expression", correlationExpression.getClass().getSimpleName()));
         }
 
-        Map<String, QuickResource> aliases = setupAliases(query);
+        Map<String, QuickResource> aliases = setupAliases(query, context);
 
         if (correlationExpression instanceof Equal) {
             QuickResourceAttributePair lhs = getResourceAttributePairFromOperand(((Equal) correlationExpression).getOperand().get(0), aliases);
@@ -117,7 +117,7 @@ public class CorrelatedQueryTranslator {
     public static CorelatedCriteria generateCorelatedCriteriaForCorrelatedQuery(Query query, PhemaElmToOmopTranslatorContext context) throws
         PhemaNotImplementedException, CorrelationException, PhemaTranslationException {
 
-        Correlation correlation = getCorrelation(query);
+        Correlation correlation = getCorrelation(query, context);
 
         CorrelatedQueryCorelatedCriteriaGeneratorFunction<Correlation, PhemaElmToOmopTranslatorContext, CorelatedCriteria> generator = CorrelationConstants.generators.get(correlation);
 

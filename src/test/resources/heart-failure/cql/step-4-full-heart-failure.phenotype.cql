@@ -1,11 +1,14 @@
-library "PhEMA Heart Failure" version '0.4.0'
+library "PhEMA Heart Failure" version '1.0.0'
 
 using QUICK
 
+codesystem "ActCodes": 'http://hl7.org/fhir/v3/ActCode'
+
 valueset "Echo VS": '2.16.840.1.999999.1'
 valueset "HF Dx VS": '2.16.840.1.113883.3.526.3.376'
-valueset "Inpatient Encounter VS": '2.16.840.1.113762.1.4.1182.286'
-valueset "Outpatient Encounter VS": '2.16.840.1.113883.3.464.1003.101.11.1277'
+
+code "Inpatient Encounter": 'IMP' from "ActCodes"
+code "Outpatient Encounter": 'AMB' from "ActCodes"
 
 context Patient
 
@@ -19,12 +22,12 @@ define "Has HF Dx":
     exists(["Condition": "HF Dx VS"])
 
 define "Inpatient Encounters With HF Dx":
-    [Encounter: "Inpatient Encounter VS"] E
+    [Encounter: "Inpatient Encounter"] E
         with [Condition: "HF Dx VS"] C
             such that E.id = C.encounter
 
 define "Outpatient Encounters With HF Dx":
-    [Encounter: "Outpatient Encounter VS"] E
+    [Encounter: "Outpatient Encounter"] E
         with [Condition: "HF Dx VS"] C
             such that E.id = C.encounter
 
