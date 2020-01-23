@@ -1,4 +1,4 @@
-# elm-to-ohdsi-executer
+# CQL on OMOP
 
 [![PhEMA](./repo-badge.svg)](https://projectphema.org)
 [![Build Status](https://travis-ci.org/PheMA/elm-to-ohdsi-executer.svg?branch=master)](https://travis-ci.org/PheMA/elm-to-ohdsi-executer)
@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/PheMA/elm-to-ohdsi-executer/badge.svg?branch=master)](https://coveralls.io/github/PheMA/elm-to-ohdsi-executer?branch=master)
 [![Javadocs](https://img.shields.io/badge/dynamic/json.svg?label=javadoc&color=yellow&query=name&url=https://bintray.com/api/v1/packages/phema/maven/phema-elm-to-ohdsi/versions/_latest) ](https://phema.github.io/elm-to-ohdsi-executer/)
 
-This project reads a query file written in ELM and converts to OMOP JSON format and runs it against an OHDSI repository.
+This project reads a query file written in CQL and converts to OMOP JSON format and runs it against an OHDSI repository.
 
 1. ELM file is transformed into OHDSI JSON format
 2. Uses OHDSI WebAPI to create the definition
