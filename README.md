@@ -21,6 +21,22 @@ Currently the code runs only a very simple example.  Project plans will increase
     Error checking
     Logging
 
+## Citation
+
+```
+@article{doi:10.1002/lrh2.10233,
+    author = {Brandt, Pascal S. and Kiefer, Richard C. and Pacheco, Jennifer A. and Adekkanattu, Prakash and Sholle, Evan T. and Ahmad, Faraz S. and Xu, Jie and Xu, Zhenxing and Ancker, Jessica S. and Wang, Fei and Luo, Yuan and Jiang, Guoqian and Pathak, Jyotishman and Rasmussen, Luke V.},
+    title = {Toward cross-platform electronic health record-driven phenotyping using Clinical Quality Language},
+    journal = {Learning Health Systems},
+    volume = {2020},
+    number = {e10233},
+    keywords = {Clinical Quality Language, common data models, electronic health records, phenotyping},
+    doi = {10.1002/lrh2.10233},
+    url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/lrh2.10233},
+    eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/lrh2.10233},
+}
+```
+
 ## Usage
 
 ### CLI
