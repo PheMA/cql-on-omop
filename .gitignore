@@ -19,6 +19,7 @@ target/*
 **/*.tar.gz
 **/*.rar
 **/*.pdf
+**/*.iml
 
 tmp/
 
