@@ -19,7 +19,6 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.HttpURLConnection;
 import java.util.List;
 
 /**
@@ -30,8 +29,9 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     private String domain;
     private String source;
 
-    private HttpURLConnection con;
     private Client client;
+
+    private String cohortdef = "cohortdefinition";
 
     /**
      * Creates an instance of an OMOP repository service provider with
@@ -105,7 +105,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
      */
     public CohortDefinitionDTO createCohortDefinition(CohortDefinitionDTO cohortDefintion) throws OmopRepositoryException {
         Response response = client
-            .target(domain + "cohortdefinition")
+            .target(domain + cohortdef)
             .request(MediaType.APPLICATION_JSON)
             .post(Entity.entity(cohortDefintion, MediaType.APPLICATION_JSON));
 
@@ -127,7 +127,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public JobExecutionResource queueCohortGeneration(Integer id) throws OmopRepositoryException {
         try {
             return client
-                .target(domain + "cohortdefinition/" + id + "/generate/" + source)
+                .target(domain + cohortdef +"/" + id + "/generate/" + source)
                 .request(MediaType.APPLICATION_JSON)
                 .get(JobExecutionResource.class);
         } catch (Throwable t) {
@@ -145,7 +145,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public List<CohortGenerationInfo> getCohortDefinitionInfo(Integer id) throws OmopRepositoryException {
         try {
             return client
-                .target(domain + "cohortdefinition/" + id + "/info")
+                .target(domain + cohortdef +"/" + id + "/info")
                 .request(MediaType.APPLICATION_JSON)
                 .get(Response.class)
                 .readEntity(new GenericType<List<CohortGenerationInfo>>() {
@@ -166,7 +166,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public InclusionRuleReport getCohortDefinitionReport(Integer id) throws OmopRepositoryException {
         try {
             return client
-                .target(domain + "cohortdefinition/" + id + "/report/" + source)
+                .target(domain + cohortdef +"/" + id + "/report/" + source)
                 .request(MediaType.APPLICATION_JSON)
                 .get(InclusionRuleReport.class);
         } catch (Throwable t) {
@@ -184,7 +184,7 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     public CohortDefinitionDTO getCohortDefinition(Integer id) throws OmopRepositoryException {
         try {
             return client
-                .target(domain + "cohortdefinition/" + id)
+                .target(domain + cohortdef +"/" + id)
                 .request(MediaType.APPLICATION_JSON)
                 .get(CohortDefinitionDTO.class);
         } catch (Throwable t) {

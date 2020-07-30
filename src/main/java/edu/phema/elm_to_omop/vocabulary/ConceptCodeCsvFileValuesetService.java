@@ -181,7 +181,7 @@ public class ConceptCodeCsvFileValuesetService implements IValuesetService {
                     if (concepts.size() > 1) {
                         // The concept code is not specific enough
                         throw new ValuesetServiceException(String.format("Concept code %s does not specify a single concept in code system %s", code.getCode(), code.getCodeSystem()), null);
-                    } else if (concepts.size() == 0) {
+                    } else if (concepts.isEmpty()) {
                         // The code is missing in the OMOP instance
                         conceptSets.addNotFoundCode(code);
                     } else {

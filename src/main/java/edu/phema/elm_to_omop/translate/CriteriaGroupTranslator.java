@@ -28,6 +28,10 @@ import org.ohdsi.circe.cohortdefinition.DemographicCriteria;
  * In CQL, these ideas can be represented using AND and OR statements, or by using the Count aggregate expression.
  */
 public class CriteriaGroupTranslator {
+    private CriteriaGroupTranslator()  {
+        super();
+    }
+
     /**
      * Generates a Circe CriteriaGroup from a ELM BinaryExpression. Creating "ANY" (OR) and "ALL" (AND) CriteriaGroups
      * is how nested boolean logic is implemented. Only these two boolean expressions generated CriteriaGroups. Every

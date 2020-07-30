@@ -6,7 +6,6 @@ import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,10 +18,11 @@ import java.util.logging.Logger;
 public class SpreadsheetReader {
     private static Logger logger = Logger.getLogger(SpreadsheetReader.class.getName());
 
-    public ArrayList<PhemaValueSet> getSpreadsheetData(String filePath, String sheetName) throws FileNotFoundException, InvalidFormatException, IOException {
-        ArrayList<PhemaValueSet> valueSets = new ArrayList<PhemaValueSet>();
+    public ArrayList<PhemaValueSet> getSpreadsheetData(String filePath, String sheetName) throws IOException {
+        ArrayList<PhemaValueSet> valueSets = new ArrayList<>();
 
         InputStream in = null;
+        Reader reader = null;
         try {
             // First, do we have a cached version of the file available?
             in = getInputStream(filePath + Terms.VS_CACHE_FILE_SUFFIX);
@@ -31,9 +31,9 @@ public class SpreadsheetReader {
                 in = getInputStream(filePath);
             }
 
-            Reader reader = new BufferedReader(new InputStreamReader(in));
+            reader = new BufferedReader(new InputStreamReader(in));
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
-            valueSets = readSheet(csvParser, sheetName);
+            valueSets = readSheet(csvParser);
         } catch (FileNotFoundException e) {
             logger.severe("Error in opening the spreadsheet");
             throw new FileNotFoundException(e.getMessage());
@@ -41,22 +41,26 @@ public class SpreadsheetReader {
             logger.severe("Error in opening the spreadsheet");
             throw new IOException(ioe.getMessage());
         }
+        finally {
+            if(reader!=null) {
+                reader.close();
+            }
+        }
         return valueSets;
     }
 
     private InputStream getInputStream(String filePath) {
       try {
-        InputStream in = new FileInputStream(filePath);
-        return in;
+        return new FileInputStream(filePath);
       } catch (FileNotFoundException e) {
         return null;
       }
     }
 
 
-    private static ArrayList<PhemaValueSet> readSheet(CSVParser csvParser, String sheetName) throws IllegalArgumentException {
-        ArrayList<PhemaCode> codeList = new ArrayList<PhemaCode>();
-        ArrayList<PhemaValueSet> pvsList = new ArrayList<PhemaValueSet>();
+    private static ArrayList<PhemaValueSet> readSheet(CSVParser csvParser) throws IllegalArgumentException {
+        ArrayList<PhemaCode> codeList = new ArrayList<>();
+        ArrayList<PhemaValueSet> pvsList = new ArrayList<>();
 
         PhemaValueSet pvs = new PhemaValueSet();
         String currOid = null;
@@ -77,7 +81,7 @@ public class SpreadsheetReader {
                 pvsList.add(pvs);
 
                 pvs = new PhemaValueSet();
-                codeList = new ArrayList<PhemaCode>();
+                codeList = new ArrayList<>();
                 currOid = vsOid;
                 count++;
             }

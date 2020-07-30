@@ -12,6 +12,7 @@ import org.hl7.elm.r1.Library;
 public class CqlToElmTranslator {
 
     public CqlToElmTranslator() {
+        super();
     }
 
     /**

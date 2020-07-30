@@ -17,6 +17,7 @@ public class CirceConstants {
             this.typeString = typeString;
         }
 
+        @Override
         public String toString() {
             return typeString;
         }
@@ -36,6 +37,7 @@ public class CirceConstants {
             this.opString = opString;
         }
 
+        @Override
         public String toString() {
             return opString;
         }

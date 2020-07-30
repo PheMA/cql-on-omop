@@ -9,6 +9,10 @@ import org.hl7.elm.r1.Retrieve;
 import org.ohdsi.circe.cohortdefinition.*;
 
 public class CriteriaTranslator {
+    private CriteriaTranslator()  {
+        super();
+    }
+
     private static Criteria generateCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws PhemaTranslationException {
         String resourceType = retrieve.getDataType().getLocalPart();
 

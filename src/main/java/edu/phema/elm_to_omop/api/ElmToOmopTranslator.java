@@ -39,6 +39,8 @@ public class ElmToOmopTranslator {
     private Logger logger;
     private List<PhemaConceptSet> conceptSets;
 
+    private String expString = "expression";
+
     /**
      * Specify configuration to use for the translation
      *
@@ -111,13 +113,13 @@ public class ElmToOmopTranslator {
         JsonParser parser = new JsonParser();
         JsonObject root = parser.parse(jsonish).getAsJsonObject();
 
-        String expressionJson = root.get("expression").toString()
+        String expressionJson = root.get(expString).toString()
             .replace("\\\"", "\"").replaceAll("^\"|\"$", "");
 
         JsonObject expression = parser.parse(expressionJson).getAsJsonObject();
 
-        root.remove("expression");
-        root.add("expression", expression);
+        root.remove(expString);
+        root.add(expString, expression);
 
         return root;
     }
@@ -140,7 +142,7 @@ public class ElmToOmopTranslator {
         cohortDefinition.name = name;
         cohortDefinition.description = description;
 
-        // This manual serialization isn't required in later versions of the WebAPI, see:
+        // TODO:  This manual serialization isn't required in later versions of the WebAPI, see:
         // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
         cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
 

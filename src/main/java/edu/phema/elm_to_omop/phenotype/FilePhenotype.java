@@ -20,7 +20,7 @@ public class FilePhenotype implements IPhenotype {
 
         this.phenotypeExpressionNames = phenotypeExpressionNames;
 
-        if (phenotypeExpressionNames == null || phenotypeExpressionNames.size() == 0) {
+        if (phenotypeExpressionNames == null || phenotypeExpressionNames.isEmpty()) {
             throw new PhenotypeException("No phenotype expression names specified");
         }
 
@@ -28,14 +28,19 @@ public class FilePhenotype implements IPhenotype {
 
             File file = new File(phenotypeFilePath);
             StringBuilder builder = new StringBuilder();
-
+            Scanner scanner = null;
             try {
-                Scanner scanner = new Scanner(file);
+                scanner = new Scanner(file);
                 while (scanner.hasNextLine()) {
                     builder.append(scanner.nextLine()).append(System.lineSeparator());
                 }
             } catch (Exception e) {
                 throw new PhenotypeException("Error reading phenotype file", e);
+            }
+            finally {
+                if(scanner != null)  {
+                    scanner.close();
+                }
             }
 
             phenotypeCql = builder.toString();

@@ -1,7 +1,7 @@
+package edu.phema.elm_to_omop;
+
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import edu.phema.elm_to_omop.ElmToOmopConverter;
-import edu.phema.elm_to_omop.PhemaTestHelper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,8 +70,10 @@ public class CliTest {
         try {
             ElmToOmopConverter converter = new ElmToOmopConverter();
 
-            URL resource = getClass().getResource("LibraryHelperTests.cql");
-            File file = Paths.get(resource.toURI()).toFile();
+            String temp = PhemaTestHelper.getResourcePath("LibraryHelperTests.cql");
+//            URL resource = getClass().getResource(PhemaTestHelper.getResourcePath("LibraryHelperTests.cql"));
+//            File file = Paths.get(resource.toURI()).toFile();
+            File file = new File(PhemaTestHelper.getResourcePath("LibraryHelperTests.cql"));
 
             String[] args = new String[]{
               "OMOP_BASE_URL=http://localhost:53333/",
@@ -79,7 +81,7 @@ public class CliTest {
               String.format("INPUT_FILE_NAME=%s", PhemaTestHelper.getResourcePath("cli/simple.cql")),
               String.format("OUT_FILE_NAME=%s/cli/simple.omop.json", file.getParent()),
               "SOURCE=phema-test",
-              "PHENOTYPE_EXPRESSIONS=CliTest"
+              "PHENOTYPE_EXPRESSIONS=edu.phema.elm_to_omop.CliTest"
             };
 
           converter.run(args);

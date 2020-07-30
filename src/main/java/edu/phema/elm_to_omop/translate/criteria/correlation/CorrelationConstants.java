@@ -3,9 +3,7 @@ package edu.phema.elm_to_omop.translate.criteria.correlation;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CorrelationConstants {
@@ -23,6 +21,7 @@ public class CorrelationConstants {
             this.quickResource = typeString;
         }
 
+        @Override
         public String toString() {
             return quickResource;
         }
@@ -47,14 +46,15 @@ public class CorrelationConstants {
         ONSET_DATE_TIME("onsetDateTime"),
         ENCOUNTER("encounter");
 
-        private final String quickResourceAttribute;
+        private final String quickResourceAtt;
 
         QuickResourceAttribute(final String typeString) {
-            this.quickResourceAttribute = typeString;
+            this.quickResourceAtt = typeString;
         }
 
+        @Override
         public String toString() {
-            return quickResourceAttribute;
+            return quickResourceAtt;
         }
 
         public static QuickResourceAttribute create(String quickResourceAttributeName) throws CorrelationException {

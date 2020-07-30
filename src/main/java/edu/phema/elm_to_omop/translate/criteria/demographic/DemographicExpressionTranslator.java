@@ -10,6 +10,9 @@ import org.ohdsi.circe.cohortdefinition.NumericRange;
  * Class responsible for generating Circe DemographicCriteria. Right now we only support simple age comparison
  */
 public class DemographicExpressionTranslator {
+    private DemographicExpressionTranslator()  {
+        super();
+    }
     /**
      * Check to see if we have an expression of the form CalculatedAge [comparison operator] Literal
      *

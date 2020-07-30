@@ -24,6 +24,10 @@ import java.util.List;
  * Confusingly, a Criteria has field called CorelatedCriteria, which is of type CriteriaGroup.
  */
 public class CorelatedCriteriaTranslator {
+    private CorelatedCriteriaTranslator()  {
+        super();
+    }
+
     private static CorelatedCriteria generateCorelatedCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws Exception {
         Occurrence occurrence = CirceUtil.defaultOccurrence();
 
@@ -38,7 +42,7 @@ public class CorelatedCriteriaTranslator {
     private static CorelatedCriteria generateCorelatedCriteriaForQuery(Query query, PhemaElmToOmopTranslatorContext context) throws Exception {
         List<RelationshipClause> relationships = query.getRelationship();
 
-        if (relationships == null || relationships.size() == 0) {
+        if (relationships == null || relationships.isEmpty()) {
             // We are dealing with an uncorrelated query
 
             // We don't currently support where clause filtering

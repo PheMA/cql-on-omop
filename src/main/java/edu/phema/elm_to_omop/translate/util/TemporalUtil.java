@@ -15,6 +15,10 @@ import java.util.List;
  * Helper temporal methods
  */
 public class TemporalUtil {
+    private TemporalUtil()  {
+        super();
+    }
+
     static final BigDecimal DAYS_IN_YEAR = BigDecimal.valueOf(365);
     static final BigDecimal DAYS_IN_MONTH = BigDecimal.valueOf(30);
 

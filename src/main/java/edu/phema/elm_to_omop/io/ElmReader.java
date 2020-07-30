@@ -21,7 +21,7 @@ public class ElmReader {
 
     public static final String CQL_EXTENSION = ".cql";
 
-    public ElmReader() {
+    private ElmReader() {
         super();
     }
 

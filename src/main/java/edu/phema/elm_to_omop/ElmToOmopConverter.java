@@ -63,7 +63,7 @@ public class ElmToOmopConverter {
 
             logger.info("Config: " + config.configString());
 
-            String domain = config.getOmopBaseUrl();
+            String domain = config.getOmopBaseURL();
             String source = config.getSource();
             OmopRepositoryService omopService = new OmopRepositoryService(domain, source);
             OmopWriter omopWriter = new OmopWriter(logger);
@@ -112,18 +112,17 @@ public class ElmToOmopConverter {
             // Write the resulting cohort definitions to out to the filesystem
             omopWriter.writeOmopJson(cohortDefinitions, config.getOutFileName());
         } catch (PhenotypeException pe) {
-            System.out.println(pe.getMessage());
-            pe.printStackTrace();
+            logger.severe(pe.getLocalizedMessage());
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            logger.severe(ioe.getLocalizedMessage());
         } catch (InvalidFormatException ife) {
-            ife.printStackTrace();
+            logger.severe(ife.getLocalizedMessage());
         } catch (JAXBException jaxb) {
-            jaxb.printStackTrace();
-        } catch (ParseException pe) {
-            pe.printStackTrace();
+            logger.severe(jaxb.getLocalizedMessage());
+        } catch (ParseException parse) {
+            logger.severe(parse.getLocalizedMessage());
         } catch (Exception exc) {
-            exc.printStackTrace();
+            logger.severe(exc.getLocalizedMessage());
         }
         System.out.println("done");
     }

@@ -25,8 +25,8 @@ public class MultiModalValuesetService implements IValuesetService {
     private PhemaConceptSetList mergeConceptSetLists(List<PhemaConceptSetList> phemaConceptSetLists) {
         PhemaConceptSetList phemaConceptSetListResult = new PhemaConceptSetList();
 
-        for (PhemaConceptSetList phemaConceptSetList : phemaConceptSetLists) {
-            List<PhemaConceptSet> conceptSets = phemaConceptSetList.getConceptSets();
+        for (PhemaConceptSetList pcsList : phemaConceptSetLists) {
+            List<PhemaConceptSet> conceptSets = pcsList.getConceptSets();
 
             // Update IDs so we don't get duplicates
             for (PhemaConceptSet phemaConceptSet : conceptSets) {
@@ -34,7 +34,7 @@ public class MultiModalValuesetService implements IValuesetService {
             }
             phemaConceptSetListResult.addAllConceptSets(conceptSets);
 
-            phemaConceptSetListResult.addAllNotFoundCodes(phemaConceptSetList.getNotFoundCodes());
+            phemaConceptSetListResult.addAllNotFoundCodes(pcsList.getNotFoundCodes());
         }
 
         // Reset ID to produce consistent results

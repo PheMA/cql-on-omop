@@ -6,5 +6,5 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-define "CliTest":
+define "edu.phema.elm_to_omop.CliTest":
   ["Condition": "Diabetes"] C

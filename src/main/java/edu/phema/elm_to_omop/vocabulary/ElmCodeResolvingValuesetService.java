@@ -64,7 +64,8 @@ public class ElmCodeResolvingValuesetService implements IValuesetService {
     private List<PhemaCode> translateCodes() throws ValuesetServiceException {
         List<PhemaCode> translatedCodes = new ArrayList<>();
 
-        PhemaCode code = null, translated = null;
+        PhemaCode code = null;
+        PhemaCode translated = null;
         for (CodeDef codeDef : library.getCodes().getDef()) {
             code = phemaCodeFromCodeDef(codeDef);
 
@@ -103,7 +104,7 @@ public class ElmCodeResolvingValuesetService implements IValuesetService {
         if (concept.size() > 1) {
             // The concept code is not specific enough
             throw new ValuesetServiceException(String.format("Concept code %s does not specify a single concept in code system %s", code.getCode(), code.getCodeSystem()));
-        } else if (concept.size() == 0) {
+        } else if (concept.isEmpty()) {
             // The code is missing in the OMOP instance
             throw new ValuesetServiceException(String.format("Concept code %s does not exist in OMOP instance", code.getCode()));
         } else {

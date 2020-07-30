@@ -33,6 +33,8 @@ public class CohortService {
     private IValuesetService valuesetService;
     private IOmopRepositoryService omopService;
 
+    private String errorMsg = "Error initializing concept sets";
+
     /**
      * Constructor using just a config object.
      *
@@ -56,7 +58,7 @@ public class CohortService {
         try {
             conceptSets = valuesetService.getConceptSets();
         } catch (Exception e) {
-            throw new CohortServiceException("Error initializing concept sets", e);
+            throw new CohortServiceException(errorMsg, e);
         }
     }
 
@@ -77,7 +79,7 @@ public class CohortService {
         try {
             conceptSets = valuesetService.getConceptSets();
         } catch (Exception e) {
-            throw new CohortServiceException("Error initializing concept sets", e);
+            throw new CohortServiceException(errorMsg, e);
         }
     }
 
@@ -98,7 +100,7 @@ public class CohortService {
         try {
             conceptSets = valuesetService.getConceptSets();
         } catch (Exception e) {
-            throw new CohortServiceException("Error initializing concept sets", e);
+            throw new CohortServiceException(errorMsg, e);
         }
     }
 

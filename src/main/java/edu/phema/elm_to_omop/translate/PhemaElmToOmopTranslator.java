@@ -34,6 +34,10 @@ import java.util.stream.Collectors;
  * - Count([Expression]) [Comparison Operator] [Literal], which translates
  */
 public class PhemaElmToOmopTranslator {
+    private PhemaElmToOmopTranslator()  {
+        super();
+    }
+
     /**
      * Given an expression definition from a CQL/ELM library, generate an OHDSI
      * cohort expression.

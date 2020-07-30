@@ -23,6 +23,10 @@ public class PhemaVocabularyTranslator {
         translators.put(actMap.sourceVocabulary(), actMap);
     }
 
+    private PhemaVocabularyTranslator() {
+        super();
+    }
+
     /**
      * Determines whether translation is supported for a given code system
      *

@@ -18,7 +18,9 @@ public final class Config {
     /**
      * Logs messages to file.
      */
-    private final Logger LOGGER = Logger.getLogger(Config.class.getName());
+    private final Logger logger = Logger.getLogger(Config.class.getName());
+
+    private static final String PHENOTYPE_NAME_DELIMITER = "\\|";
 
     /**
      * Configuration file name.
@@ -33,9 +35,6 @@ public final class Config {
      */
     private Properties configProps;
 
-    private final String PHENOTYPE_NAME_DELIMITER = "\\|";
-
-
     private String omopBaseURL;
 
     private String inputFileName;
@@ -49,6 +48,7 @@ public final class Config {
     private String tab;
 
     private List<String> phenotypeExpressions;
+
 
     /**
      * Empty constructor removes dependency
@@ -69,7 +69,7 @@ public final class Config {
             configProps.load(is);
             setConfig();
         } catch (Exception eta) {
-            eta.printStackTrace();
+            logger.severe(eta.getLocalizedMessage());
         }
     }
 
@@ -84,7 +84,7 @@ public final class Config {
 
         // Override any arguments specified
         for (int i = 0; i < inArgs.length; i++) {
-            LOGGER.info("Found argument:" + inArgs[i]);
+            logger.info(String.format("Found argument: %1$s", inArgs[i]));
             setArg(inArgs[i]);
         }
         runPropertyCheck();
@@ -107,8 +107,7 @@ public final class Config {
      * @return property value
      */
     public String getProperty(final String key) {
-        String value = this.configProps.getProperty(key);
-        return value;
+        return this.configProps.getProperty(key);
     }
 
     /**
@@ -124,10 +123,6 @@ public final class Config {
         phenotypeExpressions = parsePhenotypeExpressions(getProperty("PHENOTYPE_EXPRESSIONS"));
 
         runPropertyCheck();
-    }
-
-    public String getOmopBaseUrl() {
-        return omopBaseURL;
     }
 
     public String getInputFileName() {
@@ -164,7 +159,7 @@ public final class Config {
         if (args.startsWith("-")) {
             args = args.substring(1);
         }
-        int pos = args.indexOf("=");
+        int pos = args.indexOf('=');
         String prop = args.substring(0, pos);
         String val = args.substring(pos + 1);
 
@@ -193,7 +188,7 @@ public final class Config {
     }
 
     private List<String> parsePhenotypeExpressions(String phenotypes) {
-        List<String> expressions = new ArrayList<String>();
+        List<String> expressions = new ArrayList<>();
         if (phenotypes != null) {
             expressions = Arrays.asList(phenotypes.split(PHENOTYPE_NAME_DELIMITER));
         }
@@ -206,22 +201,22 @@ public final class Config {
      */
     private void runPropertyCheck() {
         if (omopBaseURL == null) {
-            LOGGER.severe("ERROR - missing parameter OMOP_BASE_URL");
+            logger.severe("ERROR - missing parameter OMOP_BASE_URL");
         }
         if (inputFileName == null) {
-            LOGGER.severe("ERROR - missing parameter INPUT_FILE_NAME");
+            logger.severe("ERROR - missing parameter INPUT_FILE_NAME");
         }
         if (vsFileName == null) {
-            LOGGER.severe("ERROR - missing parameter VS_FILE_NAME");
+            logger.severe("ERROR - missing parameter VS_FILE_NAME");
         }
         if (outFileName == null) {
-            LOGGER.severe("ERROR - missing parameter OUT_FILE_NAME");
+            logger.severe("ERROR - missing parameter OUT_FILE_NAME");
         }
         if (source == null) {
-            LOGGER.severe("ERROR - missing parameter SOURCE");
+            logger.severe("ERROR - missing parameter SOURCE");
         }
         if (tab == null) {
-            LOGGER.severe("INFO - missing optional parameter VS_TAB");
+            logger.severe("INFO - missing optional parameter VS_TAB");
         }
     }
 
@@ -231,10 +226,6 @@ public final class Config {
 
     public String getConfigFileName() {
         return configFileName;
-    }
-
-    public void setConfigFileName(String configFileName) {
-        this.configFileName = configFileName;
     }
 
     public String getConfigFullPath() {

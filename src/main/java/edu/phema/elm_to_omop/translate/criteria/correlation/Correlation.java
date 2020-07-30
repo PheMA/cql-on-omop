@@ -43,6 +43,7 @@ public class Correlation {
             return false;
         } else {
             // ignore expression
+            // TODO: lhs could be null
             return ((this.lhs == null && ((Correlation) o).getLhs() == null) || this.lhs.equals(((Correlation) o).getLhs())
                 && (this.rhs == null && ((Correlation) o).getRhs() == null) || this.rhs.equals(((Correlation) o).getRhs()));
         }

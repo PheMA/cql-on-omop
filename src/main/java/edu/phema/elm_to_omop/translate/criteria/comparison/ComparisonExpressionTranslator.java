@@ -12,6 +12,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 public class ComparisonExpressionTranslator {
+    private ComparisonExpressionTranslator()  {
+
+    }
+
     private static class ComparisonExpressionValuePair {
         private Expression expression;
         private Number value;

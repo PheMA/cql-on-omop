@@ -13,6 +13,10 @@ import java.util.Arrays;
  * generate invalid objects using the empty default constructors.
  */
 public class CirceUtil {
+    private CirceUtil()  {
+        super();
+    }
+
     /**
      * Extends a primitive array of CriteriaGroups by adding a new CriteriaGroup.
      * This is necessary because Circe uses primitive arrays instead of Java collections.

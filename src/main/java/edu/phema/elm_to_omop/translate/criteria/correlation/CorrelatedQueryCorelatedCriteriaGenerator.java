@@ -11,6 +11,10 @@ import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 import org.ohdsi.circe.cohortdefinition.VisitOccurrence;
 
 public class CorrelatedQueryCorelatedCriteriaGenerator {
+    private CorrelatedQueryCorelatedCriteriaGenerator()  {
+
+    }
+
     /**
      * Generate a correlated criteria for a QUICK Encounter/Condition correlation
      *
@@ -22,7 +26,8 @@ public class CorrelatedQueryCorelatedCriteriaGenerator {
         QuickResourceAttributePair lhs = correlation.getLhs();
         QuickResourceAttributePair rhs = correlation.getRhs();
 
-        QuickResource encounter, condition;
+        QuickResource encounter;
+        QuickResource condition;
 
         if (lhs.getResource().getType().equals(CorrelationConstants.QuickResourceType.ENCOUNTER)) {
             encounter = lhs.getResource();
