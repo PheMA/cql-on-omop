@@ -235,7 +235,7 @@ language, and could write queries of any type, for any purpose, not just phenoty
 
 The downside of this approach is that CQL libraries written against this data model would then be tied to the OHDSI
 platform, and would not be cross-platform, as in the currently implementation. Further, the full set of OHDSI tools for
-cohort analysis would no longer be available to the user. Importantly, in the current approach, a used can look at the
+cohort analysis would no longer be available to the user. Importantly, in the current approach, a user can look at the
 generated cohort definition in the existing Atlas interface to manually inspect whether or not the logic is correct,
 which would not be possible in a pure CQL data provider implementation.
 
