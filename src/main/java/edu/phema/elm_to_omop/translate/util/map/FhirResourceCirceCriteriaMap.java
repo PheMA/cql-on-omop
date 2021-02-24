@@ -18,13 +18,16 @@ public class FhirResourceCirceCriteriaMap {
 
     static {
         resourceCriteriaMap.put("Encounter", VisitOccurrence.class);
-
         resourceCriteriaMap.put("Procedure", ProcedureOccurrence.class);
+        // TODO we need to disambiguate mappings for Procedure
+        // resourceCriteriaMap.put("Procedure", DeviceExposure.class);
         resourceCriteriaMap.put("Observation", Measurement.class);
+        // TODO we need to disambiguate mappings for Observation
+        // resourceCriteriaMap.put("Observation", Observation.class);
         resourceCriteriaMap.put("MedicationRequest", DrugExposure.class);
         resourceCriteriaMap.put("Condition", ConditionOccurrence.class);
-
-        // resourceCriteriaMap.put("AdverseEvent", Death.class);
+        resourceCriteriaMap.put("AdverseEvent", Death.class);
+        resourceCriteriaMap.put("Specimen", Specimen.class);
     }
 }
 

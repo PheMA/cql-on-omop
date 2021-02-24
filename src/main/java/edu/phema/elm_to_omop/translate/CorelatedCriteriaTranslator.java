@@ -77,6 +77,8 @@ public class CorelatedCriteriaTranslator {
             return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
         } else if (expression instanceof Query) {
             return generateCorelatedCriteriaForQuery((Query) expression, context);
+        } else if (expression instanceof Not) {
+            return ComparisonExpressionTranslator.generateCorelatedCriteriaForExclusion(expression, context);
         } else if (ComparisonExpressionTranslator.isNumericComparison(expression)) {
             return ComparisonExpressionTranslator.generateCorelatedCriteriaForComparison(expression, context);
         } else {
