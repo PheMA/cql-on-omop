@@ -82,8 +82,7 @@ public class PhemaElmToOmopTranslator {
 
     public static boolean isBooleanExpression(Expression expression) {
         return (expression instanceof Or) ||
-            (expression instanceof And) ||
-            (expression instanceof Not);
+            (expression instanceof And);
     }
 
     /**
