@@ -24,64 +24,62 @@ import java.util.List;
  * Confusingly, a Criteria has field called CorelatedCriteria, which is of type CriteriaGroup.
  */
 public class CorelatedCriteriaTranslator {
-    private CorelatedCriteriaTranslator()  {
-        super();
+  private CorelatedCriteriaTranslator() {
+    super();
+  }
+
+  private static CorelatedCriteria generateCorelatedCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws Exception {
+    Occurrence occurrence = CirceUtil.defaultOccurrence();
+
+    CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
+    corelatedCriteria.occurrence = occurrence;
+
+    corelatedCriteria.criteria = CriteriaTranslator.generateCriteriaForExpression(retrieve, context);
+
+    return corelatedCriteria;
+  }
+
+  private static CorelatedCriteria generateCorelatedCriteriaForQuery(Query query, PhemaElmToOmopTranslatorContext context) throws Exception {
+    List<RelationshipClause> relationships = query.getRelationship();
+
+    if (query.getWhere() == null && (relationships == null || relationships.isEmpty())) {
+      // We are dealing with an uncorrelated query
+
+      // Right now we basic just support a simple aliased query like [Condition: "valueset"] C, which is exactly
+      // the same a simple retrieve, so we evaluate it as such. If there are no relationships, there should only
+      // be one AliasedSource
+      return generateCorelatedCriteriaForExpression(query.getSource().get(0).getExpression(), context);
+    } else if (relationships.size() == 1) {
+      // We are dealing with a correlated query using "such that"
+      return CorrelatedQueryTranslator.generateCorelatedCriteriaForCorrelatedQuery(query, context);
+    } else if (query.getWhere() != null) {
+      // We are dealing with a correlated query using "where"
+      return CorrelatedQueryTranslator.generateCorelatedCriteriaForCorrelatedQueryWithWhere(query, context);
+    } else {
+      throw new PhemaNotImplementedException("The translator is currently only able to handle a single relationship for a data element");
     }
+  }
 
-    private static CorelatedCriteria generateCorelatedCriteriaForRetrieve(Retrieve retrieve, PhemaElmToOmopTranslatorContext context) throws Exception {
-        Occurrence occurrence = CirceUtil.defaultOccurrence();
-
-        CorelatedCriteria corelatedCriteria = CirceUtil.defaultCorelatedCriteria();
-        corelatedCriteria.occurrence = occurrence;
-
-        corelatedCriteria.criteria = CriteriaTranslator.generateCriteriaForExpression(retrieve, context);
-
-        return corelatedCriteria;
+  /**
+   * Given an Expression from CQL/ELM, convert it into an OHDSI CorelatedCriteria.
+   *
+   * @param expression The ELM expression
+   * @param context    The ELM translation context
+   * @return The CorelatedCriteria for the expression
+   * @throws Exception
+   */
+  public static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
+    if (expression instanceof Retrieve) {
+      return generateCorelatedCriteriaForRetrieve((Retrieve) expression, context);
+    } else if (expression instanceof Exists) {
+      return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
+    } else if (expression instanceof Query) {
+      return generateCorelatedCriteriaForQuery((Query) expression, context);
+    } else if (ComparisonExpressionTranslator.isNumericComparison(expression)) {
+      return ComparisonExpressionTranslator.generateCorelatedCriteriaForComparison(expression, context);
+    } else {
+      // TODO - Need to handle more than simple query types
+      throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
     }
-
-    private static CorelatedCriteria generateCorelatedCriteriaForQuery(Query query, PhemaElmToOmopTranslatorContext context) throws Exception {
-        List<RelationshipClause> relationships = query.getRelationship();
-
-        if (relationships == null || relationships.isEmpty()) {
-            // We are dealing with an uncorrelated query
-
-            // We don't currently support where clause filtering
-            if (query.getWhere() != null) {
-                throw new PhemaNotImplementedException("Query filtering which Where clause is currently unsupported");
-            }
-
-            // Right now we basic just support a simple aliased query like [Condition: "valueset"] C, which is exactly
-            // the same a simple retrieve, so we evaluate it as such. If there are no relationships, there should only
-            // be one AliasedSource
-            return generateCorelatedCriteriaForExpression(query.getSource().get(0).getExpression(), context);
-        } else if (relationships.size() == 1) {
-            // We are dealing with a correlated query
-            return CorrelatedQueryTranslator.generateCorelatedCriteriaForCorrelatedQuery(query, context);
-        } else {
-            throw new PhemaNotImplementedException("The translator is currently only able to handle a single relationship for a data element");
-        }
-    }
-
-    /**
-     * Given an Expression from CQL/ELM, convert it into an OHDSI CorelatedCriteria.
-     *
-     * @param expression The ELM expression
-     * @param context    The ELM translation context
-     * @return The CorelatedCriteria for the expression
-     * @throws Exception
-     */
-    public static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
-        if (expression instanceof Retrieve) {
-            return generateCorelatedCriteriaForRetrieve((Retrieve) expression, context);
-        } else if (expression instanceof Exists) {
-            return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
-        } else if (expression instanceof Query) {
-            return generateCorelatedCriteriaForQuery((Query) expression, context);
-        } else if (ComparisonExpressionTranslator.isNumericComparison(expression)) {
-            return ComparisonExpressionTranslator.generateCorelatedCriteriaForComparison(expression, context);
-        } else {
-            // TODO - Need to handle more than simple query types
-            throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
-        }
-    }
+  }
 }
