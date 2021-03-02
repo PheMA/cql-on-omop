@@ -145,8 +145,16 @@ public class PhemaElmToOmopTranslatorContext {
     } else if (codeExpression instanceof ToList) {
       // The retrieve references a code
       ToList toList = (ToList) codeExpression;
-      ToConcept toConcept = (ToConcept) toList.getOperand();
-      CodeRef codeRef = (CodeRef) toConcept.getOperand();
+      Expression toListOperand = toList.getOperand();
+      CodeRef codeRef = null;
+      if (toListOperand instanceof ToConcept) {
+          ToConcept toConcept = (ToConcept) toList.getOperand();
+          codeRef = (CodeRef) toConcept.getOperand();
+      } else if (toListOperand instanceof CodeRef) {
+          codeRef = (CodeRef)toListOperand;
+      } else {
+          throw new PhemaTranslationException("Unsupported list operand");
+      }
 
       return codeRef.getName();
     } else {
