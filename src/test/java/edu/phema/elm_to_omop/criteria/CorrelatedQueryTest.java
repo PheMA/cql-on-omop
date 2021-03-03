@@ -106,6 +106,14 @@ public class CorrelatedQueryTest {
   }
 
   @Test
+  public void workbenchDemoCorrelationSimpleExpandedWindow() throws Exception {
+    runTestCase("criteria/correlated-query.cql",
+      "criteria/valuesets/correlated-query-valuesets.omop.json",
+      "Workbench Demo Correlation Simple Expanded Window",
+      "criteria/translated/correlated-query/workbench-correlation-simple-expanded-window.omop.json");
+  }
+
+  @Test
   public void workbenchDemoCorrelationMultiple() throws Exception {
     runTestCase("criteria/correlated-query.cql",
       "criteria/valuesets/correlated-query-valuesets.omop.json",

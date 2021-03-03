@@ -7,11 +7,14 @@ import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
+import edu.phema.elm_to_omop.translate.util.TemporalUtil;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
+import org.ohdsi.circe.cohortdefinition.Window;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -177,10 +180,19 @@ public class CorrelatedQueryTranslator {
       // generate the criteria as if it was a retrieve
       outerCorrelateCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression((Retrieve) query.getSource().get(0).getExpression(), context);
 
+      // TODO: Address simplifying assumptions noted below
+      //   1. Only set window around start time.  Should use property to determine if this is the start or
+      //      end time property and identify in the appropriate window.
+      //   2. Only handle one interval per correlated query.  In Circe, you can define "event starts" and
+      //      "event ends" constraints, and this could also be represented in CQL if we have multiple
+      //      constraints.
       // then set up the occurrence dates based on the interval
-      // TODO: Actually set up startWindow based on Interval - https://github.com/PheMA/cql-on-omop/issues/47
-      //       We can probably make a lot of simplifying assumptions here, for example that all dates/durations are relative
-      //       to the index date.
+      List<Expression> whereOperands = ((In)whereExpression).getOperand();
+      if (whereOperands.size() == 2 && whereOperands.get(1) instanceof Interval) {
+        Interval interval = (Interval)whereOperands.get(1);
+        outerCorrelateCriteria.startWindow.start = TemporalUtil.calculateWindowEndpoint((BinaryExpression)interval.getLow());
+        outerCorrelateCriteria.startWindow.end = TemporalUtil.calculateWindowEndpoint((BinaryExpression)interval.getHigh());
+      }
     }
 
 

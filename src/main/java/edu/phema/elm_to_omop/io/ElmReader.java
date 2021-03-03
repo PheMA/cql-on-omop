@@ -26,7 +26,7 @@ public class ElmReader {
     }
 
     public static Library readElm(String directory, String filename, Logger logger) throws IOException, JAXBException {
-        File file = new File(directory + filename);
+        File file = new File(directory.trim() + filename.trim());
 
         Library elmContents = null;
 

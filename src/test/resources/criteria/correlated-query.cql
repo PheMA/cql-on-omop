@@ -62,6 +62,16 @@ define "Workbench Demo Correlation Simple":
                 )
    )
 
+define "Workbench Demo Correlation Simple Expanded Window":
+    exists(
+        [Condition: "Some Dx 1"] C
+            where
+                exists(
+                    [Observation: "Some Labs 1"] O
+                        where O.appliesDateTime in Interval[C.onsetDateTime - 1 week, C.onsetDateTime + 3 months]
+                )
+   )
+
 define "Workbench Demo Correlation Multiple":
     exists(
         [Condition: "Some Dx 1"] C

@@ -1,6 +1,6 @@
 {
-  "name": "Workbench Demo Correlation Simple",
-  "description": "Workbench Demo Correlation Simple",
+  "name": "Workbench Demo Correlation Simple Expanded Window",
+  "description": "Workbench Demo Correlation Simple Expanded Window",
   "expression": {
     "Type": "ALL",
     "CriteriaList": [
@@ -18,11 +18,11 @@
                   },
                   "StartWindow": {
                     "Start": {
-                      "Days": 1,
+                      "Days": 7,
                       "Coeff": -1
                     },
                     "End": {
-                      "Days": 1,
+                      "Days": 90,
                       "Coeff": 1
                     }
                   },
