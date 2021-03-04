@@ -74,6 +74,31 @@ public class ComparisonExpressionTranslator {
     }
 
     /**
+     * Create CorelatedCriteria for an exclusion (specifically a Not expression)
+     * @param expression The Not expression
+     * @param context The translator context
+     * @return A CorelatedCriteria entry for this expression
+     * @throws Exception
+     */
+    public static CorelatedCriteria generateCorelatedCriteriaForExclusion(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
+        if (!(expression instanceof Not)) {
+            throw new PhemaTranslationException(String.format("Unsupported exclusion operation: s", expression.getClass().getSimpleName()));
+        }
+
+        // In Atlas, "exclusion" is an assertion that the count of a concept is exactly 0
+        Occurrence occurrence = CirceUtil.defaultOccurrence();
+        occurrence.count = 0;
+        occurrence.type = Occurrence.EXACTLY;
+
+        CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(
+            ((UnaryExpression)expression).getOperand(), context);
+
+        corelatedCriteria.occurrence = occurrence;
+
+        return corelatedCriteria;
+    }
+
+    /**
      * Right now we only support the simple comparison of the form Count(X) > y, where X is a Retrieve or Query
      * expression and y is a number.
      *

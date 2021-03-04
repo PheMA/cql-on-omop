@@ -32,6 +32,8 @@ tmp/
 .idea/**/tasks.xml
 .idea/dictionaries
 
+.editorconfig
+
 # Target objects
 target/
 

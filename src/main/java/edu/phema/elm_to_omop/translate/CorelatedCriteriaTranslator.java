@@ -70,16 +70,18 @@ public class CorelatedCriteriaTranslator {
    */
   public static CorelatedCriteria generateCorelatedCriteriaForExpression(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
     if (expression instanceof Retrieve) {
-      return generateCorelatedCriteriaForRetrieve((Retrieve) expression, context);
+        return generateCorelatedCriteriaForRetrieve((Retrieve) expression, context);
     } else if (expression instanceof Exists) {
-      return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
+        return generateCorelatedCriteriaForExpression(((Exists) expression).getOperand(), context);
     } else if (expression instanceof Query) {
-      return generateCorelatedCriteriaForQuery((Query) expression, context);
+        return generateCorelatedCriteriaForQuery((Query) expression, context);
+    } else if (expression instanceof Not) {
+        return ComparisonExpressionTranslator.generateCorelatedCriteriaForExclusion(expression, context);
     } else if (ComparisonExpressionTranslator.isNumericComparison(expression)) {
-      return ComparisonExpressionTranslator.generateCorelatedCriteriaForComparison(expression, context);
+        return ComparisonExpressionTranslator.generateCorelatedCriteriaForComparison(expression, context);
     } else {
-      // TODO - Need to handle more than simple query types
-      throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
+        // TODO - Need to handle more than simple query types
+        throw new PhemaNotImplementedException(String.format("Unable to generate CorelatedCriteria for type: %s", expression.getClass().getName()));
     }
   }
 }
