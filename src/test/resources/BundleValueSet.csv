@@ -1,0 +1,4 @@
+value_set_oid,value_set_name,code,description,code_system,code_system_version,code_system_oid,tty
+0.atrial-fibrillation-condition-codes,Atrial Fibrillation Condition Codes,V45.81,Postsurgical aortocoronary bypass status,ICD9,2019-03,2.16.840.1.113883.6.96,FN
+0.atrial-fibrillation-heart-transplant-codes,Atrial Fibrillation Heart Transplant Codes,00580,Anesthesia for heart transplant or heart/lung transplant,CPT,2019-03,2.16.840.1.113883.6.96,FN
+0.atrial-fibrillation-proc-codes,Atrial Fibrillation Procedure Codes,32160,Thoracotomy major; with cardiac massage,,CPT,2019-03,2.16.840.1.113883.6.96,FN

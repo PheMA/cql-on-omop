@@ -39,6 +39,8 @@ public final class Config {
 
     private String inputFileName;
 
+    private String inputBundleName;
+
     private String vsFileName;
 
     private String outFileName;
@@ -116,6 +118,7 @@ public final class Config {
     public void setConfig() {
         omopBaseURL = getProperty("OMOP_BASE_URL");
         inputFileName = getProperty("INPUT_FILE_NAME");
+        inputBundleName = getProperty("INPUT_BUNDLE_NAME");
         vsFileName = getProperty("VS_FILE_NAME");
         outFileName = getProperty("OUT_FILE_NAME");
         source = getProperty("SOURCE");
@@ -124,6 +127,10 @@ public final class Config {
 
         runPropertyCheck();
     }
+
+    public String getInputBundleName() {
+    return inputBundleName;
+  }
 
     public String getInputFileName() {
         return inputFileName;
@@ -169,6 +176,9 @@ public final class Config {
         if (prop.equalsIgnoreCase("INPUT_FILE_NAME")) {
             inputFileName = val;
         }
+        if (prop.equalsIgnoreCase("INPUT_BUNDLE_NAME")) {
+            inputBundleName = val;
+        }
         if (prop.equalsIgnoreCase("VS_FILE_NAME")) {
             vsFileName = val;
         }
@@ -203,25 +213,36 @@ public final class Config {
         if (omopBaseURL == null) {
             logger.severe("ERROR - missing parameter OMOP_BASE_URL");
         }
-        if (inputFileName == null) {
+
+        boolean loadBundle = (inputBundleName != null) && (!inputBundleName.equals(""));
+        boolean loadFile = (inputFileName != null) && (!inputFileName.equals(""));
+
+        if (!loadBundle && !loadFile) {
+          logger.severe("ERROR - missing either INPUT_FILE_NAME or INPUT_BUNDLE_NAME");
+        } else if (loadBundle && loadFile) {
+          logger.severe("ERROR - specify either INPUT_FILE_NAME or INPUT_BUNDLE_NAME, but not both");
+        } else if (loadFile) {
+          if (inputFileName == null) {
             logger.severe("ERROR - missing parameter INPUT_FILE_NAME");
-        }
-        if (vsFileName == null) {
+          }
+          if (vsFileName == null) {
             logger.severe("ERROR - missing parameter VS_FILE_NAME");
+          }
+          if (tab == null) {
+            logger.severe("INFO - missing optional parameter VS_TAB");
+          }
         }
+
         if (outFileName == null) {
             logger.severe("ERROR - missing parameter OUT_FILE_NAME");
         }
         if (source == null) {
             logger.severe("ERROR - missing parameter SOURCE");
         }
-        if (tab == null) {
-            logger.severe("INFO - missing optional parameter VS_TAB");
-        }
     }
 
     public String configString() {
-        return String.format("OMOP_BASE_URL=%s, INPUT_FILE_NAME=%s, VS_FILE_NAME=%s, OUT_FILE_NAME=%s, SOURCE=%s, VS_TAB=%s", omopBaseURL, inputFileName, vsFileName, outFileName, source, tab);
+        return String.format("OMOP_BASE_URL=%s, INPUT_BUNDLE_NAME=%s, INPUT_FILE_NAME=%s, VS_FILE_NAME=%s, OUT_FILE_NAME=%s, SOURCE=%s, VS_TAB=%s", omopBaseURL, inputBundleName, inputFileName, vsFileName, outFileName, source, tab);
     }
 
     public String getConfigFileName() {
@@ -252,6 +273,10 @@ public final class Config {
         this.omopBaseURL = omopBaseURL;
     }
 
+    public void setInputBundleName(String inputBundleName) {
+      this.inputBundleName = inputBundleName;
+    }
+
     public void setInputFileName(String inputFileName) {
         this.inputFileName = inputFileName;
     }
@@ -276,11 +301,15 @@ public final class Config {
         this.phenotypeExpressions = phenotypeExpressions;
     }
 
-  /**
-   * Determine if a value has been specified for the value set spreadsheet tab.
-   * @return
-   */
-  public boolean isTabSpecified() {
+    public boolean isUsingBundle() {
+      return !this.inputBundleName.equals("");
+    }
+
+    /**
+     * Determine if a value has been specified for the value set spreadsheet tab.
+     * @return
+     */
+    public boolean isTabSpecified() {
         return (this.tab != null && !this.tab.equals(""));
     }
 }
