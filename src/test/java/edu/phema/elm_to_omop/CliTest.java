@@ -80,6 +80,7 @@ public class CliTest {
               String.format("VS_FILE_NAME=%s", PhemaTestHelper.getResourcePath("cli/simple.csv")),
               String.format("INPUT_FILE_NAME=%s", PhemaTestHelper.getResourcePath("cli/simple.cql")),
               String.format("OUT_FILE_NAME=%s/cli/simple.omop.json", file.getParent()),
+              "INPUT_BUNDLE_NAME=",
               "SOURCE=phema-test",
               "PHENOTYPE_EXPRESSIONS=edu.phema.elm_to_omop.CliTest"
             };

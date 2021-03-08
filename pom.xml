@@ -23,6 +23,7 @@
         <bintray.package>phema-elm-to-ohdsi</bintray.package>
         <ohdsi.webapi.version>2.6.0</ohdsi.webapi.version>
         <ohdsi.circe.version>1.7.0</ohdsi.circe.version>
+        <hapi.fhir.version>5.3.0</hapi.fhir.version>
     </properties>
 
     <repositories>
@@ -224,6 +225,12 @@
             <groupId>net.jodah</groupId>
             <artifactId>failsafe</artifactId>
             <version>2.3.1</version>
+        </dependency>
+
+        <dependency>
+          <groupId>ca.uhn.hapi.fhir</groupId>
+          <artifactId>hapi-fhir-structures-r4</artifactId>
+          <version>${hapi.fhir.version}</version>
         </dependency>
 
         <!-- OHDSI dependencies -->

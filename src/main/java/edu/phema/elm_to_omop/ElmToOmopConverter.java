@@ -7,7 +7,9 @@ import edu.phema.elm_to_omop.api.ElmToOmopTranslator;
 import edu.phema.elm_to_omop.helper.Config;
 import edu.phema.elm_to_omop.helper.MyFormatter;
 import edu.phema.elm_to_omop.io.OmopWriter;
+import edu.phema.elm_to_omop.phenotype.BundlePhenotype;
 import edu.phema.elm_to_omop.phenotype.FilePhenotype;
+import edu.phema.elm_to_omop.phenotype.IPhenotype;
 import edu.phema.elm_to_omop.phenotype.PhenotypeException;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.ConceptCodeCsvFileValuesetService;
@@ -68,21 +70,29 @@ public class ElmToOmopConverter {
             OmopRepositoryService omopService = new OmopRepositoryService(domain, source);
             OmopWriter omopWriter = new OmopWriter(logger);
 
-            // Initialize phenotype, which will do the following:
-            //
-            // 1. Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
-            //    the CQL/ELM can be vague if not explicitly defined otherwise.
-            // 2. Read the elm file and set up the objects
-            FilePhenotype phenotype = new FilePhenotype(config.getInputFileName(), config.getPhenotypeExpressions());
-
-            // read the value set csv and add to the objects.  If the tab is specified, we assume that it is a spreadsheet.  Otherwise we will use the
-            // default CSV reader.
             IValuesetService valuesetService = null;
-            if (config.isTabSpecified()) {
+            IPhenotype phenotype = null;
+            if (config.isUsingBundle()) {
+              BundlePhenotype bundlePhenotype = new BundlePhenotype(
+                config.getInputBundleName(), config.getPhenotypeExpressions(), omopService);
+              valuesetService = bundlePhenotype.getValuesetService();
+              phenotype = bundlePhenotype;
+            } else {
+              // Initialize phenotype, which will do the following:
+              //
+              // 1. Determine if the user has specified which expression(s) is/are the phenotype definitions of interest.
+              //    the CQL/ELM can be vague if not explicitly defined otherwise.
+              // 2. Read the elm file and set up the objects
+              phenotype = new FilePhenotype(config.getInputFileName(), config.getPhenotypeExpressions());
+
+              // read the value set csv and add to the objects.  If the tab is specified, we assume that it is a spreadsheet.  Otherwise we will use the
+              // default CSV reader.
+              if (config.isTabSpecified()) {
                 valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
-            }
-            else {
+              }
+              else {
                 valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
+              }
             }
 
             List<PhemaConceptSet> conceptSets = valuesetService.getConceptSets();
