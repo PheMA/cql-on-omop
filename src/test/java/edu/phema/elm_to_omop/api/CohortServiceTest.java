@@ -5,10 +5,13 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import edu.phema.elm_to_omop.PhemaTestHelper;
 import edu.phema.elm_to_omop.api.exception.CohortServiceException;
+import edu.phema.elm_to_omop.io.FhirReader;
+import edu.phema.elm_to_omop.phenotype.BundlePhenotype;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
+import org.hl7.fhir.r4.model.Bundle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -157,6 +160,33 @@ public class CohortServiceTest {
         }
     }
 
+  @Test
+  void testQueueCohortGenerationFromBundle() throws Exception {
+    // Stub the cohort definition generate create request
+    stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+      .willReturn(aResponse()
+        .withStatus(200)
+        .withHeader("Content-Type", "application/json")
+        .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+    try {
+      String cqlString = PhemaTestHelper.getFileAsString("api/smoke-test-simple-bundle.json");
+      Bundle bundle = FhirReader.readBundleFromString(cqlString);
+
+      CohortService cs = new CohortService(valuesetService, omopRepository);
+
+      // Queue the cohort up for generation
+      JobExecutionResource job = cs.queueCohortGeneration(bundle, "Case");
+
+      assertEquals(job.getStatus(), "STARTED");
+      assertEquals(job.getJobInstanceResource().getName(), "generateCohort");
+      assertEquals(job.getExitStatus(), "UNKNOWN");
+      assertEquals(job.getExecutionId(), 171);
+    } catch (Exception e) {
+      assertNull(e);
+    }
+  }
+
     @Test
     void testQueryCohortGenerationFailureCase() {
         // Stub the cohort definition generate request
@@ -231,6 +261,40 @@ public class CohortServiceTest {
             assertNull(e);
         }
     }
+
+  @Test
+  void testCohortGenerationInfoFromBundle() {
+    try {
+      // Stub the cohort definition generate create request
+      stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+      // Stub the cohort definition info request
+      stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+      String bundleString = PhemaTestHelper.getFileAsString("api/smoke-test-simple-bundle.json");
+      Bundle bundle = FhirReader.readBundleFromString(bundleString);
+
+      CohortService cs = new CohortService(valuesetService, omopRepository);
+
+      // Queue the cohort up for generation
+      List<CohortGenerationInfo> info = cs.getCohortDefinitionInfo(bundle, "Case");
+
+      assertEquals(info.size(), 1);
+      assertEquals(info.get(0).getId().getCohortDefinitionId(), 108);
+      assertEquals(info.get(0).getStatus(), GenerationStatus.COMPLETE);
+      assertNull(info.get(0).getFailMessage());
+    } catch (Exception e) {
+      assertNull(e);
+    }
+  }
 
     @Test
     void testCohortGenerationInfoFailureCase() {
@@ -343,6 +407,65 @@ public class CohortServiceTest {
             assertNull(e);
         }
     }
+
+  @Test
+  void testCohortGenerationReportFromBundle() {
+    try {
+      // Stub the cohort definition generate create request
+      stubFor(get(urlEqualTo("/cohortdefinition/108/generate/phema-test"))
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/generate/job.171.json"))));
+
+      // Stub the cohort definition info request. Return "RUNNING" twice, then return "COMPLETE"
+      stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+        .inScenario("Long running cohort generation")
+        .whenScenarioStateIs(STARTED)
+        .willSetStateTo("Running")
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.running.json"))));
+
+      stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+        .inScenario("Long running cohort generation")
+        .whenScenarioStateIs("Running")
+        .willSetStateTo("Still running")
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.running.json"))));
+
+      stubFor(get(urlEqualTo("/cohortdefinition/108/info"))
+        .inScenario("Long running cohort generation")
+        .whenScenarioStateIs("Still running")
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/info/info.108.complete.json"))));
+
+      // Stub the cohort definition report request
+      stubFor(get(urlEqualTo("/cohortdefinition/108/report/phema-test"))
+        .willReturn(aResponse()
+          .withStatus(200)
+          .withHeader("Content-Type", "application/json")
+          .withBody(PhemaTestHelper.getFileAsString("responses/cohortdefinition/report/report.108.json"))));
+
+      String bundleString = PhemaTestHelper.getFileAsString("api/smoke-test-simple-bundle.json");
+      Bundle bundle = FhirReader.readBundleFromString(bundleString);
+
+      CohortService cs = new CohortService(valuesetService, omopRepository);
+
+      InclusionRuleReport report = cs.getCohortDefinitionReport(bundle, "Case");
+
+      assertEquals(report.inclusionRuleStats.size(), 2);
+      assertEquals(report.summary.baseCount, 938);
+      assertEquals(report.summary.finalCount, 246);
+    } catch (Exception e) {
+      assertNull(e);
+    }
+  }
 
     @Test
     void testSqlRendering() throws Exception {

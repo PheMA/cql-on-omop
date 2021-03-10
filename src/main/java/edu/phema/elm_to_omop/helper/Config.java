@@ -302,7 +302,7 @@ public final class Config {
     }
 
     public boolean isUsingBundle() {
-      return !this.inputBundleName.equals("");
+      return this.inputBundleName != null && !this.inputBundleName.equals("");
     }
 
     /**

@@ -53,12 +53,14 @@ public class BundlePhenotype implements IPhenotype {
     for (Attachment attach : attachments) {
       if (attach.getContentType().equals(CQL_CONTENT_TYPE)) {
         byte[] data = attach.getData();
-        definition.code = new String(data);
-        definition.elm = ElmReader.readCqlString(definition.code);
-        definition.hasDependencies = library.getRelatedArtifact().stream().anyMatch(
-          x -> x.getType().getDisplay().equalsIgnoreCase("Depends On"));
-        this.libraries.add(definition);
-        return;
+        if (data != null) {
+          definition.code = new String(data);
+          definition.elm = ElmReader.readCqlString(definition.code);
+          definition.hasDependencies = library.getRelatedArtifact().stream().anyMatch(
+            x -> x.getType().getDisplay().equalsIgnoreCase("Depends On"));
+          this.libraries.add(definition);
+          return;
+        }
       }
     }
   }
