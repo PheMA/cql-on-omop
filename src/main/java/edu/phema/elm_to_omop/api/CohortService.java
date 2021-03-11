@@ -59,6 +59,7 @@ public class CohortService {
         else if (config.isUsingBundle()) {
           // Delay creating the service until we have a bundle
           valuesetService = null;
+          return;
         }
         else {
           valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
@@ -182,6 +183,7 @@ public class CohortService {
   public JobExecutionResource queueCohortGeneration(Bundle bundle, String statementName) throws CohortServiceException {
     try {
       BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
       return queueCohortGeneration(phenotype.getPhenotypeCql(), statementName);
     } catch (Throwable t) {
       throw new CohortServiceException("Error queueing up cohort for generation", t);
@@ -234,6 +236,7 @@ public class CohortService {
   public List<CohortGenerationInfo> getCohortDefinitionInfo(Bundle bundle, String statementName) throws CohortServiceException {
     try {
       BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
       return getCohortDefinitionInfo(phenotype.getPhenotypeCql(), statementName);
     } catch (Throwable t) {
       throw new CohortServiceException("Error getting cohort definition info", t);
@@ -295,6 +298,7 @@ public class CohortService {
   public InclusionRuleReport getCohortDefinitionReport(Bundle bundle, String statementName) throws CohortServiceException {
     try {
       BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
       return getCohortDefinitionReport(phenotype.getPhenotypeCql(), statementName);
     } catch (Throwable t) {
       throw new CohortServiceException("Error getting cohort definition report", t);
