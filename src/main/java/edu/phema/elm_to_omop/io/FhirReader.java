@@ -22,6 +22,7 @@ import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +70,57 @@ public class FhirReader {
     IParser parser = ctx.newJsonParser();
     try {
       Bundle bundle = parser.parseResource(Bundle.class, new FileReader(file));
+      BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      return phenotype;
+    } catch (Exception e) {
+      throw new PhenotypeException("Error reading phenotype bundle", e);
+    }
+  }
+
+  /**
+   * Read and load a FHIR Bundle stored as a JSON string
+   * @param bundleJson The Bundle JSON represented as a string
+   * @return The Bundle resource
+   * @throws PhenotypeException
+   */
+  public static Bundle readBundleFromString(String bundleJson) throws PhenotypeException {
+    FhirContext ctx = FhirContext.forR4();
+    IParser parser = ctx.newJsonParser();
+    try {
+      return parser.parseResource(Bundle.class, bundleJson);
+    } catch (Exception e) {
+      throw new PhenotypeException("Error loading FHIR bundle", e);
+    }
+  }
+
+
+  /**
+   * Given a FHIR Bundle stored as a JSON string, read all components (libraries, valuesets, etc.)
+   * and prepare it as a consolidated BundlePhenotype
+   * @param bundleJson The Bundle JSON represented as a string
+   * @param omopService OMOP service to resolve concepts
+   * @return The consolidated BundlePhenotype
+   * @throws PhenotypeException
+   */
+  public static BundlePhenotype loadBundlePhenotypeFromString(String bundleJson, IOmopRepositoryService omopService) throws PhenotypeException {
+    try {
+      Bundle bundle = FhirReader.readBundleFromString(bundleJson);
+      BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      return phenotype;
+    } catch (Exception e) {
+      throw new PhenotypeException("Error loading phenotype bundle", e);
+    }
+  }
+
+  /**
+   * Convert a FHIR Bundle into the BundlePhenotype format used for execution
+   * @param bundle       The FHIR Bundle resource to convert
+   * @param omopService  The OMOP service to use for value set validation
+   * @return The consolidated BundlePhenotype
+   * @throws PhenotypeException
+   */
+  public static BundlePhenotype convertBundle(Bundle bundle, IOmopRepositoryService omopService) throws PhenotypeException {
+    try {
       List<Bundle.BundleEntryComponent> entries = bundle.getEntry();
       // Load all of the libraries - this includes phenotype and supporting libraries
       List<Library> libraryEntries = entries.stream()
@@ -87,7 +139,7 @@ public class FhirReader {
       phenotype.setValuesetService(service);
       return phenotype;
     } catch (Exception e) {
-      throw new PhenotypeException("Error reading phenotype bundle", e);
+      throw new PhenotypeException("Error converting phenotype bundle", e);
     }
   }
 

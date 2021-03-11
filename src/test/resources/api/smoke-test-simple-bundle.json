@@ -1,0 +1,250 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Organization",
+        "id": "phema-org",
+        "identifier": [
+          {
+            "system": "urn:ietf:rfc:3986",
+            "value": "urn:uuid:b4c8ce08-2722-4406-93d5-00196e483fa6"
+          }
+        ],
+        "active": true,
+        "name": "Phenotype Execution & Modeling Architecture (PhEMA)",
+        "alias": "PhEMA",
+        "telecom": [
+          {
+            "system": "url",
+            "value": "https://projectphema.org/"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Organization/phema-org"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Binary",
+        "id": "metadata-0.smoke-test-simple",
+        "contentType": "application/json",
+        "data": "eyJlcnJvciI6Ik5vIG1ldGFkYXRhIGF2YWlsYWJsZSJ9"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Binary/metadata-0.smoke-test-simple"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Library",
+        "id": "library-0.smoke-test-simple-1.0.0",
+        "identifier": [
+          {
+            "system": "https://workbench.phema.science/identifier/phenotype-library",
+            "value": "0.smoke-test-simple"
+          }
+        ],
+        "title": "0.smoke-test-simple Phenotype Definition",
+        "name": "0.smoke-test-simple",
+        "version": "1.0.0",
+        "dataRequirement": [],
+        "relatedArtifact": [],
+        "content": [
+          {
+            "contentType": "text/cql",
+            "data": "bGlicmFyeSAiMC5zbW9rZS10ZXN0LXNpbXBsZSIgdmVyc2lvbiAnMS4wLjAnCgp1c2luZyBRVUlDSwoKdmFsdWVzZXQgIkRpYWJldGVzIjogJzIuMTYuODQwLjEuMTEzODgzLjMuNDY0LjEwMDMuMTAzLjEyLjEwMDEnCgpjb250ZXh0IFBhdGllbnQKCmRlZmluZSAiQ2FzZSI6CiAgWyJDb25kaXRpb24iOiAiRGlhYmV0ZXMiXSBDCg=="
+          },
+          {
+            "contentType": "application/elm+json",
+            "data": "eyJsaWJyYXJ5Ijp7ImFubm90YXRpb24iOlt7InRyYW5zbGF0b3JPcHRpb25zIjoiIiwidHlwZSI6IkNxbFRvRWxtSW5mbyJ9XSwiaWRlbnRpZmllciI6eyJpZCI6IjAuc21va2UtdGVzdC1zaW1wbGUiLCJ2ZXJzaW9uIjoiMS4wLjAifSwic2NoZW1hSWRlbnRpZmllciI6eyJpZCI6InVybjpobDctb3JnOmVsbSIsInZlcnNpb24iOiJyMSJ9LCJ1c2luZ3MiOnsiZGVmIjpbeyJsb2NhbElkZW50aWZpZXIiOiJTeXN0ZW0iLCJ1cmkiOiJ1cm46aGw3LW9yZzplbG0tdHlwZXM6cjEifSx7ImxvY2FsSWRlbnRpZmllciI6IlFVSUNLIiwidXJpIjoiaHR0cDovL2hsNy5vcmcvZmhpciJ9XX0sInZhbHVlU2V0cyI6eyJkZWYiOlt7Im5hbWUiOiJEaWFiZXRlcyIsImlkIjoiMi4xNi44NDAuMS4xMTM4ODMuMy40NjQuMTAwMy4xMDMuMTIuMTAwMSIsImFjY2Vzc0xldmVsIjoiUHVibGljIn1dfSwiY29udGV4dHMiOnsiZGVmIjpbeyJuYW1lIjoiUGF0aWVudCJ9XX0sInN0YXRlbWVudHMiOnsiZGVmIjpbeyJuYW1lIjoiUGF0aWVudCIsImNvbnRleHQiOiJQYXRpZW50IiwiZXhwcmVzc2lvbiI6eyJ0eXBlIjoiU2luZ2xldG9uRnJvbSIsIm9wZXJhbmQiOnsiZGF0YVR5cGUiOiJ7aHR0cDovL2hsNy5vcmcvZmhpcn1QYXRpZW50IiwidGVtcGxhdGVJZCI6InBhdGllbnQtcWljb3JlLXFpY29yZS1wYXRpZW50IiwidHlwZSI6IlJldHJpZXZlIn19fSx7Im5hbWUiOiJDYXNlIiwiY29udGV4dCI6IlBhdGllbnQiLCJhY2Nlc3NMZXZlbCI6IlB1YmxpYyIsImV4cHJlc3Npb24iOnsidHlwZSI6IlF1ZXJ5Iiwic291cmNlIjpbeyJhbGlhcyI6IkMiLCJleHByZXNzaW9uIjp7ImRhdGFUeXBlIjoie2h0dHA6Ly9obDcub3JnL2ZoaXJ9Q29uZGl0aW9uIiwidGVtcGxhdGVJZCI6ImNvbmRpdGlvbi1xaWNvcmUtcWljb3JlLWNvbmRpdGlvbiIsImNvZGVQcm9wZXJ0eSI6ImNvZGUiLCJjb2RlQ29tcGFyYXRvciI6ImluIiwidHlwZSI6IlJldHJpZXZlIiwiY29kZXMiOnsibmFtZSI6IkRpYWJldGVzIiwidHlwZSI6IlZhbHVlU2V0UmVmIn19fV0sInJlbGF0aW9uc2hpcCI6W119fV19fX0="
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Library/library-0.smoke-test-simple-1.0.0"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "ValueSet",
+        "id": "2.16.840.1.113883.3.464.1003.103.12.1001",
+        "url": "https://workbench.phema.science/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001",
+        "status": "active",
+        "name": "eMERGE T2DM - T2DM Diagnosis",
+        "publisher": "PhEMA Workbench OMOP Concept Set Transformer",
+        "compose": {
+          "include": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9-cm",
+              "concept": [
+                {
+                  "code": "250.50",
+                  "display": "Diabetes with ophthalmic manifestations, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.00",
+                  "display": "Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.02",
+                  "display": "Diabetes mellitus without mention of complication, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.72",
+                  "display": "Diabetes with peripheral circulatory disorders, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.80",
+                  "display": "Diabetes with other specified manifestations, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.40",
+                  "display": "Diabetes with renal manifestations, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.30",
+                  "display": "Diabetes with other coma, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.82",
+                  "display": "Diabetes with other specified manifestations, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.70",
+                  "display": "Diabetes with peripheral circulatory disorders, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.52",
+                  "display": "Diabetes with ophthalmic manifestations, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.90",
+                  "display": "Diabetes with unspecified complication, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.62",
+                  "display": "Diabetes with neurological manifestations, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.42",
+                  "display": "Diabetes with renal manifestations, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.92",
+                  "display": "Diabetes with unspecified complication, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.60",
+                  "display": "Diabetes with neurological manifestations, type II or unspecified type, not stated as uncontrolled"
+                },
+                {
+                  "code": "250.22",
+                  "display": "Diabetes with hyperosmolarity, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.32",
+                  "display": "Diabetes with other coma, type II or unspecified type, uncontrolled"
+                },
+                {
+                  "code": "250.20",
+                  "display": "Diabetes with hyperosmolarity, type II or unspecified type, not stated as uncontrolled"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Composition",
+        "id": "phema-0.smoke-test-simple-1.0.0",
+        "identifier": [
+          {
+            "system": "https://workbench.phema.science/identifier/phenotype",
+            "value": "0.smoke-test-simple"
+          }
+        ],
+        "status": "preliminary",
+        "date": "2021-03-09T15:40:10-06:00",
+        "type": {
+          "coding": [
+            {
+              "system": "http://ncimeta.nci.nih.gov",
+              "code": "C166209"
+            }
+          ]
+        },
+        "title": " Phenotype Definition",
+        "author": [
+          {
+            "reference": "Organization/phema-org"
+          }
+        ],
+        "custodian": {
+          "reference": "Organization/phema-org"
+        },
+        "relatesTo": [
+          {
+            "code": "appends",
+            "targetIdentifier": {
+              "system": "urn:ietf:rfc:3986",
+              "value": "https://projectphema.org"
+            }
+          }
+        ],
+        "section": [
+          {
+            "title": "Phenotype Entry Point",
+            "text": {
+              "div": "The CQL library containing the phenotype 'Case' definition. The referenced Binary resource contains phenotype metadata from PheKB."
+            },
+            "author": [
+              {
+                "reference": "Organization/phema-org"
+              }
+            ],
+            "entry": [
+              {
+                "reference": "Library/library-0.smoke-test-simple-1.0.0"
+              },
+              {
+                "reference": "Binary/metadata-0.smoke-test-simple"
+              }
+            ]
+          },
+          {
+            "title": "Dependent value set: 2.16.840.1.113883.3.464.1003.103.12.1001",
+            "text": {
+              "div": "Value set that the main phenotype entry point or one of its dependencies uses"
+            },
+            "author": [
+              {
+                "reference": "Organization/phema-org"
+              }
+            ],
+            "entry": [
+              {
+                "reference": "ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Composition/phema-0.smoke-test-simple-1.0.0"
+      }
+    }
+  ]
+}

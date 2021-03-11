@@ -3,14 +3,19 @@ package edu.phema.elm_to_omop.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.phema.elm_to_omop.api.exception.CohortServiceException;
 import edu.phema.elm_to_omop.helper.Config;
+import edu.phema.elm_to_omop.io.FhirReader;
+import edu.phema.elm_to_omop.phenotype.BundlePhenotype;
+import edu.phema.elm_to_omop.phenotype.PhenotypeException;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.vocabulary.ConceptCodeCsvFileValuesetService;
+import edu.phema.elm_to_omop.vocabulary.FhirBundleConceptSetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import net.jodah.failsafe.Failsafe;
 import net.jodah.failsafe.RetryPolicy;
+import org.hl7.fhir.r4.model.Bundle;
 import org.ohdsi.webapi.GenerationStatus;
 import org.ohdsi.webapi.cohortdefinition.CohortGenerationInfo;
 import org.ohdsi.webapi.cohortdefinition.InclusionRuleReport;
@@ -50,6 +55,11 @@ public class CohortService {
         this.valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
         if (config.isTabSpecified()) {
           valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+        }
+        else if (config.isUsingBundle()) {
+          // Delay creating the service until we have a bundle
+          valuesetService = null;
+          return;
         }
         else {
           valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
@@ -161,6 +171,25 @@ public class CohortService {
         }
     }
 
+  /**
+   * Generate the cohort for cohort definition speciied by the given CQL string
+   * and statement name.
+   *
+   * @param bundle        The FHIR Bundle
+   * @param statementName The named CQL statement that defines the cohort
+   * @return The created OMOP job
+   * @throws CohortServiceException
+   */
+  public JobExecutionResource queueCohortGeneration(Bundle bundle, String statementName) throws CohortServiceException {
+    try {
+      BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
+      return queueCohortGeneration(phenotype.getPhenotypeCql(), statementName);
+    } catch (Throwable t) {
+      throw new CohortServiceException("Error queueing up cohort for generation", t);
+    }
+  }
+
     /**
      * Get information a given cohort definition, such as the generation status.
      *
@@ -195,6 +224,24 @@ public class CohortService {
             throw new CohortServiceException("Error getting cohort definition info", t);
         }
     }
+
+  /**
+   * Creates a cohort definition from a FHIR Bundle, queues it up for generation, and returns info about it.
+   *
+   * @param bundle        The FHIR Bundle
+   * @param statementName The CQL statement name that defines the cohort
+   * @return A list of cohort definition info objects
+   * @throws CohortServiceException
+   */
+  public List<CohortGenerationInfo> getCohortDefinitionInfo(Bundle bundle, String statementName) throws CohortServiceException {
+    try {
+      BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
+      return getCohortDefinitionInfo(phenotype.getPhenotypeCql(), statementName);
+    } catch (Throwable t) {
+      throw new CohortServiceException("Error getting cohort definition info", t);
+    }
+  }
 
     /**
      * Gets the report for a given cohort definition.
@@ -238,6 +285,25 @@ public class CohortService {
             throw new CohortServiceException("Error getting cohort definition report", t);
         }
     }
+
+  /**
+   * Creates a cohort definition from CQL in a FHIR Bundle, queues it up for generation, waits
+   * until generation is complete, and then returns the cohort definition report
+   *
+   * @param bundle        The FHIR Bundle resource
+   * @param statementName The CQL statement name that defines the cohort
+   * @return The cohort report
+   * @throws CohortServiceException
+   */
+  public InclusionRuleReport getCohortDefinitionReport(Bundle bundle, String statementName) throws CohortServiceException {
+    try {
+      BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+      this.valuesetService = phenotype.getValuesetService();
+      return getCohortDefinitionReport(phenotype.getPhenotypeCql(), statementName);
+    } catch (Throwable t) {
+      throw new CohortServiceException("Error getting cohort definition report", t);
+    }
+  }
 
     /**
      * Gets the cohort definition SQL. One of the following target dialects may optionally
