@@ -12,10 +12,7 @@ import edu.phema.elm_to_omop.vocabulary.ValuesetServiceException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.hl7.fhir.r4.model.Bundle;
-import org.hl7.fhir.r4.model.Library;
-import org.hl7.fhir.r4.model.ResourceType;
-import org.hl7.fhir.r4.model.ValueSet;
+import org.hl7.fhir.r4.model.*;
 import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 
@@ -23,15 +20,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FhirReader {
   // Initial file-based support will focus just on JSON files
   public static final String BUNDLE_EXTENSION = ".json";
+  // Section title within Composition of Bundle
+  public static final String PHENOTYPE_ENTRY_POINT = "Phenotype Entry Point";
+
   private IOmopRepositoryService repository;
   private static Map<String, String> codeSystemUriToOmopName = new HashMap<String, String>() {{
     // TODO Add more mappings as needed
@@ -133,10 +130,25 @@ public class FhirReader {
         .map(x -> (ValueSet)x.getResource())
         .collect(Collectors.toList());
 
+      Optional<Composition> compositionEntry = entries.stream()
+        .filter(x -> x.getResource().getResourceType() == ResourceType.Composition)
+        .map(x -> (Composition)x.getResource())
+        .findFirst();
+      if (!compositionEntry.isPresent()) {
+        throw new PhenotypeException("Invalid Bundle - expect to have a Composition resource");
+      }
+
+      Composition composition = compositionEntry.get();
+      List<Composition.SectionComponent> sections = composition.getSection();
+      Optional<Composition.SectionComponent> entrySection = sections.stream()
+        .filter(x -> x.getTitle().equals(PHENOTYPE_ENTRY_POINT))
+        .findFirst();
+
       IValuesetService service = new FhirBundleConceptSetService(valueSetEntries, omopService);
       BundlePhenotype phenotype = new BundlePhenotype();
       phenotype.addLibraries(libraryEntries);
       phenotype.setValuesetService(service);
+      phenotype.setEntryPointLibrary(entrySection.get().getEntryFirstRep().getReference());
       return phenotype;
     } catch (Exception e) {
       throw new PhenotypeException("Error converting phenotype bundle", e);

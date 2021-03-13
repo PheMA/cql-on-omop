@@ -26,6 +26,7 @@ public class BundlePhenotype implements IPhenotype {
    * processed ELM library.
    */
   private class CqlDefinition {
+    public String id;
     public String code;
     public Library elm;
     public boolean hasDependencies;
@@ -34,6 +35,7 @@ public class BundlePhenotype implements IPhenotype {
   private List<CqlDefinition> libraries = new ArrayList<CqlDefinition>();
   private List<String> phenotypeExpressionNames = new ArrayList<String>();
   private IValuesetService valuesetService = null;
+  private CqlDefinition entryPointLibrary = null;
 
   public List<CqlDefinition> getLibraries() {
     return libraries;
@@ -54,6 +56,7 @@ public class BundlePhenotype implements IPhenotype {
       if (attach.getContentType().equals(CQL_CONTENT_TYPE)) {
         byte[] data = attach.getData();
         if (data != null) {
+          definition.id = library.getId();
           definition.code = new String(data);
           definition.elm = ElmReader.readCqlString(definition.code);
           definition.hasDependencies = library.getRelatedArtifact().stream().anyMatch(
@@ -96,6 +99,21 @@ public class BundlePhenotype implements IPhenotype {
     this.phenotypeExpressionNames = phenotypeExpressionNames;
   }
 
+  public void setEntryPointLibrary(String entryPointId) {
+    this.entryPointLibrary = libraries.stream()
+      .filter(x -> x.id.equals(entryPointId))
+      .findFirst()
+      .get();
+  }
+
+  public void setEntryPointLibrary(CqlDefinition entryPointLibrary) {
+    this.entryPointLibrary = entryPointLibrary;
+  }
+
+  public CqlDefinition getEntryPointLibrary() {
+    return this.entryPointLibrary;
+  }
+
   public BundlePhenotype() {}
 
   public BundlePhenotype(String bundlePath, List<String> phenotypeExpressionNames, IOmopRepositoryService omopService) throws PhenotypeException {
@@ -107,34 +125,21 @@ public class BundlePhenotype implements IPhenotype {
     BundlePhenotype loadedPhenotype = FhirReader.readBundleFromFile(bundlePath, omopService);
     this.setLibraries(loadedPhenotype.getLibraries());
     this.setValuesetService(loadedPhenotype.getValuesetService());
+    this.setEntryPointLibrary(loadedPhenotype.getEntryPointLibrary());
   }
 
   @Override
   public String getPhenotypeCql() {
-    // TODO: We could store more than one phenotype CQL resource, but for now return the first phenotype's CQL.
-    if (libraries == null || libraries.size() == 0) {
-      return null;
-    }
-
-    return libraries.get(0).code;
+    return this.entryPointLibrary.code;
   }
 
   @Override
   public Library getPhenotypeElm() {
-    // TODO: We could store more than one phenotype CQL resource, but for now return the first phenotype's ELM.
-    if (libraries == null || libraries.size() == 0) {
-      return null;
-    }
-
-    return libraries.get(0).elm;
+    return this.entryPointLibrary.elm;
   }
 
   @Override
   public List<ExpressionDef> getPhenotypeExpressions() {
-    if (libraries == null || libraries.size() == 0) {
-      return null;
-    }
-
     return getPhenotypeElm().getStatements().getDef().stream()
       .filter(x -> phenotypeExpressionNames.contains(x.getName()))
       .collect(Collectors.toList());
