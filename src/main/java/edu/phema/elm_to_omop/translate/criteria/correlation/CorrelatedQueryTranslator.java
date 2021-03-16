@@ -5,13 +5,16 @@ import edu.phema.elm_to_omop.translate.CorelatedCriteriaTranslator;
 import edu.phema.elm_to_omop.translate.CriteriaGroupTranslator;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
+import edu.phema.elm_to_omop.translate.criteria.comparison.ComparisonExpressionTranslator;
 import edu.phema.elm_to_omop.translate.exception.PhemaNotImplementedException;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import edu.phema.elm_to_omop.translate.util.TemporalUtil;
+import org.hl7.cql.model.DataType;
+import org.hl7.cql.model.ListType;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
-import org.ohdsi.circe.cohortdefinition.Window;
+import org.ohdsi.circe.cohortdefinition.Measurement;
 
 import java.util.HashMap;
 import java.util.List;
@@ -149,15 +152,22 @@ public class CorrelatedQueryTranslator {
     }
   }
 
-  public static boolean correlationWhereExpressionSupported(Expression expression) {
-    return expression instanceof Exists || PhemaElmToOmopTranslator.isBooleanExpression(expression) || expression instanceof In;
+  public static boolean correlationWhereExpressionSupported(Expression expression, String returnType) {
+    return expression instanceof Exists ||
+      PhemaElmToOmopTranslator.isBooleanExpression(expression) ||
+      expression instanceof In ||
+      // Support numeric comparisons for Observations/MEASUREMENTS
+      (returnType.contains("Observation") && (ComparisonExpressionTranslator.isNumericComparison(expression)));
   }
 
   public static CorelatedCriteria generateCorelatedCriteriaForCorrelatedQueryWithWhere(Query query, PhemaElmToOmopTranslatorContext context) throws
     Exception {
     Expression whereExpression = query.getWhere();
 
-    if (!correlationWhereExpressionSupported(whereExpression)) {
+    // Get the type that the query is returning
+    DataType returnType = ((ListType) query.getSource().get(0).getResultType()).getElementType();
+
+    if (!correlationWhereExpressionSupported(whereExpression, returnType.toString())) {
       throw new CorrelationException(String.format("Unsupported correlation: %s", whereExpression.getClass().getSimpleName()));
     }
 
@@ -187,12 +197,20 @@ public class CorrelatedQueryTranslator {
       //      "event ends" constraints, and this could also be represented in CQL if we have multiple
       //      constraints.
       // then set up the occurrence dates based on the interval
-      List<Expression> whereOperands = ((In)whereExpression).getOperand();
+      List<Expression> whereOperands = ((In) whereExpression).getOperand();
       if (whereOperands.size() == 2 && whereOperands.get(1) instanceof Interval) {
-        Interval interval = (Interval)whereOperands.get(1);
-        outerCorrelateCriteria.startWindow.start = TemporalUtil.calculateWindowEndpoint((BinaryExpression)interval.getLow());
-        outerCorrelateCriteria.startWindow.end = TemporalUtil.calculateWindowEndpoint((BinaryExpression)interval.getHigh());
+        Interval interval = (Interval) whereOperands.get(1);
+        outerCorrelateCriteria.startWindow.start = TemporalUtil.calculateWindowEndpoint((BinaryExpression) interval.getLow());
+        outerCorrelateCriteria.startWindow.end = TemporalUtil.calculateWindowEndpoint((BinaryExpression) interval.getHigh());
       }
+    } else if (returnType.toString().contains("Observation") && (ComparisonExpressionTranslator.isNumericComparison(whereExpression))) {
+      // We are checking an Observation/MEASUREMENT's value
+
+      // Generate retrieve
+      outerCorrelateCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression((Retrieve) query.getSource().get(0).getExpression(), context);
+
+      // Add the numeric comparison
+      ((Measurement) outerCorrelateCriteria.criteria).valueAsNumber = ComparisonExpressionTranslator.generateNumericRangeFromComparisonExpression(whereExpression);
     }
 
 

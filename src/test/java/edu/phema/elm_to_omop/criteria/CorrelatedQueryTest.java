@@ -128,4 +128,12 @@ public class CorrelatedQueryTest {
       "Workbench Demo Correlation Multiple Nested",
       "criteria/translated/correlated-query/workbench-correlation-multiple-nested.omop.json");
   }
+
+  @Test
+  public void observationValue() throws Exception {
+    runTestCase("criteria/correlated-query.cql",
+      "criteria/valuesets/correlated-query-valuesets.omop.json",
+      "Observation Value",
+      "criteria/translated/correlated-query/observation-value.omop.json");
+  }
 }

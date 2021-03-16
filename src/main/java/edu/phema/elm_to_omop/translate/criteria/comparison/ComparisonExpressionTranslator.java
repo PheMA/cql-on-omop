@@ -6,182 +6,215 @@ import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslatorContext;
 import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import org.hl7.elm.r1.*;
 import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
+import org.ohdsi.circe.cohortdefinition.NumericRange;
 import org.ohdsi.circe.cohortdefinition.Occurrence;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Optional;
 
 public class ComparisonExpressionTranslator {
-    private ComparisonExpressionTranslator()  {
+  private ComparisonExpressionTranslator() {
 
+  }
+
+  private static class ComparisonExpressionValuePair {
+    private Expression expression;
+    private Number value;
+
+    public static ComparisonExpressionValuePair from(BinaryExpression binaryExpression) throws PhemaTranslationException {
+      ComparisonExpressionValuePair result = new ComparisonExpressionValuePair();
+
+      result.expression = binaryExpression;
+
+      // We are assuming there are 2 operands to build an occurrence.  If that's violated, we throw an exception.  At
+      // that point we'll need to revisit what to do to expand our assumptions.
+      boolean hasCount = false;
+      String countString = null;
+
+      for (Expression operand : binaryExpression.getOperand()) {
+        if (operand instanceof Count) {
+          hasCount = true;
+        } else if (operand instanceof Literal) {
+          countString = ((Literal) operand).getValue();
+        }
+      }
+      if (!hasCount || countString == null) {
+        throw new PhemaTranslationException("The translator expected an expression with a Count and Literal operand, but these were not found.");
+      }
+
+      try {
+        result.value = NumberFormat.getInstance().parse(countString);
+      } catch (ParseException pe) {
+        throw new PhemaTranslationException(String.format("Error parsing comparision value %s", countString));
+      }
+
+      return result;
     }
 
-    private static class ComparisonExpressionValuePair {
-        private Expression expression;
-        private Number value;
-
-        public static ComparisonExpressionValuePair from(BinaryExpression binaryExpression) throws PhemaTranslationException {
-            ComparisonExpressionValuePair result = new ComparisonExpressionValuePair();
-
-            result.expression = binaryExpression;
-
-            // We are assuming there are 2 operands to build an occurrence.  If that's violated, we throw an exception.  At
-            // that point we'll need to revisit what to do to expand our assumptions.
-            boolean hasCount = false;
-            String countString = null;
-
-            for (Expression operand : binaryExpression.getOperand()) {
-                if (operand instanceof Count) {
-                    hasCount = true;
-                } else if (operand instanceof Literal) {
-                    countString = ((Literal) operand).getValue();
-                }
-            }
-            if (!hasCount || countString == null) {
-                throw new PhemaTranslationException("The translator expected an expression with a Count and Literal operand, but these were not found.");
-            }
-
-            try {
-                result.value = NumberFormat.getInstance().parse(countString);
-            } catch (ParseException pe) {
-                throw new PhemaTranslationException(String.format("Error parsing comparision value %s", countString));
-            }
-
-            return result;
-        }
-
-        public Expression getExpression() {
-            return expression;
-        }
-
-        public Number getValue() {
-            return value;
-        }
+    public Expression getExpression() {
+      return expression;
     }
 
-    /**
-     * Tests a given expression to determine if we support it as a comparison expression
-     *
-     * @param expression The expression
-     * @return True if we support it, false otherwise
-     */
-    public static boolean isNumericComparison(Expression expression) {
-        return (expression instanceof Greater) ||
-            (expression instanceof GreaterOrEqual) ||
-            (expression instanceof Equal) ||
-            (expression instanceof Less) ||
-            (expression instanceof LessOrEqual);
+    public Number getValue() {
+      return value;
+    }
+  }
+
+  /**
+   * Tests a given expression to determine if we support it as a comparison expression
+   *
+   * @param expression The expression
+   * @return True if we support it, false otherwise
+   */
+  public static boolean isNumericComparison(Expression expression) {
+    return (expression instanceof Greater) ||
+      (expression instanceof GreaterOrEqual) ||
+      (expression instanceof Equal) ||
+      (expression instanceof Less) ||
+      (expression instanceof LessOrEqual);
+  }
+
+  /**
+   * Create CorelatedCriteria for an exclusion (specifically a Not expression)
+   *
+   * @param expression The Not expression
+   * @param context    The translator context
+   * @return A CorelatedCriteria entry for this expression
+   * @throws Exception
+   */
+  public static CorelatedCriteria generateCorelatedCriteriaForExclusion(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
+    if (!(expression instanceof Not)) {
+      throw new PhemaTranslationException(String.format("Unsupported exclusion operation: s", expression.getClass().getSimpleName()));
     }
 
-    /**
-     * Create CorelatedCriteria for an exclusion (specifically a Not expression)
-     * @param expression The Not expression
-     * @param context The translator context
-     * @return A CorelatedCriteria entry for this expression
-     * @throws Exception
-     */
-    public static CorelatedCriteria generateCorelatedCriteriaForExclusion(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
-        if (!(expression instanceof Not)) {
-            throw new PhemaTranslationException(String.format("Unsupported exclusion operation: s", expression.getClass().getSimpleName()));
-        }
+    // In Atlas, "exclusion" is an assertion that the count of a concept is exactly 0
+    Occurrence occurrence = CirceUtil.defaultOccurrence();
+    occurrence.count = 0;
+    occurrence.type = Occurrence.EXACTLY;
 
-        // In Atlas, "exclusion" is an assertion that the count of a concept is exactly 0
-        Occurrence occurrence = CirceUtil.defaultOccurrence();
-        occurrence.count = 0;
-        occurrence.type = Occurrence.EXACTLY;
+    CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(
+      ((UnaryExpression) expression).getOperand(), context);
 
-        CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(
-            ((UnaryExpression)expression).getOperand(), context);
+    corelatedCriteria.occurrence = occurrence;
 
-        corelatedCriteria.occurrence = occurrence;
+    return corelatedCriteria;
+  }
 
-        return corelatedCriteria;
+  /**
+   * Right now we only support the simple comparison of the form Count(X) > y, where X is a Retrieve or Query
+   * expression and y is a number.
+   *
+   * @param expression The comparison expression
+   * @param context    The translation context
+   * @return The created CorelatedCriteria
+   * @throws Exception
+   */
+  public static CorelatedCriteria generateCorelatedCriteriaForComparison(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
+    Occurrence occurrence = getNumericComparisonOccurrence((BinaryExpression) expression);
+
+    Expression comparisonSource = getNumericComparisonSourceExpression(expression);
+
+    CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(comparisonSource, context);
+
+    corelatedCriteria.occurrence = occurrence;
+
+    return corelatedCriteria;
+  }
+
+  /**
+   * Gets the data source for a comparison expression. Right now this will be a Retrieve or a Query, which is will
+   * be the source expression for a Count
+   *
+   * @param comparisonExpression The comparison expression
+   * @return The Retrieve of Query source
+   * @throws PhemaTranslationException
+   */
+  public static Expression getNumericComparisonSourceExpression(Expression comparisonExpression) throws PhemaTranslationException {
+    if (!isNumericComparison(comparisonExpression)) {
+      throw new PhemaTranslationException(String.format("Unsupported comparison operation: s", comparisonExpression.getClass().getSimpleName()));
     }
 
-    /**
-     * Right now we only support the simple comparison of the form Count(X) > y, where X is a Retrieve or Query
-     * expression and y is a number.
-     *
-     * @param expression The comparison expression
-     * @param context    The translation context
-     * @return The created CorelatedCriteria
-     * @throws Exception
-     */
-    public static CorelatedCriteria generateCorelatedCriteriaForComparison(Expression expression, PhemaElmToOmopTranslatorContext context) throws Exception {
-        Occurrence occurrence = getNumericComparisonOccurrence((BinaryExpression) expression);
+    BinaryExpression expression = (BinaryExpression) comparisonExpression;
 
-        Expression comparisonSource = getNumericComparisonSourceExpression(expression);
+    Expression nonLiteralOperand = expression
+      .getOperand()
+      .stream()
+      .filter(e -> !(e instanceof Literal))
+      .findFirst()
+      .orElseThrow(() -> new PhemaTranslationException(String.format("Expected %s to have a non-Literal operand", expression.getClass().getSimpleName())));
 
-        CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(comparisonSource, context);
+    if (nonLiteralOperand instanceof Count) {
+      return ((Count) nonLiteralOperand).getSource();
+    } else {
+      throw new PhemaTranslationException(String.format("Unsupported comparison operand: %s", nonLiteralOperand.getClass().getSimpleName()));
+    }
+  }
 
-        corelatedCriteria.occurrence = occurrence;
+  /**
+   * Helper method to extract the Occurrence information from a BinaryExpression.  This is assuming that the
+   * BinaryExpression is of a type that contains a Count (e.g., Greater, Less).
+   *
+   * @param binaryExpression
+   * @return
+   * @throws Exception
+   */
+  public static Occurrence getNumericComparisonOccurrence(BinaryExpression binaryExpression) throws Exception {
+    ComparisonExpressionValuePair pair = ComparisonExpressionValuePair.from(binaryExpression);
 
-        return corelatedCriteria;
+    Occurrence occurrence = CirceUtil.defaultOccurrence();
+    occurrence.count = pair.getValue().intValue();
+
+    Expression expression = pair.getExpression();
+    if (expression instanceof Greater) {
+      occurrence.type = Occurrence.AT_LEAST;
+      // Because OHDSI uses "at least" (which is >=), we adjust the count value for equivalency
+      occurrence.count++;
+    } else if (expression instanceof GreaterOrEqual) {
+      occurrence.type = Occurrence.AT_LEAST;
+    } else if (expression instanceof Equal) {
+      occurrence.type = Occurrence.EXACTLY;
+    } else if (expression instanceof Less) {
+      occurrence.type = Occurrence.AT_MOST;
+      // Because OHDSI uses "at most" (which is <=), we adjust the count value for equivalency
+      occurrence.count--;
+    } else if (expression instanceof LessOrEqual) {
+      occurrence.type = Occurrence.AT_MOST;
     }
 
-    /**
-     * Gets the data source for a comparison expression. Right now this will be a Retrieve or a Query, which is will
-     * be the source expression for a Count
-     *
-     * @param comparisonExpression The comparison expression
-     * @return The Retrieve of Query source
-     * @throws PhemaTranslationException
-     */
-    public static Expression getNumericComparisonSourceExpression(Expression comparisonExpression) throws PhemaTranslationException {
-        if (!isNumericComparison(comparisonExpression)) {
-            throw new PhemaTranslationException(String.format("Unsupported comparison operation: s", comparisonExpression.getClass().getSimpleName()));
-        }
+    // We want to default to counting distinct occurrences
+    occurrence.isDistinct = true;
 
-        BinaryExpression expression = (BinaryExpression) comparisonExpression;
+    return occurrence;
+  }
 
-        Expression nonLiteralOperand = expression
-            .getOperand()
-            .stream()
-            .filter(e -> !(e instanceof Literal))
-            .findFirst()
-            .orElseThrow(() -> new PhemaTranslationException(String.format("Expected %s to have a non-Literal operand", expression.getClass().getSimpleName())));
+  public static NumericRange generateNumericRangeFromComparisonExpression(Expression expression) throws Exception {
+    NumericRange numericRange = new NumericRange();
 
-        if (nonLiteralOperand instanceof Count) {
-            return ((Count) nonLiteralOperand).getSource();
-        } else {
-            throw new PhemaTranslationException(String.format("Unsupported comparison operand: %s", nonLiteralOperand.getClass().getSimpleName()));
-        }
+    // Set up operator (from org.ohdsi.circe.cohortdefinition.CohortExpressionQueryBuilder)
+    if (expression instanceof Greater) {
+      numericRange.op = "gt";
+    } else if (expression instanceof GreaterOrEqual) {
+      numericRange.op = "gte";
+    } else if (expression instanceof Equal) {
+      numericRange.op = "eq";
+    } else if (expression instanceof Less) {
+      numericRange.op = "lt";
+    } else if (expression instanceof LessOrEqual) {
+      numericRange.op = "lte";
     }
 
-    /**
-     * Helper method to extract the Occurrence information from a BinaryExpression.  This is assuming that the
-     * BinaryExpression is of a type that contains a Count (e.g., Greater, Less).
-     *
-     * @param binaryExpression
-     * @return
-     * @throws Exception
-     */
-    public static Occurrence getNumericComparisonOccurrence(BinaryExpression binaryExpression) throws Exception {
-        ComparisonExpressionValuePair pair = ComparisonExpressionValuePair.from(binaryExpression);
+    // Set up value, ignoring units for now
+    Optional<Expression> maybeQuantity = ((BinaryExpression) expression).getOperand().stream().filter(expr -> expr instanceof Quantity).findFirst();
 
-        Occurrence occurrence = CirceUtil.defaultOccurrence();
-        occurrence.count = pair.getValue().intValue();
-
-        Expression expression = pair.getExpression();
-        if (expression instanceof Greater) {
-            occurrence.type = Occurrence.AT_LEAST;
-            // Because OHDSI uses "at least" (which is >=), we adjust the count value for equivalency
-            occurrence.count++;
-        } else if (expression instanceof GreaterOrEqual) {
-            occurrence.type = Occurrence.AT_LEAST;
-        } else if (expression instanceof Equal) {
-            occurrence.type = Occurrence.EXACTLY;
-        } else if (expression instanceof Less) {
-            occurrence.type = Occurrence.AT_MOST;
-            // Because OHDSI uses "at most" (which is <=), we adjust the count value for equivalency
-            occurrence.count--;
-        } else if (expression instanceof LessOrEqual) {
-            occurrence.type = Occurrence.AT_MOST;
-        }
-
-        // We want to default to counting distinct occurrences
-        occurrence.isDistinct = true;
-
-        return occurrence;
+    if (!maybeQuantity.isPresent()) {
+      throw new PhemaTranslationException("Expected numeric comparison to have quantity operand");
     }
+
+    Quantity quantity = ((Quantity) maybeQuantity.get());
+
+    numericRange.value = quantity.getValue();
+
+    return numericRange;
+  }
 }

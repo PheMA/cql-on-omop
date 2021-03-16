@@ -125,3 +125,10 @@ define "Workbench Demo Correlation Multiple Nested":
                         where F.performedDateTime in Interval[C.onsetDateTime - 1 day, C.onsetDateTime + 1 day]
                 )
            )
+
+define "Observation Value":
+    exists(
+        [Observation: "Some Labs 1"] O
+           where
+                O.valueQuantity >= 0.5 'ng/mL'
+    )
