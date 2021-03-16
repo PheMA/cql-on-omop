@@ -10,7 +10,6 @@ import edu.phema.elm_to_omop.vocabulary.FhirBundleConceptSetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.ValuesetServiceException;
 import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
-import edu.phema.elm_to_omop.vocabulary.phema.PhemaValueSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.fhir.r4.model.*;
 import org.ohdsi.circe.vocabulary.Concept;
@@ -19,7 +18,6 @@ import org.ohdsi.circe.vocabulary.ConceptSetExpression;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -56,8 +54,9 @@ public class FhirReader {
   /**
    * Given a FHIR Bundle stored as a JSON file, read all components (libraries, valuesets, etc.)
    * and prepare it as a consolidated BundlePhenotype
+   *
    * @param bundleFilePath The path to the Bundle JSON file
-   * @param omopService OMOP service to resolve concepts
+   * @param omopService    OMOP service to resolve concepts
    * @return The consoldiated BundlePhenotype
    * @throws PhenotypeException
    */
@@ -76,6 +75,7 @@ public class FhirReader {
 
   /**
    * Read and load a FHIR Bundle stored as a JSON string
+   *
    * @param bundleJson The Bundle JSON represented as a string
    * @return The Bundle resource
    * @throws PhenotypeException
@@ -94,7 +94,8 @@ public class FhirReader {
   /**
    * Given a FHIR Bundle stored as a JSON string, read all components (libraries, valuesets, etc.)
    * and prepare it as a consolidated BundlePhenotype
-   * @param bundleJson The Bundle JSON represented as a string
+   *
+   * @param bundleJson  The Bundle JSON represented as a string
    * @param omopService OMOP service to resolve concepts
    * @return The consolidated BundlePhenotype
    * @throws PhenotypeException
@@ -111,8 +112,9 @@ public class FhirReader {
 
   /**
    * Convert a FHIR Bundle into the BundlePhenotype format used for execution
-   * @param bundle       The FHIR Bundle resource to convert
-   * @param omopService  The OMOP service to use for value set validation
+   *
+   * @param bundle      The FHIR Bundle resource to convert
+   * @param omopService The OMOP service to use for value set validation
    * @return The consolidated BundlePhenotype
    * @throws PhenotypeException
    */
@@ -122,17 +124,17 @@ public class FhirReader {
       // Load all of the libraries - this includes phenotype and supporting libraries
       List<Library> libraryEntries = entries.stream()
         .filter(x -> x.getResource().getResourceType() == ResourceType.Library)
-        .map(x -> (Library)x.getResource())
+        .map(x -> (Library) x.getResource())
         .collect(Collectors.toList());
 
       List<ValueSet> valueSetEntries = entries.stream()
         .filter(x -> x.getResource().getResourceType() == ResourceType.ValueSet)
-        .map(x -> (ValueSet)x.getResource())
+        .map(x -> (ValueSet) x.getResource())
         .collect(Collectors.toList());
 
       Optional<Composition> compositionEntry = entries.stream()
         .filter(x -> x.getResource().getResourceType() == ResourceType.Composition)
-        .map(x -> (Composition)x.getResource())
+        .map(x -> (Composition) x.getResource())
         .findFirst();
       if (!compositionEntry.isPresent()) {
         throw new PhenotypeException("Invalid Bundle - expect to have a Composition resource");
@@ -146,7 +148,13 @@ public class FhirReader {
 
       IValuesetService service = new FhirBundleConceptSetService(valueSetEntries, omopService);
       BundlePhenotype phenotype = new BundlePhenotype();
+
+      // First add all the sources
       phenotype.addLibraries(libraryEntries);
+
+      // Then generate all the ELM
+      phenotype.generateELM();
+
       phenotype.setValuesetService(service);
       phenotype.setEntryPointLibrary(entrySection.get().getEntryFirstRep().getReference());
       return phenotype;
@@ -157,6 +165,7 @@ public class FhirReader {
 
   /**
    * Convert FHIR ValueSet resources to the PhemaConceptSet representation
+   *
    * @param valueSets List of FHIR ValueSet resources
    * @return List of PhemaConceptSets
    * @throws IOException
@@ -175,8 +184,9 @@ public class FhirReader {
 
   /**
    * Convert a ValueSet to a PhemaConceptSet
+   *
    * @param valueSet FHIR ValueSet resource to convert
-   * @param index The index the valueset appears - must be unique
+   * @param index    The index the valueset appears - must be unique
    * @return PhemaConceptSet containing all codes from the value set
    * @throws OmopRepositoryException
    * @throws ValuesetServiceException

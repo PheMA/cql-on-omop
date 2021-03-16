@@ -1,5 +1,6 @@
 package edu.phema.elm_to_omop.phenotype;
 
+import edu.phema.elm_to_omop.cql.InMemoryLibrarySourceLoader;
 import edu.phema.elm_to_omop.io.ElmReader;
 import edu.phema.elm_to_omop.io.FhirReader;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
@@ -37,6 +38,16 @@ public class BundlePhenotype implements IPhenotype {
   private IValuesetService valuesetService = null;
   private CqlDefinition entryPointLibrary = null;
 
+  public InMemoryLibrarySourceLoader getSourceLoader() {
+    return sourceLoader;
+  }
+
+  public void setSourceLoader(InMemoryLibrarySourceLoader sourceLoader) {
+    this.sourceLoader = sourceLoader;
+  }
+
+  private InMemoryLibrarySourceLoader sourceLoader = null;
+
   public List<CqlDefinition> getLibraries() {
     return libraries;
   }
@@ -58,13 +69,22 @@ public class BundlePhenotype implements IPhenotype {
         if (data != null) {
           definition.id = library.getId();
           definition.code = new String(data);
-          definition.elm = ElmReader.readCqlString(definition.code);
+
+          // Add the library to the in-memory source map for resolution during parsing
+          this.sourceLoader.addCql(definition.code);
+
           definition.hasDependencies = library.getRelatedArtifact().stream().anyMatch(
             x -> x.getType().getDisplay().equalsIgnoreCase("Depends On"));
           this.libraries.add(definition);
           return;
         }
       }
+    }
+  }
+
+  public void generateELM() {
+    for (CqlDefinition definition : libraries) {
+      definition.elm = ElmReader.readCqlString(definition.code, this.sourceLoader);
     }
   }
 
@@ -87,7 +107,9 @@ public class BundlePhenotype implements IPhenotype {
   }
 
   public List<PhemaConceptSet> getConceptSets() throws ValuesetServiceException {
-    if (this.valuesetService == null) { return null; }
+    if (this.valuesetService == null) {
+      return null;
+    }
     return this.valuesetService.getConceptSets();
   }
 
@@ -114,7 +136,9 @@ public class BundlePhenotype implements IPhenotype {
     return this.entryPointLibrary;
   }
 
-  public BundlePhenotype() {}
+  public BundlePhenotype() {
+    this.sourceLoader = new InMemoryLibrarySourceLoader();
+  }
 
   public BundlePhenotype(String bundlePath, List<String> phenotypeExpressionNames, IOmopRepositoryService omopService) throws PhenotypeException {
     this.phenotypeExpressionNames = phenotypeExpressionNames;
@@ -124,6 +148,7 @@ public class BundlePhenotype implements IPhenotype {
 
     BundlePhenotype loadedPhenotype = FhirReader.readBundleFromFile(bundlePath, omopService);
     this.setLibraries(loadedPhenotype.getLibraries());
+    this.setSourceLoader(loadedPhenotype.getSourceLoader());
     this.setValuesetService(loadedPhenotype.getValuesetService());
     this.setEntryPointLibrary(loadedPhenotype.getEntryPointLibrary());
   }
