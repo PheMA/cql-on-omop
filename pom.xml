@@ -4,7 +4,7 @@
 
     <groupId>edu.phema</groupId>
     <artifactId>phema-elm-to-ohdsi</artifactId>
-    <version>0.3.6-SNAPSHOT</version>
+    <version>0.4.0</version>
     <packaging>jar</packaging>
 
     <name>phema-elm-to-ohdsi</name>
@@ -228,9 +228,9 @@
         </dependency>
 
         <dependency>
-          <groupId>ca.uhn.hapi.fhir</groupId>
-          <artifactId>hapi-fhir-structures-r4</artifactId>
-          <version>${hapi.fhir.version}</version>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-structures-r4</artifactId>
+            <version>${hapi.fhir.version}</version>
         </dependency>
 
         <!-- OHDSI dependencies -->
