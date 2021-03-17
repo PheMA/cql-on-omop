@@ -1,0 +1,1074 @@
+{
+  "name": "Case",
+  "description": "Case",
+  "expression": {
+    "Type": "ANY",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CorrelatedCriteria": {
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "DrugExposure": {
+                      "CodesetId": 24,
+                      "DrugTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": {
+                      "Days": 7,
+                      "Coeff": -1
+                    },
+                    "End": {
+                      "Days": 7,
+                      "Coeff": 1
+                    }
+                  },
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  },
+                  "RestrictVisit": false
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            },
+            "CodesetId": 23,
+            "ConditionTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 1,
+          "IsDistinct": false
+        },
+        "RestrictVisit": false
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": [
+      {
+        "Type": "ANY",
+        "CriteriaList": [
+          {
+            "Criteria": {
+              "ConditionOccurrence": {
+                "CorrelatedCriteria": {
+                  "CriteriaList": [
+                    {
+                      "Criteria": {
+                        "DrugExposure": {
+                          "CodesetId": 24,
+                          "DrugTypeExclude": false
+                        }
+                      },
+                      "StartWindow": {
+                        "Start": {
+                          "Days": 7,
+                          "Coeff": -1
+                        },
+                        "End": {
+                          "Days": 7,
+                          "Coeff": 1
+                        }
+                      },
+                      "Occurrence": {
+                        "Type": 2,
+                        "Count": 1,
+                        "IsDistinct": false
+                      },
+                      "RestrictVisit": false
+                    }
+                  ],
+                  "DemographicCriteriaList": [],
+                  "Groups": []
+                },
+                "CodesetId": 22,
+                "ConditionTypeExclude": false
+              }
+            },
+            "StartWindow": {
+              "Start": {
+                "Coeff": -1
+              },
+              "End": {
+                "Coeff": 1
+              }
+            },
+            "Occurrence": {
+              "Type": 2,
+              "Count": 1,
+              "IsDistinct": false
+            },
+            "RestrictVisit": false
+          }
+        ],
+        "DemographicCriteriaList": [],
+        "Groups": [
+          {
+            "Type": "ANY",
+            "CriteriaList": [
+              {
+                "Criteria": {
+                  "ConditionOccurrence": {
+                    "CorrelatedCriteria": {
+                      "CriteriaList": [
+                        {
+                          "Criteria": {
+                            "DrugExposure": {
+                              "CodesetId": 24,
+                              "DrugTypeExclude": false
+                            }
+                          },
+                          "StartWindow": {
+                            "Start": {
+                              "Days": 7,
+                              "Coeff": -1
+                            },
+                            "End": {
+                              "Days": 7,
+                              "Coeff": 1
+                            }
+                          },
+                          "Occurrence": {
+                            "Type": 2,
+                            "Count": 1,
+                            "IsDistinct": false
+                          },
+                          "RestrictVisit": false
+                        }
+                      ],
+                      "DemographicCriteriaList": [],
+                      "Groups": []
+                    },
+                    "CodesetId": 21,
+                    "ConditionTypeExclude": false
+                  }
+                },
+                "StartWindow": {
+                  "Start": {
+                    "Coeff": -1
+                  },
+                  "End": {
+                    "Coeff": 1
+                  }
+                },
+                "Occurrence": {
+                  "Type": 2,
+                  "Count": 1,
+                  "IsDistinct": false
+                },
+                "RestrictVisit": false
+              }
+            ],
+            "DemographicCriteriaList": [],
+            "Groups": [
+              {
+                "Type": "ANY",
+                "CriteriaList": [
+                  {
+                    "Criteria": {
+                      "ConditionOccurrence": {
+                        "CorrelatedCriteria": {
+                          "CriteriaList": [
+                            {
+                              "Criteria": {
+                                "DrugExposure": {
+                                  "CodesetId": 24,
+                                  "DrugTypeExclude": false
+                                }
+                              },
+                              "StartWindow": {
+                                "Start": {
+                                  "Days": 7,
+                                  "Coeff": -1
+                                },
+                                "End": {
+                                  "Days": 7,
+                                  "Coeff": 1
+                                }
+                              },
+                              "Occurrence": {
+                                "Type": 2,
+                                "Count": 1,
+                                "IsDistinct": false
+                              },
+                              "RestrictVisit": false
+                            }
+                          ],
+                          "DemographicCriteriaList": [],
+                          "Groups": []
+                        },
+                        "CodesetId": 20,
+                        "ConditionTypeExclude": false
+                      }
+                    },
+                    "StartWindow": {
+                      "Start": {
+                        "Coeff": -1
+                      },
+                      "End": {
+                        "Coeff": 1
+                      }
+                    },
+                    "Occurrence": {
+                      "Type": 2,
+                      "Count": 1,
+                      "IsDistinct": false
+                    },
+                    "RestrictVisit": false
+                  }
+                ],
+                "DemographicCriteriaList": [],
+                "Groups": [
+                  {
+                    "Type": "ANY",
+                    "CriteriaList": [
+                      {
+                        "Criteria": {
+                          "ConditionOccurrence": {
+                            "CorrelatedCriteria": {
+                              "CriteriaList": [
+                                {
+                                  "Criteria": {
+                                    "DrugExposure": {
+                                      "CodesetId": 24,
+                                      "DrugTypeExclude": false
+                                    }
+                                  },
+                                  "StartWindow": {
+                                    "Start": {
+                                      "Days": 7,
+                                      "Coeff": -1
+                                    },
+                                    "End": {
+                                      "Days": 7,
+                                      "Coeff": 1
+                                    }
+                                  },
+                                  "Occurrence": {
+                                    "Type": 2,
+                                    "Count": 1,
+                                    "IsDistinct": false
+                                  },
+                                  "RestrictVisit": false
+                                }
+                              ],
+                              "DemographicCriteriaList": [],
+                              "Groups": []
+                            },
+                            "CodesetId": 19,
+                            "ConditionTypeExclude": false
+                          }
+                        },
+                        "StartWindow": {
+                          "Start": {
+                            "Coeff": -1
+                          },
+                          "End": {
+                            "Coeff": 1
+                          }
+                        },
+                        "Occurrence": {
+                          "Type": 2,
+                          "Count": 1,
+                          "IsDistinct": false
+                        },
+                        "RestrictVisit": false
+                      }
+                    ],
+                    "DemographicCriteriaList": [],
+                    "Groups": [
+                      {
+                        "Type": "ANY",
+                        "CriteriaList": [
+                          {
+                            "Criteria": {
+                              "ConditionOccurrence": {
+                                "CorrelatedCriteria": {
+                                  "Type": "ALL",
+                                  "CriteriaList": [
+                                    {
+                                      "Criteria": {
+                                        "Measurement": {
+                                          "CodesetId": 11,
+                                          "MeasurementTypeExclude": false
+                                        }
+                                      },
+                                      "StartWindow": {
+                                        "Start": {
+                                          "Days": 7,
+                                          "Coeff": -1
+                                        },
+                                        "End": {
+                                          "Days": 7,
+                                          "Coeff": 1
+                                        }
+                                      },
+                                      "Occurrence": {
+                                        "Type": 2,
+                                        "Count": 1,
+                                        "IsDistinct": false
+                                      },
+                                      "RestrictVisit": false
+                                    }
+                                  ],
+                                  "DemographicCriteriaList": [],
+                                  "Groups": [
+                                    {
+                                      "Type": "ALL",
+                                      "CriteriaList": [
+                                        {
+                                          "Criteria": {
+                                            "DrugExposure": {
+                                              "CodesetId": 24,
+                                              "DrugTypeExclude": false
+                                            }
+                                          },
+                                          "StartWindow": {
+                                            "Start": {
+                                              "Days": 7,
+                                              "Coeff": -1
+                                            },
+                                            "End": {
+                                              "Days": 7,
+                                              "Coeff": 1
+                                            }
+                                          },
+                                          "Occurrence": {
+                                            "Type": 2,
+                                            "Count": 1,
+                                            "IsDistinct": false
+                                          },
+                                          "RestrictVisit": false
+                                        }
+                                      ],
+                                      "DemographicCriteriaList": [],
+                                      "Groups": [
+                                        {
+                                          "Type": "ANY",
+                                          "CriteriaList": [
+                                            {
+                                              "Criteria": {
+                                                "ProcedureOccurrence": {
+                                                  "CodesetId": 18,
+                                                  "ProcedureTypeExclude": false
+                                                }
+                                              },
+                                              "StartWindow": {
+                                                "Start": {
+                                                  "Days": 7,
+                                                  "Coeff": -1
+                                                },
+                                                "End": {
+                                                  "Days": 7,
+                                                  "Coeff": 1
+                                                }
+                                              },
+                                              "Occurrence": {
+                                                "Type": 2,
+                                                "Count": 1,
+                                                "IsDistinct": false
+                                              },
+                                              "RestrictVisit": false
+                                            }
+                                          ],
+                                          "DemographicCriteriaList": [],
+                                          "Groups": [
+                                            {
+                                              "Type": "ANY",
+                                              "CriteriaList": [
+                                                {
+                                                  "Criteria": {
+                                                    "ProcedureOccurrence": {
+                                                      "CodesetId": 17,
+                                                      "ProcedureTypeExclude": false
+                                                    }
+                                                  },
+                                                  "StartWindow": {
+                                                    "Start": {
+                                                      "Days": 7,
+                                                      "Coeff": -1
+                                                    },
+                                                    "End": {
+                                                      "Days": 7,
+                                                      "Coeff": 1
+                                                    }
+                                                  },
+                                                  "Occurrence": {
+                                                    "Type": 2,
+                                                    "Count": 1,
+                                                    "IsDistinct": false
+                                                  },
+                                                  "RestrictVisit": false
+                                                }
+                                              ],
+                                              "DemographicCriteriaList": [],
+                                              "Groups": [
+                                                {
+                                                  "Type": "ANY",
+                                                  "CriteriaList": [
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 16,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    },
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 13,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    }
+                                                  ],
+                                                  "DemographicCriteriaList": [],
+                                                  "Groups": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "CodesetId": 15,
+                                "ConditionTypeExclude": false
+                              }
+                            },
+                            "StartWindow": {
+                              "Start": {
+                                "Coeff": -1
+                              },
+                              "End": {
+                                "Coeff": 1
+                              }
+                            },
+                            "Occurrence": {
+                              "Type": 2,
+                              "Count": 1,
+                              "IsDistinct": false
+                            },
+                            "RestrictVisit": false
+                          }
+                        ],
+                        "DemographicCriteriaList": [],
+                        "Groups": [
+                          {
+                            "Type": "ANY",
+                            "CriteriaList": [
+                              {
+                                "Criteria": {
+                                  "ConditionOccurrence": {
+                                    "CorrelatedCriteria": {
+                                      "Type": "ALL",
+                                      "CriteriaList": [
+                                        {
+                                          "Criteria": {
+                                            "DrugExposure": {
+                                              "CodesetId": 24,
+                                              "DrugTypeExclude": false
+                                            }
+                                          },
+                                          "StartWindow": {
+                                            "Start": {
+                                              "Days": 7,
+                                              "Coeff": -1
+                                            },
+                                            "End": {
+                                              "Days": 7,
+                                              "Coeff": 1
+                                            }
+                                          },
+                                          "Occurrence": {
+                                            "Type": 2,
+                                            "Count": 1,
+                                            "IsDistinct": false
+                                          },
+                                          "RestrictVisit": false
+                                        }
+                                      ],
+                                      "DemographicCriteriaList": [],
+                                      "Groups": [
+                                        {
+                                          "Type": "ANY",
+                                          "CriteriaList": [
+                                            {
+                                              "Criteria": {
+                                                "ProcedureOccurrence": {
+                                                  "CodesetId": 13,
+                                                  "ProcedureTypeExclude": false
+                                                }
+                                              },
+                                              "StartWindow": {
+                                                "Start": {
+                                                  "Days": 7,
+                                                  "Coeff": -1
+                                                },
+                                                "End": {
+                                                  "Days": 7,
+                                                  "Coeff": 1
+                                                }
+                                              },
+                                              "Occurrence": {
+                                                "Type": 2,
+                                                "Count": 1,
+                                                "IsDistinct": false
+                                              },
+                                              "RestrictVisit": false
+                                            },
+                                            {
+                                              "Criteria": {
+                                                "ProcedureOccurrence": {
+                                                  "CodesetId": 14,
+                                                  "ProcedureTypeExclude": false
+                                                }
+                                              },
+                                              "StartWindow": {
+                                                "Start": {
+                                                  "Days": 7,
+                                                  "Coeff": -1
+                                                },
+                                                "End": {
+                                                  "Days": 7,
+                                                  "Coeff": 1
+                                                }
+                                              },
+                                              "Occurrence": {
+                                                "Type": 2,
+                                                "Count": 1,
+                                                "IsDistinct": false
+                                              },
+                                              "RestrictVisit": false
+                                            }
+                                          ],
+                                          "DemographicCriteriaList": [],
+                                          "Groups": []
+                                        }
+                                      ]
+                                    },
+                                    "CodesetId": 12,
+                                    "ConditionTypeExclude": false
+                                  }
+                                },
+                                "StartWindow": {
+                                  "Start": {
+                                    "Coeff": -1
+                                  },
+                                  "End": {
+                                    "Coeff": 1
+                                  }
+                                },
+                                "Occurrence": {
+                                  "Type": 2,
+                                  "Count": 1,
+                                  "IsDistinct": false
+                                },
+                                "RestrictVisit": false
+                              }
+                            ],
+                            "DemographicCriteriaList": [],
+                            "Groups": [
+                              {
+                                "Type": "ANY",
+                                "CriteriaList": [
+                                  {
+                                    "Criteria": {
+                                      "ConditionOccurrence": {
+                                        "CorrelatedCriteria": {
+                                          "Type": "ALL",
+                                          "CriteriaList": [
+                                            {
+                                              "Criteria": {
+                                                "DrugExposure": {
+                                                  "CodesetId": 24,
+                                                  "DrugTypeExclude": false
+                                                }
+                                              },
+                                              "StartWindow": {
+                                                "Start": {
+                                                  "Days": 7,
+                                                  "Coeff": -1
+                                                },
+                                                "End": {
+                                                  "Days": 7,
+                                                  "Coeff": 1
+                                                }
+                                              },
+                                              "Occurrence": {
+                                                "Type": 2,
+                                                "Count": 1,
+                                                "IsDistinct": false
+                                              },
+                                              "RestrictVisit": false
+                                            }
+                                          ],
+                                          "DemographicCriteriaList": [],
+                                          "Groups": [
+                                            {
+                                              "Type": "ANY",
+                                              "CriteriaList": [
+                                                {
+                                                  "Criteria": {
+                                                    "Measurement": {
+                                                      "CodesetId": 11,
+                                                      "MeasurementTypeExclude": false
+                                                    }
+                                                  },
+                                                  "StartWindow": {
+                                                    "Start": {
+                                                      "Days": 7,
+                                                      "Coeff": -1
+                                                    },
+                                                    "End": {
+                                                      "Days": 7,
+                                                      "Coeff": 1
+                                                    }
+                                                  },
+                                                  "Occurrence": {
+                                                    "Type": 2,
+                                                    "Count": 1,
+                                                    "IsDistinct": false
+                                                  },
+                                                  "RestrictVisit": false
+                                                },
+                                                {
+                                                  "Criteria": {
+                                                    "DrugExposure": {
+                                                      "CodesetId": 24,
+                                                      "DrugTypeExclude": false
+                                                    }
+                                                  },
+                                                  "StartWindow": {
+                                                    "Start": {
+                                                      "Days": 7,
+                                                      "Coeff": -1
+                                                    },
+                                                    "End": {
+                                                      "Days": 7,
+                                                      "Coeff": 1
+                                                    }
+                                                  },
+                                                  "Occurrence": {
+                                                    "Type": 2,
+                                                    "Count": 1,
+                                                    "IsDistinct": false
+                                                  },
+                                                  "RestrictVisit": false
+                                                }
+                                              ],
+                                              "DemographicCriteriaList": [],
+                                              "Groups": []
+                                            }
+                                          ]
+                                        },
+                                        "CodesetId": 10,
+                                        "ConditionTypeExclude": false
+                                      }
+                                    },
+                                    "StartWindow": {
+                                      "Start": {
+                                        "Coeff": -1
+                                      },
+                                      "End": {
+                                        "Coeff": 1
+                                      }
+                                    },
+                                    "Occurrence": {
+                                      "Type": 2,
+                                      "Count": 1,
+                                      "IsDistinct": false
+                                    },
+                                    "RestrictVisit": false
+                                  }
+                                ],
+                                "DemographicCriteriaList": [],
+                                "Groups": [
+                                  {
+                                    "Type": "ANY",
+                                    "CriteriaList": [
+                                      {
+                                        "Criteria": {
+                                          "ConditionOccurrence": {
+                                            "CorrelatedCriteria": {
+                                              "Type": "ALL",
+                                              "CriteriaList": [
+                                                {
+                                                  "Criteria": {
+                                                    "Measurement": {
+                                                      "CodesetId": 1,
+                                                      "MeasurementTypeExclude": false,
+                                                      "ValueAsNumber": {
+                                                        "Value": 0.5,
+                                                        "Op": "gte"
+                                                      }
+                                                    }
+                                                  },
+                                                  "StartWindow": {
+                                                    "Start": {
+                                                      "Days": 7,
+                                                      "Coeff": -1
+                                                    },
+                                                    "End": {
+                                                      "Days": 7,
+                                                      "Coeff": 1
+                                                    }
+                                                  },
+                                                  "Occurrence": {
+                                                    "Type": 2,
+                                                    "Count": 1,
+                                                    "IsDistinct": false
+                                                  },
+                                                  "RestrictVisit": false
+                                                }
+                                              ],
+                                              "DemographicCriteriaList": [],
+                                              "Groups": [
+                                                {
+                                                  "Type": "ANY",
+                                                  "CriteriaList": [
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 2,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    },
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 3,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    }
+                                                  ],
+                                                  "DemographicCriteriaList": [],
+                                                  "Groups": []
+                                                }
+                                              ]
+                                            },
+                                            "CodesetId": 0,
+                                            "ConditionTypeExclude": false
+                                          }
+                                        },
+                                        "StartWindow": {
+                                          "Start": {
+                                            "Coeff": -1
+                                          },
+                                          "End": {
+                                            "Coeff": 1
+                                          }
+                                        },
+                                        "Occurrence": {
+                                          "Type": 2,
+                                          "Count": 1,
+                                          "IsDistinct": false
+                                        },
+                                        "RestrictVisit": false
+                                      },
+                                      {
+                                        "Criteria": {
+                                          "ConditionOccurrence": {
+                                            "CorrelatedCriteria": {
+                                              "Type": "ALL",
+                                              "CriteriaList": [],
+                                              "DemographicCriteriaList": [],
+                                              "Groups": [
+                                                {
+                                                  "Type": "ALL",
+                                                  "CriteriaList": [
+                                                    {
+                                                      "Criteria": {
+                                                        "VisitOccurrence": {
+                                                          "CodesetId": 7,
+                                                          "VisitTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    }
+                                                  ],
+                                                  "DemographicCriteriaList": [],
+                                                  "Groups": [
+                                                    {
+                                                      "Type": "ALL",
+                                                      "CriteriaList": [
+                                                        {
+                                                          "Criteria": {
+                                                            "ProcedureOccurrence": {
+                                                              "CodesetId": 2,
+                                                              "ProcedureTypeExclude": false
+                                                            }
+                                                          },
+                                                          "StartWindow": {
+                                                            "Start": {
+                                                              "Days": 7,
+                                                              "Coeff": -1
+                                                            },
+                                                            "End": {
+                                                              "Days": 7,
+                                                              "Coeff": 1
+                                                            }
+                                                          },
+                                                          "Occurrence": {
+                                                            "Type": 2,
+                                                            "Count": 1,
+                                                            "IsDistinct": false
+                                                          },
+                                                          "RestrictVisit": false
+                                                        }
+                                                      ],
+                                                      "DemographicCriteriaList": [],
+                                                      "Groups": [
+                                                        {
+                                                          "Type": "ALL",
+                                                          "CriteriaList": [
+                                                            {
+                                                              "Criteria": {
+                                                                "DrugExposure": {
+                                                                  "CodesetId": 5,
+                                                                  "DrugTypeExclude": false
+                                                                }
+                                                              },
+                                                              "StartWindow": {
+                                                                "Start": {
+                                                                  "Days": 7,
+                                                                  "Coeff": -1
+                                                                },
+                                                                "End": {
+                                                                  "Days": 7,
+                                                                  "Coeff": 1
+                                                                }
+                                                              },
+                                                              "Occurrence": {
+                                                                "Type": 2,
+                                                                "Count": 1,
+                                                                "IsDistinct": false
+                                                              },
+                                                              "RestrictVisit": false
+                                                            },
+                                                            {
+                                                              "Criteria": {
+                                                                "ProcedureOccurrence": {
+                                                                  "CodesetId": 6,
+                                                                  "ProcedureTypeExclude": false
+                                                                }
+                                                              },
+                                                              "StartWindow": {
+                                                                "Start": {
+                                                                  "Days": 7,
+                                                                  "Coeff": -1
+                                                                },
+                                                                "End": {
+                                                                  "Days": 7,
+                                                                  "Coeff": 1
+                                                                }
+                                                              },
+                                                              "Occurrence": {
+                                                                "Type": 2,
+                                                                "Count": 1,
+                                                                "IsDistinct": false
+                                                              },
+                                                              "RestrictVisit": false
+                                                            }
+                                                          ],
+                                                          "DemographicCriteriaList": [],
+                                                          "Groups": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Type": "ANY",
+                                                  "CriteriaList": [
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 8,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    },
+                                                    {
+                                                      "Criteria": {
+                                                        "ProcedureOccurrence": {
+                                                          "CodesetId": 9,
+                                                          "ProcedureTypeExclude": false
+                                                        }
+                                                      },
+                                                      "StartWindow": {
+                                                        "Start": {
+                                                          "Days": 7,
+                                                          "Coeff": -1
+                                                        },
+                                                        "End": {
+                                                          "Days": 7,
+                                                          "Coeff": 1
+                                                        }
+                                                      },
+                                                      "Occurrence": {
+                                                        "Type": 2,
+                                                        "Count": 1,
+                                                        "IsDistinct": false
+                                                      },
+                                                      "RestrictVisit": false
+                                                    }
+                                                  ],
+                                                  "DemographicCriteriaList": [],
+                                                  "Groups": []
+                                                }
+                                              ]
+                                            },
+                                            "CodesetId": 4,
+                                            "ConditionTypeExclude": false
+                                          }
+                                        },
+                                        "StartWindow": {
+                                          "Start": {
+                                            "Coeff": -1
+                                          },
+                                          "End": {
+                                            "Coeff": 1
+                                          }
+                                        },
+                                        "Occurrence": {
+                                          "Type": 2,
+                                          "Count": 1,
+                                          "IsDistinct": false
+                                        },
+                                        "RestrictVisit": false
+                                      }
+                                    ],
+                                    "DemographicCriteriaList": [],
+                                    "Groups": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

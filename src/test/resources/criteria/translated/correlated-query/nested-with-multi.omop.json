@@ -1,0 +1,67 @@
+{
+  "name": "Nested With Multiple Criteria",
+  "description": "Nested With Multiple Criteria",
+  "expression": {
+    "Type": "ALL",
+    "CriteriaList": [
+      {
+        "Criteria": {
+          "ConditionOccurrence": {
+            "CorrelatedCriteria": {
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "Measurement": {
+                      "CodesetId": 8,
+                      "MeasurementTypeExclude": false,
+                      "ValueAsNumber": {
+                        "Value": 0.5,
+                        "Op": "gte"
+                      }
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": {
+                      "Days": 6,
+                      "Coeff": -1
+                    },
+                    "End": {
+                      "Days": 3,
+                      "Coeff": 1
+                    }
+                  },
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  },
+                  "RestrictVisit": false
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            },
+            "CodesetId": 4,
+            "ConditionTypeExclude": false
+          }
+        },
+        "StartWindow": {
+          "Start": {
+            "Coeff": -1
+          },
+          "End": {
+            "Coeff": 1
+          }
+        },
+        "Occurrence": {
+          "Type": 2,
+          "Count": 1,
+          "IsDistinct": false
+        },
+        "RestrictVisit": false
+      }
+    ],
+    "DemographicCriteriaList": [],
+    "Groups": []
+  }
+}

@@ -1,0 +1,26 @@
+value_set_oid,value_set_name,code,description,code_system,code_system_version,code_system_oid,tty
+1516.myocardial-infarction-dx,Myocardial Infarction Diagnoses,410.12,Dummy,ICD9CM,2021,123,FN
+1516.troponin-labs,Troponin Labs,10839-9,Dummy,LOINC,2021,123,FN
+1516.ecg-proc,Echocardiogram,0206T,Dummy,CPT4,2021,123,FN
+1516.coronary-angiogram-proc,Coronary Angiogram,01920,Dummy,CPT4,2021,123,FN
+1516.stroke-dx,Stroke Diagnoses,434.11,Dummy,ICD9CM,2021,123,FN
+1516.stroke-meds,Stroke Medications,aspirin,Dummy,RxNorm,2021,123,FN
+1516.carotid-duplex,Carotid Duplex,93880,Dummy,CPT4,,2021,123,FN
+1516.neurology-encounter,Neurology Encounter,702832002,Dummy,SNOMED,2021,123,FN
+1516.ct-scan-head-proc,CT Scan of Head,70450,Dummy,CPT4,2021,123,FN
+1516.mri-brain-proc,MRI Brain,70554,Dummy,CPT4,2021,123,FN
+1516.deep-vein-thrombosis-dx,Deep Vein Thrombosis Diagnoses,453.40,Dummy,ICD9CM,2021,123,FN
+1516.d-dimer-fibrin-labs,D-Dimer Fibrin Labs,48065-7,Dummy,LOINC,2021,123,FN
+1516.pulmonary-embolism-dx,Pulmonary Embolism Diagnoses,415.12,Dummy,ICD9CM,2021,123,FN
+1516.ct-scan-chest,CT Scan of Chest,71250,Dummy,CPT4,2021,123,FN
+1516.vq-scan,Ventilation-Perfusion Scan,78582,Dummy,CPT4,2021,123,FN
+1516.mesenteric-splanchnic-thrombosis-dx,Mesenteric-Splanchnic Thrombosis Diagnoses,444.89,Dummy,ICD9CM,2021,123,FN
+1516.ultrasonography-proc,Ultrasonography,76999,Dummy,CPT4,2021,123,FN
+1516.ct-scan-abdomen,CT Scan of Abdomen,1010526,Dummy,CPT4,2021,123,FN
+1516.mri-proc,MRI,113091000,Dummy,SNOMED,2021,123,FN
+1516.superficial-vein-thrombosis-dx,Superficial Vein Thrombosis Diagnoses,451.89,Dummy,ICD9CM,2021,123,FN
+1516.other-arterial-thrombosis-dx,Other Arterial Thrombosis Diagnoses,444.22,Dummy,ICD9CM,2021,123,FN
+1516.placenta-thrombosis-dx,Placenta Thrombosis Diagnoses,O43.813,Dummy,ICD10CM,2021,123,FN
+1516.central-nervous-system-thrombosis-dx,Central Nervous System (CNS) Thrombosis Diagnoses,437.6,Dummy,ICD9CM,2021,123,FN
+1516.endocarial-thrombosis-dx,Endocardial Thrombosis Diagnoses,996.71,Dummy,ICD9CM,2021,123,FN
+2.16.840.1.113883.17.4077.2.1012,Anticoagulant,1037042,Dummy,RxNorm,2021,123,FN

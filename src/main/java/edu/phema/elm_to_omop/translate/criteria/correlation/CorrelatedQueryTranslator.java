@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Class responsible for generated Circe CorelatedCriteria for CQL correlated Query expressions.
@@ -180,6 +181,36 @@ public class CorrelatedQueryTranslator {
     return newList;
   }
 
+  private static List<Expression> findNestedPropertiesOrAliasRefs(Expression expression, List<Expression> propsOrAliasRefs) {
+    List<Expression> newList = new ArrayList<>(propsOrAliasRefs);
+
+    if ((expression instanceof Property) || (expression instanceof AliasRef)) {
+      newList.add(expression);
+    } else if (expression instanceof UnaryExpression) {
+      Expression operand = ((UnaryExpression) expression).getOperand();
+
+      newList.addAll(findNestedPropertiesOrAliasRefs(operand, new ArrayList<>()));
+    } else if (expression instanceof BinaryExpression) {
+      for (Expression expr : ((BinaryExpression) expression).getOperand()) {
+        newList.addAll(findNestedPropertiesOrAliasRefs(expr, new ArrayList<>()));
+      }
+    } else if (expression instanceof TernaryExpression) {
+      for (Expression expr : ((TernaryExpression) expression).getOperand()) {
+        newList.addAll(findNestedPropertiesOrAliasRefs(expr, new ArrayList<>()));
+      }
+    } else if (expression instanceof NaryExpression) {
+      for (Expression expr : ((NaryExpression) expression).getOperand()) {
+        newList.addAll(findNestedPropertiesOrAliasRefs(expr, new ArrayList<>()));
+      }
+    } else if (expression instanceof FunctionRef) {
+      for (Expression expr : ((FunctionRef) expression).getOperand()) {
+        newList.addAll(findNestedPropertiesOrAliasRefs(expr, new ArrayList<>()));
+      }
+    }
+
+    return newList;
+  }
+
   public static boolean multiCriteriaConjunctionInSameScope(Expression expression, String returnType, String scope) throws Exception {
     // We can only support conjunctions due to the Circe model
     // Disjunctions would have to be lifted outside of the `where` clause
@@ -187,24 +218,34 @@ public class CorrelatedQueryTranslator {
       return false;
     }
 
-    // Get all the criteria that must apply
-    List<Expression> criteria = traverseConjunctions(expression, new ArrayList<>(), returnType);
+    // Try to get all the criteria that must apply
+    List<Expression> criteria;
+    try {
+      criteria = traverseConjunctions(expression, new ArrayList<>(), returnType);
+    } catch (Exception e) {
+      return false;
+    }
 
-    // Check that they all apply to the correct scope by checking for an appropriate Property operand
+    // Check that all where expressions reference the enclosing retrieve alias at least once
+    // Could be on the lhs or rhs
     for (Expression expr : criteria) {
       Expression lhs = ((BinaryExpression) expr).getOperand().get(0);
       Expression rhs = ((BinaryExpression) expr).getOperand().get(1);
 
-      if (lhs instanceof Property) {
-        if (!((Property) lhs).getScope().equals(scope)) {
-          return false;
+      List<Expression> maybeScopedExprs = findNestedPropertiesOrAliasRefs(lhs, new ArrayList<>());
+      maybeScopedExprs.addAll(findNestedPropertiesOrAliasRefs(rhs, new ArrayList<>()));
+
+      List<Expression> scopedExprs = maybeScopedExprs.stream().filter(ex -> {
+        if (ex instanceof Property) {
+          return ((Property) ex).getScope().equals(scope);
+        } else if (ex instanceof AliasRef) {
+          return ((AliasRef) ex).getName().equals(scope);
         }
-      } else if (rhs instanceof Property) {
-        if (!((Property) rhs).getScope().equals(scope)) {
-          return false;
-        }
-      } else {
-        // We cannot evaluate the scope
+
+        return false;
+      }).collect(Collectors.toList());
+
+      if (scopedExprs.size() == 0) {
         return false;
       }
     }

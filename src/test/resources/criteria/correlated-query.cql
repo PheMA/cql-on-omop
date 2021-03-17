@@ -143,3 +143,15 @@ define "Observation Value And Date":
             and
                 O.valueQuantity >= 0.6 'ng/mL' // this overrides the previous value
     )
+
+define "Nested With Multiple Criteria":
+    exists(
+        [Condition: "Some Dx 1"] C
+            where exists(
+                [Observation: "Some Labs 1"] O
+                    where
+                        O.valueQuantity >= 0.5 'ng/mL'
+                            and
+                        O.appliesDateTime in Interval[C.onsetDateTime - 6 days, C.onsetDateTime + 3 days]
+           )
+    )

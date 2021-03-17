@@ -144,4 +144,12 @@ public class CorrelatedQueryTest {
       "Observation Value And Date",
       "criteria/translated/correlated-query/observation-value-date.omop.json");
   }
+
+  @Test
+  public void nestedWithMulti() throws Exception {
+    runTestCase("criteria/correlated-query.cql",
+      "criteria/valuesets/correlated-query-valuesets.omop.json",
+      "Nested With Multiple Criteria",
+      "criteria/translated/correlated-query/nested-with-multi.omop.json");
+  }
 }
