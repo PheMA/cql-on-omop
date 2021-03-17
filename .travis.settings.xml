@@ -9,4 +9,24 @@
             <password>${env.BINTRAY_API_KEY}</password>
         </server>
     </servers>
+    <mirrors>
+        <mirror>
+            <id>secure-central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>secure-springsource.releases</id>
+            <name>SpringSource GA Repository</name>
+            <url>https://repo.springsource.org/release</url>
+            <mirrorOf>springsource.releases</mirrorOf>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </mirror>
+    </mirrors>
 </settings>

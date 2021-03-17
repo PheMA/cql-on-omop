@@ -1,7 +1,7 @@
 # CQL on OMOP
 
 [![PhEMA](./repo-badge.svg)](https://projectphema.org)
-[![Build Status](https://travis-ci.org/PheMA/cql-on-omop.svg?branch=master)](https://travis-ci.org/PheMA/cql-on-omop)
+[![Build Status](https://www.travis-ci.com/PheMA/cql-on-omop.svg?branch=master)](https://www.travis-ci.com/PheMA/cql-on-omop)
 [![Download](https://img.shields.io/badge/dynamic/json.svg?label=latest&query=name&url=https://bintray.com/api/v1/packages/phema/maven/phema-elm-to-ohdsi/versions/_latest) ](https://bintray.com/phema/maven/phema-elm-to-ohdsi/)
 [![Coverage Status](https://coveralls.io/repos/github/PheMA/cql-on-omop/badge.svg?branch=master)](https://coveralls.io/github/PheMA/cql-on-omop?branch=master)
 [![Javadocs](https://img.shields.io/badge/dynamic/json.svg?label=javadoc&color=yellow&query=name&url=https://bintray.com/api/v1/packages/phema/maven/phema-elm-to-ohdsi/versions/_latest) ](https://phema.github.io/elm-to-ohdsi-executer/)
