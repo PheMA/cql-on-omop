@@ -1,7 +1,10 @@
 package edu.phema.elm_to_omop.thrombotic_event;
 
 import edu.phema.elm_to_omop.PhemaTestHelper;
+import edu.phema.elm_to_omop.api.ElmToOmopTranslator;
 import edu.phema.elm_to_omop.cql.InMemoryLibrarySourceLoader;
+import edu.phema.elm_to_omop.io.FhirReader;
+import edu.phema.elm_to_omop.phenotype.BundlePhenotype;
 import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
@@ -20,8 +23,10 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.circe.vocabulary.Concept;
+import org.ohdsi.webapi.service.CohortDefinitionService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -98,17 +103,23 @@ public class ThromboticEventPhenotypeTest {
 
   @Test
   public void BundlePhenotypeSmokeTest() throws Exception {
-//    String path = PhemaTestHelper.getResourcePath("thrombotic-event/bundle/phema-phenotype.1516.thrombotic-event.bundle.json");
-//    List<String> expressionNames = Arrays.asList("Case");
-//
-//    IPhenotype phenotype = new BundlePhenotype(path, expressionNames, omopRepository);
-//
-//    ElmToOmopTranslator translator = new ElmToOmopTranslator(valuesetService);
-//
-//    List<CohortDefinitionService.CohortDefinitionDTO> cohortDefinitions = translator.translatePhenotype(phenotype, conceptSets);
-//
-//    PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-//      PhemaTestHelper.getFileAsString("phenotype/phenotype-bundle.omop.json"),
-//      PhemaTestHelper.getJson(cohortDefinitions));
+    String bundleString = PhemaTestHelper.getFileAsString("thrombotic-event/bundle/phema-phenotype.1516.thrombotic-event.bundle.json");
+    List<String> expressionNames = Arrays.asList("Case");
+
+    BundlePhenotype bundlePhenotype = FhirReader.loadBundlePhenotypeFromString(bundleString, omopRepository);
+    bundlePhenotype.setPhenotypeExpressionNames(expressionNames);
+
+    ElmToOmopTranslator translator = new ElmToOmopTranslator(bundlePhenotype.getValuesetService());
+
+    conceptSets = bundlePhenotype.getValuesetService().getConceptSets();
+
+    List<CohortDefinitionService.CohortDefinitionDTO> cohortDefinitions = translator.translatePhenotype(bundlePhenotype, conceptSets);
+
+    CohortExpression ce = CohortExpression.fromJson(cohortDefinitions.get(0).expression);
+
+    assertNotNull(ce);
+    PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+      PhemaTestHelper.getFileAsString("thrombotic-event/translated/1516.thrombotic-event.cohort-definition.omop.json"),
+      PhemaTestHelper.getJson(ce));
   }
 }
