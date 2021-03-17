@@ -136,4 +136,12 @@ public class CorrelatedQueryTest {
       "Observation Value",
       "criteria/translated/correlated-query/observation-value.omop.json");
   }
+
+  @Test
+  public void observationValueAndDate() throws Exception {
+    runTestCase("criteria/correlated-query.cql",
+      "criteria/valuesets/correlated-query-valuesets.omop.json",
+      "Observation Value And Date",
+      "criteria/translated/correlated-query/observation-value-date.omop.json");
+  }
 }

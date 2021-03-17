@@ -16,6 +16,7 @@ import org.ohdsi.circe.cohortdefinition.CorelatedCriteria;
 import org.ohdsi.circe.cohortdefinition.CriteriaGroup;
 import org.ohdsi.circe.cohortdefinition.Measurement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -160,6 +161,92 @@ public class CorrelatedQueryTranslator {
       (returnType.contains("Observation") && (ComparisonExpressionTranslator.isNumericComparison(expression)));
   }
 
+  public static List<Expression> traverseConjunctions(Expression expression, List<Expression> list, String returnType) throws Exception {
+    List<Expression> newList = new ArrayList<>(list);
+
+    if (expression instanceof And) {
+      Expression lhs = ((And) expression).getOperand().get(0);
+      Expression rhs = ((And) expression).getOperand().get(1);
+
+      newList.addAll(traverseConjunctions(lhs, new ArrayList<>(), returnType));
+      newList.addAll(traverseConjunctions(rhs, new ArrayList<>(), returnType));
+    } else if (returnType.contains("Observation") && (ComparisonExpressionTranslator.isNumericComparison(expression)) || (expression instanceof In)) {
+      // We only support numeric comparison (if Observation) or In expresion in where clause right now (should be easy to add demographic [Age])
+      newList.add(expression);
+    } else {
+      throw new PhemaTranslationException("Unsupported multi-criteria where clause");
+    }
+
+    return newList;
+  }
+
+  public static boolean multiCriteriaConjunctionInSameScope(Expression expression, String returnType, String scope) throws Exception {
+    // We can only support conjunctions due to the Circe model
+    // Disjunctions would have to be lifted outside of the `where` clause
+    if (!(expression instanceof And)) {
+      return false;
+    }
+
+    // Get all the criteria that must apply
+    List<Expression> criteria = traverseConjunctions(expression, new ArrayList<>(), returnType);
+
+    // Check that they all apply to the correct scope by checking for an appropriate Property operand
+    for (Expression expr : criteria) {
+      Expression lhs = ((BinaryExpression) expr).getOperand().get(0);
+      Expression rhs = ((BinaryExpression) expr).getOperand().get(1);
+
+      if (lhs instanceof Property) {
+        if (!((Property) lhs).getScope().equals(scope)) {
+          return false;
+        }
+      } else if (rhs instanceof Property) {
+        if (!((Property) rhs).getScope().equals(scope)) {
+          return false;
+        }
+      } else {
+        // We cannot evaluate the scope
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private static CorelatedCriteria applyInCriteria(CorelatedCriteria target, In in) throws Exception {
+    // TODO: Address simplifying assumptions noted below
+    //   1. Only set window around start time.  Should use property to determine if this is the start or
+    //      end time property and identify in the appropriate window.
+    //   2. Only handle one interval per correlated query.  In Circe, you can define "event starts" and
+    //      "event ends" constraints, and this could also be represented in CQL if we have multiple
+    //      constraints.
+    List<Expression> whereOperands = in.getOperand();
+    if (whereOperands.size() == 2 && whereOperands.get(1) instanceof Interval) {
+      Interval interval = (Interval) whereOperands.get(1);
+
+      BinaryExpression lowExpression;
+      BinaryExpression highExpression;
+
+      // This handles the special case of date literals, which the CQL parser
+      // wraps in ToDateTime
+      if (interval.getLow() instanceof ToDateTime) {
+        lowExpression = (BinaryExpression) ((Interval) ((Property) ((ToDateTime) interval.getLow()).getOperand()).getSource()).getLow();
+      } else {
+        lowExpression = (BinaryExpression) interval.getLow();
+      }
+
+      if (interval.getHigh() instanceof ToDateTime) {
+        highExpression = (BinaryExpression) ((Interval) ((Property) ((ToDateTime) interval.getHigh()).getOperand()).getSource()).getHigh();
+      } else {
+        highExpression = (BinaryExpression) interval.getHigh();
+      }
+
+      target.startWindow.start = TemporalUtil.calculateWindowEndpoint(lowExpression);
+      target.startWindow.end = TemporalUtil.calculateWindowEndpoint(highExpression);
+    }
+
+    return target;
+  }
+
   public static CorelatedCriteria generateCorelatedCriteriaForCorrelatedQueryWithWhere(Query query, PhemaElmToOmopTranslatorContext context) throws
     Exception {
     Expression whereExpression = query.getWhere();
@@ -176,7 +263,25 @@ public class CorrelatedQueryTranslator {
 
     CorelatedCriteria outerCorrelateCriteria = CirceUtil.defaultCorelatedCriteria();
 
-    if (whereExpression instanceof Exists || PhemaElmToOmopTranslator.isBooleanExpression(whereExpression)) {
+    if (multiCriteriaConjunctionInSameScope(whereExpression, returnType.toString(), alias)) {
+      // Handle multiple criteria on the same domain object, so we have to add them all to the same criteria
+
+      // First generate the criteria
+      outerCorrelateCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression((Retrieve) query.getSource().get(0).getExpression(), context);
+
+      // Then apply each criteria in the where clause
+      List<Expression> criteria = traverseConjunctions(whereExpression, new ArrayList<>(), returnType.toString());
+      for (Expression expr : criteria) {
+        if (ComparisonExpressionTranslator.isNumericComparison(expr)) {
+          // Assume Measurement if we have a numeric comparison
+          ((Measurement) outerCorrelateCriteria.criteria).valueAsNumber = ComparisonExpressionTranslator.generateNumericRangeFromComparisonExpression(expr);
+        } else if (expr instanceof In) {
+          applyInCriteria(outerCorrelateCriteria, (In) expr);
+        } else {
+          throw new PhemaTranslationException("Unsupported criteria in multi-criteria where clause");
+        }
+      }
+    } else if (whereExpression instanceof Exists || PhemaElmToOmopTranslator.isBooleanExpression(whereExpression)) {
       // descend into the nested expression
       CriteriaGroup criteriaGroup = CriteriaGroupTranslator.generateCriteriaGroupForExpression(whereExpression, context);
 
@@ -190,19 +295,8 @@ public class CorrelatedQueryTranslator {
       // generate the criteria as if it was a retrieve
       outerCorrelateCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression((Retrieve) query.getSource().get(0).getExpression(), context);
 
-      // TODO: Address simplifying assumptions noted below
-      //   1. Only set window around start time.  Should use property to determine if this is the start or
-      //      end time property and identify in the appropriate window.
-      //   2. Only handle one interval per correlated query.  In Circe, you can define "event starts" and
-      //      "event ends" constraints, and this could also be represented in CQL if we have multiple
-      //      constraints.
       // then set up the occurrence dates based on the interval
-      List<Expression> whereOperands = ((In) whereExpression).getOperand();
-      if (whereOperands.size() == 2 && whereOperands.get(1) instanceof Interval) {
-        Interval interval = (Interval) whereOperands.get(1);
-        outerCorrelateCriteria.startWindow.start = TemporalUtil.calculateWindowEndpoint((BinaryExpression) interval.getLow());
-        outerCorrelateCriteria.startWindow.end = TemporalUtil.calculateWindowEndpoint((BinaryExpression) interval.getHigh());
-      }
+      applyInCriteria(outerCorrelateCriteria, (In) whereExpression);
     } else if (returnType.toString().contains("Observation") && (ComparisonExpressionTranslator.isNumericComparison(whereExpression))) {
       // We are checking an Observation/MEASUREMENT's value
 
@@ -212,7 +306,6 @@ public class CorrelatedQueryTranslator {
       // Add the numeric comparison
       ((Measurement) outerCorrelateCriteria.criteria).valueAsNumber = ComparisonExpressionTranslator.generateNumericRangeFromComparisonExpression(whereExpression);
     }
-
 
     // Pop the alias to invalidate it
     context.removeAlias(alias);

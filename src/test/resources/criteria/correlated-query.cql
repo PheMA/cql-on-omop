@@ -132,3 +132,14 @@ define "Observation Value":
            where
                 O.valueQuantity >= 0.5 'ng/mL'
     )
+
+define "Observation Value And Date":
+    exists(
+        [Observation: "Some Labs 1"] O
+            where
+                O.valueQuantity >= 0.5 'ng/mL'
+            and
+                O.appliesDateTime in Interval[@2018-01-15 - 2 days, @2018-01-15 + 3 days]
+            and
+                O.valueQuantity >= 0.6 'ng/mL' // this overrides the previous value
+    )
