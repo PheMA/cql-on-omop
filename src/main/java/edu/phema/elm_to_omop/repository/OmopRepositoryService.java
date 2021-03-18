@@ -20,12 +20,20 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 /**
  * This class uses the WebAPI to interact with with the OMOP repository.
  */
 public class OmopRepositoryService implements IOmopRepositoryService {
+  private static ConcurrentHashMap<String, List<Concept>> searchCache;
+
+  static {
+    searchCache = new ConcurrentHashMap<>();
+  }
+
   private Logger logger = Logger.getLogger(this.getClass().getName());
 
   private String domain;
@@ -78,30 +86,38 @@ public class OmopRepositoryService implements IOmopRepositoryService {
    * @throws OmopRepositoryException
    */
   public List<Concept> vocabularySearch(String query, String vocabularyId) throws OmopRepositoryException {
-    logger.info("Searching for '" + query + "' in vocabular " + vocabularyId);
+    logger.info("Searching for '" + query + "' in vocabulary " + vocabularyId);
 
     try {
-      ConceptSearch conceptSearch = new ConceptSearch();
 
-      conceptSearch.query = query;
-      conceptSearch.vocabularyId = new String[]{vocabularyId};
+      // First try cache
+      List<Concept> cachedResult = searchCache.get(query);
 
+      if (cachedResult != null) {
+        logger.info("Cache hit");
 
-//      Concept concept = new Concept();
-//      concept.conceptCode = query;
-//      concept.vocabularyId = vocabularyId;
-//      return new ArrayList<Concept>() {{
-//        add(concept);
-//      }};
+        return cachedResult;
+      } else {
+        logger.info("Cache miss");
 
-      Response response = client
-        .target(domain + "vocabulary/search")
-        .request(MediaType.APPLICATION_JSON)
-        .post(Entity.entity(conceptSearch, MediaType.APPLICATION_JSON));
+        ConceptSearch conceptSearch = new ConceptSearch();
 
-      return response.readEntity(new GenericType<List<Concept>>() {
-      });
+        conceptSearch.query = query;
+        conceptSearch.vocabularyId = new String[]{vocabularyId};
 
+        Response response = client
+          .target(domain + "vocabulary/search")
+          .request(MediaType.APPLICATION_JSON)
+          .post(Entity.entity(conceptSearch, MediaType.APPLICATION_JSON));
+
+        List<Concept> result = response.readEntity(new GenericType<List<Concept>>() {
+        });
+
+        // add to cache
+        searchCache.put(query, result);
+
+        return result;
+      }
     } catch (Exception e) {
       throw new OmopRepositoryException("Error performing vocabulary search", e);
     }

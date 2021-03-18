@@ -24,6 +24,7 @@ import org.ohdsi.webapi.service.CohortDefinitionService.GenerateSqlResult;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -120,6 +121,7 @@ public class CohortService {
    * @throws CohortServiceException
    */
   public CohortDefinitionDTO createCohortDefinition(String cqlString, String statementName) throws CohortServiceException {
+    logger.info("Creating cohort definition");
 
     try {
       ElmToOmopTranslator translator = new ElmToOmopTranslator(valuesetService);
@@ -274,14 +276,40 @@ public class CohortService {
     try {
       omopService.queueCohortGeneration(id);
 
+      // Retry while the cohort is generating
       RetryPolicy retryPolicy = new RetryPolicy();
-      // FIXME: Just taking the first info object can't be correct
-      retryPolicy.handleResultIf(info -> ((List<CohortGenerationInfo>) info).get(0).getStatus() != GenerationStatus.COMPLETE);
-      retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
+      retryPolicy.handleResultIf(info -> {
+        Optional<CohortGenerationInfo> maybeGenInfo = ((List<CohortGenerationInfo>) info).stream().filter(cgi -> cgi.getId().getCohortDefinitionId().equals(id)).findFirst();
 
+        if (!maybeGenInfo.isPresent()) {
+          logger.info("Cohort generation is not running for: " + id);
+
+          return false;
+        }
+
+        CohortGenerationInfo genInfo = maybeGenInfo.get();
+
+        logger.info("Waiting for cohort generation to complete, got status: " + genInfo.getStatus());
+
+        return genInfo.getStatus() != GenerationStatus.COMPLETE;
+      });
+      retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
       Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(id));
 
-      return omopService.getCohortDefinitionReport(id);
+      // Retry until we actually get an inclusionRules result back
+      // Seems like it takes a second for the result to be persisted in the database
+      retryPolicy.handleResultIf(inclReport -> {
+        int size = ((InclusionRuleReport) inclReport).inclusionRuleStats.size();
+
+        logger.info("Waiting until we get stats for inclusion rule. Currently have: " + size);
+
+        return size == 0;
+      });
+      Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionReport(id));
+
+      InclusionRuleReport report = omopService.getCohortDefinitionReport(id);
+
+      return report;
     } catch (Throwable t) {
       throw new CohortServiceException("Error getting cohort definition report", t);
     }
@@ -316,6 +344,8 @@ public class CohortService {
    * @throws CohortServiceException
    */
   public InclusionRuleReport getCohortDefinitionReport(Bundle bundle, String statementName) throws CohortServiceException {
+    logger.info("Creating cohort report");
+
     try {
       CohortDefinitionDTO cohortDefinition = createCohortDefinition(bundle, statementName);
 
