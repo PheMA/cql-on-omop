@@ -8,6 +8,7 @@
         "Criteria": {
           "ConditionOccurrence": {
             "CorrelatedCriteria": {
+              "Type": "ALL",
               "CriteriaList": [
                 {
                   "Criteria": {

@@ -8,6 +8,7 @@
         "Criteria": {
           "ConditionOccurrence": {
             "CorrelatedCriteria": {
+              "Type": "ALL",
               "CriteriaList": [
                 {
                   "Criteria": {
@@ -66,6 +67,7 @@
             "Criteria": {
               "ConditionOccurrence": {
                 "CorrelatedCriteria": {
+                  "Type": "ALL",
                   "CriteriaList": [
                     {
                       "Criteria": {
@@ -124,6 +126,7 @@
                 "Criteria": {
                   "ConditionOccurrence": {
                     "CorrelatedCriteria": {
+                      "Type": "ALL",
                       "CriteriaList": [
                         {
                           "Criteria": {
@@ -182,6 +185,7 @@
                     "Criteria": {
                       "ConditionOccurrence": {
                         "CorrelatedCriteria": {
+                          "Type": "ALL",
                           "CriteriaList": [
                             {
                               "Criteria": {
@@ -240,6 +244,7 @@
                         "Criteria": {
                           "ConditionOccurrence": {
                             "CorrelatedCriteria": {
+                              "Type": "ALL",
                               "CriteriaList": [
                                 {
                                   "Criteria": {

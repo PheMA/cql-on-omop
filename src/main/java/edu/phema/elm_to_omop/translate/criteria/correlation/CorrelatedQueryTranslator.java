@@ -1,5 +1,6 @@
 package edu.phema.elm_to_omop.translate.criteria.correlation;
 
+import edu.phema.elm_to_omop.helper.CirceConstants;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.translate.CorelatedCriteriaTranslator;
 import edu.phema.elm_to_omop.translate.CriteriaGroupTranslator;
@@ -325,6 +326,11 @@ public class CorrelatedQueryTranslator {
     } else if (whereExpression instanceof Exists || PhemaElmToOmopTranslator.isBooleanExpression(whereExpression)) {
       // descend into the nested expression
       CriteriaGroup criteriaGroup = CriteriaGroupTranslator.generateCriteriaGroupForExpression(whereExpression, context);
+
+      // Default to ALL if not set
+      if (criteriaGroup.type == null) {
+        criteriaGroup.type = CirceConstants.CriteriaGroupType.ALL.toString();
+      }
 
       outerCorrelateCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression((Retrieve) query.getSource().get(0).getExpression(), context);
 

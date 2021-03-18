@@ -22,6 +22,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
+import org.ohdsi.circe.cohortdefinition.CohortExpressionQueryBuilder;
 import org.ohdsi.circe.vocabulary.Concept;
 import org.ohdsi.webapi.service.CohortDefinitionService;
 
@@ -57,10 +58,30 @@ public class ThromboticEventPhenotypeTest {
     when(omopRepository.vocabularySearch(anyString(), anyString())).thenAnswer(new Answer<ArrayList<Concept>>() {
       @Override
       public ArrayList<Concept> answer(InvocationOnMock invocation) throws Throwable {
+
+        /*
+          "CONCEPT_ID": 44819697,
+          "CONCEPT_NAME": "Acute myocardial infarction of other anterior wall, subsequent episode of care",
+          "STANDARD_CONCEPT": "N",
+          "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+          "INVALID_REASON": "V",
+          "INVALID_REASON_CAPTION": "Valid",
+          "CONCEPT_CODE": "410.12",
+          "DOMAIN_ID": "Condition",
+          "VOCABULARY_ID": "ICD9CM",
+          "CONCEPT_CLASS_ID": "5-dig billing code"
+        */
+
         Object[] arguments = invocation.getArguments();
         Concept concept = new Concept();
+        concept.conceptId = 123L;
+        concept.conceptName = "Dummy";
+        concept.standardConcept = "N";
+        concept.invalidReason = "Value";
         concept.conceptCode = (String) arguments[0];
         concept.vocabularyId = (String) arguments[1];
+        concept.domainId = "Condition";
+        concept.conceptClassId = "5-dig billing code";
         return new ArrayList<Concept>() {{
           add(concept);
         }};
@@ -121,5 +142,15 @@ public class ThromboticEventPhenotypeTest {
     PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
       PhemaTestHelper.getFileAsString("thrombotic-event/translated/1516.thrombotic-event.cohort-definition.omop.json"),
       PhemaTestHelper.getJson(ce));
+
+    // Check if Circe can generate the SQL for the expression
+    CohortExpressionQueryBuilder queryBuilder = new CohortExpressionQueryBuilder();
+
+    String sql = queryBuilder.buildExpressionQuery(ce, null);
+
+    assertNotNull(sql);
+    PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+      PhemaTestHelper.getFileAsString("thrombotic-event/translated/1516.thrombotic-event.cohort-definition.omop.sql"),
+      sql);
   }
 }

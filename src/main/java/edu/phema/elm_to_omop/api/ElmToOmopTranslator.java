@@ -9,9 +9,13 @@ import edu.phema.elm_to_omop.api.exception.CqlStatementNotFoundException;
 import edu.phema.elm_to_omop.api.exception.OmopTranslatorException;
 import edu.phema.elm_to_omop.helper.CirceUtil;
 import edu.phema.elm_to_omop.helper.Config;
+import edu.phema.elm_to_omop.io.FhirReader;
+import edu.phema.elm_to_omop.phenotype.BundlePhenotype;
 import edu.phema.elm_to_omop.phenotype.IPhenotype;
+import edu.phema.elm_to_omop.repository.IOmopRepositoryService;
 import edu.phema.elm_to_omop.repository.OmopRepositoryService;
 import edu.phema.elm_to_omop.translate.PhemaElmToOmopTranslator;
+import edu.phema.elm_to_omop.translate.exception.PhemaTranslationException;
 import edu.phema.elm_to_omop.vocabulary.ConceptCodeCsvFileValuesetService;
 import edu.phema.elm_to_omop.vocabulary.IValuesetService;
 import edu.phema.elm_to_omop.vocabulary.SpreadsheetValuesetService;
@@ -19,6 +23,7 @@ import edu.phema.elm_to_omop.vocabulary.phema.PhemaConceptSet;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.hl7.elm.r1.ExpressionDef;
 import org.hl7.elm.r1.Library;
+import org.hl7.fhir.r4.model.Bundle;
 import org.json.simple.parser.ParseException;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.webapi.service.CohortDefinitionService;
@@ -26,6 +31,7 @@ import org.ohdsi.webapi.service.CohortDefinitionService.CohortDefinitionDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -36,206 +42,247 @@ import java.util.logging.Logger;
  * implemented in this library.
  */
 public class ElmToOmopTranslator {
-    private Logger logger;
-    private List<PhemaConceptSet> conceptSets;
+  private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private String expString = "expression";
+  private List<PhemaConceptSet> conceptSets;
+  private IOmopRepositoryService omopService;
 
-    /**
-     * Specify configuration to use for the translation
-     *
-     * @param config @see edu.phema.elm_to_omop.helper.Config
-     * @throws InvalidFormatException
-     * @throws ParseException
-     * @throws IOException
-     * @throws NullPointerException
-     */
-    public ElmToOmopTranslator(Config config) throws OmopTranslatorException {
-        logger = Logger.getLogger(this.getClass().getName());
+  private String expString = "expression";
 
-        OmopRepositoryService omopService = new OmopRepositoryService(config.getOmopBaseURL(), config.getSource());
+  /**
+   * Specify configuration to use for the translation
+   *
+   * @param config @see edu.phema.elm_to_omop.helper.Config
+   * @throws InvalidFormatException
+   * @throws ParseException
+   * @throws IOException
+   * @throws NullPointerException
+   */
+  public ElmToOmopTranslator(Config config) throws OmopTranslatorException {
+    logger = Logger.getLogger(this.getClass().getName());
 
-        IValuesetService valuesetService = null;
-        if (config.isTabSpecified()) {
-          valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
-        }
-        else {
-          valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
-        }
+    omopService = new OmopRepositoryService(config.getOmopBaseURL(), config.getSource());
 
-        try {
-            conceptSets = valuesetService.getConceptSets();
-        } catch (Exception e) {
-            throw new OmopTranslatorException("Error initializing concept sets", e);
-        }
+    IValuesetService valuesetService = null;
+    if (config.isTabSpecified()) {
+      valuesetService = new SpreadsheetValuesetService(omopService, config.getVsFileName(), config.getTab());
+    } else {
+      valuesetService = new ConceptCodeCsvFileValuesetService(omopService, config.getVsFileName(), true);
     }
 
-    /**
-     * Specify configuration to use for the translation, as well as a custom valueset reader.
-     * This is most to support mocking during testing
-     *
-     * @param valuesetService The service to use to retrieve the concept sets
-     * @throws InvalidFormatException
-     * @throws ParseException
-     * @throws IOException
-     * @throws NullPointerException
-     */
-    public ElmToOmopTranslator(IValuesetService valuesetService) throws OmopTranslatorException {
-        logger = Logger.getLogger(this.getClass().getName());
+    try {
+      conceptSets = valuesetService.getConceptSets();
+    } catch (Exception e) {
+      throw new OmopTranslatorException("Error initializing concept sets", e);
+    }
+  }
 
-        try {
-            conceptSets = valuesetService.getConceptSets();
-        } catch (Exception e) {
-            throw new OmopTranslatorException("Error initializing concept sets", e);
-        }
+  /**
+   * Specify configuration to use for the translation, as well as a custom valueset reader.
+   * This is most to support mocking during testing
+   *
+   * @param valuesetService The service to use to retrieve the concept sets
+   * @throws InvalidFormatException
+   * @throws ParseException
+   * @throws IOException
+   * @throws NullPointerException
+   */
+  public ElmToOmopTranslator(IValuesetService valuesetService) throws OmopTranslatorException {
+
+    try {
+      conceptSets = valuesetService.getConceptSets();
+    } catch (Exception e) {
+      throw new OmopTranslatorException("Error initializing concept sets", e);
+    }
+  }
+
+  public ElmToOmopTranslator(IOmopRepositoryService omopService) throws OmopTranslatorException {
+    this.omopService = omopService;
+  }
+
+  protected String cqlToOmopDoubleEscaped(String cqlString, String statementName) throws Exception {
+    CohortDefinitionService.CohortDefinitionDTO cohortDefinition = this.cqlToOmopCohortDefinition(cqlString, statementName);
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+    return mapper.writeValueAsString(cohortDefinition);
+  }
+
+  protected String bundleToOmopDoubleEscaped(Bundle phenotype, String statementName) throws Exception {
+    CohortDefinitionService.CohortDefinitionDTO cohortDefinition = this.bundleToOmopCohortDefinition(phenotype, statementName);
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+    return mapper.writeValueAsString(cohortDefinition);
+  }
+
+  /**
+   * Convert a single named statement into an OMOP JSONObject
+   *
+   * @param cqlString     String containing the CQL library
+   * @param statementName The statement name to convert
+   * @return The OMOP WebAPI request JSONObject
+   * @throws Exception
+   */
+  public JsonObject cqlToOmopJsonObject(String cqlString, String statementName) throws Exception {
+    String jsonish = cqlToOmopDoubleEscaped(cqlString, statementName);
+
+    JsonParser parser = new JsonParser();
+    JsonObject root = parser.parse(jsonish).getAsJsonObject();
+
+    String expressionJson = root.get(expString).toString()
+      .replace("\\\"", "\"").replaceAll("^\"|\"$", "");
+
+    JsonObject expression = parser.parse(expressionJson).getAsJsonObject();
+
+    root.remove(expString);
+    root.add(expString, expression);
+
+    return root;
+  }
+
+  /**
+   * Builds a cohort definition from a name, description, and expression
+   *
+   * @param name             The name of the cohort definition
+   * @param description      The cohort definition description
+   * @param cohortExpression The cohort definition expression logic
+   * @return The Circe cohort definition
+   * @throws Exception
+   */
+  public CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
+    CohortDefinitionDTO cohortDefinition = CirceUtil.defaultCohortDefinition();
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+    cohortDefinition.name = name;
+    cohortDefinition.description = description;
+
+    // TODO:  This manual serialization isn't required in later versions of the WebAPI, see:
+    // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
+    cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
+
+    return cohortDefinition;
+  }
+
+  /**
+   * Create a Circe cohort definition from a CQL string and a statement name
+   *
+   * @param cqlString     The CQL string
+   * @param statementName The statement name to use as the phenotype
+   * @return The Circe cohort definition
+   * @throws Exception
+   */
+  public CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
+    if (statementName == null) {
+      throw new CqlStatementNotFoundException("No named CQL statement specified");
     }
 
-    protected String cqlToOmopDoubleEscaped(String cqlString, String statementName) throws Exception {
-        CohortDefinitionService.CohortDefinitionDTO cohortDefinition = this.cqlToOmopCohortDefinition(cqlString, statementName);
+    CqlToElmTranslator translator = new CqlToElmTranslator();
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    Library library = translator.cqlToElm(cqlString);
 
-        return mapper.writeValueAsString(cohortDefinition);
+    List<ExpressionDef> expressions = library.getStatements().getDef();
+
+    Optional<ExpressionDef> expressionDefOptional = expressions.stream()
+      .filter(x -> statementName.equals(x.getName()))
+      .findFirst();
+
+    if (!expressionDefOptional.isPresent()) {
+      throw new CqlStatementNotFoundException("Could not find statement " + statementName);
     }
 
-    /**
-     * Convert a single named statement into an OMOP JSONObject
-     *
-     * @param cqlString     String containing the CQL library
-     * @param statementName The statement name to convert
-     * @return The OMOP WebAPI request JSONObject
-     * @throws Exception
-     */
-    public JsonObject cqlToOmopJsonObject(String cqlString, String statementName) throws Exception {
-        String jsonish = cqlToOmopDoubleEscaped(cqlString, statementName);
+    ExpressionDef expressionDef = expressionDefOptional.get();
 
-        JsonParser parser = new JsonParser();
-        JsonObject root = parser.parse(jsonish).getAsJsonObject();
+    CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(library, expressionDef, this.conceptSets);
 
-        String expressionJson = root.get(expString).toString()
-            .replace("\\\"", "\"").replaceAll("^\"|\"$", "");
+    return buildCohortDefinition(expressionDef.getName(), library.getLocalId(), cohortExpression);
+  }
 
-        JsonObject expression = parser.parse(expressionJson).getAsJsonObject();
-
-        root.remove(expString);
-        root.add(expString, expression);
-
-        return root;
+  /**
+   * Create a Circe cohort definition from a FHIR bundle and a statement name
+   *
+   * @param bundle        The FHIR bundle
+   * @param statementName The statement name to use as the phenotype
+   * @return The Circe cohort definition
+   * @throws Exception
+   */
+  public CohortDefinitionDTO bundleToOmopCohortDefinition(Bundle bundle, String statementName) throws Exception {
+    if (statementName == null) {
+      throw new CqlStatementNotFoundException("No named CQL statement specified");
     }
 
-    /**
-     * Builds a cohort definition from a name, description, and expression
-     *
-     * @param name             The name of the cohort definition
-     * @param description      The cohort definition description
-     * @param cohortExpression The cohort definition expression logic
-     * @return The Circe cohort definition
-     * @throws Exception
-     */
-    public CohortDefinitionDTO buildCohortDefinition(String name, String description, CohortExpression cohortExpression) throws Exception {
-        CohortDefinitionDTO cohortDefinition = CirceUtil.defaultCohortDefinition();
+    BundlePhenotype phenotype = FhirReader.convertBundle(bundle, omopService);
+    phenotype.setPhenotypeExpressionNames(Arrays.asList(statementName));
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    conceptSets = phenotype.getValuesetService().getConceptSets();
 
-        cohortDefinition.name = name;
-        cohortDefinition.description = description;
+    List<CohortDefinitionService.CohortDefinitionDTO> cohortDefinitions = this.translatePhenotype(phenotype, conceptSets);
 
-        // TODO:  This manual serialization isn't required in later versions of the WebAPI, see:
-        // https://github.com/OHDSI/WebAPI/blob/v2.7.4/src/main/java/org/ohdsi/webapi/cohortdefinition/dto/CohortDTO.java#L10
-        cohortDefinition.expression = mapper.writeValueAsString(cohortExpression);
-
-        return cohortDefinition;
+    if (cohortDefinitions.size() < 1) {
+      throw new PhemaTranslationException("No cohort definitions created");
     }
 
-    /**
-     * Create a Circe cohort definition from a CQL string and a statement name
-     *
-     * @param cqlString     The CQL string
-     * @param statementName The statement name to use as the phenotype
-     * @return The Circe cohort definition
-     * @throws Exception
-     */
-    public CohortDefinitionDTO cqlToOmopCohortDefinition(String cqlString, String statementName) throws Exception {
-        if (statementName == null) {
-            throw new CqlStatementNotFoundException("No named CQL statement specified");
-        }
+    return cohortDefinitions.get(0);
+  }
 
-        CqlToElmTranslator translator = new CqlToElmTranslator();
 
-        Library library = translator.cqlToElm(cqlString);
+  /**
+   * Convert a single named statement into an OMOP JSON string
+   *
+   * @param cqlString     String containing the CQL library
+   * @param statementName The statement name to convert
+   * @return The OMOP WebAPI request JSON string
+   * @throws Exception
+   */
+  public String cqlToOmopJson(String cqlString, String statementName) throws Exception {
+    JsonObject object = this.cqlToOmopJsonObject(cqlString, statementName);
 
-        List<ExpressionDef> expressions = library.getStatements().getDef();
+    return object.toString();
+  }
 
-        Optional<ExpressionDef> expressionDefOptional = expressions.stream()
-            .filter(x -> statementName.equals(x.getName()))
-            .findFirst();
+  /**
+   * Convert a list of named statement into an OMOP JSON string
+   *
+   * @param cqlString      String containing the CQL library
+   * @param statementNames The list of statement names to convert
+   * @return The string representation of a JSON array containing OMOP WebAPI requests for each statement
+   * @throws Exception
+   */
+  public String cqlToOmopJson(String cqlString, List<String> statementNames) throws Exception {
+    JsonArray results = new JsonArray();
 
-        if (!expressionDefOptional.isPresent()) {
-            throw new CqlStatementNotFoundException("Could not find statement " + statementName);
-        }
-
-        ExpressionDef expressionDef = expressionDefOptional.get();
-
-        CohortExpression cohortExpression = PhemaElmToOmopTranslator.generateCohortExpression(library, expressionDef, this.conceptSets);
-
-        return buildCohortDefinition(expressionDef.getName(), library.getLocalId(), cohortExpression);
+    for (String name : statementNames) {
+      results.add(this.cqlToOmopJsonObject(cqlString, name));
     }
 
-    /**
-     * Convert a single named statement into an OMOP JSON string
-     *
-     * @param cqlString     String containing the CQL library
-     * @param statementName The statement name to convert
-     * @return The OMOP WebAPI request JSON string
-     * @throws Exception
-     */
-    public String cqlToOmopJson(String cqlString, String statementName) throws Exception {
-        JsonObject object = this.cqlToOmopJsonObject(cqlString, statementName);
+    return results.toString();
+  }
 
-        return object.toString();
+  /**
+   * Translate a phenotype into list of cohort definitions
+   *
+   * @param phenotype   The phenotype
+   * @param conceptSets The PhEMA concept sets
+   * @return The Circe cohort definition
+   */
+  public List<CohortDefinitionDTO> translatePhenotype(IPhenotype phenotype, List<PhemaConceptSet> conceptSets) throws OmopTranslatorException {
+    List<CohortDefinitionDTO> cohortDefinitions = new ArrayList<>();
+
+    for (ExpressionDef expressionDef : phenotype.getPhenotypeExpressions()) {
+
+      try {
+        CohortExpression expression = PhemaElmToOmopTranslator.generateCohortExpression(phenotype.getPhenotypeElm(), expressionDef, conceptSets);
+
+        cohortDefinitions.add(buildCohortDefinition(expressionDef.getName(), phenotype.getPhenotypeElm().getLocalId(), expression));
+      } catch (Throwable t) {
+        throw new OmopTranslatorException("Error translating phenotype", t);
+      }
     }
 
-    /**
-     * Convert a list of named statement into an OMOP JSON string
-     *
-     * @param cqlString      String containing the CQL library
-     * @param statementNames The list of statement names to convert
-     * @return The string representation of a JSON array containing OMOP WebAPI requests for each statement
-     * @throws Exception
-     */
-    public String cqlToOmopJson(String cqlString, List<String> statementNames) throws Exception {
-        JsonArray results = new JsonArray();
-
-        for (String name : statementNames) {
-            results.add(this.cqlToOmopJsonObject(cqlString, name));
-        }
-
-        return results.toString();
-    }
-
-    /**
-     * Translate a phenotype into list of cohort definitions
-     *
-     * @param phenotype   The phenotype
-     * @param conceptSets The PhEMA concept sets
-     * @return The Circe cohort definition
-     */
-    public List<CohortDefinitionDTO> translatePhenotype(IPhenotype phenotype, List<PhemaConceptSet> conceptSets) throws OmopTranslatorException {
-        List<CohortDefinitionDTO> cohortDefinitions = new ArrayList<>();
-
-        for (ExpressionDef expressionDef : phenotype.getPhenotypeExpressions()) {
-
-            try {
-                CohortExpression expression = PhemaElmToOmopTranslator.generateCohortExpression(phenotype.getPhenotypeElm(), expressionDef, conceptSets);
-
-                cohortDefinitions.add(buildCohortDefinition(expressionDef.getName(), phenotype.getPhenotypeElm().getLocalId(), expression));
-            } catch (Throwable t) {
-                throw new OmopTranslatorException("Error translating phenotype", t);
-            }
-        }
-
-        return cohortDefinitions;
-    }
+    return cohortDefinitions;
+  }
 }
