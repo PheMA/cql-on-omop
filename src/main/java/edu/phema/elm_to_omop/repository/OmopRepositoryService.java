@@ -58,6 +58,11 @@ public class OmopRepositoryService implements IOmopRepositoryService {
     client.register(ObjectMapperContextResolver.class);
   }
 
+  @Override
+  public void emptyCache() {
+    searchCache.clear();
+  }
+
   /**
    * Gets concept metadata for a given concept ID
    *
