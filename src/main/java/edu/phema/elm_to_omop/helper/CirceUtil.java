@@ -13,6 +13,15 @@ import java.util.Arrays;
  * generate invalid objects using the empty default constructors.
  */
 public class CirceUtil {
+    /**
+     * The following constants are defined in the Circe library in v1.6+.  Unfortunately,
+     * to be compatible with WebAPI v2.2, we need to use Circe v1.5 and so we will
+     * redefine them here.
+     */
+    public static final int OCCURRENCE_EXACTLY = 0;  // Occurrence.EXACTLY
+    public static final int OCCURRENCE_AT_MOST = 1;  // Occurrence.AT_MOST
+    public static final int OCCURRENCE_AT_LEAST = 2; // Occurrence.AT_LEAST
+
     private CirceUtil()  {
         super();
     }
@@ -111,7 +120,7 @@ public class CirceUtil {
     public static Occurrence defaultOccurrence() {
         Occurrence occurrence = new Occurrence();
 
-        occurrence.type = Occurrence.AT_LEAST;
+        occurrence.type = OCCURRENCE_AT_LEAST;
         occurrence.count = 1;
 
         return occurrence;

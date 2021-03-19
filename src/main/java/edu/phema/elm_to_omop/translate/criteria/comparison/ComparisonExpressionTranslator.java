@@ -91,7 +91,7 @@ public class ComparisonExpressionTranslator {
     // In Atlas, "exclusion" is an assertion that the count of a concept is exactly 0
     Occurrence occurrence = CirceUtil.defaultOccurrence();
     occurrence.count = 0;
-    occurrence.type = Occurrence.EXACTLY;
+    occurrence.type = CirceUtil.OCCURRENCE_EXACTLY;
 
     CorelatedCriteria corelatedCriteria = CorelatedCriteriaTranslator.generateCorelatedCriteriaForExpression(
       ((UnaryExpression) expression).getOperand(), context);
@@ -167,19 +167,19 @@ public class ComparisonExpressionTranslator {
 
     Expression expression = pair.getExpression();
     if (expression instanceof Greater) {
-      occurrence.type = Occurrence.AT_LEAST;
+      occurrence.type = CirceUtil.OCCURRENCE_AT_LEAST;
       // Because OHDSI uses "at least" (which is >=), we adjust the count value for equivalency
       occurrence.count++;
     } else if (expression instanceof GreaterOrEqual) {
-      occurrence.type = Occurrence.AT_LEAST;
+      occurrence.type = CirceUtil.OCCURRENCE_AT_LEAST;
     } else if (expression instanceof Equal) {
-      occurrence.type = Occurrence.EXACTLY;
+      occurrence.type = CirceUtil.OCCURRENCE_EXACTLY;
     } else if (expression instanceof Less) {
-      occurrence.type = Occurrence.AT_MOST;
+      occurrence.type = CirceUtil.OCCURRENCE_AT_MOST;
       // Because OHDSI uses "at most" (which is <=), we adjust the count value for equivalency
       occurrence.count--;
     } else if (expression instanceof LessOrEqual) {
-      occurrence.type = Occurrence.AT_MOST;
+      occurrence.type = CirceUtil.OCCURRENCE_AT_MOST;
     }
 
     // We want to default to counting distinct occurrences
