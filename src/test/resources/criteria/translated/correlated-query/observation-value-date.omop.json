@@ -1,39 +1,36 @@
 {
-  "name": "Observation Value And Date",
-  "description": "Observation Value And Date",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "Measurement": {
-            "CodesetId": 8,
-            "MeasurementTypeExclude": false,
-            "ValueAsNumber": {
-              "Value": 0.6,
-              "Op": "gte"
-            }
+  "description" : "Observation Value And Date",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "Measurement" : {
+          "CodesetId" : 8,
+          "ValueAsNumber" : {
+            "Op" : "gte",
+            "Value" : 0.6
           }
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1,
+          "Days" : 3
         },
-        "StartWindow": {
-          "Start": {
-            "Days": 2,
-            "Coeff": -1
-          },
-          "End": {
-            "Days": 3,
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1,
+          "Days" : 2
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Observation Value And Date"
 }

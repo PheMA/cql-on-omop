@@ -1,182 +1,161 @@
 {
-  "name": "Workbench Demo Correlation Multiple Nested",
-  "description": "Workbench Demo Correlation Multiple Nested",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CorrelatedCriteria": {
-              "Type": "ALL",
-              "CriteriaList": [
-                {
-                  "Criteria": {
-                    "ProcedureOccurrence": {
-                      "CodesetId": 9,
-                      "ProcedureTypeExclude": false
-                    }
-                  },
-                  "StartWindow": {
-                    "Start": {
-                      "Days": 1,
-                      "Coeff": -1
-                    },
-                    "End": {
-                      "Days": 1,
-                      "Coeff": 1
-                    }
-                  },
-                  "Occurrence": {
-                    "Type": 2,
-                    "Count": 1,
-                    "IsDistinct": false
-                  },
-                  "RestrictVisit": false
+  "description" : "Workbench Demo Correlation Multiple Nested",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 4,
+          "CorrelatedCriteria" : {
+            "CriteriaList" : [ {
+              "Criteria" : {
+                "ProcedureOccurrence" : {
+                  "CodesetId" : 9
                 }
-              ],
-              "DemographicCriteriaList": [],
-              "Groups": [
-                {
-                  "Type": "ALL",
-                  "CriteriaList": [],
-                  "DemographicCriteriaList": [],
-                  "Groups": [
-                    {
-                      "Type": "ALL",
-                      "CriteriaList": [
-                        {
-                          "Criteria": {
-                            "Measurement": {
-                              "CodesetId": 8,
-                              "MeasurementTypeExclude": false
-                            }
-                          },
-                          "StartWindow": {
-                            "Start": {
-                              "Days": 1,
-                              "Coeff": -1
-                            },
-                            "End": {
-                              "Days": 1,
-                              "Coeff": 1
-                            }
-                          },
-                          "Occurrence": {
-                            "Type": 2,
-                            "Count": 1,
-                            "IsDistinct": false
-                          },
-                          "RestrictVisit": false
-                        },
-                        {
-                          "Criteria": {
-                            "ProcedureOccurrence": {
-                              "CodesetId": 6,
-                              "ProcedureTypeExclude": false
-                            }
-                          },
-                          "StartWindow": {
-                            "Start": {
-                              "Days": 1,
-                              "Coeff": -1
-                            },
-                            "End": {
-                              "Days": 1,
-                              "Coeff": 1
-                            }
-                          },
-                          "Occurrence": {
-                            "Type": 2,
-                            "Count": 1,
-                            "IsDistinct": false
-                          },
-                          "RestrictVisit": false
-                        }
-                      ],
-                      "DemographicCriteriaList": [],
-                      "Groups": []
-                    },
-                    {
-                      "Type": "ANY",
-                      "CriteriaList": [
-                        {
-                          "Criteria": {
-                            "ConditionOccurrence": {
-                              "CodesetId": 5,
-                              "ConditionTypeExclude": false
-                            }
-                          },
-                          "StartWindow": {
-                            "Start": {
-                              "Days": 1,
-                              "Coeff": -1
-                            },
-                            "End": {
-                              "Days": 1,
-                              "Coeff": 1
-                            }
-                          },
-                          "Occurrence": {
-                            "Type": 2,
-                            "Count": 1,
-                            "IsDistinct": false
-                          },
-                          "RestrictVisit": false
-                        },
-                        {
-                          "Criteria": {
-                            "ConditionOccurrence": {
-                              "CodesetId": 0,
-                              "ConditionTypeExclude": false
-                            }
-                          },
-                          "StartWindow": {
-                            "Start": {
-                              "Days": 1,
-                              "Coeff": -1
-                            },
-                            "End": {
-                              "Days": 1,
-                              "Coeff": 1
-                            }
-                          },
-                          "Occurrence": {
-                            "Type": 2,
-                            "Count": 1,
-                            "IsDistinct": false
-                          },
-                          "RestrictVisit": false
-                        }
-                      ],
-                      "DemographicCriteriaList": [],
-                      "Groups": []
-                    }
-                  ]
+              },
+              "Occurrence" : {
+                "Count" : 1,
+                "IsDistinct" : false,
+                "Type" : 2
+              },
+              "RestrictVisit" : false,
+              "StartWindow" : {
+                "End" : {
+                  "Coeff" : 1,
+                  "Days" : 1
+                },
+                "Start" : {
+                  "Coeff" : -1,
+                  "Days" : 1
                 }
-              ]
-            },
-            "CodesetId": 4,
-            "ConditionTypeExclude": false
+              }
+            } ],
+            "DemographicCriteriaList" : [ ],
+            "Groups" : [ {
+              "CriteriaList" : [ ],
+              "DemographicCriteriaList" : [ ],
+              "Groups" : [ {
+                "CriteriaList" : [ {
+                  "Criteria" : {
+                    "Measurement" : {
+                      "CodesetId" : 8
+                    }
+                  },
+                  "Occurrence" : {
+                    "Count" : 1,
+                    "IsDistinct" : false,
+                    "Type" : 2
+                  },
+                  "RestrictVisit" : false,
+                  "StartWindow" : {
+                    "End" : {
+                      "Coeff" : 1,
+                      "Days" : 1
+                    },
+                    "Start" : {
+                      "Coeff" : -1,
+                      "Days" : 1
+                    }
+                  }
+                }, {
+                  "Criteria" : {
+                    "ProcedureOccurrence" : {
+                      "CodesetId" : 6
+                    }
+                  },
+                  "Occurrence" : {
+                    "Count" : 1,
+                    "IsDistinct" : false,
+                    "Type" : 2
+                  },
+                  "RestrictVisit" : false,
+                  "StartWindow" : {
+                    "End" : {
+                      "Coeff" : 1,
+                      "Days" : 1
+                    },
+                    "Start" : {
+                      "Coeff" : -1,
+                      "Days" : 1
+                    }
+                  }
+                } ],
+                "DemographicCriteriaList" : [ ],
+                "Groups" : [ ],
+                "Type" : "ALL"
+              }, {
+                "CriteriaList" : [ {
+                  "Criteria" : {
+                    "ConditionOccurrence" : {
+                      "CodesetId" : 5
+                    }
+                  },
+                  "Occurrence" : {
+                    "Count" : 1,
+                    "IsDistinct" : false,
+                    "Type" : 2
+                  },
+                  "RestrictVisit" : false,
+                  "StartWindow" : {
+                    "End" : {
+                      "Coeff" : 1,
+                      "Days" : 1
+                    },
+                    "Start" : {
+                      "Coeff" : -1,
+                      "Days" : 1
+                    }
+                  }
+                }, {
+                  "Criteria" : {
+                    "ConditionOccurrence" : {
+                      "CodesetId" : 0
+                    }
+                  },
+                  "Occurrence" : {
+                    "Count" : 1,
+                    "IsDistinct" : false,
+                    "Type" : 2
+                  },
+                  "RestrictVisit" : false,
+                  "StartWindow" : {
+                    "End" : {
+                      "Coeff" : 1,
+                      "Days" : 1
+                    },
+                    "Start" : {
+                      "Coeff" : -1,
+                      "Days" : 1
+                    }
+                  }
+                } ],
+                "DemographicCriteriaList" : [ ],
+                "Groups" : [ ],
+                "Type" : "ANY"
+              } ],
+              "Type" : "ALL"
+            } ],
+            "Type" : "ALL"
           }
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Workbench Demo Correlation Multiple Nested"
 }

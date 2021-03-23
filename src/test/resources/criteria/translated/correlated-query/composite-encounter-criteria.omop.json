@@ -1,113 +1,102 @@
 {
-  "name": "Encounter Criteria",
-  "description": "Encounter Criteria",
-  "expression": {
-    "Type": "ANY",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "VisitOccurrence": {
-            "CorrelatedCriteria": {
-              "Type": "ALL",
-              "CriteriaList": [
-                {
-                  "Criteria": {
-                    "ConditionOccurrence": {
-                      "CodesetId": 0,
-                      "ConditionTypeExclude": false
-                    }
-                  },
-                  "StartWindow": {
-                    "Start": {
-                      "Coeff": -1
-                    },
-                    "End": {
-                      "Coeff": 1
-                    }
-                  },
-                  "Occurrence": {
-                    "Type": 2,
-                    "Count": 1,
-                    "IsDistinct": false
-                  },
-                  "RestrictVisit": true
+  "description" : "Encounter Criteria",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "VisitOccurrence" : {
+          "CodesetId" : 3,
+          "CorrelatedCriteria" : {
+            "CriteriaList" : [ {
+              "Criteria" : {
+                "ConditionOccurrence" : {
+                  "CodesetId" : 0
                 }
-              ],
-              "DemographicCriteriaList": [],
-              "Groups": []
-            },
-            "CodesetId": 3,
-            "VisitTypeExclude": false
+              },
+              "Occurrence" : {
+                "Count" : 1,
+                "IsDistinct" : false,
+                "Type" : 2
+              },
+              "RestrictVisit" : true,
+              "StartWindow" : {
+                "End" : {
+                  "Coeff" : 1
+                },
+                "Start" : {
+                  "Coeff" : -1
+                }
+              }
+            } ],
+            "DemographicCriteriaList" : [ ],
+            "Groups" : [ ],
+            "Type" : "ALL"
           }
-        },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        }
       },
-      {
-        "Criteria": {
-          "VisitOccurrence": {
-            "CorrelatedCriteria": {
-              "Type": "ALL",
-              "CriteriaList": [
-                {
-                  "Criteria": {
-                    "ConditionOccurrence": {
-                      "CodesetId": 0,
-                      "ConditionTypeExclude": false
-                    }
-                  },
-                  "StartWindow": {
-                    "Start": {
-                      "Coeff": -1
-                    },
-                    "End": {
-                      "Coeff": 1
-                    }
-                  },
-                  "Occurrence": {
-                    "Type": 2,
-                    "Count": 1,
-                    "IsDistinct": false
-                  },
-                  "RestrictVisit": true
-                }
-              ],
-              "DemographicCriteriaList": [],
-              "Groups": []
-            },
-            "CodesetId": 1,
-            "VisitTypeExclude": false
-          }
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 2,
-          "IsDistinct": true
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    }, {
+      "Criteria" : {
+        "VisitOccurrence" : {
+          "CodesetId" : 1,
+          "CorrelatedCriteria" : {
+            "CriteriaList" : [ {
+              "Criteria" : {
+                "ConditionOccurrence" : {
+                  "CodesetId" : 0
+                }
+              },
+              "Occurrence" : {
+                "Count" : 1,
+                "IsDistinct" : false,
+                "Type" : 2
+              },
+              "RestrictVisit" : true,
+              "StartWindow" : {
+                "End" : {
+                  "Coeff" : 1
+                },
+                "Start" : {
+                  "Coeff" : -1
+                }
+              }
+            } ],
+            "DemographicCriteriaList" : [ ],
+            "Groups" : [ ],
+            "Type" : "ALL"
+          }
+        }
+      },
+      "Occurrence" : {
+        "Count" : 2,
+        "IsDistinct" : true,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
+        },
+        "Start" : {
+          "Coeff" : -1
+        }
+      }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ANY"
+  },
+  "name" : "Encounter Criteria"
 }

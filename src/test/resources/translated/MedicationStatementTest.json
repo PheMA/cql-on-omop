@@ -1,136 +1,166 @@
 {
-  "Title": "MedicationStatementTest",
-  "PrimaryCriteria": {
-    "CriteriaList": [
-      {
-        "VisitOccurrence": {
-          "VisitTypeExclude": false
+  "CollapseSettings" : {
+    "CollapseType" : "ERA",
+    "EraPad" : 0
+  },
+  "ConceptSets" : [ {
+    "expression" : {
+      "items" : [ {
+        "concept" : {
+          "CONCEPT_CLASS_ID" : null,
+          "CONCEPT_CODE" : "45917083",
+          "CONCEPT_ID" : null,
+          "CONCEPT_NAME" : null,
+          "DOMAIN_ID" : null,
+          "INVALID_REASON" : null,
+          "INVALID_REASON_CAPTION" : "Unknown",
+          "STANDARD_CONCEPT" : null,
+          "STANDARD_CONCEPT_CAPTION" : "Unknown",
+          "VOCABULARY_ID" : "SNOMEDCT"
+        },
+        "includeDescendants" : false,
+        "includeMapped" : false,
+        "isExcluded" : false
+      } ]
+    },
+    "id" : 0,
+    "name" : "Diabetes"
+  }, {
+    "expression" : {
+      "items" : [ {
+        "concept" : {
+          "CONCEPT_CLASS_ID" : null,
+          "CONCEPT_CODE" : "10725009",
+          "CONCEPT_ID" : null,
+          "CONCEPT_NAME" : null,
+          "DOMAIN_ID" : null,
+          "INVALID_REASON" : null,
+          "INVALID_REASON_CAPTION" : "Unknown",
+          "STANDARD_CONCEPT" : null,
+          "STANDARD_CONCEPT_CAPTION" : "Unknown",
+          "VOCABULARY_ID" : "SNOMEDCT"
+        },
+        "includeDescendants" : false,
+        "includeMapped" : false,
+        "isExcluded" : false
+      } ]
+    },
+    "id" : 1,
+    "name" : "Hypertension"
+  }, {
+    "expression" : {
+      "items" : [ {
+        "concept" : {
+          "CONCEPT_CLASS_ID" : null,
+          "CONCEPT_CODE" : "233910005",
+          "CONCEPT_ID" : null,
+          "CONCEPT_NAME" : null,
+          "DOMAIN_ID" : null,
+          "INVALID_REASON" : null,
+          "INVALID_REASON_CAPTION" : "Unknown",
+          "STANDARD_CONCEPT" : null,
+          "STANDARD_CONCEPT_CAPTION" : "Unknown",
+          "VOCABULARY_ID" : "SNOMEDCT"
+        },
+        "includeDescendants" : false,
+        "includeMapped" : false,
+        "isExcluded" : false
+      } ]
+    },
+    "id" : 2,
+    "name" : "Atrial Fibrilation"
+  }, {
+    "expression" : {
+      "items" : [ {
+        "concept" : {
+          "CONCEPT_CLASS_ID" : null,
+          "CONCEPT_CODE" : "1158285",
+          "CONCEPT_ID" : null,
+          "CONCEPT_NAME" : null,
+          "DOMAIN_ID" : null,
+          "INVALID_REASON" : null,
+          "INVALID_REASON_CAPTION" : "Unknown",
+          "STANDARD_CONCEPT" : null,
+          "STANDARD_CONCEPT_CAPTION" : "Unknown",
+          "VOCABULARY_ID" : "RxNorm"
+        },
+        "includeDescendants" : false,
+        "includeMapped" : false,
+        "isExcluded" : false
+      } ]
+    },
+    "id" : 3,
+    "name" : "Statin VS"
+  }, {
+    "expression" : {
+      "items" : [ {
+        "concept" : {
+          "CONCEPT_CLASS_ID" : null,
+          "CONCEPT_CODE" : "45.23",
+          "CONCEPT_ID" : null,
+          "CONCEPT_NAME" : null,
+          "DOMAIN_ID" : null,
+          "INVALID_REASON" : null,
+          "INVALID_REASON_CAPTION" : "Unknown",
+          "STANDARD_CONCEPT" : null,
+          "STANDARD_CONCEPT_CAPTION" : "Unknown",
+          "VOCABULARY_ID" : "ICD9"
+        },
+        "includeDescendants" : false,
+        "includeMapped" : false,
+        "isExcluded" : false
+      } ]
+    },
+    "id" : 4,
+    "name" : "Colonoscopy VS"
+  } ],
+  "ExpressionLimit" : {
+    "Type" : "First"
+  },
+  "InclusionRules" : [ {
+    "description" : "MedicationStatementTest",
+    "expression" : {
+      "CriteriaList" : [ {
+        "Criteria" : {
+          "DrugExposure" : {
+            "CodesetId" : 3
+          }
+        },
+        "Occurrence" : {
+          "Count" : 1,
+          "IsDistinct" : false,
+          "Type" : 2
+        },
+        "RestrictVisit" : false,
+        "StartWindow" : {
+          "End" : {
+            "Coeff" : 1
+          },
+          "Start" : {
+            "Coeff" : -1
+          }
         }
-      }
-    ],
-    "ObservationWindow": {
-      "PriorDays": 0,
-      "PostDays": 0
+      } ],
+      "DemographicCriteriaList" : [ ],
+      "Groups" : [ ],
+      "Type" : "ALL"
     },
-    "PrimaryCriteriaLimit": {
-      "Type": "First"
+    "name" : "MedicationStatementTest"
+  } ],
+  "PrimaryCriteria" : {
+    "CriteriaList" : [ {
+      "VisitOccurrence" : { }
+    } ],
+    "ObservationWindow" : {
+      "PostDays" : 0,
+      "PriorDays" : 0
+    },
+    "PrimaryCriteriaLimit" : {
+      "Type" : "First"
     }
   },
-  "ConceptSets": [
-    {
-      "id": 0,
-      "name": "Diabetes",
-      "expression": {
-        "items": [
-          {
-            "concept": {"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"45917083","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 1,
-      "name": "Hypertension",
-      "expression": {
-        "items": [
-          {
-            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"10725009","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "name": "Atrial Fibrilation",
-      "expression": {
-        "items": [
-          {
-            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"233910005","DOMAIN_ID":null,"VOCABULARY_ID":"SNOMEDCT","CONCEPT_CLASS_ID":null},
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 3,
-      "name": "Statin VS",
-      "expression": {
-        "items": [
-          {
-            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"1158285","DOMAIN_ID":null,"VOCABULARY_ID":"RxNorm","CONCEPT_CLASS_ID":null},
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    },
-    {
-      "id": 4,
-      "name": "Colonoscopy VS",
-      "expression": {
-        "items": [
-          {
-            "concept":{"CONCEPT_ID":null,"CONCEPT_NAME":null,"STANDARD_CONCEPT":null,"STANDARD_CONCEPT_CAPTION":"Unknown","INVALID_REASON":null,"INVALID_REASON_CAPTION":"Unknown","CONCEPT_CODE":"45.23","DOMAIN_ID":null,"VOCABULARY_ID":"ICD9","CONCEPT_CLASS_ID":null},
-            "isExcluded": false,
-            "includeDescendants": false,
-            "includeMapped": false
-          }
-        ]
-      }
-    }
-  ],
-  "QualifiedLimit": {
-    "Type": "First"
+  "QualifiedLimit" : {
+    "Type" : "First"
   },
-  "ExpressionLimit": {
-    "Type": "First"
-  },
-  "InclusionRules": [
-    {
-      "name": "MedicationStatementTest",
-      "description": "MedicationStatementTest",
-      "expression": {
-        "Type": "ALL",
-        "CriteriaList": [
-          {
-            "Criteria": {
-              "DrugExposure": {
-                "CodesetId": 3,
-                "DrugTypeExclude": false
-              }
-            },
-            "StartWindow": {
-              "Start": {
-                "Coeff": -1
-              },
-              "End": {
-                "Coeff": 1
-              }
-            },
-            "Occurrence": {
-              "Type": 2,
-              "Count": 1,
-              "IsDistinct": false
-            },
-            "RestrictVisit": false
-          }
-        ],
-        "DemographicCriteriaList": [],
-        "Groups": []
-      }
-    }
-  ],
-  "CollapseSettings": {
-    "CollapseType": "ERA",
-    "EraPad": 0
-  }
+  "Title" : "MedicationStatementTest"
 }

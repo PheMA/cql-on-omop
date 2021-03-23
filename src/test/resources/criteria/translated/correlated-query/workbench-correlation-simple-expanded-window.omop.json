@@ -1,64 +1,58 @@
 {
-  "name": "Workbench Demo Correlation Simple Expanded Window",
-  "description": "Workbench Demo Correlation Simple Expanded Window",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CorrelatedCriteria": {
-              "Type": "ALL",
-              "CriteriaList": [
-                {
-                  "Criteria": {
-                    "Measurement": {
-                      "CodesetId": 8,
-                      "MeasurementTypeExclude": false
-                    }
-                  },
-                  "StartWindow": {
-                    "Start": {
-                      "Days": 7,
-                      "Coeff": -1
-                    },
-                    "End": {
-                      "Days": 90,
-                      "Coeff": 1
-                    }
-                  },
-                  "Occurrence": {
-                    "Type": 2,
-                    "Count": 1,
-                    "IsDistinct": false
-                  },
-                  "RestrictVisit": false
+  "description" : "Workbench Demo Correlation Simple Expanded Window",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 4,
+          "CorrelatedCriteria" : {
+            "CriteriaList" : [ {
+              "Criteria" : {
+                "Measurement" : {
+                  "CodesetId" : 8
                 }
-              ],
-              "DemographicCriteriaList": [],
-              "Groups": []
-            },
-            "CodesetId": 4,
-            "ConditionTypeExclude": false
+              },
+              "Occurrence" : {
+                "Count" : 1,
+                "IsDistinct" : false,
+                "Type" : 2
+              },
+              "RestrictVisit" : false,
+              "StartWindow" : {
+                "End" : {
+                  "Coeff" : 1,
+                  "Days" : 90
+                },
+                "Start" : {
+                  "Coeff" : -1,
+                  "Days" : 7
+                }
+              }
+            } ],
+            "DemographicCriteriaList" : [ ],
+            "Groups" : [ ],
+            "Type" : "ALL"
           }
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Workbench Demo Correlation Simple Expanded Window"
 }

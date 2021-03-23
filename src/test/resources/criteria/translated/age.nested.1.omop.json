@@ -1,23 +1,20 @@
 {
-  "name": "Nested Ages 1",
-  "description": "Nested Ages 1",
-  "expression": {
-    "Type": "ANY",
-    "CriteriaList": [],
-    "DemographicCriteriaList": [
-      {
-        "Age": {
-          "Value": 18,
-          "Op": "lt"
-        }
-      },
-      {
-        "Age": {
-          "Value": 81,
-          "Op": "gte"
-        }
+  "description" : "Nested Ages 1",
+  "expression" : {
+    "CriteriaList" : [ ],
+    "DemographicCriteriaList" : [ {
+      "Age" : {
+        "Op" : "lt",
+        "Value" : 18
       }
-    ],
-    "Groups": []
-  }
+    }, {
+      "Age" : {
+        "Op" : "gte",
+        "Value" : 81
+      }
+    } ],
+    "Groups" : [ ],
+    "Type" : "ANY"
+  },
+  "name" : "Nested Ages 1"
 }

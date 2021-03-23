@@ -48,7 +48,7 @@ public class CorrelatedQueryTest {
     // Generate the cohort expression
     ExpressionDef expression = PhemaTestHelper.getExpressionDefByName(library, statementName);
     CohortExpression ce = PhemaElmToOmopTranslator.generateCohortExpression(library, expression, conceptSets);
-
+    
     // Assert against expected
     assertNotNull(ce);
     assertEquals(ce.inclusionRules.size(), 1);

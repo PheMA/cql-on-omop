@@ -1,17 +1,15 @@
 {
-  "name": "ValueeqAge",
-  "description": "ValueeqAge",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [],
-    "DemographicCriteriaList": [
-      {
-        "Age": {
-          "Value": 33,
-          "Op": "eq"
-        }
+  "description" : "Value eq Age",
+  "expression" : {
+    "CriteriaList" : [ ],
+    "DemographicCriteriaList" : [ {
+      "Age" : {
+        "Op" : "eq",
+        "Value" : 33
       }
-    ],
-    "Groups": []
-  }
+    } ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Value eq Age"
 }

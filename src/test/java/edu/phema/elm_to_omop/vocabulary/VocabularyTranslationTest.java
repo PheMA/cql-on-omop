@@ -16,42 +16,42 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
 public class VocabularyTranslationTest {
-    private static WireMockServer wireMockServer;
+  private static WireMockServer wireMockServer;
 
-    private static IOmopRepositoryService omopRepository;
-    private IValuesetService valuesetService;
+  private static IOmopRepositoryService omopRepository;
+  private IValuesetService valuesetService;
 
-    private List<PhemaConceptSet> conceptSets;
+  private List<PhemaConceptSet> conceptSets;
 
-    @BeforeAll
-    public static void setup() throws Exception {
-        wireMockServer = new WireMockServer(options().port(38383).extensions("edu.phema.elm_to_omop.vocabulary.VocabularyTranslationTestTransformer"));
-        wireMockServer.start();
+  @BeforeAll
+  public static void setup() throws Exception {
+    wireMockServer = new WireMockServer(options().port(38383).extensions("edu.phema.elm_to_omop.vocabulary.VocabularyTranslationTestTransformer"));
+    wireMockServer.start();
 
-        WireMock.configureFor("localhost", wireMockServer.port());
+    WireMock.configureFor("localhost", wireMockServer.port());
 
-        // Create a stub based using the transformer
-        stubFor(post(urlEqualTo("/vocabulary/search"))
-            .willReturn(aResponse()
-                .withStatus(200)
-                .withHeader("Content-Type", "application/json")
-                .withTransformers("vocabulary-translation-transformer")));
+    // Create a stub based using the transformer
+    stubFor(post(urlEqualTo("/vocabulary/search"))
+      .willReturn(aResponse()
+        .withStatus(200)
+        .withHeader("Content-Type", "application/json")
+        .withTransformers("vocabulary-translation-transformer")));
 
-        omopRepository = new OmopRepositoryService("http://localhost:38383/", "OHDSI-CDMV5");
-    }
+    omopRepository = new OmopRepositoryService("http://localhost:38383/", "OHDSI-CDMV5");
+  }
 
-    @Test
-    public void ActTranslationTest() throws Exception {
-        valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/encounter/act-encounter-codes.valueset.csv"), false);
-        conceptSets = valuesetService.getConceptSets();
+  @Test
+  public void ActTranslationTest() throws Exception {
+    valuesetService = new ConceptCodeCsvFileValuesetService(omopRepository, PhemaTestHelper.getResourcePath("vocabulary/encounter/act-encounter-codes.valueset.csv"), false);
+    conceptSets = valuesetService.getConceptSets();
 
-        PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
-            PhemaTestHelper.getJson(conceptSets),
-            PhemaTestHelper.getFileAsString("vocabulary/translated/act-encounter-codes-translated.phema-concept-sets.json"));
-    }
+    PhemaTestHelper.assertStringsEqualIgnoreWhitespace(
+      PhemaTestHelper.getJson(conceptSets),
+      PhemaTestHelper.getFileAsString("vocabulary/translated/act-encounter-codes-translated.phema-concept-sets.json"));
+  }
 
-    @AfterAll
-    public static void cleanup() {
-        wireMockServer.stop();
-    }
+  @AfterAll
+  public static void cleanup() {
+    wireMockServer.stop();
+  }
 }
