@@ -1,28 +1,24 @@
-[
-  {
-    "id": 0,
-    "name": "Acute systolic heart failure",
-    "expression": {
-      "items": [
-        {
-          "concept": {
-            "CONCEPT_ID": 44820869,
-            "CONCEPT_NAME": "Acute systolic heart failure",
-            "STANDARD_CONCEPT": "N",
-            "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "428.21",
-            "DOMAIN_ID": "Condition",
-            "VOCABULARY_ID": "ICD9CM",
-            "CONCEPT_CLASS_ID": "5-dig billing code"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        }
-      ]
-    },
-    "oid": "Acute systolic heart failure"
-  }
-]
+[ {
+  "expression" : {
+    "items" : [ {
+      "concept" : {
+        "CONCEPT_CLASS_ID" : "5-dig billing code",
+        "CONCEPT_CODE" : "428.21",
+        "CONCEPT_ID" : 44820869,
+        "CONCEPT_NAME" : "Acute systolic heart failure",
+        "DOMAIN_ID" : "Condition",
+        "INVALID_REASON" : "V",
+        "INVALID_REASON_CAPTION" : "Valid",
+        "STANDARD_CONCEPT" : "N",
+        "STANDARD_CONCEPT_CAPTION" : "Non-Standard",
+        "VOCABULARY_ID" : "ICD9CM"
+      },
+      "includeDescendants" : false,
+      "includeMapped" : false,
+      "isExcluded" : false
+    } ]
+  },
+  "id" : 0,
+  "name" : "Acute systolic heart failure",
+  "oid" : "Acute systolic heart failure"
+} ]

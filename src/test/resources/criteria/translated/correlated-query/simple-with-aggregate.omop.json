@@ -1,62 +1,56 @@
 {
-  "name": "With Aggregate",
-  "description": "With Aggregate",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "VisitOccurrence": {
-            "CorrelatedCriteria": {
-              "Type": "ALL",
-              "CriteriaList": [
-                {
-                  "Criteria": {
-                    "ConditionOccurrence": {
-                      "CodesetId": 0,
-                      "ConditionTypeExclude": false
-                    }
-                  },
-                  "StartWindow": {
-                    "Start": {
-                      "Coeff": -1
-                    },
-                    "End": {
-                      "Coeff": 1
-                    }
-                  },
-                  "Occurrence": {
-                    "Type": 2,
-                    "Count": 1,
-                    "IsDistinct": false
-                  },
-                  "RestrictVisit": true
+  "description" : "With Aggregate",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "VisitOccurrence" : {
+          "CodesetId" : 1,
+          "CorrelatedCriteria" : {
+            "CriteriaList" : [ {
+              "Criteria" : {
+                "ConditionOccurrence" : {
+                  "CodesetId" : 0
                 }
-              ],
-              "DemographicCriteriaList": [],
-              "Groups": []
-            },
-            "CodesetId": 1,
-            "VisitTypeExclude": false
+              },
+              "Occurrence" : {
+                "Count" : 1,
+                "IsDistinct" : false,
+                "Type" : 2
+              },
+              "RestrictVisit" : true,
+              "StartWindow" : {
+                "End" : {
+                  "Coeff" : 1
+                },
+                "Start" : {
+                  "Coeff" : -1
+                }
+              }
+            } ],
+            "DemographicCriteriaList" : [ ],
+            "Groups" : [ ],
+            "Type" : "ALL"
           }
+        }
+      },
+      "Occurrence" : {
+        "Count" : 4,
+        "IsDistinct" : true,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 4,
-          "IsDistinct": true
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "With Aggregate"
 }

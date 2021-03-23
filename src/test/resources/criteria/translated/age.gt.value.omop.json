@@ -1,17 +1,15 @@
 {
-  "name": "AgegtValue",
-  "description": "AgegtValue",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [],
-    "DemographicCriteriaList": [
-      {
-        "Age": {
-          "Value": 77,
-          "Op": "gt"
-        }
+  "description" : "Age gt Value",
+  "expression" : {
+    "CriteriaList" : [ ],
+    "DemographicCriteriaList" : [ {
+      "Age" : {
+        "Op" : "gt",
+        "Value" : 77
       }
-    ],
-    "Groups": []
-  }
+    } ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Age gt Value"
 }

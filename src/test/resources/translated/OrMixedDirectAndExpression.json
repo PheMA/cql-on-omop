@@ -1,55 +1,50 @@
 {
-  "name": "Or mixed direct and expression",
-  "description": "Or mixed direct and expression",
-  "expression": {
-    "Type": "ANY",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
-          }
-        },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+  "description" : "Or mixed direct and expression",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 0
+        }
       },
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CodesetId": 1,
-            "ConditionTypeExclude": false
-          }
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    }, {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 1
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
+        },
+        "Start" : {
+          "Coeff" : -1
+        }
+      }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ANY"
+  },
+  "name" : "Or mixed direct and expression"
 }

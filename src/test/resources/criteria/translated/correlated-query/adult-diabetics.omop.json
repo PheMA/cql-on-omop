@@ -1,40 +1,35 @@
 {
-  "name": "Adult Diabetics",
-  "description": "Adult Diabetics",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
-          }
+  "description" : "Adult Diabetics",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 0
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
-      }
-    ],
-    "DemographicCriteriaList": [
-      {
-        "Age": {
-          "Value": 18,
-          "Op": "gte"
+        "Start" : {
+          "Coeff" : -1
         }
       }
-    ],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ {
+      "Age" : {
+        "Op" : "gte",
+        "Value" : 18
+      }
+    } ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Adult Diabetics"
 }

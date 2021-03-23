@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 public class BundlePhenotypeTest {
@@ -41,9 +40,11 @@ public class BundlePhenotypeTest {
       public ArrayList<Concept> answer(InvocationOnMock invocation) throws Throwable {
         Object[] arguments = invocation.getArguments();
         Concept concept = new Concept();
-        concept.conceptCode = (String)arguments[0];
-        concept.vocabularyId = (String)arguments[1];
-        return new ArrayList<Concept>() {{ add(concept); }};
+        concept.conceptCode = (String) arguments[0];
+        concept.vocabularyId = (String) arguments[1];
+        return new ArrayList<Concept>() {{
+          add(concept);
+        }};
       }
     });
 

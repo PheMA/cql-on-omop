@@ -1,37 +1,30 @@
 {
-  "name": "Nested Ages 3",
-  "description": "Nested Ages 3",
-  "expression": {
-    "Type": "ANY",
-    "CriteriaList": [],
-    "DemographicCriteriaList": [
-      {
-        "Age": {
-          "Value": 18,
-          "Op": "lt"
+  "description" : "Nested Ages 3",
+  "expression" : {
+    "CriteriaList" : [ ],
+    "DemographicCriteriaList" : [ {
+      "Age" : {
+        "Op" : "lt",
+        "Value" : 18
+      }
+    } ],
+    "Groups" : [ {
+      "CriteriaList" : [ ],
+      "DemographicCriteriaList" : [ {
+        "Age" : {
+          "Op" : "gte",
+          "Value" : 65
         }
-      }
-    ],
-    "Groups": [
-      {
-        "Type": "ALL",
-        "CriteriaList": [],
-        "DemographicCriteriaList": [
-          {
-            "Age": {
-              "Value": 65,
-              "Op": "gte"
-            }
-          },
-          {
-            "Age": {
-              "Value": 87,
-              "Op": "lt"
-            }
-          }
-        ],
-        "Groups": []
-      }
-    ]
-  }
+      }, {
+        "Age" : {
+          "Op" : "lt",
+          "Value" : 87
+        }
+      } ],
+      "Groups" : [ ],
+      "Type" : "ALL"
+    } ],
+    "Type" : "ANY"
+  },
+  "name" : "Nested Ages 3"
 }

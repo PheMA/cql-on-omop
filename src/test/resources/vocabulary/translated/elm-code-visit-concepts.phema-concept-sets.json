@@ -1,54 +1,47 @@
-[
-  {
-    "id": 0,
-    "name": "Inpatient Encounter",
-    "expression": {
-      "items": [
-        {
-          "concept": {
-            "CONCEPT_ID": 9201,
-            "CONCEPT_NAME": "Inpatient Visit",
-            "STANDARD_CONCEPT": "S",
-            "STANDARD_CONCEPT_CAPTION": "Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "IP",
-            "DOMAIN_ID": "Visit",
-            "VOCABULARY_ID": "Visit",
-            "CONCEPT_CLASS_ID": "Visit"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        }
-      ]
-    },
-    "oid": "Inpatient Encounter"
+[ {
+  "expression" : {
+    "items" : [ {
+      "concept" : {
+        "CONCEPT_CLASS_ID" : "Visit",
+        "CONCEPT_CODE" : "IP",
+        "CONCEPT_ID" : 9201,
+        "CONCEPT_NAME" : "Inpatient Visit",
+        "DOMAIN_ID" : "Visit",
+        "INVALID_REASON" : "V",
+        "INVALID_REASON_CAPTION" : "Valid",
+        "STANDARD_CONCEPT" : "S",
+        "STANDARD_CONCEPT_CAPTION" : "Standard",
+        "VOCABULARY_ID" : "Visit"
+      },
+      "includeDescendants" : false,
+      "includeMapped" : false,
+      "isExcluded" : false
+    } ]
   },
-  {
-    "id": 1,
-    "name": "Outpatient Encounter",
-    "expression": {
-      "items": [
-        {
-          "concept": {
-            "CONCEPT_ID": 9202,
-            "CONCEPT_NAME": "Outpatient Visit",
-            "STANDARD_CONCEPT": "S",
-            "STANDARD_CONCEPT_CAPTION": "Standard",
-            "INVALID_REASON": "V",
-            "INVALID_REASON_CAPTION": "Valid",
-            "CONCEPT_CODE": "OP",
-            "DOMAIN_ID": "Visit",
-            "VOCABULARY_ID": "Visit",
-            "CONCEPT_CLASS_ID": "Visit"
-          },
-          "isExcluded": false,
-          "includeDescendants": false,
-          "includeMapped": false
-        }
-      ]
-    },
-    "oid": "Outpatient Encounter"
-  }
-]
+  "id" : 0,
+  "name" : "Inpatient Encounter",
+  "oid" : "Inpatient Encounter"
+}, {
+  "expression" : {
+    "items" : [ {
+      "concept" : {
+        "CONCEPT_CLASS_ID" : "Visit",
+        "CONCEPT_CODE" : "OP",
+        "CONCEPT_ID" : 9202,
+        "CONCEPT_NAME" : "Outpatient Visit",
+        "DOMAIN_ID" : "Visit",
+        "INVALID_REASON" : "V",
+        "INVALID_REASON_CAPTION" : "Valid",
+        "STANDARD_CONCEPT" : "S",
+        "STANDARD_CONCEPT_CAPTION" : "Standard",
+        "VOCABULARY_ID" : "Visit"
+      },
+      "includeDescendants" : false,
+      "includeMapped" : false,
+      "isExcluded" : false
+    } ]
+  },
+  "id" : 1,
+  "name" : "Outpatient Encounter",
+  "oid" : "Outpatient Encounter"
+} ]

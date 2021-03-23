@@ -1,67 +1,55 @@
 {
-  "name": "Diabetes and Specific Ages",
-  "description": "Diabetes and Specific Ages",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
-          }
+  "description" : "Diabetes and Specific Ages",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 0
+        }
+      },
+      "Occurrence" : {
+        "Count" : 1,
+        "IsDistinct" : false,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 1,
-          "IsDistinct": false
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": [
-      {
-        "Type": "ANY",
-        "CriteriaList": [],
-        "DemographicCriteriaList": [
-          {
-            "Age": {
-              "Value": 18,
-              "Op": "lt"
-            }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ {
+      "CriteriaList" : [ ],
+      "DemographicCriteriaList" : [ {
+        "Age" : {
+          "Op" : "lt",
+          "Value" : 18
+        }
+      } ],
+      "Groups" : [ {
+        "CriteriaList" : [ ],
+        "DemographicCriteriaList" : [ {
+          "Age" : {
+            "Op" : "gte",
+            "Value" : 65
           }
-        ],
-        "Groups": [
-          {
-            "Type": "ALL",
-            "CriteriaList": [],
-            "DemographicCriteriaList": [
-              {
-                "Age": {
-                  "Value": 65,
-                  "Op": "gte"
-                }
-              },
-              {
-                "Age": {
-                  "Value": 87,
-                  "Op": "lt"
-                }
-              }
-            ],
-            "Groups": []
+        }, {
+          "Age" : {
+            "Op" : "lt",
+            "Value" : 87
           }
-        ]
-      }
-    ]
-  }
+        } ],
+        "Groups" : [ ],
+        "Type" : "ALL"
+      } ],
+      "Type" : "ANY"
+    } ],
+    "Type" : "ALL"
+  },
+  "name" : "Diabetes and Specific Ages"
 }

@@ -1,33 +1,30 @@
 {
-  "name": "Simple Aggregate",
-  "description": "Simple Aggregate",
-  "expression": {
-    "Type": "ALL",
-    "CriteriaList": [
-      {
-        "Criteria": {
-          "ConditionOccurrence": {
-            "CodesetId": 0,
-            "ConditionTypeExclude": false
-          }
+  "description" : "Simple Aggregate",
+  "expression" : {
+    "CriteriaList" : [ {
+      "Criteria" : {
+        "ConditionOccurrence" : {
+          "CodesetId" : 0
+        }
+      },
+      "Occurrence" : {
+        "Count" : 55,
+        "IsDistinct" : true,
+        "Type" : 2
+      },
+      "RestrictVisit" : false,
+      "StartWindow" : {
+        "End" : {
+          "Coeff" : 1
         },
-        "StartWindow": {
-          "Start": {
-            "Coeff": -1
-          },
-          "End": {
-            "Coeff": 1
-          }
-        },
-        "Occurrence": {
-          "Type": 2,
-          "Count": 55,
-          "IsDistinct": true
-        },
-        "RestrictVisit": false
+        "Start" : {
+          "Coeff" : -1
+        }
       }
-    ],
-    "DemographicCriteriaList": [],
-    "Groups": []
-  }
+    } ],
+    "DemographicCriteriaList" : [ ],
+    "Groups" : [ ],
+    "Type" : "ALL"
+  },
+  "name" : "Simple Aggregate"
 }
