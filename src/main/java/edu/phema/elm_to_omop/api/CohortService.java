@@ -276,8 +276,31 @@ public class CohortService {
     try {
       omopService.queueCohortGeneration(id);
 
+      // Initialize retry settings
+      int maxRetries;
+      String maxRetriesProp = System.getProperty("edu.phema.maxRetries");
+
+      if (maxRetriesProp == null) {
+        maxRetries = 10;
+      } else {
+        maxRetries = Integer.parseInt(maxRetriesProp);
+      }
+
+      int maxDelay;
+      String maxDelayProp = System.getProperty("edu.phema.maxDelaySeconds");
+
+      if (maxRetriesProp == null) {
+        maxDelay = 90;
+      } else {
+        maxDelay = Integer.parseInt(maxDelayProp);
+      }
+
+      logger.info("Getting Cohort Report with maxRetries=" + maxRetries + " and maxDelay=" + maxDelay);
+
       // Retry while the cohort is generating
       RetryPolicy retryPolicy = new RetryPolicy();
+      retryPolicy.withMaxRetries(maxRetries);
+
       retryPolicy.handleResultIf(info -> {
         Optional<CohortGenerationInfo> maybeGenInfo = ((List<CohortGenerationInfo>) info).stream().filter(cgi -> cgi.getId().getCohortDefinitionId().equals(id)).findFirst();
 
@@ -293,7 +316,7 @@ public class CohortService {
 
         return genInfo.getStatus() != GenerationStatus.COMPLETE;
       });
-      retryPolicy.withBackoff(1, 30, ChronoUnit.SECONDS);
+      retryPolicy.withBackoff(1, maxDelay, ChronoUnit.SECONDS);
       Failsafe.with(retryPolicy).get(() -> omopService.getCohortDefinitionInfo(id));
 
       // Retry until we actually get an inclusionRules result back
